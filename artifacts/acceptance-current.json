@@ -1,0 +1,1073 @@
+{
+  "generated_at": "2026-10-13T00:24:00.127604+00:00",
+  "unittest_source": "artifacts\\regression-agent-data-v3.json",
+  "unittest_finished_at": "2026-10-12T22:04:19.660434+00:00",
+  "browser_records": [
+    {
+      "test_id": "cua.resource_stage_ui",
+      "acceptance_ids": [
+        "T094"
+      ],
+      "status": "PASSED",
+      "at": "2026-10-12T16:44:14.943Z",
+      "scope": "Current UI: ten routes, preserved PostgreSQL company, CNY/Chinese display, saved MOCK answer and exact approval visible. Read-only; no payments, live inference or new golden execution. Requested mobile 390px was clamped to 500px by browser; only observed 500px layout checked.",
+      "checks": {
+        "ten_routes_open": true,
+        "chinese_display": true,
+        "cny_display": true,
+        "explicit_mock": true,
+        "answer_visible": true,
+        "approval_boundary_visible": true
+      },
+      "routes": [
+        {
+          "route": "Overview",
+          "snapshot": "- complementary:\n  - generic: F\n  - text: SME Finance\n  - text: Copilot / Topic E\n  - navigation \"Workspace\":\n    - link \"Overview\":\n      - /url: \"#overview\"\n    - link \"Imports & Data Quality\":\n      - /url: \"#imports\"\n    - link \"Receivables / Payables\":\n      - /url: \"#obligations\"\n    - link \"Cash Flow\":\n      - /url: \"#cashflow\"\n    - link \"Financing\":\n      - /url: \"#financing\"\n    - link \"Plans\":\n      - /url: \"#plans\"\n    - link \"Copilot\":\n      - /url: \"#copilot\"\n    - link \"Approvals & Operations\":\n      - /url: \"#operations\"\n    - link \"Evidence & Reports\":\n      - /url: \"#sources\"\n    - link \"Settings\":\n      - /url: \"#settings\"\n  - text: Local financial sandbox\n  - strong: \"DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK\"\n  - paragraph: Every payment needs your exact approval.\n- main:\n  - text: OWNER WORKSPACE\n  - heading \"Financial workspace\" [level=1]\n  - generic: SANDBOX ONLY\n  - generic: 苏州合成精密配件 · Synthetic B2B · OWNER\n  - button \"Refresh & reconcile\"\n  - button \"Advance demo clock\"\n  - button \"Stop new sends\"\n  - status\n  - heading \"Liquidity overview\" [level=2]\n  - generic: Observed 10 Oct, 08:00\n  - text: Confirmed cash\n  - strong: CN¥120,000.00\n  - text: Settled observation\n  - text: Active reservations\n  - strong: CN¥0.00\n  - text: Preserved during UNKNOWN\n  - text: Expected minimum\n  - strong: CN¥20,000.00\n  - text: F0 · expected calendar\n  - text: Hard reserve\n  - strong: CN¥20,000.00\n  - text: Cannot be traded for lower cost\n  - heading \"Cashflow · expected, not settled\" [level=3]\n  - generic: CN¥100,000.00\n  - generic: 11 Oct\n  - generic: CN¥20,000.00\n  - generic: 11 Oct\n  - generic: CN¥120,000.00\n  - generic: 11 Oct\n  - generic: CN¥30,000.00\n  - generic: 13 Oct\n  - paragraph: No reserve gap in this calendar scenario.\n  - heading \"What drives the gap?\" [level=3]\n  - paragraph: Confirmed obligations are paid at their exact deadlines. Expected customer receipts become cash only after settlement.\n  - generic: \"Import quality: no unresolved flags\"\n  - paragraph: F0 calendar fallback + uncalibrated DEMO delay stresses. No bankruptcy probability or P&L is inferred.\n  - generic: All amounts from server calculations · CNY · Asia/Shanghai business calendar · No real bank connected"
+        },
+        {
+          "route": "Imports & Data Quality",
+          "snapshot": "- complementary:\n  - generic: F\n  - text: SME Finance\n  - text: Copilot / Topic E\n  - navigation \"Workspace\":\n    - link \"Overview\":\n      - /url: \"#overview\"\n    - link \"Imports & Data Quality\":\n      - /url: \"#imports\"\n    - link \"Receivables / Payables\":\n      - /url: \"#obligations\"\n    - link \"Cash Flow\":\n      - /url: \"#cashflow\"\n    - link \"Financing\":\n      - /url: \"#financing\"\n    - link \"Plans\":\n      - /url: \"#plans\"\n    - link \"Copilot\":\n      - /url: \"#copilot\"\n    - link \"Approvals & Operations\":\n      - /url: \"#operations\"\n    - link \"Evidence & Reports\":\n      - /url: \"#sources\"\n    - link \"Settings\":\n      - /url: \"#settings\"\n  - text: Local financial sandbox\n  - strong: \"DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK\"\n  - paragraph: Every payment needs your exact approval.\n- main:\n  - text: OWNER WORKSPACE\n  - heading \"Financial workspace\" [level=1]\n  - generic: SANDBOX ONLY\n  - generic: 苏州合成精密配件 · Synthetic B2B · OWNER\n  - button \"Refresh & reconcile\"\n  - button \"Advance demo clock\"\n  - button \"Stop new sends\"\n  - status\n  - heading \"Imports & Data Quality\" [level=2]\n  - text: Import synthetic-csv-v1\n  - button \"Import synthetic-csv-v1\"\n  - button \"Import CSV\"\n  - paragraph: \"Supported schema: synthetic-csv-v1. Document text and text PDFs are imported in Evidence. OFD/OCR and real bank export formats remain unsupported.\"\n  - paragraph: IMPORTED · 6 accepted / 0 quarantined\n  - paragraph: REVIEW_REQUIRED · 0 accepted / 1 quarantined\n  - heading \"RESOLVED · 63cead66\" [level=3]\n  - paragraph: 0 accepted; 0 unresolved rows\n  - button \"Row 2 · CORRECT\" [disabled]\n  - heading \"IMPORTED · 1d9e4ecf\" [level=3]\n  - paragraph: 6 accepted; 0 unresolved rows\n  - generic: All amounts from server calculations · CNY · Asia/Shanghai business calendar · No real bank connected"
+        },
+        {
+          "route": "Receivables / Payables",
+          "snapshot": "- complementary:\n  - generic: F\n  - text: SME Finance\n  - text: Copilot / Topic E\n  - navigation \"Workspace\":\n    - link \"Overview\":\n      - /url: \"#overview\"\n    - link \"Imports & Data Quality\":\n      - /url: \"#imports\"\n    - link \"Receivables / Payables\":\n      - /url: \"#obligations\"\n    - link \"Cash Flow\":\n      - /url: \"#cashflow\"\n    - link \"Financing\":\n      - /url: \"#financing\"\n    - link \"Plans\":\n      - /url: \"#plans\"\n    - link \"Copilot\":\n      - /url: \"#copilot\"\n    - link \"Approvals & Operations\":\n      - /url: \"#operations\"\n    - link \"Evidence & Reports\":\n      - /url: \"#sources\"\n    - link \"Settings\":\n      - /url: \"#settings\"\n  - text: Local financial sandbox\n  - strong: \"DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK\"\n  - paragraph: Every payment needs your exact approval.\n- main:\n  - text: OWNER WORKSPACE\n  - heading \"Financial workspace\" [level=1]\n  - generic: SANDBOX ONLY\n  - generic: 苏州合成精密配件 · Synthetic B2B · OWNER\n  - button \"Refresh & reconcile\"\n  - button \"Advance demo clock\"\n  - button \"Stop new sends\"\n  - status\n  - heading \"Receivables / Payables\" [level=2]\n  - textbox \"Search obligations\":\n    - /placeholder: Search reference or counterparty\n  - combobox \"Obligation type\":\n    - option \"All obligations\" [selected]\n    - option \"RECEIVABLE\"\n    - option \"PAYABLE\"\n  - table:\n    - rowgroup:\n      - row \"Reference Kind Confirmed due Outstanding Protection Evidence\":\n        - columnheader \"Reference\"\n        - columnheader \"Kind\"\n        - columnheader \"Confirmed due\"\n        - columnheader \"Outstanding\"\n        - columnheader \"Protection\"\n        - columnheader \"Evidence\"\n    - rowgroup:\n      - row \"salary PAYABLE 05 Oct, 08:00 CN¥80,000.00 Protected Source\":\n        - cell \"salary\"\n        - cell \"PAYABLE\"\n        - cell \"05 Oct, 08:00\"\n        - cell \"CN¥80,000.00\"\n        - cell \"Protected\"\n        - cell \"Source\":\n          - button \"Source\"\n      - row \"rent PAYABLE 06 Oct, 08:00 CN¥20,000.00 Protected Source\":\n        - cell \"rent\"\n        - cell \"PAYABLE\"\n        - cell \"06 Oct, 08:00\"\n        - cell \"CN¥20,000.00\"\n        - cell \"Protected\"\n        - cell \"Source\":\n          - button \"Source\"\n      - row \"customer_invoice RECEIVABLE 11 Oct, 08:00 CN¥100,000.00 Fixed confirmed terms Source\":\n        - cell \"customer_invoice\"\n        - cell \"RECEIVABLE\"\n        - cell \"11 Oct, 08:00\"\n        - cell \"CN¥100,000.00\"\n        - cell \"Fixed confirmed terms\"\n        - cell \"Source\":\n          - button \"Source\"\n      - row \"supplier PAYABLE 13 Oct, 08:00 CN¥90,000.00 Fixed confirmed terms Source\":\n        - cell \"supplier\"\n        - cell \"PAYABLE\"\n        - cell \"13 Oct, 08:00\"\n        - cell \"CN¥90,000.00\"\n        - cell \"Fixed confirmed terms\"\n        - cell \"Source\":\n          - button \"Source\"\n  - generic \"Allocate a settled payment\"\n  - option \"salary · CN¥80,000.00\" [selected]\n  - option \"rent · CN¥20,000.00\"\n  - option \"customer_invoice · CN¥100,000.00\"\n  - option \"supplier · CN¥90,000.00\"\n  - generic \"Propose a conditional supplier extension\"\n  - option \"supplier\" [selected]\n  - generic: All amounts from server calculations · CNY · Asia/Shanghai business calendar · No real bank connected"
+        },
+        {
+          "route": "Cash Flow",
+          "snapshot": "- complementary:\n  - generic: F\n  - text: SME Finance\n  - text: Copilot / Topic E\n  - navigation \"Workspace\":\n    - link \"Overview\":\n      - /url: \"#overview\"\n    - link \"Imports & Data Quality\":\n      - /url: \"#imports\"\n    - link \"Receivables / Payables\":\n      - /url: \"#obligations\"\n    - link \"Cash Flow\":\n      - /url: \"#cashflow\"\n    - link \"Financing\":\n      - /url: \"#financing\"\n    - link \"Plans\":\n      - /url: \"#plans\"\n    - link \"Copilot\":\n      - /url: \"#copilot\"\n    - link \"Approvals & Operations\":\n      - /url: \"#operations\"\n    - link \"Evidence & Reports\":\n      - /url: \"#sources\"\n    - link \"Settings\":\n      - /url: \"#settings\"\n  - text: Local financial sandbox\n  - strong: \"DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK\"\n  - paragraph: Every payment needs your exact approval.\n- main:\n  - text: OWNER WORKSPACE\n  - heading \"Financial workspace\" [level=1]\n  - generic: SANDBOX ONLY\n  - generic: 苏州合成精密配件 · Synthetic B2B · OWNER\n  - button \"Refresh & reconcile\"\n  - button \"Advance demo clock\"\n  - button \"Stop new sends\"\n  - status\n  - heading \"Cash Flow\" [level=2]\n  - paragraph: F0 contract calendar and F1 scenario assumptions. Expected receipts are not settled cash. Scenario parameters are uncalibrated.\n  - text: Delay (days)\n  - spinbutton \"Delay (days)\": \"5\"\n  - text: Initial receipt (%)\n  - spinbutton \"Initial receipt (%)\": \"50\"\n  - text: Remaining receipt delay (days)\n  - spinbutton \"Remaining receipt delay (days)\": \"20\"\n  - button \"Recalculate scenario\"\n  - heading \"f0 · minimum CN¥20,000.00\" [level=3]\n  - paragraph: Net need CN¥0.00 · first gap none\n  - table:\n    - rowgroup:\n      - row \"Time Event Cash flow Balance\":\n        - columnheader \"Time\"\n        - columnheader \"Event\"\n        - columnheader \"Cash flow\"\n        - columnheader \"Balance\"\n    - rowgroup:\n      - row \"11 Oct, 08:00 rent -CN¥20,000.00 CN¥100,000.00\":\n        - cell \"11 Oct, 08:00\"\n        - cell \"rent\"\n        - cell \"-CN¥20,000.00\"\n        - cell \"CN¥100,000.00\"\n      - row \"11 Oct, 08:00 salary -CN¥80,000.00 CN¥20,000.00\":\n        - cell \"11 Oct, 08:00\"\n        - cell \"salary\"\n        - cell \"-CN¥80,000.00\"\n        - cell \"CN¥20,000.00\"\n      - row \"11 Oct, 08:00 customer_invoice CN¥100,000.00 CN¥120,000.00\":\n        - cell \"11 Oct, 08:00\"\n        - cell \"customer_invoice\"\n        - cell \"CN¥100,000.00\"\n        - cell \"CN¥120,000.00\"\n      - row \"13 Oct, 08:00 supplier -CN¥90,000.00 CN¥30,000.00\":\n        - cell \"13 Oct, 08:00\"\n        - cell \"supplier\"\n        - cell \"-CN¥90,000.00\"\n        - cell \"CN¥30,000.00\"\n  - heading \"delay_5 · minimum -CN¥70,000.00\" [level=3]\n  - paragraph: Net need CN¥90,000.00 · first gap 13 Oct, 08:00\n  - table:\n    - rowgroup:\n      - row \"Time Event Cash flow Balance\":\n        - columnheader \"Time\"\n        - columnheader \"Event\"\n        - columnheader \"Cash flow\"\n        - columnheader \"Balance\"\n    - rowgroup:\n      - row \"11 Oct, 08:00 rent -CN¥20,000.00 CN¥100,000.00\":\n        - cell \"11 Oct, 08:00\"\n        - cell \"rent\"\n        - cell \"-CN¥20,000.00\"\n        - cell \"CN¥100,000.00\"\n      - row \"11 Oct, 08:00 salary -CN¥80,000.00 CN¥20,000.00\":\n        - cell \"11 Oct, 08:00\"\n        - cell \"salary\"\n        - cell \"-CN¥80,000.00\"\n        - cell \"CN¥20,000.00\"\n      - row \"13 Oct, 08:00 supplier -CN¥90,000.00 -CN¥70,000.00\":\n        - cell \"13 Oct, 08:00\"\n        - cell \"supplier\"\n        - cell \"-CN¥90,000.00\"\n        - cell \"-CN¥70,000.00\"\n      - row \"16 Oct, 08:00 customer_invoice CN¥100,000.00 CN¥30,000.00\":\n        - cell \"16 Oct, 08:00\"\n        - cell \"customer_invoice\"\n        - cell \"CN¥100,000.00\"\n        - cell \"CN¥30,000.00\"\n  - heading \"delay_25 · minimum -CN¥70,000.00\" [level=3]\n  - paragraph: Net need CN¥90,000.00 · first gap 13 Oct, 08:00\n  - table:\n    - rowgroup:\n      - row \"Time Event Cash flow Balance\":\n        - columnheader \"Time\"\n        - columnheader \"Event\"\n        - columnheader \"Cash flow\"\n        - columnheader \"Balance\"\n    - rowgroup:\n      - row \"11 Oct, 08:00 rent -CN¥20,000.00 CN¥100,000.00\":\n        - cell \"11 Oct, 08:00\"\n        - cell \"rent\"\n        - cell \"-CN¥20,000.00\"\n        - cell \"CN¥100,000.00\"\n      - row \"11 Oct, 08:00 salary -CN¥80,000.00 CN¥20,000.00\":\n        - cell \"11 Oct, 08:00\"\n        - cell \"salary\"\n        - cell \"-CN¥80,000.00\"\n        - cell \"CN¥20,000.00\"\n      - row \"13 Oct, 08:00 supplier -CN¥90,000.00 -CN¥70,000.00\":\n        - cell \"13 Oct, 08:00\"\n        - cell \"supplier\"\n        - cell \"-CN¥90,000.00\"\n        - cell \"-CN¥70,000.00\"\n      - row \"05 Nov, 08:00 customer_invoice CN¥100,000.00 CN¥30,000.00\":\n        - cell \"05 Nov, 08:00\"\n        - cell \"customer_invoice\"\n        - cell \"CN¥100,000.00\"\n        - cell \"CN¥30,000.00\"\n  - generic: All amounts from server calculations · CNY · Asia/Shanghai business calendar · No real bank connected"
+        },
+        {
+          "route": "Financing",
+          "snapshot": "- complementary:\n  - generic: F\n  - text: SME Finance\n  - text: Copilot / Topic E\n  - navigation \"Workspace\":\n    - link \"Overview\":\n      - /url: \"#overview\"\n    - link \"Imports & Data Quality\":\n      - /url: \"#imports\"\n    - link \"Receivables / Payables\":\n      - /url: \"#obligations\"\n    - link \"Cash Flow\":\n      - /url: \"#cashflow\"\n    - link \"Financing\":\n      - /url: \"#financing\"\n    - link \"Plans\":\n      - /url: \"#plans\"\n    - link \"Copilot\":\n      - /url: \"#copilot\"\n    - link \"Approvals & Operations\":\n      - /url: \"#operations\"\n    - link \"Evidence & Reports\":\n      - /url: \"#sources\"\n    - link \"Settings\":\n      - /url: \"#settings\"\n  - text: Local financial sandbox\n  - strong: \"DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK\"\n  - paragraph: Every payment needs your exact approval.\n- main:\n  - text: OWNER WORKSPACE\n  - heading \"Financial workspace\" [level=1]\n  - generic: SANDBOX ONLY\n  - generic: 苏州合成精密配件 · Synthetic B2B · OWNER\n  - button \"Refresh & reconcile\"\n  - button \"Advance demo clock\"\n  - button \"Stop new sends\"\n  - status\n  - heading \"Financing\" [level=2]\n  - paragraph: Versioned DEMO conditions. PASS / FAIL / UNKNOWN are eligibility checks, never lender approval.\n  - heading \"DEMO bridge · PASS\" [level=3]\n  - paragraph: Version demo_bridge_v1 · DEMO product specification v1\n  - paragraph: Disbursement 02 Oct, 08:00 · repayment 31 Oct, 08:00\n  - paragraph: \"legal_form: PASS / jurisdiction: PASS / documents: PASS\"\n  - button \"Calculate full financing cashflows\"\n  - heading \"DEMO late low-fee · PASS\" [level=3]\n  - paragraph: Version demo_late_v1 · DEMO product specification v1\n  - paragraph: Disbursement 10 Oct, 08:00 · repayment 31 Oct, 08:00\n  - paragraph: \"legal_form: PASS / jurisdiction: PASS / documents: PASS\"\n  - button \"Calculate full financing cashflows\"\n  - text: Principal (minor units)\n  - spinbutton \"Principal (minor units)\": \"9100000\"\n  - generic: All amounts from server calculations · CNY · Asia/Shanghai business calendar · No real bank connected"
+        },
+        {
+          "route": "Plans",
+          "snapshot": "- complementary:\n  - generic: F\n  - text: SME Finance\n  - text: Copilot / Topic E\n  - navigation \"Workspace\":\n    - link \"Overview\":\n      - /url: \"#overview\"\n    - link \"Imports & Data Quality\":\n      - /url: \"#imports\"\n    - link \"Receivables / Payables\":\n      - /url: \"#obligations\"\n    - link \"Cash Flow\":\n      - /url: \"#cashflow\"\n    - link \"Financing\":\n      - /url: \"#financing\"\n    - link \"Plans\":\n      - /url: \"#plans\"\n    - link \"Copilot\":\n      - /url: \"#copilot\"\n    - link \"Approvals & Operations\":\n      - /url: \"#operations\"\n    - link \"Evidence & Reports\":\n      - /url: \"#sources\"\n    - link \"Settings\":\n      - /url: \"#settings\"\n  - text: Local financial sandbox\n  - strong: \"DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK\"\n  - paragraph: Every payment needs your exact approval.\n- main:\n  - text: OWNER WORKSPACE\n  - heading \"Financial workspace\" [level=1]\n  - generic: SANDBOX ONLY\n  - generic: 苏州合成精密配件 · Synthetic B2B · OWNER\n  - button \"Refresh & reconcile\"\n  - button \"Advance demo clock\"\n  - button \"Stop new sends\"\n  - status\n  - heading \"Compare the next step\" [level=2]\n  - combobox \"Plan objective\":\n    - option \"Minimum cost\" [selected]\n    - option \"Higher reserve\"\n    - option \"No new debt\"\n  - button \"Build verified plan\"\n  - paragraph: Choose financing only after seeing net proceeds, all repayments and delay stresses. DEMO eligibility is not lender approval.\n  - text: Saved plan\n  - combobox \"Saved plan\":\n    - option \"MIN_COST · 5bfaa527\" [selected]\n    - option \"MIN_COST · 048e8f7e\"\n    - option \"MIN_COST · 0092e04c\"\n  - heading \"MIN_COST · OPTIMAL in DEMO grid\" [level=3]\n  - paragraph: No new debt\n  - paragraph: \"Independent validation: passed · no guarantee of future customer payment\"\n  - paragraph: \"f0: expected minimum CN¥20,000.00\"\n  - paragraph: \"delay_5: expected minimum -CN¥70,000.00\"\n  - paragraph: \"delay_25: expected minimum -CN¥70,000.00\"\n  - text: PAY_OBLIGATION · CN¥80,000.00\n  - generic: 05 Oct, 08:00 · salary_v1\n  - button \"Review command\"\n  - text: PAY_OBLIGATION · CN¥20,000.00\n  - generic: 06 Oct, 08:00 · rent_v1\n  - button \"Review command\"\n  - text: PAY_OBLIGATION · CN¥90,000.00\n  - generic: 13 Oct, 08:00 · supplier_v1\n  - button \"Review command\"\n  - generic \"What-if · keeps actual facts unchanged\"\n  - generic: All amounts from server calculations · CNY · Asia/Shanghai business calendar · No real bank connected"
+        },
+        {
+          "route": "Copilot",
+          "snapshot": "- complementary:\n  - generic: F\n  - text: SME Finance\n  - text: Copilot / Topic E\n  - navigation \"Workspace\":\n    - link \"Overview\":\n      - /url: \"#overview\"\n    - link \"Imports & Data Quality\":\n      - /url: \"#imports\"\n    - link \"Receivables / Payables\":\n      - /url: \"#obligations\"\n    - link \"Cash Flow\":\n      - /url: \"#cashflow\"\n    - link \"Financing\":\n      - /url: \"#financing\"\n    - link \"Plans\":\n      - /url: \"#plans\"\n    - link \"Copilot\":\n      - /url: \"#copilot\"\n    - link \"Approvals & Operations\":\n      - /url: \"#operations\"\n    - link \"Evidence & Reports\":\n      - /url: \"#sources\"\n    - link \"Settings\":\n      - /url: \"#settings\"\n  - text: Local financial sandbox\n  - strong: \"DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK\"\n  - paragraph: Every payment needs your exact approval.\n- main:\n  - text: OWNER WORKSPACE\n  - heading \"Financial workspace\" [level=1]\n  - generic: SANDBOX ONLY\n  - generic: 苏州合成精密配件 · Synthetic B2B · OWNER\n  - button \"Refresh & reconcile\"\n  - button \"Advance demo clock\"\n  - button \"Stop new sends\"\n  - status\n  - heading \"Copilot\" [level=2]\n  - paragraph: \"MODEL: MOCK · deterministic-fixture · Deterministic offline fixture; arbitrary language understanding has not been verified.\"\n  - text: Your task\n  - textbox \"Your task\": Preserve payroll and rent, keep the reserve, and minimize financing cost.\n  - button \"Start workflow\"\n  - text: Saved workflow\n  - combobox \"Saved workflow\":\n    - option \"Preserve payroll and rent, keep the reserve, and minimi · PAUSED\" [selected]\n  - button \"Open saved workflow\"\n  - text: Answer / observation\n  - textbox \"Answer / observation\"\n  - button \"Resume workflow\"\n  - button \"Replan from current facts\"\n  - generic \"Full recorded state & evidence\"\n  - generic: All amounts from server calculations · CNY · Asia/Shanghai business calendar · No real bank connected"
+        },
+        {
+          "route": "Approvals & Operations",
+          "snapshot": "- complementary:\n  - generic: F\n  - text: SME Finance\n  - text: Copilot / Topic E\n  - navigation \"Workspace\":\n    - link \"Overview\":\n      - /url: \"#overview\"\n    - link \"Imports & Data Quality\":\n      - /url: \"#imports\"\n    - link \"Receivables / Payables\":\n      - /url: \"#obligations\"\n    - link \"Cash Flow\":\n      - /url: \"#cashflow\"\n    - link \"Financing\":\n      - /url: \"#financing\"\n    - link \"Plans\":\n      - /url: \"#plans\"\n    - link \"Copilot\":\n      - /url: \"#copilot\"\n    - link \"Approvals & Operations\":\n      - /url: \"#operations\"\n    - link \"Evidence & Reports\":\n      - /url: \"#sources\"\n    - link \"Settings\":\n      - /url: \"#settings\"\n  - text: Local financial sandbox\n  - strong: \"DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK\"\n  - paragraph: Every payment needs your exact approval.\n- main:\n  - text: OWNER WORKSPACE\n  - heading \"Financial workspace\" [level=1]\n  - generic: SANDBOX ONLY\n  - generic: 苏州合成精密配件 · Synthetic B2B · OWNER\n  - button \"Refresh & reconcile\"\n  - button \"Advance demo clock\"\n  - button \"Stop new sends\"\n  - status\n  - heading \"Approvals & Operations\" [level=2]\n  - paragraph: UNKNOWN keeps its reservation. Read status and reconcile before retrying. Internal reserves cannot prevent payments made outside this app.\n  - generic: All amounts from server calculations · CNY · Asia/Shanghai business calendar · No real bank connected"
+        },
+        {
+          "route": "Evidence & Reports",
+          "snapshot": "- complementary:\n  - generic: F\n  - text: SME Finance\n  - text: Copilot / Topic E\n  - navigation \"Workspace\":\n    - link \"Overview\":\n      - /url: \"#overview\"\n    - link \"Imports & Data Quality\":\n      - /url: \"#imports\"\n    - link \"Receivables / Payables\":\n      - /url: \"#obligations\"\n    - link \"Cash Flow\":\n      - /url: \"#cashflow\"\n    - link \"Financing\":\n      - /url: \"#financing\"\n    - link \"Plans\":\n      - /url: \"#plans\"\n    - link \"Copilot\":\n      - /url: \"#copilot\"\n    - link \"Approvals & Operations\":\n      - /url: \"#operations\"\n    - link \"Evidence & Reports\":\n      - /url: \"#sources\"\n    - link \"Settings\":\n      - /url: \"#settings\"\n  - text: Local financial sandbox\n  - strong: \"DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK\"\n  - paragraph: Every payment needs your exact approval.\n- main:\n  - text: OWNER WORKSPACE\n  - heading \"Financial workspace\" [level=1]\n  - generic: SANDBOX ONLY\n  - generic: 苏州合成精密配件 · Synthetic B2B · OWNER\n  - button \"Refresh & reconcile\"\n  - button \"Advance demo clock\"\n  - button \"Stop new sends\"\n  - status\n  - heading \"Evidence & Reports\" [level=2]\n  - button \"Export actual report\"\n  - text: Search documents\n  - textbox \"Search documents\":\n    - /placeholder: Contract, customer or Chinese text\n  - button \"Search sources\"\n  - generic \"Add a source document\"\n  - button \"Open audit trail\"\n  - generic: All amounts from server calculations · CNY · Asia/Shanghai business calendar · No real bank connected"
+        },
+        {
+          "route": "Settings",
+          "snapshot": "- complementary:\n  - generic: F\n  - text: SME Finance\n  - text: Copilot / Topic E\n  - navigation \"Workspace\":\n    - link \"Overview\":\n      - /url: \"#overview\"\n    - link \"Imports & Data Quality\":\n      - /url: \"#imports\"\n    - link \"Receivables / Payables\":\n      - /url: \"#obligations\"\n    - link \"Cash Flow\":\n      - /url: \"#cashflow\"\n    - link \"Financing\":\n      - /url: \"#financing\"\n    - link \"Plans\":\n      - /url: \"#plans\"\n    - link \"Copilot\":\n      - /url: \"#copilot\"\n    - link \"Approvals & Operations\":\n      - /url: \"#operations\"\n    - link \"Evidence & Reports\":\n      - /url: \"#sources\"\n    - link \"Settings\":\n      - /url: \"#settings\"\n  - text: Local financial sandbox\n  - strong: \"DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK\"\n  - paragraph: Every payment needs your exact approval.\n- main:\n  - text: OWNER WORKSPACE\n  - heading \"Financial workspace\" [level=1]\n  - generic: SANDBOX ONLY\n  - generic: 苏州合成精密配件 · Synthetic B2B · OWNER\n  - button \"Refresh & reconcile\"\n  - button \"Advance demo clock\"\n  - button \"Stop new sends\"\n  - status\n  - heading \"Settings\" [level=2]\n  - table:\n    - rowgroup:\n      - row \"Membership Role Active\":\n        - columnheader \"Membership\"\n        - columnheader \"Role\"\n        - columnheader \"Active\"\n    - rowgroup:\n      - row \"accountant ACCOUNTANT Yes\":\n        - cell \"accountant\"\n        - cell \"ACCOUNTANT\"\n        - cell \"Yes\"\n      - row \"admin ADMIN Yes\":\n        - cell \"admin\"\n        - cell \"ADMIN\"\n        - cell \"Yes\"\n      - row \"auditor AUDITOR Yes\":\n        - cell \"auditor\"\n        - cell \"AUDITOR\"\n        - cell \"Yes\"\n      - row \"owner OWNER Yes\":\n        - cell \"owner\"\n        - cell \"OWNER\"\n        - cell \"Yes\"\n  - paragraph: \"MODEL: MOCK · No live model configured\"\n  - text: Hard reserve (minor units)\n  - spinbutton \"Hard reserve (minor units)\": \"2000000\"\n  - text: Protected obligation references (comma separated)\n  - textbox \"Protected obligation references (comma separated)\": salary, rent\n  - button \"Save new policy version\"\n  - paragraph: Policy changes invalidate prior approvals. Model configuration and secrets are server-side environment settings.\n  - generic: All amounts from server calculations · CNY · Asia/Shanghai business calendar · No real bank connected"
+        }
+      ],
+      "webHashes": {
+        "app.js": "133cd1ef130f8be72becf3d2acdb82ea3dc9eda3523631c14508b071bc0b2d37",
+        "style.css": "14487a61ef696d52ec34246dc41f27e5363fe0a08e27bc716338c6c3b9047707",
+        "index.html": "6d8c765f620e83e1958cd2670b289aefa20fd28a684014863e1e3a2e2a77fb41"
+      },
+      "screenshots": [
+        "browser-resource-stage.png",
+        "browser-resource-mobile.png"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "T001",
+      "requirement": "корректный CSV импортируется; сумма движений согласуется с остатком.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T001_balanced_import"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T002",
+      "requirement": "повтор того же файла не меняет balances/обязательства второй раз.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T002_file_repeat"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T003",
+      "requirement": "одинаковые external IDs у разных providers не склеиваются.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T003_provider_namespaces"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T004",
+      "requirement": "одинаковые IDs у разных tenants не создают cross-tenant связи.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T004_tenant_namespaces"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T005",
+      "requirement": "повреждённая строка попадает в quarantine с причиной, остальные обрабатываются по политике.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T005_quarantine"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T006",
+      "requirement": "неизвестная схема возвращает UNSUPPORTED_SCHEMA, без ложного success.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T006_unsupported_schema"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T007",
+      "requirement": "частичная оплата уменьшает outstanding только на фактическую сумму.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T007_partial_allocation"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T008",
+      "requirement": "один платёж может корректно закрыть несколько обязательств.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T008_one_payment_many"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T009",
+      "requirement": "сумма allocations не превышает сумму платежа.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T009_overallocation"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T010",
+      "requirement": "переплата остаётся явным credit/unallocated balance, а не исчезает.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T010_overpayment_preserved"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T011",
+      "requirement": "unmatched transaction сохраняется в cash history.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T011_unmatched_cash"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T012",
+      "requirement": "corrected/red invoice связывается с исходником и не дублирует деньги.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T012_red_invoice_link"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T013",
+      "requirement": "commission/refund/settlement считаются согласованно, без двойной выручки.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T013_merchant_bridge"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T014",
+      "requirement": "разные валюты не складываются как одна сумма.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T014_currency_and_integer"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T015",
+      "requirement": "округление fees и процентов воспроизводимо в minor units.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T015_rounding"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T016",
+      "requirement": "поздно полученное событие не видно в прошлом snapshot.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T016_late_observation"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T017",
+      "requirement": "исправление факта сохраняет прежнюю версию и evidence.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T017_version_preserved"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T018",
+      "requirement": "неполная выписка создаёт quality flag, а не искусственную проводку.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T018_incomplete_statement"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T019",
+      "requirement": "конфликт суммы/даты/получателя требует review критичного поля.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T019_conflict_review"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T020",
+      "requirement": "перестановка независимых строк не меняет итоговый financial state.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T020_order_independence"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T021",
+      "requirement": "invoice_date не создаёт cash receipt до фактической/сценарной оплаты.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T021_invoice_not_cash"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T022",
+      "requirement": "обязательство и residual forecast не учитываются дважды.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T022_residual_deduplication"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T023",
+      "requirement": "неоплаченный счёт не исключается из обучающего survival набора как будто его нет.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No trained survival dataset/model in this milestone",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T024",
+      "requirement": "прогноз overdue invoice условен на отсутствие оплаты до текущей даты.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T024_overdue_conditional_fallback"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T025",
+      "requirement": "частичный платёж уменьшает последующее прогнозируемое поступление.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T025_partial_forecast"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T026",
+      "requirement": "счета одного клиента получают общий сценарный shock.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T026_shared_customer_shock"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T027",
+      "requirement": "morning payment не финансируется evening receipt того же дня.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T027_intraday_ordering"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T028",
+      "requirement": "forecast включает repayment после основного UI-горизонта.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T028_repayment_tail"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T029",
+      "requirement": "sparse history использует явно маркированный fallback.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T029_sparse_label"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T030",
+      "requirement": "сценарная частота не выводится как «вероятность банкротства».",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T030_probability_label"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T031",
+      "requirement": "временная валидация не использует признаки после cutoff.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No training/temporal-validation pipeline; observed cutoff is covered by T016",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T032",
+      "requirement": "компании holdout не попадают в обучение через invoice-level split.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No training/company-holdout pipeline or downloaded dataset",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T033",
+      "requirement": "изменённый snapshot инвалидирует зависимый forecast cache.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T033_snapshot_cache_key"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T034",
+      "requirement": "недостаток бухгалтерских данных блокирует неподтверждённый P&L.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T034_pnl_blocked"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T035",
+      "requirement": "объяснение метрик ссылается на правильные calculation IDs.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T035_metric_evidence"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T036",
+      "requirement": "eligibility UNKNOWN сохраняет missing fields, не становится PASS.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T036_eligibility_unknown"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T037",
+      "requirement": "заведомое несоответствие выдаёт FAIL с источником условия.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T037_eligibility_fail"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T038",
+      "requirement": "дешёвый продукт с поздней выдачей исключается из закрытия раннего дефицита.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T038_late_finance"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T039",
+      "requirement": "upfront fee учитывается в чистом поступлении.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T039_net_proceeds"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T040",
+      "requirement": "график долга включает проценты, комиссии и остаток principal.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T040_debt_schedule"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T041",
+      "requirement": "factoring не создаёт двойного прихода от invoice и advance.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T041_factoring"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T042",
+      "requirement": "устаревшая quote требует обновления/пересогласования.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T042_expired_quote"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T043",
+      "requirement": "неподтверждённая extension не изменяет due_date.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T043_extension_request_not_fact"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T044",
+      "requirement": "loan application не увеличивает current cash.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T044_application_not_cash"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T045",
+      "requirement": "solver не нарушает protected salary ради уменьшения cost.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T045_protected_salary"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T046",
+      "requirement": "hard reserve не превращается в soft penalty без согласия.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T046_hard_reserve"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T047",
+      "requirement": "FEASIBLE не отображается как OPTIMAL.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T047_feasible_status"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T048",
+      "requirement": "UNKNOWN не отображается как INFEASIBLE.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T048_unknown_status"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T049",
+      "requirement": "независимый validator обнаруживает искусственно испорченный план.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T049_independent_corruption"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T050",
+      "requirement": "отсутствующий допустимый план объясняет конфликт без выдуманного решения.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T050_no_plan_explained"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T051",
+      "requirement": "contingent branch активируется только наблюдаемым подтверждением.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_contingency.ContingencyTests.test_T051_branch_activates_only_after_observed_confirmation"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T052",
+      "requirement": "решение не меняется от скрытого будущего при одинаковых наблюдениях.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T052_nonanticipative"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T053",
+      "requirement": "план содержит нециклические зависимости и completion predicates.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T053_dag"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T054",
+      "requirement": "no-debt вариант сравнивается, но не выдумывается при невозможности.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T054_no_debt_not_invented"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T055",
+      "requirement": "what-if меняет scenario, но не actual facts без отдельного workflow.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_api.ApiTests.test_T055_what_if_isolated"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T056",
+      "requirement": "неизвестное название инструмента отвергается allowlist.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T056_tool_allowlist"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T057",
+      "requirement": "аргумент SQL/shell не исполняется как код.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T057_no_code_argument"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T058",
+      "requirement": "prompt injection в PDF не меняет policy и tool permissions.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_documents.DocumentTests.test_T058_pdf_injection_does_not_grant_tool_or_policy_rights"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T059",
+      "requirement": "подмена банковских реквизитов требует новой beneficiary version и approval.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T059_beneficiary_version"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T060",
+      "requirement": "cross-tenant API request получает отказ независимо от текста prompt.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_api.ApiTests.test_T060_api_tenant_and_roles"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T061",
+      "requirement": "cross-tenant retrieval не возвращает документы/embeddings.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_agent_data.AgentDataTests.test_T061_old_workflow_evidence_is_denied_after_role_change",
+        "tests.test_execution.ExecutionTests.test_T061_scoped_retrieval"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T062",
+      "requirement": "кэш с чужим tenant или policy scope не используется.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T062_cache_scope"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T063",
+      "requirement": "LLM output invalid JSON проходит bounded repair или явный failure.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T063_bounded_invalid_output"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T064",
+      "requirement": "schema-valid, но экономически неверная сумма отклоняется доменным validator.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T064_wrong_economic_amount"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T065",
+      "requirement": "превышение call/time/cost budget завершает этап контролируемо.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_gateway.GatewayTests.test_T065_steps_tokens_time_and_no_paid_cost_enforced",
+        "tests.test_workflows.WorkflowTests.test_T065_step_token_and_context_budgets"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T066",
+      "requirement": "outage LLM не разрешает обход approval или policy.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_agent_data.AgentDataTests.test_T066_T086_selected_due_action_requires_exact_approval_and_reconciles_once",
+        "tests.test_execution.ExecutionTests.test_T066_model_outage_no_bypass"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T067",
+      "requirement": "fallback provider не получает запрещённые данные.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T067_fallback_denied"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T068",
+      "requirement": "секреты отсутствуют в prompt, клиентском bundle и логах.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T068_no_secrets_in_outputs"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T069",
+      "requirement": "пользовательская фраза не меняет постоянную политику без подтверждения.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T069_phrase_not_policy"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T070",
+      "requirement": "объяснение не обещает банковское одобрение или гарантированную доходность.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T070_no_approval_promise"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T071",
+      "requirement": "action без approval не отправляется.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T071_approval_required"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T072",
+      "requirement": "истёкший/revoked approval не используется.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T072_revoke_and_expiry"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T073",
+      "requirement": "изменённый payload не проходит approval hash check.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T073_payload_hash"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T074",
+      "requirement": "тот же idempotency key и payload возвращают прежнее logical action.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T074_same_key_payload"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T075",
+      "requirement": "тот же key и другой payload дают conflict.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T075_key_conflict"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T076",
+      "requirement": "две параллельные команды не расходуют один бюджет дважды.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T076_parallel_reserves"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T077",
+      "requirement": "crash после commit до dispatch не теряет outbox event.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T077_outbox_survives_restart"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T078",
+      "requirement": "повтор outbox delivery не создаёт вторую внешнюю операцию.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T078_duplicate_delivery"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T079",
+      "requirement": "crash после отправки до сохранения ответа восстанавливается через status lookup.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T079_crash_after_send"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T080",
+      "requirement": "timeout переводит в UNKNOWN, не в подтверждённый FAILED.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T080_timeout_unknown"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T081",
+      "requirement": "UNKNOWN удерживает необходимый резерв до безопасного reconciliation.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T081_unknown_keeps_reserve"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T082",
+      "requirement": "поздний settlement закрывает резерв и ledger ровно один раз.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T082_late_settlement_once"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T083",
+      "requirement": "повторный webhook не дублирует проводку.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_webhook.WebhookTests.test_T083_repeated_signed_webhook_preserves_one_movement_and_ledger_pair"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T084",
+      "requirement": "out-of-order event не откатывает SETTLED в SUBMITTED.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T084_terminal_state_not_regressed"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T085",
+      "requirement": "provider hold и внутренний резерв не вычитаются дважды.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T085_hold_not_double_counted"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T086",
+      "requirement": "LangGraph resume не создаёт новую логическую оплату.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_agent_data.AgentDataTests.test_T066_T086_selected_due_action_requires_exact_approval_and_reconciles_once",
+        "tests.test_workflows.WorkflowTests.test_T086_graph_resume_exact_approval_worker_and_reconciliation"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T087",
+      "requirement": "partial execution сохраняет проведённые действия при replan.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T087_partial_execution_preserved"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T088",
+      "requirement": "kill switch блокирует новые sends, но позволяет читать статус и сверять.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T088_kill_switch_status_continues"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T089",
+      "requirement": "отмена плана не притворяется отменой уже отправленного платежа.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T089_cancel_keeps_sent_action"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T090",
+      "requirement": "операция владельца вне Copilot обнаруживается refresh/reconciliation и влияет на план.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T090_external_owner_cash"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T091",
+      "requirement": "изменение data source приводит к новому snapshot и видимой причине пересчёта.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T091_source_changes_snapshot"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T092",
+      "requirement": "materiality/debounce не скрывает обязательную pre-execution проверку.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T092_refresh_before_send"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T093",
+      "requirement": "пользователь видит различие actual/scenario и confirmed/expected cash.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_api.ApiTests.test_T093_actual_expected_api_and_ui"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T094",
+      "requirement": "английский UI корректно отображает китайские строки, суммы и валюту.",
+      "status": "PASSED",
+      "tests": [
+        "cua.resource_stage_ui"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T095",
+      "requirement": "полный golden path проходит из чистого окружения без ручной правки БД.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T095_fresh_golden"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T096",
+      "requirement": "evaluator определяет успех по WorldState, не по словам агента.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T096_evaluator_ignores_agent_text"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T097",
+      "requirement": "агент не читает private truth files, seeds и labels.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "Observation capability is scoped but private files are not OS/container isolated from local administrators",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T098",
+      "requirement": "baseline/full используют одинаковые наблюдения и внешние сценарии.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T098_same_world_inputs"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T099",
+      "requirement": "отчёт различает PASSED, FAILED, SKIPPED и NOT_RUN без фиктивных значений.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_governance.GovernanceTests.test_T099_honest_status_report"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T100",
+      "requirement": "source/license manifest и attribution соответствуют включённым файлам и моделям.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_governance.GovernanceTests.test_T100_source_manifest_and_dependencies"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    }
+  ]
+}

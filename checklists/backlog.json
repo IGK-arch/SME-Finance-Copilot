@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "tasks": [
+    {
+      "id": "W01",
+      "task": "инвентаризировать существующий репозиторий, не уничтожая файлы и инструкции.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W02",
+      "task": "создать ADR для стеков, типов денег, времени и режима доступа.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W03",
+      "task": "настроить lint/type/test/CI и lockfiles.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W04",
+      "task": "реализовать tenant/auth/roles и ограниченные DB roles.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W05",
+      "task": "создать базовые entities/migrations и финансовые checks.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W06",
+      "task": "source storage, hashes и provenance.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W07",
+      "task": "CSV adapter и quarantine/review workflow.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W08",
+      "task": "snapshots с observed/effective time.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W09",
+      "task": "exact и partial matching с безопасным review.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W10",
+      "task": "balances, reservations semantics и операционный ledger.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W11",
+      "task": "simulator world, observation API, isolated truth.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W12",
+      "task": "golden fixtures и независимый arithmetic oracle.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W13",
+      "task": "cash analytics и data-quality UI/API.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W14",
+      "task": "deterministic calendar forecast F0.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W15",
+      "task": "scenario delays/shocks F1 и labels происхождения.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W16",
+      "task": "product catalog/version/eligibility PASS-FAIL-UNKNOWN.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W17",
+      "task": "financing cashflows, fees и repayments.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W18",
+      "task": "candidate action compiler и CP-SAT model.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W19",
+      "task": "независимый plan validator и solver statuses.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W20",
+      "task": "plan DAG/conditional branches/what-if.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W21",
+      "task": "approval canonical payload, expiry/revocation.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W22",
+      "task": "execution state machine и transaction-safe reservations.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W23",
+      "task": "outbox/inbox, retry/status lookup, reconciliation.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W24",
+      "task": "kill switch, partial execution и safe recovery.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W25",
+      "task": "tool registry и типизированные errors.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W26",
+      "task": "LangGraph workflow с bounded retries и resume safety.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W27",
+      "task": "ModelGateway mock/live, costs, privacy и fallback.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W28",
+      "task": "source retrieval/evidence graph и report formatter.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W29",
+      "task": "полноценный английский UI для main flow.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W30",
+      "task": "ingestion/doc parsing P1 после стабильного CSV.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W31",
+      "task": "event-driven replan/materiality/notifications.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W32",
+      "task": "T001–T100 automation и дополнительные property/race cases.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W33",
+      "task": "baseline/ablation runs с независимым evaluator.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W34",
+      "task": "model/data cards, license inventory и security self-assessment.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W35",
+      "task": "English README, architecture, demo script, runbooks и packaging.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    },
+    {
+      "id": "W36",
+      "task": "fresh environment rehearsal, actual results report и release tag.",
+      "status": "NOT_STARTED",
+      "owner": null,
+      "evidence": []
+    }
+  ]
+}

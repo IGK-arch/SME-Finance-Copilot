@@ -1,0 +1,222 @@
+{
+  "at": "2026-10-13",
+  "scope": "Synthetic local P0/product-P1 implementation assessment; not production certification",
+  "tasks": [
+    {
+      "id": "W01",
+      "status": "VERIFIED",
+      "code": "docs/HANDOFF_INVENTORY.json; tests/test_governance.py",
+      "result": "Original handoff hashes checked; no Git metadata"
+    },
+    {
+      "id": "W02",
+      "status": "VERIFIED",
+      "code": "docs/adr/0001-local-milestone.md; docs/adr/0002-product-continuation.md; docs/adr/0003-postgresql.md",
+      "result": "Explicit stack/money/time/access decisions"
+    },
+    {
+      "id": "W03",
+      "status": "PARTIAL",
+      "code": "pyproject.toml; requirements.lock; scripts/check.py; .github/workflows/ci.yml",
+      "result": "Local checks ran; remote CI NOT_RUN"
+    },
+    {
+      "id": "W04",
+      "status": "PARTIAL",
+      "code": "finance/store.py; finance/postgres.py; tests/test_postgres.py",
+      "result": "Membership + restricted DB logins/RLS verified; worker shares tenant role"
+    },
+    {
+      "id": "W05",
+      "status": "VERIFIED",
+      "code": "finance/migrations; finance/postgres/001_core.sql; tests/test_domain.py",
+      "result": "Both actual stores exercise core entities and financial checks"
+    },
+    {
+      "id": "W06",
+      "status": "VERIFIED",
+      "code": "finance/store.py; finance/ingestion.py; tests/test_domain.py",
+      "result": "Source bytes, hashes, immutable versions, observed cutoffs"
+    },
+    {
+      "id": "W07",
+      "status": "VERIFIED",
+      "code": "finance/workspace.py; finance/api.py; web/app.js; tests/test_workspace.py",
+      "result": "CSV review correction/discard and browser review verified; fixed CSV schema scope"
+    },
+    {
+      "id": "W08",
+      "status": "VERIFIED",
+      "code": "finance/ingestion.py; finance/store.py; finance/migrations/004_policy_time.sql; tests/test_policy_history.py; tests/test_postgres.py",
+      "result": "Observed/effective fact cutoffs and historical policy selection verified; unknown legacy policy times fail historical recomputation explicitly"
+    },
+    {
+      "id": "W09",
+      "status": "PARTIAL",
+      "code": "finance/ingestion.py; web/app.js; tests/test_domain.py",
+      "result": "Exact/partial manual allocations verified; calibrated fuzzy matching absent"
+    },
+    {
+      "id": "W10",
+      "status": "VERIFIED",
+      "code": "finance/execution.py; finance/domain.py; tests/test_execution.py",
+      "result": "Minor-unit balances, active reserves, provider holds, balanced settlement ledger"
+    },
+    {
+      "id": "W11",
+      "status": "PARTIAL",
+      "code": "sandbox/world.py; sandbox/server.py; finance/adapter.py",
+      "result": "Separate process/DB and capability boundary verified; OS private-file isolation missing"
+    },
+    {
+      "id": "W12",
+      "status": "VERIFIED",
+      "code": "scripts/runtime.py; sandbox/world.py; tests/test_evaluator_deadlines.py",
+      "result": "Fresh golden and independent cash/debt/deadline oracle verified"
+    },
+    {
+      "id": "W13",
+      "status": "PARTIAL",
+      "code": "finance/compute.py; finance/workspace.py; web/app.js",
+      "result": "Cash/overdue/outstanding and quality UI verified; richer aging/concentration not implemented"
+    },
+    {
+      "id": "W14",
+      "status": "VERIFIED",
+      "code": "finance/compute.py; tests/test_domain.py",
+      "result": "F0 deterministic calendar, money and evidence"
+    },
+    {
+      "id": "W15",
+      "status": "VERIFIED",
+      "code": "finance/compute.py; finance/validation.py; tests/test_workspace.py",
+      "result": "Uncalibrated delays, partial receipts, shared-customer shocks; no learned probabilities"
+    },
+    {
+      "id": "W16",
+      "status": "VERIFIED",
+      "code": "finance/compute.py; finance/ingestion.py; tests/test_domain.py",
+      "result": "Immutable observed DEMO catalog and PASS/FAIL/UNKNOWN screening"
+    },
+    {
+      "id": "W17",
+      "status": "VERIFIED",
+      "code": "finance/compute.py; tests/test_domain.py",
+      "result": "Net proceeds, charges, interest, repayment tail; execution limited to DEMO loans"
+    },
+    {
+      "id": "W18",
+      "status": "VERIFIED",
+      "code": "finance/planner.py; tests/test_planner.py",
+      "result": "Actual OR-Tools finite-grid compiler, objectives and prefix constraints; oracle comparison"
+    },
+    {
+      "id": "W19",
+      "status": "VERIFIED",
+      "code": "finance/validation.py; tests/test_planner.py; tests/test_domain.py",
+      "result": "Independent validation, timeout UNKNOWN, no false OPTIMAL"
+    },
+    {
+      "id": "W20",
+      "status": "PARTIAL",
+      "code": "finance/contingency.py; finance/execution.py; tests/test_contingency.py",
+      "result": "DAG, what-if and observed conditional extension verified; arbitrary branching remains"
+    },
+    {
+      "id": "W21",
+      "status": "VERIFIED",
+      "code": "finance/execution.py; tests/test_execution.py; tests/test_workflows.py",
+      "result": "Exact canonical payload/expiry/revoke and stale-command refresh tested"
+    },
+    {
+      "id": "W22",
+      "status": "VERIFIED",
+      "code": "finance/execution.py; finance/worker.py; tests/test_postgres.py",
+      "result": "Atomic reserves/outbox/jobs; SQLite and PostgreSQL concurrency tested"
+    },
+    {
+      "id": "W23",
+      "status": "VERIFIED",
+      "code": "finance/worker.py; finance/hooks.py; tests/test_webhook.py; tests/test_execution.py",
+      "result": "Leases/status lookup/reconciliation and HMAC internal webhook duplicates tested"
+    },
+    {
+      "id": "W24",
+      "status": "VERIFIED",
+      "code": "finance/execution.py; tests/test_execution.py",
+      "result": "Kill switch, partial execution, UNKNOWN and safe recovery"
+    },
+    {
+      "id": "W25",
+      "status": "VERIFIED",
+      "code": "finance/agents.py; finance/agent_data.py; finance/workflows.py; contracts/agent-tools-v2.json; tests/test_agent_data.py",
+      "result": "Typed scoped business readers, full calculations, what-if, selected action and conditional extension proposals; no send/approve/shell/SQL"
+    },
+    {
+      "id": "W26",
+      "status": "PARTIAL",
+      "code": "finance/workflows.py; tests/test_agent_data.py; tests/test_workflows.py; tests/test_postgres.py",
+      "result": "Persistent LangGraph with exact visible record/plan/action pairs, selected-action replan, mandatory separate approval and single-action reconciliation; expanded live verification tracked separately from historical 8/10 baselines"
+    },
+    {
+      "id": "W27",
+      "status": "PARTIAL",
+      "code": "finance/gateway.py; tests/test_gateway.py; scripts/local_llm.py; scripts/resource_guard.py; scripts/live_compare.py",
+      "result": "Expanded Qwen14B local evaluation:20 distinct cases/21 attempts,8 strict passes; assistant review6 complete/5 partial/7 failed/2 RAM-interrupted scenarios. Q8/Q4 cache profiles separate; guards retained. Supplementary browser cash/date correct but source ID mislabelled. Historical7B/8B scores not comparable. See LOCAL_14B_RESULTS.md"
+    },
+    {
+      "id": "W28",
+      "status": "PARTIAL",
+      "code": "finance/workspace.py; finance/store.py; tests/test_documents.py",
+      "result": "ACL/version/source retrieval and report links verified; semantic retrieval/evidence benchmark absent"
+    },
+    {
+      "id": "W29",
+      "status": "PARTIAL",
+      "code": "web/index.html; web/app.js; web/style.css; artifacts/browser-smoke.json",
+      "result": "Ten functional routes and browser flows verified; standalone E2E runner/accessibility matrix absent"
+    },
+    {
+      "id": "W30",
+      "status": "PARTIAL",
+      "code": "finance/parser.py; finance/workspace.py; tests/test_documents.py",
+      "result": "Text PDF extraction/indexing/injection test verified; OFD/XML/OCR/OS parser isolation absent"
+    },
+    {
+      "id": "W31",
+      "status": "PARTIAL",
+      "code": "finance/contingency.py; finance/workflows.py; finance/execution.py",
+      "result": "Observed event replan and send rechecks verified; generalized debounce/internal alerts absent"
+    },
+    {
+      "id": "W32",
+      "status": "PARTIAL",
+      "code": "scripts/test.py; tests; artifacts/regression-agent-data-v3.json",
+      "result": "T001–T100 tracked; unresolved targets stay NOT_RUN; no blanket completion claim"
+    },
+    {
+      "id": "W33",
+      "status": "PARTIAL",
+      "code": "scripts/benchmark.py; artifacts/benchmark.json",
+      "result": "Three paired deterministic sensitivity runs; diverse synthetic/live B1/B2/B3 absent"
+    },
+    {
+      "id": "W34",
+      "status": "PARTIAL",
+      "code": "docs/data_cards/synthetic.md; docs/model_cards/local-gateway.md; scripts/licenses.py; docs/SECURITY.md",
+      "result": "Actual metadata inventory; source rights/real model licenses not inferred"
+    },
+    {
+      "id": "W35",
+      "status": "VERIFIED",
+      "code": "README.md; docs/architecture/README.md; docs/runbooks; docs/submission/demo-script.md",
+      "result": "English runnable instructions and boundaries updated; final contest media outside product deliverable"
+    },
+    {
+      "id": "W36",
+      "status": "PARTIAL",
+      "code": "scripts/rehearse.py; artifacts/rehearsal.json",
+      "result": "Fresh code/venv/wheels/DB golden verified; no Git repository/release tag/remote CI"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-12T15:18:53.339843+00:00",
+  "scope": "Independent evaluator over the actual persistent browser workspace",
+  "evaluation": {
+    "evaluator_version": "world-ledger-oracle-v2",
+    "data_mode": "synthetic",
+    "final_cash_minor": 2800000,
+    "arithmetic_cash_minor": 2800000,
+    "minimum_cash_minor": 2000000,
+    "remaining_payables_minor": 0,
+    "remaining_debt_minor": 0,
+    "movement_count": 6,
+    "missed_deadlines": [],
+    "success": true
+  },
+  "operations": [
+    {
+      "action_id": "plan_1cb0d6660011c4eefe71a086_9ff3df0a6b05",
+      "status": "SETTLED",
+      "idempotency_key": "demo_company_plan_1cb0d6660011c4eefe71a086_9ff3df0a6b05"
+    },
+    {
+      "action_id": "plan_1cb0d6660011c4eefe71a086_b31f526e191d",
+      "status": "SETTLED",
+      "idempotency_key": "demo_company_plan_1cb0d6660011c4eefe71a086_b31f526e191d"
+    },
+    {
+      "action_id": "plan_1cb0d6660011c4eefe71a086_e633aa88f47c",
+      "status": "SETTLED",
+      "idempotency_key": "demo_company_plan_1cb0d6660011c4eefe71a086_e633aa88f47c"
+    },
+    {
+      "action_id": "plan_1cb0d6660011c4eefe71a086_fund",
+      "status": "SETTLED",
+      "idempotency_key": "demo_company_plan_1cb0d6660011c4eefe71a086_fund"
+    },
+    {
+      "action_id": "plan_1cb0d6660011c4eefe71a086_repay",
+      "status": "SETTLED",
+      "idempotency_key": "demo_company_plan_1cb0d6660011c4eefe71a086_repay"
+    }
+  ],
+  "unknown_events": 1,
+  "workflows": [
+    {
+      "run_id": "workflow_eeac93bb13084fd9946fc4995921f7cb",
+      "status": "COMPLETE"
+    }
+  ]
+}

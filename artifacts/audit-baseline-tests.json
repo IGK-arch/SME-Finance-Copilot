@@ -1,0 +1,1989 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-10-12T13:25:38.211732+00:00",
+  "finished_at": "2026-10-12T13:26:33.639477+00:00",
+  "command": "python -m scripts.test --pattern test_*.py",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "tests_run": 109,
+  "test_counts": {
+    "PASSED": 109
+  },
+  "acceptance_counts": {
+    "PASSED": 91,
+    "NOT_RUN": 9
+  },
+  "actual_tests": [
+    {
+      "test_id": "tests.test_api.ApiTests.test_T055_what_if_isolated",
+      "acceptance_ids": [
+        "T055"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.2834178000339307,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_api.ApiTests.test_T060_api_tenant_and_roles",
+      "acceptance_ids": [
+        "T060"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.2120245000114664,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_api.ApiTests.test_T093_actual_expected_api_and_ui",
+      "acceptance_ids": [
+        "T093"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.1501625000382774,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_api.ApiTests.test_api_full_golden",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 2.5055758000235073,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_api.ApiTests.test_handoff_contracts",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 1.1394684999831952,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_api.ApiTests.test_payload_shape_fail_closed",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 1.1503447000286542,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_api.ApiTests.test_web_utf8_and_security_headers",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 1.1485218999441713,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T001_balanced_import",
+      "acceptance_ids": [
+        "T001"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.07894869998563081,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T002_file_repeat",
+      "acceptance_ids": [
+        "T002"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.07420620002085343,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T003_provider_namespaces",
+      "acceptance_ids": [
+        "T003"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.07701389997964725,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T004_tenant_namespaces",
+      "acceptance_ids": [
+        "T004"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.097040000022389,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T005_quarantine",
+      "acceptance_ids": [
+        "T005"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.06752969999797642,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T006_unsupported_schema",
+      "acceptance_ids": [
+        "T006"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.04942779999691993,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T007_partial_allocation",
+      "acceptance_ids": [
+        "T007"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.08818920003250241,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T008_one_payment_many",
+      "acceptance_ids": [
+        "T008"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.09542569995392114,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T009_overallocation",
+      "acceptance_ids": [
+        "T009"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.07978379999985918,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T010_overpayment_preserved",
+      "acceptance_ids": [
+        "T010"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.08632380003109574,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T011_unmatched_cash",
+      "acceptance_ids": [
+        "T011"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.0684264000155963,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T012_red_invoice_link",
+      "acceptance_ids": [
+        "T012"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.06845080002676696,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T013_merchant_bridge",
+      "acceptance_ids": [
+        "T013"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.04400200000964105,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T014_currency_and_integer",
+      "acceptance_ids": [
+        "T014"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.060884299979079515,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T015_rounding",
+      "acceptance_ids": [
+        "T015"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.04853859997820109,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T016_late_observation",
+      "acceptance_ids": [
+        "T016"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.07084080000640824,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T017_version_preserved",
+      "acceptance_ids": [
+        "T017"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.08671260002302006,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T018_incomplete_statement",
+      "acceptance_ids": [
+        "T018"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.09773669997230172,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T019_conflict_review",
+      "acceptance_ids": [
+        "T019"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.07347940001636744,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T020_order_independence",
+      "acceptance_ids": [
+        "T020"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.12363410001853481,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T021_invoice_not_cash",
+      "acceptance_ids": [
+        "T021"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.06383409997215495,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T022_residual_deduplication",
+      "acceptance_ids": [
+        "T022"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.09415489999810234,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T024_overdue_conditional_fallback",
+      "acceptance_ids": [
+        "T024"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.0677247999701649,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T025_partial_forecast",
+      "acceptance_ids": [
+        "T025"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.08049299998674542,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T026_shared_customer_shock",
+      "acceptance_ids": [
+        "T026"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.059654399985447526,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T027_intraday_ordering",
+      "acceptance_ids": [
+        "T027"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.044961800042074174,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T028_repayment_tail",
+      "acceptance_ids": [
+        "T028"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.061916799983009696,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T029_sparse_label",
+      "acceptance_ids": [
+        "T029"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.06903020001482219,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T030_probability_label",
+      "acceptance_ids": [
+        "T030"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.06580600002780557,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T033_snapshot_cache_key",
+      "acceptance_ids": [
+        "T033"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.0802481000428088,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T034_pnl_blocked",
+      "acceptance_ids": [
+        "T034"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.0669989000307396,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T035_metric_evidence",
+      "acceptance_ids": [
+        "T035"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.06171929999254644,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T036_eligibility_unknown",
+      "acceptance_ids": [
+        "T036"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.043767300026956946,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T037_eligibility_fail",
+      "acceptance_ids": [
+        "T037"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.043137600005138665,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T038_late_finance",
+      "acceptance_ids": [
+        "T038"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.07406880002235994,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T039_net_proceeds",
+      "acceptance_ids": [
+        "T039"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.043370299972593784,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T040_debt_schedule",
+      "acceptance_ids": [
+        "T040"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.043556999997235835,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T041_factoring",
+      "acceptance_ids": [
+        "T041"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.06341770000290126,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T043_extension_request_not_fact",
+      "acceptance_ids": [
+        "T043"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.07649479998508468,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T044_application_not_cash",
+      "acceptance_ids": [
+        "T044"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.07272250001551583,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T045_protected_salary",
+      "acceptance_ids": [
+        "T045"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.09146009996766225,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T046_hard_reserve",
+      "acceptance_ids": [
+        "T046"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.10098370001651347,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T047_feasible_status",
+      "acceptance_ids": [
+        "T047"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.07901159999892116,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T048_unknown_status",
+      "acceptance_ids": [
+        "T048"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.06406529998639598,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T049_independent_corruption",
+      "acceptance_ids": [
+        "T049"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.0983540000161156,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T050_no_plan_explained",
+      "acceptance_ids": [
+        "T050"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.06427820003591478,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T052_nonanticipative",
+      "acceptance_ids": [
+        "T052"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.12530199997127056,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T053_dag",
+      "acceptance_ids": [
+        "T053"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.09182259999215603,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_T054_no_debt_not_invented",
+      "acceptance_ids": [
+        "T054"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.06705969996983185,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_historical_quality_and_version_no_future",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.0992483000154607,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_money_property",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.061674199998378754,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_domain.DomainTests.test_quote_arithmetic_corruption",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.09454199997708201,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T042_expired_quote",
+      "acceptance_ids": [
+        "T042"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.7927466999972239,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T056_tool_allowlist",
+      "acceptance_ids": [
+        "T056"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.8209310999955051,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T057_no_code_argument",
+      "acceptance_ids": [
+        "T057"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.6997391999466345,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T059_beneficiary_version",
+      "acceptance_ids": [
+        "T059"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.0294239000068046,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T061_scoped_retrieval",
+      "acceptance_ids": [
+        "T061"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.7119591999799013,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T062_cache_scope",
+      "acceptance_ids": [
+        "T062"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.7371437999536283,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T063_bounded_invalid_output",
+      "acceptance_ids": [
+        "T063"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.701425300037954,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T064_wrong_economic_amount",
+      "acceptance_ids": [
+        "T064"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.754558700020425,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T066_model_outage_no_bypass",
+      "acceptance_ids": [
+        "T066"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.8130537999677472,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T067_fallback_denied",
+      "acceptance_ids": [
+        "T067"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.6708393999724649,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T068_no_secrets_in_outputs",
+      "acceptance_ids": [
+        "T068"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.7981985000078566,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T069_phrase_not_policy",
+      "acceptance_ids": [
+        "T069"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.8259709000121802,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T070_no_approval_promise",
+      "acceptance_ids": [
+        "T070"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.8054350999882445,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T071_approval_required",
+      "acceptance_ids": [
+        "T071"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.7853222999838181,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T072_revoke_and_expiry",
+      "acceptance_ids": [
+        "T072"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.8404515999718569,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T073_payload_hash",
+      "acceptance_ids": [
+        "T073"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.8203087000292726,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T074_same_key_payload",
+      "acceptance_ids": [
+        "T074"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.8159167999983765,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T075_key_conflict",
+      "acceptance_ids": [
+        "T075"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.8348511999938637,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T076_parallel_reserves",
+      "acceptance_ids": [
+        "T076"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.1114228999940678,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T077_outbox_survives_restart",
+      "acceptance_ids": [
+        "T077"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.939161200018134,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T078_duplicate_delivery",
+      "acceptance_ids": [
+        "T078"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.0966979999793693,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T079_crash_after_send",
+      "acceptance_ids": [
+        "T079"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.9345802000025287,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T080_timeout_unknown",
+      "acceptance_ids": [
+        "T080"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.8779523999546655,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T081_unknown_keeps_reserve",
+      "acceptance_ids": [
+        "T081"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.1368647000053898,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T082_late_settlement_once",
+      "acceptance_ids": [
+        "T082"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.1650405999971554,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T084_terminal_state_not_regressed",
+      "acceptance_ids": [
+        "T084"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.955983699997887,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T085_hold_not_double_counted",
+      "acceptance_ids": [
+        "T085"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.0552963999798521,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T087_partial_execution_preserved",
+      "acceptance_ids": [
+        "T087"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.2463428000337444,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T088_kill_switch_status_continues",
+      "acceptance_ids": [
+        "T088"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.0179869999992661,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T089_cancel_keeps_sent_action",
+      "acceptance_ids": [
+        "T089"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.9914483000175096,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T090_external_owner_cash",
+      "acceptance_ids": [
+        "T090"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.7520318999886513,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T091_source_changes_snapshot",
+      "acceptance_ids": [
+        "T091"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.7442387000191957,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T092_refresh_before_send",
+      "acceptance_ids": [
+        "T092"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.2507320000440814,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T095_fresh_golden",
+      "acceptance_ids": [
+        "T095"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 1.9665442999685183,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T096_evaluator_ignores_agent_text",
+      "acceptance_ids": [
+        "T096"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.6853798999800347,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_T098_same_world_inputs",
+      "acceptance_ids": [
+        "T098"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.7286529999691993,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_admin_cannot_approve",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.7397913000313565,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_call_budget",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.6730543000157923,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_crash_settlement_before_lookup",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.9395252999966033,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_csv_injection_no_rights",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.8720949999988079,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_final_ledger_cannot_be_deleted",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.9480534999747761,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_financing_and_stress_compute_tools",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.7220920999534428,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_generic_workflow_replay",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 1.2083441999857314,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_membership_revoked_before_worker",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.862073700001929,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_remaining_plan_revalidated_before_approval",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 1.0072946999571286,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_execution.ExecutionTests.test_status_tool_never_uses_stale_cache",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.9295998000307009,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_governance.GovernanceTests.test_T099_honest_status_report",
+      "acceptance_ids": [
+        "T099"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.00012520002201199532,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_governance.GovernanceTests.test_T100_source_manifest_and_dependencies",
+      "acceptance_ids": [
+        "T100"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 0.010331899975426495,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_governance.GovernanceTests.test_fail_closed_environment",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.006531899969559163,
+      "reason": null
+    },
+    {
+      "test_id": "tests.test_governance.GovernanceTests.test_unreviewed_product_not_published",
+      "acceptance_ids": [],
+      "status": "PASSED",
+      "elapsed_seconds": 0.00012799998512491584,
+      "reason": null
+    }
+  ],
+  "supplemental_checks": [
+    {
+      "test_id": "browser.T094_desktop_mobile_golden",
+      "acceptance_ids": [
+        "T094"
+      ],
+      "status": "PASSED",
+      "at": "2026-10-12T12:08:08.474Z",
+      "method": "Codex browser automation; actual UI approvals and sends in synthetic sandbox",
+      "checks": {
+        "english": true,
+        "chinese": true,
+        "currency": true,
+        "allFiveSettled": true,
+        "reconciled": true
+      },
+      "settledCount": 5,
+      "viewports": [
+        "default",
+        {
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "webHashes": {
+        "index.html": "e7090577efd25812918017e2e867ba6cc02d19cc5468a19c16ec7ffa378d3e52",
+        "app.js": "c8d1952cfa2698be44956a4ff21b08162e49b7f491f3fd24d39d4b50eef18e28",
+        "style.css": "923fdc98fe94ca0f410ca11b82821f3858ed8ae055c73335bc9e0b2ce2e4c6c8"
+      },
+      "screenshots": [
+        "browser-final.png",
+        "browser-mobile.png",
+        "browser-unknown.png"
+      ],
+      "limitations": [
+        "One in-app Chromium browser; not a cross-browser or accessibility audit"
+      ]
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "T001",
+      "requirement": "корректный CSV импортируется; сумма движений согласуется с остатком.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T001_balanced_import"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T002",
+      "requirement": "повтор того же файла не меняет balances/обязательства второй раз.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T002_file_repeat"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T003",
+      "requirement": "одинаковые external IDs у разных providers не склеиваются.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T003_provider_namespaces"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T004",
+      "requirement": "одинаковые IDs у разных tenants не создают cross-tenant связи.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T004_tenant_namespaces"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T005",
+      "requirement": "повреждённая строка попадает в quarantine с причиной, остальные обрабатываются по политике.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T005_quarantine"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T006",
+      "requirement": "неизвестная схема возвращает UNSUPPORTED_SCHEMA, без ложного success.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T006_unsupported_schema"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T007",
+      "requirement": "частичная оплата уменьшает outstanding только на фактическую сумму.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T007_partial_allocation"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T008",
+      "requirement": "один платёж может корректно закрыть несколько обязательств.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T008_one_payment_many"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T009",
+      "requirement": "сумма allocations не превышает сумму платежа.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T009_overallocation"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T010",
+      "requirement": "переплата остаётся явным credit/unallocated balance, а не исчезает.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T010_overpayment_preserved"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T011",
+      "requirement": "unmatched transaction сохраняется в cash history.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T011_unmatched_cash"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T012",
+      "requirement": "corrected/red invoice связывается с исходником и не дублирует деньги.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T012_red_invoice_link"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T013",
+      "requirement": "commission/refund/settlement считаются согласованно, без двойной выручки.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T013_merchant_bridge"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T014",
+      "requirement": "разные валюты не складываются как одна сумма.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T014_currency_and_integer"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T015",
+      "requirement": "округление fees и процентов воспроизводимо в minor units.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T015_rounding"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T016",
+      "requirement": "поздно полученное событие не видно в прошлом snapshot.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T016_late_observation"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T017",
+      "requirement": "исправление факта сохраняет прежнюю версию и evidence.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T017_version_preserved"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T018",
+      "requirement": "неполная выписка создаёт quality flag, а не искусственную проводку.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T018_incomplete_statement"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T019",
+      "requirement": "конфликт суммы/даты/получателя требует review критичного поля.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T019_conflict_review"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T020",
+      "requirement": "перестановка независимых строк не меняет итоговый financial state.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T020_order_independence"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T021",
+      "requirement": "invoice_date не создаёт cash receipt до фактической/сценарной оплаты.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T021_invoice_not_cash"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T022",
+      "requirement": "обязательство и residual forecast не учитываются дважды.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T022_residual_deduplication"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T023",
+      "requirement": "неоплаченный счёт не исключается из обучающего survival набора как будто его нет.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No trained survival dataset/model in this milestone",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T024",
+      "requirement": "прогноз overdue invoice условен на отсутствие оплаты до текущей даты.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T024_overdue_conditional_fallback"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T025",
+      "requirement": "частичный платёж уменьшает последующее прогнозируемое поступление.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T025_partial_forecast"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T026",
+      "requirement": "счета одного клиента получают общий сценарный shock.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T026_shared_customer_shock"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T027",
+      "requirement": "morning payment не финансируется evening receipt того же дня.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T027_intraday_ordering"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T028",
+      "requirement": "forecast включает repayment после основного UI-горизонта.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T028_repayment_tail"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T029",
+      "requirement": "sparse history использует явно маркированный fallback.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T029_sparse_label"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T030",
+      "requirement": "сценарная частота не выводится как «вероятность банкротства».",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T030_probability_label"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T031",
+      "requirement": "временная валидация не использует признаки после cutoff.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No training/temporal-validation pipeline; observed cutoff is covered by T016",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T032",
+      "requirement": "компании holdout не попадают в обучение через invoice-level split.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No training/company-holdout pipeline or downloaded dataset",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T033",
+      "requirement": "изменённый snapshot инвалидирует зависимый forecast cache.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T033_snapshot_cache_key"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T034",
+      "requirement": "недостаток бухгалтерских данных блокирует неподтверждённый P&L.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T034_pnl_blocked"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T035",
+      "requirement": "объяснение метрик ссылается на правильные calculation IDs.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T035_metric_evidence"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T036",
+      "requirement": "eligibility UNKNOWN сохраняет missing fields, не становится PASS.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T036_eligibility_unknown"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T037",
+      "requirement": "заведомое несоответствие выдаёт FAIL с источником условия.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T037_eligibility_fail"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T038",
+      "requirement": "дешёвый продукт с поздней выдачей исключается из закрытия раннего дефицита.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T038_late_finance"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T039",
+      "requirement": "upfront fee учитывается в чистом поступлении.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T039_net_proceeds"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T040",
+      "requirement": "график долга включает проценты, комиссии и остаток principal.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T040_debt_schedule"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T041",
+      "requirement": "factoring не создаёт двойного прихода от invoice и advance.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T041_factoring"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T042",
+      "requirement": "устаревшая quote требует обновления/пересогласования.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T042_expired_quote"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T043",
+      "requirement": "неподтверждённая extension не изменяет due_date.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T043_extension_request_not_fact"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T044",
+      "requirement": "loan application не увеличивает current cash.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T044_application_not_cash"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T045",
+      "requirement": "solver не нарушает protected salary ради уменьшения cost.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T045_protected_salary"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T046",
+      "requirement": "hard reserve не превращается в soft penalty без согласия.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T046_hard_reserve"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T047",
+      "requirement": "FEASIBLE не отображается как OPTIMAL.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T047_feasible_status"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T048",
+      "requirement": "UNKNOWN не отображается как INFEASIBLE.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T048_unknown_status"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T049",
+      "requirement": "независимый validator обнаруживает искусственно испорченный план.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T049_independent_corruption"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T050",
+      "requirement": "отсутствующий допустимый план объясняет конфликт без выдуманного решения.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T050_no_plan_explained"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T051",
+      "requirement": "contingent branch активируется только наблюдаемым подтверждением.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "Contingent branch DAG execution is P1; confirmed CSV fact revisions only",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T052",
+      "requirement": "решение не меняется от скрытого будущего при одинаковых наблюдениях.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T052_nonanticipative"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T053",
+      "requirement": "план содержит нециклические зависимости и completion predicates.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T053_dag"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T054",
+      "requirement": "no-debt вариант сравнивается, но не выдумывается при невозможности.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_domain.DomainTests.test_T054_no_debt_not_invented"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T055",
+      "requirement": "what-if меняет scenario, но не actual facts без отдельного workflow.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_api.ApiTests.test_T055_what_if_isolated"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T056",
+      "requirement": "неизвестное название инструмента отвергается allowlist.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T056_tool_allowlist"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T057",
+      "requirement": "аргумент SQL/shell не исполняется как код.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T057_no_code_argument"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T058",
+      "requirement": "prompt injection в PDF не меняет policy и tool permissions.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "PDF/OCR parsing and PDF attack suite unsupported; separate CSV injection test is run",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T059",
+      "requirement": "подмена банковских реквизитов требует новой beneficiary version и approval.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T059_beneficiary_version"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T060",
+      "requirement": "cross-tenant API request получает отказ независимо от текста prompt.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_api.ApiTests.test_T060_api_tenant_and_roles"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T061",
+      "requirement": "cross-tenant retrieval не возвращает документы/embeddings.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T061_scoped_retrieval"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T062",
+      "requirement": "кэш с чужим tenant или policy scope не используется.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T062_cache_scope"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T063",
+      "requirement": "LLM output invalid JSON проходит bounded repair или явный failure.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T063_bounded_invalid_output"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T064",
+      "requirement": "schema-valid, но экономически неверная сумма отклоняется доменным validator.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T064_wrong_economic_amount"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T065",
+      "requirement": "превышение call/time/cost budget завершает этап контролируемо.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "Call budget tested separately; live provider wall-time/token/cost budget not implemented",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T066",
+      "requirement": "outage LLM не разрешает обход approval или policy.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T066_model_outage_no_bypass"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T067",
+      "requirement": "fallback provider не получает запрещённые данные.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T067_fallback_denied"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T068",
+      "requirement": "секреты отсутствуют в prompt, клиентском bundle и логах.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T068_no_secrets_in_outputs"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T069",
+      "requirement": "пользовательская фраза не меняет постоянную политику без подтверждения.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T069_phrase_not_policy"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T070",
+      "requirement": "объяснение не обещает банковское одобрение или гарантированную доходность.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T070_no_approval_promise"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T071",
+      "requirement": "action без approval не отправляется.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T071_approval_required"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T072",
+      "requirement": "истёкший/revoked approval не используется.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T072_revoke_and_expiry"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T073",
+      "requirement": "изменённый payload не проходит approval hash check.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T073_payload_hash"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T074",
+      "requirement": "тот же idempotency key и payload возвращают прежнее logical action.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T074_same_key_payload"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T075",
+      "requirement": "тот же key и другой payload дают conflict.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T075_key_conflict"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T076",
+      "requirement": "две параллельные команды не расходуют один бюджет дважды.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T076_parallel_reserves"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T077",
+      "requirement": "crash после commit до dispatch не теряет outbox event.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T077_outbox_survives_restart"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T078",
+      "requirement": "повтор outbox delivery не создаёт вторую внешнюю операцию.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T078_duplicate_delivery"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T079",
+      "requirement": "crash после отправки до сохранения ответа восстанавливается через status lookup.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T079_crash_after_send"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T080",
+      "requirement": "timeout переводит в UNKNOWN, не в подтверждённый FAILED.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T080_timeout_unknown"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T081",
+      "requirement": "UNKNOWN удерживает необходимый резерв до безопасного reconciliation.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T081_unknown_keeps_reserve"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T082",
+      "requirement": "поздний settlement закрывает резерв и ledger ровно один раз.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T082_late_settlement_once"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T083",
+      "requirement": "повторный webhook не дублирует проводку.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "Signed webhooks unsupported; polling/inbox duplicate reconciliation covered by T082",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T084",
+      "requirement": "out-of-order event не откатывает SETTLED в SUBMITTED.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T084_terminal_state_not_regressed"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T085",
+      "requirement": "provider hold и внутренний резерв не вычитаются дважды.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T085_hold_not_double_counted"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T086",
+      "requirement": "LangGraph resume не создаёт новую логическую оплату.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "LangGraph not installed; generic execution replay has a separate passing test",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T087",
+      "requirement": "partial execution сохраняет проведённые действия при replan.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T087_partial_execution_preserved"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T088",
+      "requirement": "kill switch блокирует новые sends, но позволяет читать статус и сверять.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T088_kill_switch_status_continues"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T089",
+      "requirement": "отмена плана не притворяется отменой уже отправленного платежа.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T089_cancel_keeps_sent_action"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T090",
+      "requirement": "операция владельца вне Copilot обнаруживается refresh/reconciliation и влияет на план.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T090_external_owner_cash"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T091",
+      "requirement": "изменение data source приводит к новому snapshot и видимой причине пересчёта.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T091_source_changes_snapshot"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T092",
+      "requirement": "materiality/debounce не скрывает обязательную pre-execution проверку.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T092_refresh_before_send"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T093",
+      "requirement": "пользователь видит различие actual/scenario и confirmed/expected cash.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_api.ApiTests.test_T093_actual_expected_api_and_ui"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T094",
+      "requirement": "английский UI корректно отображает китайские строки, суммы и валюту.",
+      "status": "PASSED",
+      "tests": [
+        "browser.T094_desktop_mobile_golden"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T095",
+      "requirement": "полный golden path проходит из чистого окружения без ручной правки БД.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T095_fresh_golden"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T096",
+      "requirement": "evaluator определяет успех по WorldState, не по словам агента.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T096_evaluator_ignores_agent_text"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T097",
+      "requirement": "агент не читает private truth files, seeds и labels.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "Observation capability is scoped but private files are not OS/container isolated from local administrators",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T098",
+      "requirement": "baseline/full используют одинаковые наблюдения и внешние сценарии.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_execution.ExecutionTests.test_T098_same_world_inputs"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T099",
+      "requirement": "отчёт различает PASSED, FAILED, SKIPPED и NOT_RUN без фиктивных значений.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_governance.GovernanceTests.test_T099_honest_status_report"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T100",
+      "requirement": "source/license manifest и attribution соответствуют включённым файлам и моделям.",
+      "status": "PASSED",
+      "tests": [
+        "tests.test_governance.GovernanceTests.test_T100_source_manifest_and_dependencies"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    }
+  ],
+  "live_model_metrics": {
+    "status": "NOT_RUN",
+    "value": null,
+    "reason": "No authorized live model"
+  }
+}

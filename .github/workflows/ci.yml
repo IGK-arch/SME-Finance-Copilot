@@ -1,0 +1,24 @@
+name: synthetic-financial-milestone
+on: [push, pull_request]
+jobs:
+  local-sandbox:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.9'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install -r requirements.lock
+      - run: python -m scripts.check
+      - run: python -m scripts.test
+      - run: python -m scripts.demo --lost-response
+      - run: python -m scripts.benchmark
+      - run: python -m scripts.report
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: actual-synthetic-evidence
+          path: artifacts/

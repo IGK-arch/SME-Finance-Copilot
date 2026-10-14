@@ -1,0 +1,1006 @@
+{
+  "schema_version": 1,
+  "origin": "SPEC formalization of conversation",
+  "cases": [
+    {
+      "id": "T001",
+      "requirement": "корректный CSV импортируется; сумма движений согласуется с остатком.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T002",
+      "requirement": "повтор того же файла не меняет balances/обязательства второй раз.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T003",
+      "requirement": "одинаковые external IDs у разных providers не склеиваются.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T004",
+      "requirement": "одинаковые IDs у разных tenants не создают cross-tenant связи.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T005",
+      "requirement": "повреждённая строка попадает в quarantine с причиной, остальные обрабатываются по политике.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T006",
+      "requirement": "неизвестная схема возвращает UNSUPPORTED_SCHEMA, без ложного success.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T007",
+      "requirement": "частичная оплата уменьшает outstanding только на фактическую сумму.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T008",
+      "requirement": "один платёж может корректно закрыть несколько обязательств.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T009",
+      "requirement": "сумма allocations не превышает сумму платежа.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T010",
+      "requirement": "переплата остаётся явным credit/unallocated balance, а не исчезает.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T011",
+      "requirement": "unmatched transaction сохраняется в cash history.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T012",
+      "requirement": "corrected/red invoice связывается с исходником и не дублирует деньги.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T013",
+      "requirement": "commission/refund/settlement считаются согласованно, без двойной выручки.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T014",
+      "requirement": "разные валюты не складываются как одна сумма.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T015",
+      "requirement": "округление fees и процентов воспроизводимо в minor units.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T016",
+      "requirement": "поздно полученное событие не видно в прошлом snapshot.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T017",
+      "requirement": "исправление факта сохраняет прежнюю версию и evidence.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T018",
+      "requirement": "неполная выписка создаёт quality flag, а не искусственную проводку.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T019",
+      "requirement": "конфликт суммы/даты/получателя требует review критичного поля.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T020",
+      "requirement": "перестановка независимых строк не меняет итоговый financial state.",
+      "module": "data",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T021",
+      "requirement": "invoice_date не создаёт cash receipt до фактической/сценарной оплаты.",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T022",
+      "requirement": "обязательство и residual forecast не учитываются дважды.",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T023",
+      "requirement": "неоплаченный счёт не исключается из обучающего survival набора как будто его нет.",
+      "module": "forecast",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T024",
+      "requirement": "прогноз overdue invoice условен на отсутствие оплаты до текущей даты.",
+      "module": "forecast",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T025",
+      "requirement": "частичный платёж уменьшает последующее прогнозируемое поступление.",
+      "module": "forecast",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T026",
+      "requirement": "счета одного клиента получают общий сценарный shock.",
+      "module": "forecast",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T027",
+      "requirement": "morning payment не финансируется evening receipt того же дня.",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T028",
+      "requirement": "forecast включает repayment после основного UI-горизонта.",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T029",
+      "requirement": "sparse history использует явно маркированный fallback.",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T030",
+      "requirement": "сценарная частота не выводится как «вероятность банкротства».",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T031",
+      "requirement": "временная валидация не использует признаки после cutoff.",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T032",
+      "requirement": "компании holdout не попадают в обучение через invoice-level split.",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T033",
+      "requirement": "изменённый snapshot инвалидирует зависимый forecast cache.",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T034",
+      "requirement": "недостаток бухгалтерских данных блокирует неподтверждённый P&L.",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T035",
+      "requirement": "объяснение метрик ссылается на правильные calculation IDs.",
+      "module": "forecast",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T036",
+      "requirement": "eligibility UNKNOWN сохраняет missing fields, не становится PASS.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T037",
+      "requirement": "заведомое несоответствие выдаёт FAIL с источником условия.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T038",
+      "requirement": "дешёвый продукт с поздней выдачей исключается из закрытия раннего дефицита.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T039",
+      "requirement": "upfront fee учитывается в чистом поступлении.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T040",
+      "requirement": "график долга включает проценты, комиссии и остаток principal.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T041",
+      "requirement": "factoring не создаёт двойного прихода от invoice и advance.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T042",
+      "requirement": "устаревшая quote требует обновления/пересогласования.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T043",
+      "requirement": "неподтверждённая extension не изменяет due_date.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T044",
+      "requirement": "loan application не увеличивает current cash.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T045",
+      "requirement": "solver не нарушает protected salary ради уменьшения cost.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T046",
+      "requirement": "hard reserve не превращается в soft penalty без согласия.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T047",
+      "requirement": "FEASIBLE не отображается как OPTIMAL.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T048",
+      "requirement": "UNKNOWN не отображается как INFEASIBLE.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T049",
+      "requirement": "независимый validator обнаруживает искусственно испорченный план.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T050",
+      "requirement": "отсутствующий допустимый план объясняет конфликт без выдуманного решения.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T051",
+      "requirement": "contingent branch активируется только наблюдаемым подтверждением.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T052",
+      "requirement": "решение не меняется от скрытого будущего при одинаковых наблюдениях.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T053",
+      "requirement": "план содержит нециклические зависимости и completion predicates.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T054",
+      "requirement": "no-debt вариант сравнивается, но не выдумывается при невозможности.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T055",
+      "requirement": "what-if меняет scenario, но не actual facts без отдельного workflow.",
+      "module": "planning",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T056",
+      "requirement": "неизвестное название инструмента отвергается allowlist.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T057",
+      "requirement": "аргумент SQL/shell не исполняется как код.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T058",
+      "requirement": "prompt injection в PDF не меняет policy и tool permissions.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T059",
+      "requirement": "подмена банковских реквизитов требует новой beneficiary version и approval.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T060",
+      "requirement": "cross-tenant API request получает отказ независимо от текста prompt.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T061",
+      "requirement": "cross-tenant retrieval не возвращает документы/embeddings.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T062",
+      "requirement": "кэш с чужим tenant или policy scope не используется.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T063",
+      "requirement": "LLM output invalid JSON проходит bounded repair или явный failure.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T064",
+      "requirement": "schema-valid, но экономически неверная сумма отклоняется доменным validator.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T065",
+      "requirement": "превышение call/time/cost budget завершает этап контролируемо.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T066",
+      "requirement": "outage LLM не разрешает обход approval или policy.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T067",
+      "requirement": "fallback provider не получает запрещённые данные.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T068",
+      "requirement": "секреты отсутствуют в prompt, клиентском bundle и логах.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T069",
+      "requirement": "пользовательская фраза не меняет постоянную политику без подтверждения.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T070",
+      "requirement": "объяснение не обещает банковское одобрение или гарантированную доходность.",
+      "module": "agent_security",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T071",
+      "requirement": "action без approval не отправляется.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T072",
+      "requirement": "истёкший/revoked approval не используется.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T073",
+      "requirement": "изменённый payload не проходит approval hash check.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T074",
+      "requirement": "тот же idempotency key и payload возвращают прежнее logical action.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T075",
+      "requirement": "тот же key и другой payload дают conflict.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T076",
+      "requirement": "две параллельные команды не расходуют один бюджет дважды.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T077",
+      "requirement": "crash после commit до dispatch не теряет outbox event.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T078",
+      "requirement": "повтор outbox delivery не создаёт вторую внешнюю операцию.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T079",
+      "requirement": "crash после отправки до сохранения ответа восстанавливается через status lookup.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T080",
+      "requirement": "timeout переводит в UNKNOWN, не в подтверждённый FAILED.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T081",
+      "requirement": "UNKNOWN удерживает необходимый резерв до безопасного reconciliation.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T082",
+      "requirement": "поздний settlement закрывает резерв и ledger ровно один раз.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T083",
+      "requirement": "повторный webhook не дублирует проводку.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T084",
+      "requirement": "out-of-order event не откатывает SETTLED в SUBMITTED.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T085",
+      "requirement": "provider hold и внутренний резерв не вычитаются дважды.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T086",
+      "requirement": "LangGraph resume не создаёт новую логическую оплату.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T087",
+      "requirement": "partial execution сохраняет проведённые действия при replan.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T088",
+      "requirement": "kill switch блокирует новые sends, но позволяет читать статус и сверять.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T089",
+      "requirement": "отмена плана не притворяется отменой уже отправленного платежа.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T090",
+      "requirement": "операция владельца вне Copilot обнаруживается refresh/reconciliation и влияет на план.",
+      "module": "execution",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T091",
+      "requirement": "изменение data source приводит к новому snapshot и видимой причине пересчёта.",
+      "module": "product_evaluation",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T092",
+      "requirement": "materiality/debounce не скрывает обязательную pre-execution проверку.",
+      "module": "product_evaluation",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T093",
+      "requirement": "пользователь видит различие actual/scenario и confirmed/expected cash.",
+      "module": "product_evaluation",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T094",
+      "requirement": "английский UI корректно отображает китайские строки, суммы и валюту.",
+      "module": "product_evaluation",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T095",
+      "requirement": "полный golden path проходит из чистого окружения без ручной правки БД.",
+      "module": "product_evaluation",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T096",
+      "requirement": "evaluator определяет успех по WorldState, не по словам агента.",
+      "module": "product_evaluation",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T097",
+      "requirement": "агент не читает private truth files, seeds и labels.",
+      "module": "product_evaluation",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T098",
+      "requirement": "baseline/full используют одинаковые наблюдения и внешние сценарии.",
+      "module": "product_evaluation",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T099",
+      "requirement": "отчёт различает PASSED, FAILED, SKIPPED и NOT_RUN без фиктивных значений.",
+      "module": "product_evaluation",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    },
+    {
+      "id": "T100",
+      "requirement": "source/license manifest и attribution соответствуют включённым файлам и моделям.",
+      "module": "product_evaluation",
+      "priority": "P0",
+      "status": "NOT_RUN",
+      "evidence_path": null,
+      "test_implementation": null,
+      "note": "Acceptance target, not an executed result."
+    }
+  ]
+}

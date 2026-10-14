@@ -1,0 +1,70 @@
+{
+  "recorded_at": "2026-10-12T22:47:22.120307+00:00",
+  "status": "INTERRUPTED",
+  "source_report": "live-platform-qwen7-v4.json",
+  "source_sha256": "69388bad265aac05950bffc8c9215572e6465fdf87fd769e2cf95e5bc57ca0eb",
+  "completed_cases": [
+    "supplier_details_ru",
+    "invoice_details_ru",
+    "import_review_en",
+    "fact_history_ru",
+    "saved_plan_prepare_ru",
+    "what_if_partial_ru",
+    "long_document_ru",
+    "operations_controls_ru"
+  ],
+  "remaining_cases": [
+    "extension_proposal_ru",
+    "private_document_en"
+  ],
+  "reason": "Guard stopped on C: free space 268492800 bytes at 2026-10-12T22:30:09Z; later OS reboot at 2026-10-13 01:41:34.5 +03:00. Old process sessions and all service listeners are absent. Raw report RUNNING is stale.",
+  "current_resources": {
+    "system_free_bytes": 15720861696,
+    "workspace_free_bytes": 37862428672,
+    "available_ram_bytes": 19696136192,
+    "available_commit_bytes": 27139166208,
+    "runtime_bytes": 18230723229
+  },
+  "observed_pagefile": "E:\\pagefile.sys, 9728 MiB; inspected only, no settings changed by this task",
+  "incomplete_case": {
+    "case_id": "extension_proposal_ru",
+    "status": "INTERRUPTED_NO_FINAL_RESULT",
+    "observed_workflow_rows": [
+      [
+        "workflow_2a90fcbc090a4c4dbc6c12841182392f",
+        "FAILED",
+        "2026-10-12T22:29:53.894374+00:00",
+        "2026-10-12T22:30:09.963281+00:00"
+      ]
+    ],
+    "observed_event_nodes": [
+      [
+        "2026-10-12T22:29:53.929431+00:00",
+        "access_check"
+      ],
+      [
+        "2026-10-12T22:29:53.939231+00:00",
+        "snapshot"
+      ],
+      [
+        "2026-10-12T22:29:53.946692+00:00",
+        "data_sufficiency"
+      ],
+      [
+        "2026-10-12T22:30:02.782819+00:00",
+        "model"
+      ],
+      [
+        "2026-10-12T22:30:02.819504+00:00",
+        "tool"
+      ],
+      [
+        "2026-10-12T22:30:09.953740+00:00",
+        "error"
+      ]
+    ]
+  },
+  "not_run_cases": [
+    "private_document_en"
+  ]
+}

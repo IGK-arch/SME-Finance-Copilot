@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-12T18:43:24.270422+00:00",
+  "configuration": {
+    "provider": "ollama",
+    "model": "granite3.3:8b",
+    "mode": "LIVE",
+    "configured": true,
+    "max_steps": 12,
+    "max_tokens": 64000,
+    "timeout_seconds": 60,
+    "max_elapsed_seconds": 240,
+    "max_billed_cost_minor": 0,
+    "context_tokens": 8192,
+    "output_tokens": 128,
+    "think": false,
+    "execution_device": "cpu",
+    "batch_tokens": 32,
+    "memory_mapped_weights": true
+  },
+  "scope": "Provider connectivity only; not task quality",
+  "status": "FAILED",
+  "error": {
+    "code": "MODEL_UNAVAILABLE",
+    "safe_message": "Local model request failed; no fallback used",
+    "retryable": true
+  },
+  "provider_measurement": {},
+  "resource_guard": {
+    "status": "RUNNING",
+    "launcher_pid": 30260,
+    "job_memory_limit_bytes": 2147483648,
+    "runtime_limit_bytes": 15032385536,
+    "poll_seconds": 0.5,
+    "initial": {
+      "system_free_bytes": 6740971520,
+      "workspace_free_bytes": 54773788672,
+      "available_ram_bytes": 14445342720,
+      "available_commit_bytes": 13611548672,
+      "runtime_bytes": 11570551779
+    },
+    "minimum": {
+      "system_free_bytes": 6740631552,
+      "workspace_free_bytes": 54773784576,
+      "available_ram_bytes": 14234288128,
+      "available_commit_bytes": 13259329536
+    },
+    "peak_job_commit_bytes": 380575744,
+    "peak_runtime_bytes": 11570554835,
+    "runtime_options": {
+      "TEMP": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\temp",
+      "TMP": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\temp",
+      "OLLAMA_HOST": "127.0.0.1:11434",
+      "OLLAMA_MODELS": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\models",
+      "OLLAMA_NO_CLOUD": "1",
+      "OLLAMA_CONTEXT_LENGTH": "8192",
+      "OLLAMA_NUM_PARALLEL": "1",
+      "OLLAMA_MAX_LOADED_MODELS": "1",
+      "OLLAMA_MAX_QUEUE": "1",
+      "OLLAMA_KEEP_ALIVE": "60s",
+      "OLLAMA_LOAD_TIMEOUT": "60s",
+      "OLLAMA_FLASH_ATTENTION": "1",
+      "OLLAMA_KV_CACHE_TYPE": "q8_0",
+      "CUDA_CACHE_PATH": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\cuda-cache",
+      "CUDA_CACHE_MAXSIZE": "134217728",
+      "CUDA_VISIBLE_DEVICES": "-1",
+      "HIP_VISIBLE_DEVICES": "-1"
+    },
+    "updated_unix": 1791830603.7234209,
+    "child_pid": 28564,
+    "latest": {
+      "system_free_bytes": 6740631552,
+      "workspace_free_bytes": 54773784576,
+      "available_ram_bytes": 14573645824,
+      "available_commit_bytes": 13691006976,
+      "runtime_bytes": 11570554835
+    }
+  }
+}

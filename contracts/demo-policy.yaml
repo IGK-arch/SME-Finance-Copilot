@@ -1,0 +1,32 @@
+# SPEC example. No real financial permissions are granted by this file.
+schema_version: 1
+policy_version: policy_demo_07
+mode: sandbox_only
+currency: CNY
+permission_tiers:
+  - READ
+  - COMPUTE
+  - PROPOSE
+  - EXECUTE_WITH_APPROVAL
+money_actions_require_human_approval: true
+credit_actions_require_human_approval: true
+new_beneficiary_requires_human_approval: true
+beneficiary_changes_invalidate_approval: true
+real_financial_actions_enabled: false
+external_notifications_enabled: false
+unapproved_data_egress_enabled: false
+minimum_reserve:
+  amount_minor: 2000000
+  treatment: HARD
+  provenance: DEMO_GOLDEN_SCENARIO
+unknown_execution:
+  release_reservation_on_timeout: false
+  blind_retry_with_new_key: false
+solver:
+  unknown_means_infeasible: false
+  feasible_means_optimal: false
+safety:
+  llm_can_edit_policy: false
+  model_has_bank_credentials: false
+  block_new_sends_when_kill_switch: true
+  allow_status_reads_during_kill_switch: true

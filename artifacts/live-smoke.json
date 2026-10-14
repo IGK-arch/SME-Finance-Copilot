@@ -1,0 +1,54 @@
+{
+  "at": "2026-10-12T16:07:32.955709+00:00",
+  "model": {
+    "provider": "ollama",
+    "model": "qwen3:4b",
+    "mode": "LIVE",
+    "configured": true,
+    "max_steps": 12,
+    "max_tokens": 64000,
+    "timeout_seconds": 60,
+    "max_elapsed_seconds": 240,
+    "max_billed_cost_minor": 0,
+    "context_tokens": 8192,
+    "output_tokens": 1024,
+    "think": false
+  },
+  "postgresql_executable": true,
+  "docker_executable": false,
+  "dependencies": {
+    "fastapi": "0.143.0",
+    "langgraph": "1.2.14",
+    "ortools": "9.15.6755",
+    "pypdf": "6.20.0"
+  },
+  "live_test": {
+    "status": "PASSED",
+    "scope": "Provider connectivity only; not agent quality",
+    "output": {
+      "message": {
+        "role": "assistant",
+        "content": "Hello! Ready for your test."
+      },
+      "usage": {
+        "calls": 1,
+        "tokens": 279,
+        "elapsed_seconds": 8.172000000020489,
+        "cost": null,
+        "billing": "LOCAL_ENDPOINT_NO_BILLED_API",
+        "live_metrics_status": "MEASURED_PROVIDER_USAGE",
+        "last_request": {
+          "prompt_eval_count": 32,
+          "eval_count": 247,
+          "total_duration": 8071356200,
+          "load_duration": 4764021900,
+          "prompt_eval_duration": 58373000,
+          "eval_duration": 3206707000,
+          "done_reason": "stop"
+        },
+        "prompt_tokens": 32,
+        "completion_tokens": 247
+      }
+    }
+  }
+}

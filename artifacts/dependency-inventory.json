@@ -1,0 +1,1031 @@
+{
+  "at": "2026-10-12T15:18:52.932888+00:00",
+  "packages": [
+    {
+      "name": "absl-py",
+      "locked_version": "2.5.1",
+      "installed_version": "2.5.1",
+      "license_expression": "Apache-2.0",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "AUTHORS",
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Changelog, https://github.com/abseil/abseil-py/blob/main/CHANGELOG.md",
+        "Documentation, https://abseil.io/docs/python/",
+        "Issues, https://github.com/abseil/abseil-py/issues",
+        "Source, https://github.com/abseil/abseil-py"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "aiosqlite",
+      "locked_version": "0.22.1",
+      "installed_version": "0.22.1",
+      "license_expression": "UNKNOWN",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Documentation, https://aiosqlite.omnilib.dev",
+        "Github, https://github.com/omnilib/aiosqlite"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "annotated-doc",
+      "locked_version": "0.0.5",
+      "installed_version": "0.0.5",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/fastapi/annotated-doc",
+        "Documentation, https://github.com/fastapi/annotated-doc",
+        "Repository, https://github.com/fastapi/annotated-doc",
+        "Issues, https://github.com/fastapi/annotated-doc/issues",
+        "Changelog, https://github.com/fastapi/annotated-doc/release-notes.md"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "annotated-types",
+      "locked_version": "0.8.0",
+      "installed_version": "0.8.0",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/annotated-types/annotated-types",
+        "Source, https://github.com/annotated-types/annotated-types",
+        "Changelog, https://github.com/annotated-types/annotated-types/releases"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "anyio",
+      "locked_version": "4.15.1",
+      "installed_version": "4.15.1",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Documentation, https://anyio.readthedocs.io/en/latest/",
+        "Changelog, https://anyio.readthedocs.io/en/stable/versionhistory.html",
+        "Source code, https://github.com/agronholm/anyio",
+        "Issue tracker, https://github.com/agronholm/anyio/issues"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "certifi",
+      "locked_version": "2026.7.22",
+      "installed_version": "2026.7.22",
+      "license_expression": "UNKNOWN",
+      "license_field": "MPL-2.0",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Source, https://github.com/certifi/python-certifi"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "charset-normalizer",
+      "locked_version": "3.5.2",
+      "installed_version": "3.5.2",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Changelog, https://github.com/jawah/charset_normalizer/blob/master/CHANGELOG.md",
+        "Documentation, https://charset-normalizer.readthedocs.io/",
+        "Code, https://github.com/jawah/charset_normalizer",
+        "Issue tracker, https://github.com/jawah/charset_normalizer/issues"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "click",
+      "locked_version": "8.5.0",
+      "installed_version": "8.5.0",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.txt"
+      ],
+      "project_urls": [
+        "Changes, https://click.palletsprojects.com/page/changes/",
+        "Chat, https://discord.gg/pallets",
+        "Documentation, https://click.palletsprojects.com/",
+        "Donate, https://palletsprojects.com/donate",
+        "Source, https://github.com/pallets/click/"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "distro",
+      "locked_version": "1.9.0",
+      "installed_version": "1.9.0",
+      "license_expression": "UNKNOWN",
+      "license_field": "Apache License, Version 2.0",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "fastapi",
+      "locked_version": "0.143.0",
+      "installed_version": "0.143.0",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/fastapi/fastapi",
+        "Documentation, https://fastapi.tiangolo.com/",
+        "Repository, https://github.com/fastapi/fastapi",
+        "Issues, https://github.com/fastapi/fastapi/issues",
+        "Changelog, https://fastapi.tiangolo.com/release-notes/"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "h11",
+      "locked_version": "0.16.0",
+      "installed_version": "0.16.0",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT",
+      "declared_license_files": [
+        "LICENSE.txt"
+      ],
+      "project_urls": [],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "httpcore",
+      "locked_version": "1.0.9",
+      "installed_version": "1.0.9",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.md"
+      ],
+      "project_urls": [
+        "Documentation, https://www.encode.io/httpcore",
+        "Homepage, https://www.encode.io/httpcore/",
+        "Source, https://github.com/encode/httpcore"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "httpcore2",
+      "locked_version": "2.13.1",
+      "installed_version": "2.13.1",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.md"
+      ],
+      "project_urls": [
+        "Changelog, https://github.com/pydantic/httpx2/blob/main/src/httpcore2/CHANGELOG.md",
+        "Homepage, https://github.com/pydantic/httpx2",
+        "Source, https://github.com/pydantic/httpx2/blob/main/src/httpcore2"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "httpx",
+      "locked_version": "0.28.1",
+      "installed_version": "0.28.1",
+      "license_expression": "UNKNOWN",
+      "license_field": "BSD-3-Clause",
+      "declared_license_files": [],
+      "project_urls": [
+        "Changelog, https://github.com/encode/httpx/blob/master/CHANGELOG.md",
+        "Documentation, https://www.python-httpx.org",
+        "Homepage, https://github.com/encode/httpx",
+        "Source, https://github.com/encode/httpx"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "httpx2",
+      "locked_version": "2.13.1",
+      "installed_version": "2.13.1",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.md"
+      ],
+      "project_urls": [
+        "Changelog, https://github.com/pydantic/httpx2/blob/main/src/httpx2/CHANGELOG.md",
+        "Homepage, https://github.com/pydantic/httpx2",
+        "Source, https://github.com/pydantic/httpx2"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "idna",
+      "locked_version": "3.20",
+      "installed_version": "3.20",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.md"
+      ],
+      "project_urls": [
+        "Changelog, https://github.com/kjd/idna/blob/master/HISTORY.md",
+        "Issue tracker, https://github.com/kjd/idna/issues",
+        "Source, https://github.com/kjd/idna"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "immutabledict",
+      "locked_version": "4.3.1",
+      "installed_version": "4.3.1",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Documentation, https://immutabledict.corenting.fr",
+        "Homepage, https://github.com/corenting/immutabledict",
+        "Repository, https://github.com/corenting/immutabledict",
+        "bugtracker, https://github.com/corenting/immutabledict/issues",
+        "changelog, https://github.com/corenting/immutabledict/blob/master/CHANGELOG.md",
+        "donation, https://corenting.fr/donate"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "jsonpatch",
+      "locked_version": "1.35",
+      "installed_version": "1.35",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE",
+        "AUTHORS"
+      ],
+      "project_urls": [
+        "Website, https://github.com/stefankoegl/python-json-patch",
+        "Repository, https://github.com/stefankoegl/python-json-patch.git",
+        "Documentation, https://python-json-patch.readthedocs.org/",
+        "PyPI, https://pypi.org/pypi/jsonpatch",
+        "Tests, https://github.com/stefankoegl/python-json-patch/actions",
+        "Test Coverage, https://coveralls.io/github/stefankoegl/python-json-patch"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "jsonpointer",
+      "locked_version": "3.2.1",
+      "installed_version": "3.2.1",
+      "license_expression": "UNKNOWN",
+      "license_field": "Modified BSD License",
+      "declared_license_files": [
+        "LICENSE.txt",
+        "AUTHORS"
+      ],
+      "project_urls": [],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "langchain-core",
+      "locked_version": "1.6.9",
+      "installed_version": "1.6.9",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://docs.langchain.com/",
+        "Documentation, https://reference.langchain.com/python/langchain_core/",
+        "Repository, https://github.com/langchain-ai/langchain",
+        "Issues, https://github.com/langchain-ai/langchain/issues",
+        "Changelog, https://github.com/langchain-ai/langchain/releases?q=%22langchain-core%3D%3D1%22",
+        "Twitter, https://x.com/langchain_oss",
+        "Slack, https://www.langchain.com/join-community",
+        "Reddit, https://www.reddit.com/r/LangChain/"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "langchain-protocol",
+      "locked_version": "0.0.19",
+      "installed_version": "0.0.19",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/langchain-ai/agent-protocol/tree/main/streaming",
+        "Repository, https://github.com/langchain-ai/agent-protocol",
+        "Issues, https://github.com/langchain-ai/agent-protocol/issues"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "langgraph",
+      "locked_version": "1.2.14",
+      "installed_version": "1.2.14",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://docs.langchain.com/oss/python/langgraph/overview",
+        "Documentation, https://reference.langchain.com/python/langgraph/",
+        "Source, https://github.com/langchain-ai/langgraph/tree/main/libs/langgraph",
+        "Changelog, https://github.com/langchain-ai/langgraph/releases",
+        "Twitter, https://x.com/langchain_oss",
+        "Slack, https://www.langchain.com/join-community",
+        "Reddit, https://www.reddit.com/r/LangChain/"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "langgraph-checkpoint",
+      "locked_version": "4.2.0",
+      "installed_version": "4.2.0",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Source, https://github.com/langchain-ai/langgraph/tree/main/libs/checkpoint",
+        "Twitter, https://x.com/langchain_oss",
+        "Slack, https://www.langchain.com/join-community",
+        "Reddit, https://www.reddit.com/r/LangChain/"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "langgraph-checkpoint-sqlite",
+      "locked_version": "3.1.1",
+      "installed_version": "3.1.1",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Source, https://github.com/langchain-ai/langgraph/tree/main/libs/checkpoint-sqlite",
+        "Twitter, https://x.com/langchain_oss",
+        "Slack, https://www.langchain.com/join-community",
+        "Reddit, https://www.reddit.com/r/LangChain/"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "langgraph-prebuilt",
+      "locked_version": "1.1.0",
+      "installed_version": "1.1.0",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Source, https://github.com/langchain-ai/langgraph/tree/main/libs/prebuilt",
+        "Twitter, https://x.com/langchain_oss",
+        "Slack, https://www.langchain.com/join-community",
+        "Reddit, https://www.reddit.com/r/LangChain/"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "langgraph-sdk",
+      "locked_version": "0.4.6",
+      "installed_version": "0.4.6",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Source, https://github.com/langchain-ai/langgraph/tree/main/libs/sdk-py",
+        "Twitter, https://x.com/langchain_oss",
+        "Slack, https://www.langchain.com/join-community",
+        "Reddit, https://www.reddit.com/r/LangChain/"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "langsmith",
+      "locked_version": "0.14.7",
+      "installed_version": "0.14.7",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT",
+      "declared_license_files": [],
+      "project_urls": [
+        "Homepage, https://smith.langchain.com/",
+        "Documentation, https://docs.smith.langchain.com/",
+        "Repository, https://github.com/langchain-ai/langsmith-sdk"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "mypy",
+      "locked_version": "1.12.0",
+      "installed_version": "1.12.0",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Documentation, https://mypy.readthedocs.io/en/stable/index.html",
+        "Repository, https://github.com/python/mypy",
+        "Changelog, https://github.com/python/mypy/blob/master/CHANGELOG.md",
+        "Issues, https://github.com/python/mypy/issues"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "mypy_extensions",
+      "locked_version": "1.1.0",
+      "installed_version": "1.1.0",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/python/mypy_extensions"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "numpy",
+      "locked_version": "2.4.6",
+      "installed_version": "2.4.6",
+      "license_expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.txt",
+        "numpy/_core/include/numpy/libdivide/LICENSE.txt",
+        "numpy/_core/src/common/pythoncapi-compat/COPYING",
+        "numpy/_core/src/highway/LICENSE",
+        "numpy/_core/src/multiarray/dragon4_LICENSE.txt",
+        "numpy/_core/src/npysort/x86-simd-sort/LICENSE.md",
+        "numpy/_core/src/umath/svml/LICENSE",
+        "numpy/fft/pocketfft/LICENSE.md",
+        "numpy/linalg/lapack_lite/LICENSE.txt",
+        "numpy/ma/LICENSE",
+        "numpy/random/LICENSE.md",
+        "numpy/random/src/distributions/LICENSE.md",
+        "numpy/random/src/mt19937/LICENSE.md",
+        "numpy/random/src/pcg64/LICENSE.md",
+        "numpy/random/src/philox/LICENSE.md",
+        "numpy/random/src/sfc64/LICENSE.md",
+        "numpy/random/src/splitmix64/LICENSE.md"
+      ],
+      "project_urls": [
+        "homepage, https://numpy.org",
+        "documentation, https://numpy.org/doc/",
+        "source, https://github.com/numpy/numpy",
+        "download, https://pypi.org/project/numpy/#files",
+        "tracker, https://github.com/numpy/numpy/issues",
+        "release notes, https://numpy.org/doc/stable/release"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "opentelemetry-api",
+      "locked_version": "1.45.1",
+      "installed_version": "1.45.1",
+      "license_expression": "Apache-2.0",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-api",
+        "Repository, https://github.com/open-telemetry/opentelemetry-python"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "orjson",
+      "locked_version": "3.13.0",
+      "installed_version": "3.13.0",
+      "license_expression": "MPL-2.0 AND (Apache-2.0 OR MIT)",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE-APACHE",
+        "LICENSE-MIT",
+        "LICENSE-MPL-2.0"
+      ],
+      "project_urls": [
+        "changelog, https://github.com/ijl/orjson/blob/master/CHANGELOG.md",
+        "documentation, https://github.com/ijl/orjson",
+        "source, https://github.com/ijl/orjson"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "ormsgpack",
+      "locked_version": "1.12.2",
+      "installed_version": "1.12.2",
+      "license_expression": "Apache-2.0 OR MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE-APACHE",
+        "LICENSE-MIT"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/ormsgpack/ormsgpack"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "ortools",
+      "locked_version": "9.15.6755",
+      "installed_version": "9.15.6755",
+      "license_expression": "UNKNOWN",
+      "license_field": "Apache 2.0",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "packaging",
+      "locked_version": "26.3",
+      "installed_version": "26.3",
+      "license_expression": "Apache-2.0 OR BSD-2-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE",
+        "LICENSE.APACHE",
+        "LICENSE.BSD"
+      ],
+      "project_urls": [
+        "Documentation, https://packaging.pypa.io/",
+        "Source, https://github.com/pypa/packaging"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "pandas",
+      "locked_version": "3.0.6",
+      "installed_version": "3.0.6",
+      "license_expression": "UNKNOWN",
+      "license_field": "BSD 3-Clause License\n\n Copyright (c) 2008-2011, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team\n All rights reserved.\n\n Copyright (c) 2011-2026, Open source contributors.\n\n Redistribution and use in source and binary forms, with or without\n modification, are permitted provided that the following conditions are met:\n\n * Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n\n * Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\n * Neither the name of the copyright holder nor the names of its\n   contributors may be used to endorse or promote products derived from\n   this software without specific prior written permission.\n\n THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\n AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\n IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\n FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\n DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\n SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\n CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\n OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\n OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+      "declared_license_files": [],
+      "project_urls": [
+        "homepage, https://pandas.pydata.org",
+        "documentation, https://pandas.pydata.org/docs/",
+        "repository, https://github.com/pandas-dev/pandas"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "protobuf",
+      "locked_version": "6.33.6",
+      "installed_version": "6.33.6",
+      "license_expression": "UNKNOWN",
+      "license_field": "3-Clause BSD License",
+      "declared_license_files": [],
+      "project_urls": [],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "psycopg",
+      "locked_version": "3.3.6",
+      "installed_version": "3.3.6",
+      "license_expression": "LGPL-3.0-only",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.txt"
+      ],
+      "project_urls": [
+        "Homepage, https://psycopg.org/",
+        "Documentation, https://psycopg.org/psycopg3/docs/",
+        "Changes, https://psycopg.org/psycopg3/docs/news.html",
+        "Code, https://github.com/psycopg/psycopg",
+        "Issue Tracker, https://github.com/psycopg/psycopg/issues",
+        "Funding, https://github.com/sponsors/dvarrazzo"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "psycopg-binary",
+      "locked_version": "3.3.6",
+      "installed_version": "3.3.6",
+      "license_expression": "LGPL-3.0-only",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.txt"
+      ],
+      "project_urls": [
+        "Homepage, https://psycopg.org/",
+        "Documentation, https://psycopg.org/psycopg3/docs/",
+        "Changes, https://psycopg.org/psycopg3/docs/news.html",
+        "Code, https://github.com/psycopg/psycopg",
+        "Issue Tracker, https://github.com/psycopg/psycopg/issues",
+        "Funding, https://github.com/sponsors/dvarrazzo"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "pydantic",
+      "locked_version": "2.14.1",
+      "installed_version": "2.14.1",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/pydantic/pydantic",
+        "Documentation, https://pydantic.dev/docs/validation/latest/get-started/",
+        "Funding, https://github.com/sponsors/samuelcolvin",
+        "Source, https://github.com/pydantic/pydantic",
+        "Changelog, https://pydantic.dev/docs/validation/latest/get-started/changelog/"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "pydantic_core",
+      "locked_version": "2.50.1",
+      "installed_version": "2.50.1",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Funding, https://github.com/sponsors/samuelcolvin",
+        "Homepage, https://github.com/pydantic",
+        "Source, https://github.com/pydantic/pydantic/tree/main/pydantic-core"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "pypdf",
+      "locked_version": "6.20.0",
+      "installed_version": "6.20.0",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Bug Reports, https://github.com/py-pdf/pypdf/issues",
+        "Changelog, https://pypdf.readthedocs.io/en/latest/meta/CHANGELOG.html",
+        "Documentation, https://pypdf.readthedocs.io/en/latest/",
+        "Source, https://github.com/py-pdf/pypdf"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "python-dateutil",
+      "locked_version": "2.9.0.post0",
+      "installed_version": "2.9.0.post0",
+      "license_expression": "UNKNOWN",
+      "license_field": "Dual License",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Documentation, https://dateutil.readthedocs.io/en/stable/",
+        "Source, https://github.com/dateutil/dateutil"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "PyYAML",
+      "locked_version": "6.0.3",
+      "installed_version": "6.0.3",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Bug Tracker, https://github.com/yaml/pyyaml/issues",
+        "CI, https://github.com/yaml/pyyaml/actions",
+        "Documentation, https://pyyaml.org/wiki/PyYAMLDocumentation",
+        "Mailing lists, http://lists.sourceforge.net/lists/listinfo/yaml-core",
+        "Source Code, https://github.com/yaml/pyyaml"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "requests",
+      "locked_version": "2.34.2",
+      "installed_version": "2.34.2",
+      "license_expression": "UNKNOWN",
+      "license_field": "Apache-2.0",
+      "declared_license_files": [
+        "LICENSE",
+        "NOTICE"
+      ],
+      "project_urls": [
+        "Documentation, https://requests.readthedocs.io",
+        "Source, https://github.com/psf/requests"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "requests-toolbelt",
+      "locked_version": "1.0.0",
+      "installed_version": "1.0.0",
+      "license_expression": "UNKNOWN",
+      "license_field": "Apache 2.0",
+      "declared_license_files": [
+        "LICENSE",
+        "AUTHORS.rst"
+      ],
+      "project_urls": [
+        "Changelog, https://github.com/requests/toolbelt/blob/master/HISTORY.rst",
+        "Source, https://github.com/requests/toolbelt"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "ruff",
+      "locked_version": "0.12.0",
+      "installed_version": "0.12.0",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Repository, https://github.com/astral-sh/ruff",
+        "Documentation, https://docs.astral.sh/ruff/",
+        "Changelog, https://github.com/astral-sh/ruff/blob/main/CHANGELOG.md"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "six",
+      "locked_version": "1.17.0",
+      "installed_version": "1.17.0",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "sniffio",
+      "locked_version": "1.3.1",
+      "installed_version": "1.3.1",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT OR Apache-2.0",
+      "declared_license_files": [
+        "LICENSE",
+        "LICENSE.APACHE2",
+        "LICENSE.MIT"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/python-trio/sniffio",
+        "Documentation, https://sniffio.readthedocs.io/",
+        "Changelog, https://sniffio.readthedocs.io/en/latest/history.html"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "sqlite-vec",
+      "locked_version": "0.1.9",
+      "installed_version": "0.1.9",
+      "license_expression": "UNKNOWN",
+      "license_field": "MIT License, Apache License, Version 2.0",
+      "declared_license_files": [],
+      "project_urls": [],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "starlette",
+      "locked_version": "1.7.0",
+      "installed_version": "1.7.0",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.md"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/Kludex/starlette",
+        "Documentation, https://starlette.dev/",
+        "Changelog, https://starlette.dev/release-notes/",
+        "Funding, https://github.com/sponsors/Kludex",
+        "Source, https://github.com/Kludex/starlette"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "tenacity",
+      "locked_version": "9.2.1",
+      "installed_version": "9.2.1",
+      "license_expression": "Apache-2.0",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/jd/tenacity",
+        "Documentation, https://tenacity.readthedocs.io",
+        "Source, https://github.com/jd/tenacity",
+        "Issues, https://github.com/jd/tenacity/issues",
+        "Changelog, https://tenacity.readthedocs.io/en/latest/changelog.html"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "truststore",
+      "locked_version": "0.10.4",
+      "installed_version": "0.10.4",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Documentation, https://truststore.readthedocs.io",
+        "Source, https://github.com/sethmlarson/truststore"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "typing-inspection",
+      "locked_version": "0.4.4",
+      "installed_version": "0.4.4",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/pydantic/typing-inspection",
+        "Documentation, https://pydantic.github.io/typing-inspection/dev/",
+        "Source, https://github.com/pydantic/typing-inspection",
+        "Changelog, https://github.com/pydantic/typing-inspection/blob/main/HISTORY.md"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "typing_extensions",
+      "locked_version": "4.16.0",
+      "installed_version": "4.16.0",
+      "license_expression": "PSF-2.0",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Bug Tracker, https://github.com/python/typing_extensions/issues",
+        "Changes, https://github.com/python/typing_extensions/blob/main/CHANGELOG.md",
+        "Documentation, https://typing-extensions.readthedocs.io/",
+        "Home, https://github.com/python/typing_extensions",
+        "Q & A, https://github.com/python/typing/discussions",
+        "Repository, https://github.com/python/typing_extensions"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "tzdata",
+      "locked_version": "2026.5",
+      "installed_version": "2026.5",
+      "license_expression": "UNKNOWN",
+      "license_field": "Apache-2.0",
+      "declared_license_files": [
+        "LICENSE",
+        "licenses/LICENSE_APACHE"
+      ],
+      "project_urls": [
+        "Bug Reports, https://github.com/python/tzdata/issues",
+        "Source, https://github.com/python/tzdata",
+        "Documentation, https://tzdata.python.org"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "urllib3",
+      "locked_version": "2.8.0",
+      "installed_version": "2.8.0",
+      "license_expression": "MIT",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.txt"
+      ],
+      "project_urls": [
+        "Changelog, https://github.com/urllib3/urllib3/blob/main/CHANGES.rst",
+        "Documentation, https://urllib3.readthedocs.io",
+        "Code, https://github.com/urllib3/urllib3",
+        "Issue tracker, https://github.com/urllib3/urllib3/issues",
+        "Security policy, https://urllib3.readthedocs.io/en/latest/security.html"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "uuid_utils",
+      "locked_version": "0.17.1",
+      "installed_version": "0.17.1",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.md"
+      ],
+      "project_urls": [
+        "Documentation, https://github.com/aminalaee/uuid-utils",
+        "Issues, https://github.com/aminalaee/uuid-utils/issues",
+        "Source, https://github.com/aminalaee/uuid-utils"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "uvicorn",
+      "locked_version": "0.54.0",
+      "installed_version": "0.54.0",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE.md"
+      ],
+      "project_urls": [
+        "Changelog, https://uvicorn.dev/release-notes",
+        "Funding, https://github.com/sponsors/Kludex",
+        "Homepage, https://uvicorn.dev/",
+        "Source, https://github.com/Kludex/uvicorn"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "websockets",
+      "locked_version": "16.1.1",
+      "installed_version": "16.1.1",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/python-websockets/websockets",
+        "Changelog, https://websockets.readthedocs.io/en/stable/project/changelog.html",
+        "Documentation, https://websockets.readthedocs.io/",
+        "Funding, https://tidelift.com/subscription/pkg/pypi-websockets?utm_source=pypi-websockets&utm_medium=referral&utm_campaign=readme",
+        "Tracker, https://github.com/python-websockets/websockets/issues"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "xxhash",
+      "locked_version": "4.0.1",
+      "installed_version": "4.0.1",
+      "license_expression": "UNKNOWN",
+      "license_field": "BSD-2-Clause",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    },
+    {
+      "name": "zstandard",
+      "locked_version": "0.25.0",
+      "installed_version": "0.25.0",
+      "license_expression": "BSD-3-Clause",
+      "license_field": "UNKNOWN",
+      "declared_license_files": [
+        "LICENSE"
+      ],
+      "project_urls": [
+        "Homepage, https://github.com/indygreg/python-zstandard",
+        "Documentation, https://python-zstandard.readthedocs.io/en/latest/"
+      ],
+      "scope": "Installed metadata only; no independent legal interpretation"
+    }
+  ],
+  "model_weights": [],
+  "model_license_status": "NOT_APPLICABLE_NO_WEIGHTS_DOWNLOADED",
+  "external_datasets": [],
+  "handoff_rights": "UNKNOWN_OWNER_REVIEW_REQUIRED"
+}

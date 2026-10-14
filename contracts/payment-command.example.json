@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "action_id": "act_demo_042",
+  "plan_id": "plan_demo_017",
+  "plan_version": 3,
+  "snapshot_id": "snap_demo_118",
+  "kind": "PAY_OBLIGATION",
+  "obligation_id": "payable_demo_09",
+  "account_id": "account_demo_01",
+  "beneficiary_version_id": "beneficiary_demo_05_v2",
+  "amount_minor": 9000000,
+  "currency": "CNY",
+  "required_approval_id": "approval_demo_031",
+  "policy_version": "policy_demo_07",
+  "idempotency_key": "company_demo_01_act_demo_042",
+  "precondition_refs": [
+    "funds_settled_demo",
+    "approval_valid_demo"
+  ]
+}

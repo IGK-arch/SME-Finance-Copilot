@@ -1,0 +1,1 @@
+ALTER TABLE workflow_runs ADD COLUMN lease_until REAL NOT NULL DEFAULT 0;

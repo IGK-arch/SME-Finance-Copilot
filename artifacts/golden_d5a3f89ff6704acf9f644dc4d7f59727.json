@@ -1,0 +1,1795 @@
+{
+  "mode": "SYNTHETIC_SANDBOX",
+  "model_provider": "mock",
+  "approval_mode": "scripted synthetic owner approvals",
+  "before": {
+    "schema_version": 1,
+    "as_of": "2026-10-01T00:00:00.000000+00:00",
+    "cutoff_observed_at": "2026-10-01T00:00:00.000000+00:00",
+    "currency": "CNY",
+    "business_timezone": "Asia/Shanghai",
+    "data_mode": "synthetic",
+    "data_version": 6,
+    "policy": {
+      "currency": "CNY",
+      "new_beneficiary_requires_approval": true,
+      "protected": [
+        "salary",
+        "rent"
+      ],
+      "reserve_minor": 2000000,
+      "sandbox_only": true,
+      "schema_version": 1,
+      "version": "policy_demo_07"
+    },
+    "profile": {
+      "currency": "CNY",
+      "demo_flag": true,
+      "documents": [
+        "synthetic_statement"
+      ],
+      "jurisdiction": "CN",
+      "legal_form": "LIMITED_COMPANY",
+      "name": "苏州合成精密配件 · Synthetic B2B",
+      "timezone": "Asia/Shanghai"
+    },
+    "confirmed_cash_minor": 12000000,
+    "obligations": [
+      {
+        "amount_minor": 8000000,
+        "beneficiary_version": "salary_v1",
+        "counterparty": "salary",
+        "currency": "CNY",
+        "due_at": "2026-10-05T00:00:00.000000+00:00",
+        "event_time": "2026-10-01T00:00:00.000000+00:00",
+        "external_id": "salary",
+        "kind": "PAYABLE",
+        "observed_time": "2026-10-01T00:00:00.000000+00:00",
+        "protected": true,
+        "reference": "",
+        "status": "CONFIRMED",
+        "version": 1,
+        "fact_id": "fact_c8acb536501a47bb98fddbd70118cada",
+        "provider": "synthetic_csv",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "outstanding_minor": 8000000
+      },
+      {
+        "amount_minor": 2000000,
+        "beneficiary_version": "rent_v1",
+        "counterparty": "rent",
+        "currency": "CNY",
+        "due_at": "2026-10-06T00:00:00.000000+00:00",
+        "event_time": "2026-10-01T00:00:00.000000+00:00",
+        "external_id": "rent",
+        "kind": "PAYABLE",
+        "observed_time": "2026-10-01T00:00:00.000000+00:00",
+        "protected": true,
+        "reference": "",
+        "status": "CONFIRMED",
+        "version": 1,
+        "fact_id": "fact_ea3491d52a6244178dccf9d07a3a0255",
+        "provider": "synthetic_csv",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "outstanding_minor": 2000000
+      },
+      {
+        "amount_minor": 9000000,
+        "beneficiary_version": "supplier_v1",
+        "counterparty": "supplier",
+        "currency": "CNY",
+        "due_at": "2026-10-08T00:00:00.000000+00:00",
+        "event_time": "2026-10-01T00:00:00.000000+00:00",
+        "external_id": "supplier",
+        "kind": "PAYABLE",
+        "observed_time": "2026-10-01T00:00:00.000000+00:00",
+        "protected": false,
+        "reference": "",
+        "status": "CONFIRMED",
+        "version": 1,
+        "fact_id": "fact_4b94ee06a6e74d1aac2eef444871f935",
+        "provider": "synthetic_csv",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "outstanding_minor": 9000000
+      },
+      {
+        "amount_minor": 10000000,
+        "beneficiary_version": "",
+        "counterparty": "customer",
+        "currency": "CNY",
+        "due_at": "2026-10-11T00:00:00.000000+00:00",
+        "event_time": "2026-10-01T00:00:00.000000+00:00",
+        "external_id": "customer_invoice",
+        "kind": "RECEIVABLE",
+        "observed_time": "2026-10-01T00:00:00.000000+00:00",
+        "protected": false,
+        "reference": "",
+        "status": "CONFIRMED",
+        "version": 1,
+        "fact_id": "fact_0e96c3e6b2ae479ea19ccec97a72271f",
+        "provider": "synthetic_csv",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "outstanding_minor": 10000000
+      }
+    ],
+    "facts": [
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_0e96c3e6b2ae479ea19ccec97a72271f",
+        "kind": "RECEIVABLE",
+        "provider": "synthetic_csv",
+        "external_id": "customer_invoice",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 10000000,
+          "beneficiary_version": "",
+          "counterparty": "customer",
+          "currency": "CNY",
+          "due_at": "2026-10-11T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "customer_invoice",
+          "kind": "RECEIVABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_305e079e5bf64ad5b5e6eec54d393994",
+        "kind": "INVOICE",
+        "provider": "synthetic_csv",
+        "external_id": "invoice_customer",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 10000000,
+          "beneficiary_version": "",
+          "counterparty": "customer",
+          "currency": "CNY",
+          "due_at": "2026-10-11T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "invoice_customer",
+          "kind": "INVOICE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_4b94ee06a6e74d1aac2eef444871f935",
+        "kind": "PAYABLE",
+        "provider": "synthetic_csv",
+        "external_id": "supplier",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 9000000,
+          "beneficiary_version": "supplier_v1",
+          "counterparty": "supplier",
+          "currency": "CNY",
+          "due_at": "2026-10-08T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "supplier",
+          "kind": "PAYABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_95eb4d45effe43fcb767f38ab55d5240",
+        "kind": "BALANCE",
+        "provider": "synthetic_csv",
+        "external_id": "opening",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 12000000,
+          "beneficiary_version": "",
+          "counterparty": "",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "opening",
+          "kind": "BALANCE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_c8acb536501a47bb98fddbd70118cada",
+        "kind": "PAYABLE",
+        "provider": "synthetic_csv",
+        "external_id": "salary",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 8000000,
+          "beneficiary_version": "salary_v1",
+          "counterparty": "salary",
+          "currency": "CNY",
+          "due_at": "2026-10-05T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "salary",
+          "kind": "PAYABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": true,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_ea3491d52a6244178dccf9d07a3a0255",
+        "kind": "PAYABLE",
+        "provider": "synthetic_csv",
+        "external_id": "rent",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 2000000,
+          "beneficiary_version": "rent_v1",
+          "counterparty": "rent",
+          "currency": "CNY",
+          "due_at": "2026-10-06T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "rent",
+          "kind": "PAYABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": true,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      }
+    ],
+    "quality_flags": [],
+    "calculation_version": "snapshot-v1",
+    "evidence_refs": [
+      "source_f3bd86779a6e4f52b65995ce2cdc6833"
+    ],
+    "content_hash": "b648b501ab371fed29a2ce7a1bafee87d74104805e8138bf736ea0f0d8935fa6",
+    "snapshot_id": "snap_b648b501ab371fed29a2ce7a1bafee87"
+  },
+  "solver": {
+    "solver_status": "OPTIMAL",
+    "plan": {
+      "schema_version": 1,
+      "plan_id": "plan_e43d3c879639cc1fef0574f4",
+      "plan_version": 1,
+      "snapshot_id": "snap_b648b501ab371fed29a2ce7a1bafee87",
+      "policy_version": "policy_demo_07",
+      "objective": "MIN_COST",
+      "status": "VALIDATED",
+      "solver_status": "OPTIMAL",
+      "quote": {
+        "quote_id": "quote_d4cba956777329db39cd9d4a",
+        "product_version": "demo_bridge_v1",
+        "principal_minor": 9100000,
+        "net_minor": 9000000,
+        "interest_minor": 0,
+        "upfront_fee_minor": 100000,
+        "repayment_fee_minor": 100000,
+        "repayment_minor": 9200000,
+        "total_cost_minor": 200000,
+        "disburse_at": "2026-10-02T00:00:00.000000+00:00",
+        "repay_at": "2026-10-31T00:00:00.000000+00:00",
+        "expires_at": "2026-10-04T00:00:00.000000+00:00",
+        "binding_status": "SYNTHETIC_QUOTE",
+        "residual_principal_minor": 0,
+        "terms": {
+          "schema_version": 1,
+          "currency": "CNY",
+          "min_minor": 100000,
+          "max_minor": 12000000,
+          "grid_minor": 100000,
+          "legal_forms": [
+            "LIMITED_COMPANY"
+          ],
+          "jurisdiction": "CN",
+          "required_documents": [
+            "synthetic_statement"
+          ],
+          "review_status": "PUBLISHED_DEMO",
+          "source": "DEMO product specification v1",
+          "rate": "0",
+          "day_count": "ACT/365",
+          "rounding": "ROUND_HALF_UP",
+          "repayment_fee_minor": 100000,
+          "expires_at": "2026-10-04T00:00:00.000000+00:00",
+          "repay_at": "2026-10-31T00:00:00.000000+00:00",
+          "disburse_at": "2026-10-02T00:00:00.000000+00:00",
+          "product_id": "demo_bridge_v1",
+          "name": "DEMO bridge",
+          "upfront_fee_minor": 100000
+        }
+      },
+      "actions": [
+        {
+          "action_id": "plan_e43d3c879639cc1fef0574f4_fund",
+          "kind": "DRAW_LOAN",
+          "at": "2026-10-02T00:00:00.000000+00:00",
+          "amount_minor": 9100000,
+          "cash_delta_minor": 9000000,
+          "beneficiary_version_id": "lender_v1",
+          "obligation_id": null,
+          "quote": {
+            "quote_id": "quote_d4cba956777329db39cd9d4a",
+            "product_version": "demo_bridge_v1",
+            "principal_minor": 9100000,
+            "net_minor": 9000000,
+            "interest_minor": 0,
+            "upfront_fee_minor": 100000,
+            "repayment_fee_minor": 100000,
+            "repayment_minor": 9200000,
+            "total_cost_minor": 200000,
+            "disburse_at": "2026-10-02T00:00:00.000000+00:00",
+            "repay_at": "2026-10-31T00:00:00.000000+00:00",
+            "expires_at": "2026-10-04T00:00:00.000000+00:00",
+            "binding_status": "SYNTHETIC_QUOTE",
+            "residual_principal_minor": 0,
+            "terms": {
+              "schema_version": 1,
+              "currency": "CNY",
+              "min_minor": 100000,
+              "max_minor": 12000000,
+              "grid_minor": 100000,
+              "legal_forms": [
+                "LIMITED_COMPANY"
+              ],
+              "jurisdiction": "CN",
+              "required_documents": [
+                "synthetic_statement"
+              ],
+              "review_status": "PUBLISHED_DEMO",
+              "source": "DEMO product specification v1",
+              "rate": "0",
+              "day_count": "ACT/365",
+              "rounding": "ROUND_HALF_UP",
+              "repayment_fee_minor": 100000,
+              "expires_at": "2026-10-04T00:00:00.000000+00:00",
+              "repay_at": "2026-10-31T00:00:00.000000+00:00",
+              "disburse_at": "2026-10-02T00:00:00.000000+00:00",
+              "product_id": "demo_bridge_v1",
+              "name": "DEMO bridge",
+              "upfront_fee_minor": 100000
+            }
+          },
+          "dependencies": [],
+          "completion_predicate": "SETTLED_AND_RECONCILED"
+        },
+        {
+          "action_id": "plan_e43d3c879639cc1fef0574f4_b31f526e191d",
+          "kind": "PAY_OBLIGATION",
+          "at": "2026-10-05T00:00:00.000000+00:00",
+          "amount_minor": 8000000,
+          "cash_delta_minor": -8000000,
+          "obligation_id": "salary",
+          "obligation_provider": "synthetic_csv",
+          "beneficiary_version_id": "salary_v1",
+          "dependencies": [
+            "plan_e43d3c879639cc1fef0574f4_fund"
+          ],
+          "completion_predicate": "SETTLED_AND_RECONCILED"
+        },
+        {
+          "action_id": "plan_e43d3c879639cc1fef0574f4_e633aa88f47c",
+          "kind": "PAY_OBLIGATION",
+          "at": "2026-10-06T00:00:00.000000+00:00",
+          "amount_minor": 2000000,
+          "cash_delta_minor": -2000000,
+          "obligation_id": "rent",
+          "obligation_provider": "synthetic_csv",
+          "beneficiary_version_id": "rent_v1",
+          "dependencies": [
+            "plan_e43d3c879639cc1fef0574f4_fund"
+          ],
+          "completion_predicate": "SETTLED_AND_RECONCILED"
+        },
+        {
+          "action_id": "plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05",
+          "kind": "PAY_OBLIGATION",
+          "at": "2026-10-08T00:00:00.000000+00:00",
+          "amount_minor": 9000000,
+          "cash_delta_minor": -9000000,
+          "obligation_id": "supplier",
+          "obligation_provider": "synthetic_csv",
+          "beneficiary_version_id": "supplier_v1",
+          "dependencies": [
+            "plan_e43d3c879639cc1fef0574f4_fund"
+          ],
+          "completion_predicate": "SETTLED_AND_RECONCILED"
+        },
+        {
+          "action_id": "plan_e43d3c879639cc1fef0574f4_repay",
+          "kind": "REPAY_LOAN",
+          "at": "2026-10-31T00:00:00.000000+00:00",
+          "amount_minor": 9200000,
+          "cash_delta_minor": -9200000,
+          "beneficiary_version_id": "lender_v1",
+          "obligation_id": "plan_e43d3c879639cc1fef0574f4_fund_debt",
+          "quote": {
+            "quote_id": "quote_d4cba956777329db39cd9d4a",
+            "product_version": "demo_bridge_v1",
+            "principal_minor": 9100000,
+            "net_minor": 9000000,
+            "interest_minor": 0,
+            "upfront_fee_minor": 100000,
+            "repayment_fee_minor": 100000,
+            "repayment_minor": 9200000,
+            "total_cost_minor": 200000,
+            "disburse_at": "2026-10-02T00:00:00.000000+00:00",
+            "repay_at": "2026-10-31T00:00:00.000000+00:00",
+            "expires_at": "2026-10-04T00:00:00.000000+00:00",
+            "binding_status": "SYNTHETIC_QUOTE",
+            "residual_principal_minor": 0,
+            "terms": {
+              "schema_version": 1,
+              "currency": "CNY",
+              "min_minor": 100000,
+              "max_minor": 12000000,
+              "grid_minor": 100000,
+              "legal_forms": [
+                "LIMITED_COMPANY"
+              ],
+              "jurisdiction": "CN",
+              "required_documents": [
+                "synthetic_statement"
+              ],
+              "review_status": "PUBLISHED_DEMO",
+              "source": "DEMO product specification v1",
+              "rate": "0",
+              "day_count": "ACT/365",
+              "rounding": "ROUND_HALF_UP",
+              "repayment_fee_minor": 100000,
+              "expires_at": "2026-10-04T00:00:00.000000+00:00",
+              "repay_at": "2026-10-31T00:00:00.000000+00:00",
+              "disburse_at": "2026-10-02T00:00:00.000000+00:00",
+              "product_id": "demo_bridge_v1",
+              "name": "DEMO bridge",
+              "upfront_fee_minor": 100000
+            }
+          },
+          "dependencies": [
+            "plan_e43d3c879639cc1fef0574f4_fund"
+          ],
+          "completion_predicate": "SETTLED_AND_RECONCILED"
+        }
+      ],
+      "total_cost_minor": 200000,
+      "data_mode": "synthetic",
+      "expires_at": "2026-10-04T00:00:00.000000+00:00",
+      "constraints_digest": "9abd5b705a99035150fd98a558a24380e250ffca6a07f04bf6abf402e4f83ea0",
+      "evidence_refs": [
+        "source_f3bd86779a6e4f52b65995ce2cdc6833"
+      ],
+      "paths": [
+        {
+          "scenario_id": "f0",
+          "delay_days": 0,
+          "provenance": "DEMO",
+          "calibration_status": "UNCALIBRATED",
+          "points": [
+            {
+              "at": "2026-10-02T00:00:00.000000+00:00",
+              "amount_minor": 9000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_fund",
+              "balance_minor": 21000000
+            },
+            {
+              "at": "2026-10-05T00:00:00.000000+00:00",
+              "amount_minor": -8000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_b31f526e191d",
+              "balance_minor": 13000000
+            },
+            {
+              "at": "2026-10-06T00:00:00.000000+00:00",
+              "amount_minor": -2000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_e633aa88f47c",
+              "balance_minor": 11000000
+            },
+            {
+              "at": "2026-10-08T00:00:00.000000+00:00",
+              "amount_minor": -9000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05",
+              "balance_minor": 2000000
+            },
+            {
+              "at": "2026-10-11T00:00:00.000000+00:00",
+              "amount_minor": 10000000,
+              "reference": "customer_invoice",
+              "counterparty": "customer",
+              "kind": "EXPECTED_RECEIPT",
+              "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+              "balance_minor": 12000000
+            },
+            {
+              "at": "2026-10-31T00:00:00.000000+00:00",
+              "amount_minor": -9200000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_repay",
+              "balance_minor": 2800000
+            }
+          ],
+          "minimum_balance_minor": 2000000,
+          "final_balance_minor": 2800000,
+          "first_gap_at": null,
+          "net_need_minor": 0
+        }
+      ],
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "minimum_balances_minor": [
+          2000000
+        ],
+        "validator_version": "independent-prefix-oracle-v1",
+        "plan_digest": "952a4a819e144d76b17eb6a86cb445ff5ec6d4b9e5eb4d913ea55891a095b4e0",
+        "snapshot_id": "snap_b648b501ab371fed29a2ce7a1bafee87"
+      },
+      "stress_paths": [
+        {
+          "scenario_id": "f0",
+          "delay_days": 0,
+          "provenance": "DEMO",
+          "calibration_status": "UNCALIBRATED",
+          "points": [
+            {
+              "at": "2026-10-02T00:00:00.000000+00:00",
+              "amount_minor": 9000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_fund",
+              "balance_minor": 21000000
+            },
+            {
+              "at": "2026-10-05T00:00:00.000000+00:00",
+              "amount_minor": -8000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_b31f526e191d",
+              "balance_minor": 13000000
+            },
+            {
+              "at": "2026-10-06T00:00:00.000000+00:00",
+              "amount_minor": -2000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_e633aa88f47c",
+              "balance_minor": 11000000
+            },
+            {
+              "at": "2026-10-08T00:00:00.000000+00:00",
+              "amount_minor": -9000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05",
+              "balance_minor": 2000000
+            },
+            {
+              "at": "2026-10-11T00:00:00.000000+00:00",
+              "amount_minor": 10000000,
+              "reference": "customer_invoice",
+              "counterparty": "customer",
+              "kind": "EXPECTED_RECEIPT",
+              "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+              "balance_minor": 12000000
+            },
+            {
+              "at": "2026-10-31T00:00:00.000000+00:00",
+              "amount_minor": -9200000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_repay",
+              "balance_minor": 2800000
+            }
+          ],
+          "minimum_balance_minor": 2000000,
+          "final_balance_minor": 2800000,
+          "first_gap_at": null,
+          "net_need_minor": 0
+        },
+        {
+          "scenario_id": "delay_5",
+          "delay_days": 5,
+          "provenance": "DEMO",
+          "calibration_status": "UNCALIBRATED",
+          "points": [
+            {
+              "at": "2026-10-02T00:00:00.000000+00:00",
+              "amount_minor": 9000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_fund",
+              "balance_minor": 21000000
+            },
+            {
+              "at": "2026-10-05T00:00:00.000000+00:00",
+              "amount_minor": -8000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_b31f526e191d",
+              "balance_minor": 13000000
+            },
+            {
+              "at": "2026-10-06T00:00:00.000000+00:00",
+              "amount_minor": -2000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_e633aa88f47c",
+              "balance_minor": 11000000
+            },
+            {
+              "at": "2026-10-08T00:00:00.000000+00:00",
+              "amount_minor": -9000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05",
+              "balance_minor": 2000000
+            },
+            {
+              "at": "2026-10-16T00:00:00.000000+00:00",
+              "amount_minor": 10000000,
+              "reference": "customer_invoice",
+              "counterparty": "customer",
+              "kind": "EXPECTED_RECEIPT",
+              "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+              "balance_minor": 12000000
+            },
+            {
+              "at": "2026-10-31T00:00:00.000000+00:00",
+              "amount_minor": -9200000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_repay",
+              "balance_minor": 2800000
+            }
+          ],
+          "minimum_balance_minor": 2000000,
+          "final_balance_minor": 2800000,
+          "first_gap_at": null,
+          "net_need_minor": 0
+        },
+        {
+          "scenario_id": "delay_25",
+          "delay_days": 25,
+          "provenance": "DEMO_STRESS",
+          "calibration_status": "UNCALIBRATED",
+          "points": [
+            {
+              "at": "2026-10-02T00:00:00.000000+00:00",
+              "amount_minor": 9000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_fund",
+              "balance_minor": 21000000
+            },
+            {
+              "at": "2026-10-05T00:00:00.000000+00:00",
+              "amount_minor": -8000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_b31f526e191d",
+              "balance_minor": 13000000
+            },
+            {
+              "at": "2026-10-06T00:00:00.000000+00:00",
+              "amount_minor": -2000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_e633aa88f47c",
+              "balance_minor": 11000000
+            },
+            {
+              "at": "2026-10-08T00:00:00.000000+00:00",
+              "amount_minor": -9000000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05",
+              "balance_minor": 2000000
+            },
+            {
+              "at": "2026-10-31T00:00:00.000000+00:00",
+              "amount_minor": -9200000,
+              "reference": "plan_e43d3c879639cc1fef0574f4_repay",
+              "balance_minor": -7200000
+            },
+            {
+              "at": "2026-11-05T00:00:00.000000+00:00",
+              "amount_minor": 10000000,
+              "reference": "customer_invoice",
+              "counterparty": "customer",
+              "kind": "EXPECTED_RECEIPT",
+              "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+              "balance_minor": 2800000
+            }
+          ],
+          "minimum_balance_minor": -7200000,
+          "final_balance_minor": 2800000,
+          "first_gap_at": "2026-10-31T00:00:00.000000+00:00",
+          "net_need_minor": 9200000
+        }
+      ]
+    },
+    "candidates_checked": 240,
+    "candidate_count": 240,
+    "search_budget": 10000,
+    "solver_version": "exact-enumeration-v1",
+    "amount_grid_minor": 100000,
+    "scenario_set": [
+      {
+        "scenario_id": "f0",
+        "delay_days": 0,
+        "provenance": "DEMO",
+        "calibration_status": "UNCALIBRATED"
+      }
+    ],
+    "screens": [
+      {
+        "product_id": "demo_bridge_v1",
+        "status": "PASS",
+        "conditions": [
+          {
+            "field": "legal_form",
+            "status": "PASS",
+            "source": "DEMO product specification v1"
+          },
+          {
+            "field": "jurisdiction",
+            "status": "PASS",
+            "source": "DEMO product specification v1"
+          },
+          {
+            "field": "documents",
+            "status": "PASS",
+            "source": "DEMO product specification v1"
+          }
+        ],
+        "missing_fields": [],
+        "meaning": "Known DEMO conditions only; not lender approval"
+      },
+      {
+        "product_id": "demo_late_v1",
+        "status": "PASS",
+        "conditions": [
+          {
+            "field": "legal_form",
+            "status": "PASS",
+            "source": "DEMO product specification v1"
+          },
+          {
+            "field": "jurisdiction",
+            "status": "PASS",
+            "source": "DEMO product specification v1"
+          },
+          {
+            "field": "documents",
+            "status": "PASS",
+            "source": "DEMO product specification v1"
+          }
+        ],
+        "missing_fields": [],
+        "meaning": "Known DEMO conditions only; not lender approval"
+      }
+    ],
+    "reason": null,
+    "scope": "Finite DEMO candidate set; no claim of real-world optimality"
+  },
+  "timeline": [
+    {
+      "command": {
+        "schema_version": 1,
+        "action_id": "plan_e43d3c879639cc1fef0574f4_fund",
+        "plan_id": "plan_e43d3c879639cc1fef0574f4",
+        "plan_version": 1,
+        "snapshot_id": "snap_d0da838530fc48019fe9b72551885dfc",
+        "kind": "DRAW_LOAN",
+        "obligation_id": null,
+        "account_id": "operating",
+        "beneficiary_version_id": "lender_v1",
+        "amount_minor": 9100000,
+        "currency": "CNY",
+        "required_approval_id": "approval_6847e47fdc0de3062a155fcd5419df44",
+        "policy_version": "policy_demo_07",
+        "idempotency_key": "demo_company_plan_e43d3c879639cc1fef0574f4_fund",
+        "precondition_refs": [
+          "current_membership",
+          "exact_approval",
+          "settled_funds",
+          "verified_beneficiary"
+        ],
+        "at": "2026-10-02T00:00:00.000000+00:00",
+        "cash_delta_minor": 9000000,
+        "dependencies": [],
+        "completion_predicate": "SETTLED_AND_RECONCILED",
+        "quote": {
+          "binding_status": "SYNTHETIC_QUOTE",
+          "disburse_at": "2026-10-02T00:00:00.000000+00:00",
+          "expires_at": "2026-10-04T00:00:00.000000+00:00",
+          "interest_minor": 0,
+          "net_minor": 9000000,
+          "principal_minor": 9100000,
+          "product_version": "demo_bridge_v1",
+          "quote_id": "quote_d4cba956777329db39cd9d4a",
+          "repay_at": "2026-10-31T00:00:00.000000+00:00",
+          "repayment_fee_minor": 100000,
+          "repayment_minor": 9200000,
+          "residual_principal_minor": 0,
+          "terms": {
+            "currency": "CNY",
+            "day_count": "ACT/365",
+            "disburse_at": "2026-10-02T00:00:00.000000+00:00",
+            "expires_at": "2026-10-04T00:00:00.000000+00:00",
+            "grid_minor": 100000,
+            "jurisdiction": "CN",
+            "legal_forms": [
+              "LIMITED_COMPANY"
+            ],
+            "max_minor": 12000000,
+            "min_minor": 100000,
+            "name": "DEMO bridge",
+            "product_id": "demo_bridge_v1",
+            "rate": "0",
+            "repay_at": "2026-10-31T00:00:00.000000+00:00",
+            "repayment_fee_minor": 100000,
+            "required_documents": [
+              "synthetic_statement"
+            ],
+            "review_status": "PUBLISHED_DEMO",
+            "rounding": "ROUND_HALF_UP",
+            "schema_version": 1,
+            "source": "DEMO product specification v1",
+            "upfront_fee_minor": 100000
+          },
+          "total_cost_minor": 200000,
+          "upfront_fee_minor": 100000
+        },
+        "counterparty": "lender"
+      },
+      "approval": {
+        "approval_id": "approval_6847e47fdc0de3062a155fcd5419df44",
+        "payload_hash": "81ae27bd6755a2c80a0452f0d04859576e013a91e637d7985dee6691aaed06e2",
+        "expires_at": "2026-10-03T00:00:00.000000+00:00"
+      },
+      "after_send": "SUBMITTED"
+    },
+    {
+      "command": {
+        "schema_version": 1,
+        "action_id": "plan_e43d3c879639cc1fef0574f4_b31f526e191d",
+        "plan_id": "plan_e43d3c879639cc1fef0574f4",
+        "plan_version": 1,
+        "snapshot_id": "snap_abaa4505b41467b6d811f01a655b47e2",
+        "kind": "PAY_OBLIGATION",
+        "obligation_id": "salary",
+        "account_id": "operating",
+        "beneficiary_version_id": "salary_v1",
+        "amount_minor": 8000000,
+        "currency": "CNY",
+        "required_approval_id": "approval_1df5b6338f459efdbfe03fa82676643f",
+        "policy_version": "policy_demo_07",
+        "idempotency_key": "demo_company_plan_e43d3c879639cc1fef0574f4_b31f526e191d",
+        "precondition_refs": [
+          "current_membership",
+          "exact_approval",
+          "settled_funds",
+          "verified_beneficiary"
+        ],
+        "at": "2026-10-05T00:00:00.000000+00:00",
+        "cash_delta_minor": -8000000,
+        "dependencies": [
+          "plan_e43d3c879639cc1fef0574f4_fund"
+        ],
+        "completion_predicate": "SETTLED_AND_RECONCILED",
+        "obligation_provider": "synthetic_csv",
+        "counterparty": "salary"
+      },
+      "approval": {
+        "approval_id": "approval_1df5b6338f459efdbfe03fa82676643f",
+        "payload_hash": "87ffcd1210e390bbebf9c1a80344debdbbacef93c4babd70989382e4be9cb0a2",
+        "expires_at": "2026-10-06T00:00:00.000000+00:00"
+      },
+      "after_send": "SUBMITTED"
+    },
+    {
+      "command": {
+        "schema_version": 1,
+        "action_id": "plan_e43d3c879639cc1fef0574f4_e633aa88f47c",
+        "plan_id": "plan_e43d3c879639cc1fef0574f4",
+        "plan_version": 1,
+        "snapshot_id": "snap_456ae1826acfc424ed2fcdc0a83401de",
+        "kind": "PAY_OBLIGATION",
+        "obligation_id": "rent",
+        "account_id": "operating",
+        "beneficiary_version_id": "rent_v1",
+        "amount_minor": 2000000,
+        "currency": "CNY",
+        "required_approval_id": "approval_c383976c18e816d1c03d9bc4c98cf502",
+        "policy_version": "policy_demo_07",
+        "idempotency_key": "demo_company_plan_e43d3c879639cc1fef0574f4_e633aa88f47c",
+        "precondition_refs": [
+          "current_membership",
+          "exact_approval",
+          "settled_funds",
+          "verified_beneficiary"
+        ],
+        "at": "2026-10-06T00:00:00.000000+00:00",
+        "cash_delta_minor": -2000000,
+        "dependencies": [
+          "plan_e43d3c879639cc1fef0574f4_fund"
+        ],
+        "completion_predicate": "SETTLED_AND_RECONCILED",
+        "obligation_provider": "synthetic_csv",
+        "counterparty": "rent"
+      },
+      "approval": {
+        "approval_id": "approval_c383976c18e816d1c03d9bc4c98cf502",
+        "payload_hash": "6bf2b2d3577f04ffbb4758b8b858c3b5b832e166e398c8bcc0e02a83e82c8c30",
+        "expires_at": "2026-10-07T00:00:00.000000+00:00"
+      },
+      "after_send": "SUBMITTED"
+    },
+    {
+      "command": {
+        "schema_version": 1,
+        "action_id": "plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05",
+        "plan_id": "plan_e43d3c879639cc1fef0574f4",
+        "plan_version": 1,
+        "snapshot_id": "snap_9f96fa8a2dc10769766951c37f9e8925",
+        "kind": "PAY_OBLIGATION",
+        "obligation_id": "supplier",
+        "account_id": "operating",
+        "beneficiary_version_id": "supplier_v1",
+        "amount_minor": 9000000,
+        "currency": "CNY",
+        "required_approval_id": "approval_83452b88d73c01b52a972cfa43c80e31",
+        "policy_version": "policy_demo_07",
+        "idempotency_key": "demo_company_plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05",
+        "precondition_refs": [
+          "current_membership",
+          "exact_approval",
+          "settled_funds",
+          "verified_beneficiary"
+        ],
+        "at": "2026-10-08T00:00:00.000000+00:00",
+        "cash_delta_minor": -9000000,
+        "dependencies": [
+          "plan_e43d3c879639cc1fef0574f4_fund"
+        ],
+        "completion_predicate": "SETTLED_AND_RECONCILED",
+        "obligation_provider": "synthetic_csv",
+        "counterparty": "supplier"
+      },
+      "approval": {
+        "approval_id": "approval_83452b88d73c01b52a972cfa43c80e31",
+        "payload_hash": "bc8cad2985f9735cb3bd6742413b7b35ad276957c8a1173955fedacdafc1c40b",
+        "expires_at": "2026-10-09T00:00:00.000000+00:00"
+      },
+      "after_send": "SUBMITTED"
+    },
+    {
+      "command": {
+        "schema_version": 1,
+        "action_id": "plan_e43d3c879639cc1fef0574f4_repay",
+        "plan_id": "plan_e43d3c879639cc1fef0574f4",
+        "plan_version": 1,
+        "snapshot_id": "snap_7d5a39f5008f701091fc013a1963906b",
+        "kind": "REPAY_LOAN",
+        "obligation_id": "plan_e43d3c879639cc1fef0574f4_fund_debt",
+        "account_id": "operating",
+        "beneficiary_version_id": "lender_v1",
+        "amount_minor": 9200000,
+        "currency": "CNY",
+        "required_approval_id": "approval_897b969360c89e50c368f95ca42b8d74",
+        "policy_version": "policy_demo_07",
+        "idempotency_key": "demo_company_plan_e43d3c879639cc1fef0574f4_repay",
+        "precondition_refs": [
+          "current_membership",
+          "exact_approval",
+          "settled_funds",
+          "verified_beneficiary"
+        ],
+        "at": "2026-10-31T00:00:00.000000+00:00",
+        "cash_delta_minor": -9200000,
+        "dependencies": [
+          "plan_e43d3c879639cc1fef0574f4_fund"
+        ],
+        "completion_predicate": "SETTLED_AND_RECONCILED",
+        "quote": {
+          "binding_status": "SYNTHETIC_QUOTE",
+          "disburse_at": "2026-10-02T00:00:00.000000+00:00",
+          "expires_at": "2026-10-04T00:00:00.000000+00:00",
+          "interest_minor": 0,
+          "net_minor": 9000000,
+          "principal_minor": 9100000,
+          "product_version": "demo_bridge_v1",
+          "quote_id": "quote_d4cba956777329db39cd9d4a",
+          "repay_at": "2026-10-31T00:00:00.000000+00:00",
+          "repayment_fee_minor": 100000,
+          "repayment_minor": 9200000,
+          "residual_principal_minor": 0,
+          "terms": {
+            "currency": "CNY",
+            "day_count": "ACT/365",
+            "disburse_at": "2026-10-02T00:00:00.000000+00:00",
+            "expires_at": "2026-10-04T00:00:00.000000+00:00",
+            "grid_minor": 100000,
+            "jurisdiction": "CN",
+            "legal_forms": [
+              "LIMITED_COMPANY"
+            ],
+            "max_minor": 12000000,
+            "min_minor": 100000,
+            "name": "DEMO bridge",
+            "product_id": "demo_bridge_v1",
+            "rate": "0",
+            "repay_at": "2026-10-31T00:00:00.000000+00:00",
+            "repayment_fee_minor": 100000,
+            "required_documents": [
+              "synthetic_statement"
+            ],
+            "review_status": "PUBLISHED_DEMO",
+            "rounding": "ROUND_HALF_UP",
+            "schema_version": 1,
+            "source": "DEMO product specification v1",
+            "upfront_fee_minor": 100000
+          },
+          "total_cost_minor": 200000,
+          "upfront_fee_minor": 100000
+        },
+        "counterparty": "lender"
+      },
+      "approval": {
+        "approval_id": "approval_897b969360c89e50c368f95ca42b8d74",
+        "payload_hash": "7e550b4ab24a305d56867f26b6da765d5d67b58a1a2c0d198249030d93cc55cd",
+        "expires_at": "2026-11-01T00:00:00.000000+00:00"
+      },
+      "after_send": "SUBMITTED"
+    }
+  ],
+  "after": {
+    "schema_version": 1,
+    "as_of": "2026-10-31T00:00:00.000000+00:00",
+    "cutoff_observed_at": "2026-10-31T00:00:00.000000+00:00",
+    "currency": "CNY",
+    "business_timezone": "Asia/Shanghai",
+    "data_mode": "synthetic",
+    "data_version": 18,
+    "policy": {
+      "currency": "CNY",
+      "new_beneficiary_requires_approval": true,
+      "protected": [
+        "salary",
+        "rent"
+      ],
+      "reserve_minor": 2000000,
+      "sandbox_only": true,
+      "schema_version": 1,
+      "version": "policy_demo_07"
+    },
+    "profile": {
+      "currency": "CNY",
+      "demo_flag": true,
+      "documents": [
+        "synthetic_statement"
+      ],
+      "jurisdiction": "CN",
+      "legal_form": "LIMITED_COMPANY",
+      "name": "苏州合成精密配件 · Synthetic B2B",
+      "timezone": "Asia/Shanghai"
+    },
+    "confirmed_cash_minor": 2800000,
+    "obligations": [
+      {
+        "amount_minor": 8000000,
+        "beneficiary_version": "salary_v1",
+        "counterparty": "salary",
+        "currency": "CNY",
+        "due_at": "2026-10-05T00:00:00.000000+00:00",
+        "event_time": "2026-10-01T00:00:00.000000+00:00",
+        "external_id": "salary",
+        "kind": "PAYABLE",
+        "observed_time": "2026-10-01T00:00:00.000000+00:00",
+        "protected": true,
+        "reference": "",
+        "status": "CONFIRMED",
+        "version": 1,
+        "fact_id": "fact_c8acb536501a47bb98fddbd70118cada",
+        "provider": "synthetic_csv",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "outstanding_minor": 0
+      },
+      {
+        "amount_minor": 2000000,
+        "beneficiary_version": "rent_v1",
+        "counterparty": "rent",
+        "currency": "CNY",
+        "due_at": "2026-10-06T00:00:00.000000+00:00",
+        "event_time": "2026-10-01T00:00:00.000000+00:00",
+        "external_id": "rent",
+        "kind": "PAYABLE",
+        "observed_time": "2026-10-01T00:00:00.000000+00:00",
+        "protected": true,
+        "reference": "",
+        "status": "CONFIRMED",
+        "version": 1,
+        "fact_id": "fact_ea3491d52a6244178dccf9d07a3a0255",
+        "provider": "synthetic_csv",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "outstanding_minor": 0
+      },
+      {
+        "amount_minor": 9000000,
+        "beneficiary_version": "supplier_v1",
+        "counterparty": "supplier",
+        "currency": "CNY",
+        "due_at": "2026-10-08T00:00:00.000000+00:00",
+        "event_time": "2026-10-01T00:00:00.000000+00:00",
+        "external_id": "supplier",
+        "kind": "PAYABLE",
+        "observed_time": "2026-10-01T00:00:00.000000+00:00",
+        "protected": false,
+        "reference": "",
+        "status": "CONFIRMED",
+        "version": 1,
+        "fact_id": "fact_4b94ee06a6e74d1aac2eef444871f935",
+        "provider": "synthetic_csv",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "outstanding_minor": 0
+      },
+      {
+        "amount_minor": 10000000,
+        "beneficiary_version": "",
+        "counterparty": "customer",
+        "currency": "CNY",
+        "due_at": "2026-10-11T00:00:00.000000+00:00",
+        "event_time": "2026-10-01T00:00:00.000000+00:00",
+        "external_id": "customer_invoice",
+        "kind": "RECEIVABLE",
+        "observed_time": "2026-10-01T00:00:00.000000+00:00",
+        "protected": false,
+        "reference": "",
+        "status": "CONFIRMED",
+        "version": 1,
+        "fact_id": "fact_0e96c3e6b2ae479ea19ccec97a72271f",
+        "provider": "synthetic_csv",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "outstanding_minor": 0
+      },
+      {
+        "amount_minor": 9200000,
+        "beneficiary_version": "lender_v1",
+        "counterparty": "lender",
+        "currency": "CNY",
+        "due_at": "2026-10-31T00:00:00.000000+00:00",
+        "event_time": "2026-10-02T00:00:00.000000+00:00",
+        "external_id": "plan_e43d3c879639cc1fef0574f4_fund_debt",
+        "kind": "PAYABLE",
+        "observed_time": "2026-10-02T00:00:00.000000+00:00",
+        "protected": true,
+        "reference": "loan",
+        "status": "CONFIRMED",
+        "version": 1,
+        "fact_id": "fact_738fb790932147228fcfcf2df89abcf6",
+        "provider": "sandbox",
+        "source_id": "source_cd801c7fe552435dab94a2bb0c41bae7",
+        "outstanding_minor": 0
+      }
+    ],
+    "facts": [
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_0e96c3e6b2ae479ea19ccec97a72271f",
+        "kind": "RECEIVABLE",
+        "provider": "synthetic_csv",
+        "external_id": "customer_invoice",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 10000000,
+          "beneficiary_version": "",
+          "counterparty": "customer",
+          "currency": "CNY",
+          "due_at": "2026-10-11T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "customer_invoice",
+          "kind": "RECEIVABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_305e079e5bf64ad5b5e6eec54d393994",
+        "kind": "INVOICE",
+        "provider": "synthetic_csv",
+        "external_id": "invoice_customer",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 10000000,
+          "beneficiary_version": "",
+          "counterparty": "customer",
+          "currency": "CNY",
+          "due_at": "2026-10-11T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "invoice_customer",
+          "kind": "INVOICE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_4b94ee06a6e74d1aac2eef444871f935",
+        "kind": "PAYABLE",
+        "provider": "synthetic_csv",
+        "external_id": "supplier",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 9000000,
+          "beneficiary_version": "supplier_v1",
+          "counterparty": "supplier",
+          "currency": "CNY",
+          "due_at": "2026-10-08T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "supplier",
+          "kind": "PAYABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_95eb4d45effe43fcb767f38ab55d5240",
+        "kind": "BALANCE",
+        "provider": "synthetic_csv",
+        "external_id": "opening",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 12000000,
+          "beneficiary_version": "",
+          "counterparty": "",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "opening",
+          "kind": "BALANCE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_c8acb536501a47bb98fddbd70118cada",
+        "kind": "PAYABLE",
+        "provider": "synthetic_csv",
+        "external_id": "salary",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 8000000,
+          "beneficiary_version": "salary_v1",
+          "counterparty": "salary",
+          "currency": "CNY",
+          "due_at": "2026-10-05T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "salary",
+          "kind": "PAYABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": true,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_ea3491d52a6244178dccf9d07a3a0255",
+        "kind": "PAYABLE",
+        "provider": "synthetic_csv",
+        "external_id": "rent",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_f3bd86779a6e4f52b65995ce2cdc6833",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 2000000,
+          "beneficiary_version": "rent_v1",
+          "counterparty": "rent",
+          "currency": "CNY",
+          "due_at": "2026-10-06T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "rent",
+          "kind": "PAYABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": true,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_0a41112a91d041329ed0e278fca04d22",
+        "kind": "TRANSACTION",
+        "provider": "sandbox",
+        "external_id": "sim_4123a04901a0434e90f46593000eb268",
+        "version": 1,
+        "effective_at": "2026-10-02T00:00:00.000000+00:00",
+        "observed_at": "2026-10-02T00:00:00.000000+00:00",
+        "source_id": "source_cd801c7fe552435dab94a2bb0c41bae7",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 9000000,
+          "beneficiary_version": "",
+          "counterparty": "lender",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-02T00:00:00.000000+00:00",
+          "external_id": "sim_4123a04901a0434e90f46593000eb268",
+          "kind": "TRANSACTION",
+          "observed_time": "2026-10-02T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "loan",
+          "status": "SETTLED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_738fb790932147228fcfcf2df89abcf6",
+        "kind": "PAYABLE",
+        "provider": "sandbox",
+        "external_id": "plan_e43d3c879639cc1fef0574f4_fund_debt",
+        "version": 1,
+        "effective_at": "2026-10-02T00:00:00.000000+00:00",
+        "observed_at": "2026-10-02T00:00:00.000000+00:00",
+        "source_id": "source_cd801c7fe552435dab94a2bb0c41bae7",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 9200000,
+          "beneficiary_version": "lender_v1",
+          "counterparty": "lender",
+          "currency": "CNY",
+          "due_at": "2026-10-31T00:00:00.000000+00:00",
+          "event_time": "2026-10-02T00:00:00.000000+00:00",
+          "external_id": "plan_e43d3c879639cc1fef0574f4_fund_debt",
+          "kind": "PAYABLE",
+          "observed_time": "2026-10-02T00:00:00.000000+00:00",
+          "protected": true,
+          "reference": "loan",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_cf4380bd9c884ac681775a0ac18e9676",
+        "kind": "TRANSACTION",
+        "provider": "sandbox",
+        "external_id": "sim_3fde94d144564785b79926929844e28c",
+        "version": 1,
+        "effective_at": "2026-10-05T00:00:00.000000+00:00",
+        "observed_at": "2026-10-05T00:00:00.000000+00:00",
+        "source_id": "source_84c94c0cc04a4e53a1904c21c622a02e",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": -8000000,
+          "beneficiary_version": "",
+          "counterparty": "salary",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-05T00:00:00.000000+00:00",
+          "external_id": "sim_3fde94d144564785b79926929844e28c",
+          "kind": "TRANSACTION",
+          "observed_time": "2026-10-05T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "salary",
+          "status": "SETTLED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_762234ed79bd4b3f85f835b3f39bd2c3",
+        "kind": "TRANSACTION",
+        "provider": "sandbox",
+        "external_id": "sim_992bac9e633e4acfa30896eb69c5a779",
+        "version": 1,
+        "effective_at": "2026-10-06T00:00:00.000000+00:00",
+        "observed_at": "2026-10-06T00:00:00.000000+00:00",
+        "source_id": "source_fb14b86b190043e6b1211f870ada1406",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": -2000000,
+          "beneficiary_version": "",
+          "counterparty": "rent",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-06T00:00:00.000000+00:00",
+          "external_id": "sim_992bac9e633e4acfa30896eb69c5a779",
+          "kind": "TRANSACTION",
+          "observed_time": "2026-10-06T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "rent",
+          "status": "SETTLED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_13c3f7920f054e2bbf9d60c4f1811659",
+        "kind": "TRANSACTION",
+        "provider": "sandbox",
+        "external_id": "sim_b015bb7e62bd4caaa54a38c37120165d",
+        "version": 1,
+        "effective_at": "2026-10-08T00:00:00.000000+00:00",
+        "observed_at": "2026-10-08T00:00:00.000000+00:00",
+        "source_id": "source_6a58f0f5c37549358c819d4ed94c89ef",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": -9000000,
+          "beneficiary_version": "",
+          "counterparty": "supplier",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-08T00:00:00.000000+00:00",
+          "external_id": "sim_b015bb7e62bd4caaa54a38c37120165d",
+          "kind": "TRANSACTION",
+          "observed_time": "2026-10-08T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "supplier",
+          "status": "SETTLED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_9bb70e07a4be4c38b5768ca0c6fd69da",
+        "kind": "TRANSACTION",
+        "provider": "sandbox",
+        "external_id": "sim_242cb260476341f8b514ea14f6738aef",
+        "version": 1,
+        "effective_at": "2026-10-31T00:00:00.000000+00:00",
+        "observed_at": "2026-10-31T00:00:00.000000+00:00",
+        "source_id": "source_56ffad704a774b9492d3648b08535888",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": -9200000,
+          "beneficiary_version": "",
+          "counterparty": "lender",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-31T00:00:00.000000+00:00",
+          "external_id": "sim_242cb260476341f8b514ea14f6738aef",
+          "kind": "TRANSACTION",
+          "observed_time": "2026-10-31T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "plan_e43d3c879639cc1fef0574f4_fund_debt",
+          "status": "SETTLED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_bfc656e1401b4cbb9d43dfa58d837d59",
+        "kind": "TRANSACTION",
+        "provider": "sandbox",
+        "external_id": "receipt_1",
+        "version": 1,
+        "effective_at": "2026-10-11T00:00:00.000000+00:00",
+        "observed_at": "2026-10-31T00:00:00.000000+00:00",
+        "source_id": "source_3cf59e5810464fa3932e82a0b5183565",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 10000000,
+          "beneficiary_version": "",
+          "counterparty": "customer",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-11T00:00:00.000000+00:00",
+          "external_id": "receipt_1",
+          "kind": "TRANSACTION",
+          "observed_time": "2026-10-31T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "customer_invoice",
+          "status": "SETTLED",
+          "version": 1
+        }
+      }
+    ],
+    "quality_flags": [],
+    "calculation_version": "snapshot-v1",
+    "evidence_refs": [
+      "source_3cf59e5810464fa3932e82a0b5183565",
+      "source_56ffad704a774b9492d3648b08535888",
+      "source_6a58f0f5c37549358c819d4ed94c89ef",
+      "source_84c94c0cc04a4e53a1904c21c622a02e",
+      "source_cd801c7fe552435dab94a2bb0c41bae7",
+      "source_f3bd86779a6e4f52b65995ce2cdc6833",
+      "source_fb14b86b190043e6b1211f870ada1406"
+    ],
+    "content_hash": "911ae6deab221631013344b3824eeb1a242478fd70bfc6bb365dbdb2fd70f627",
+    "snapshot_id": "snap_911ae6deab221631013344b3824eeb1a"
+  },
+  "plan_status": {
+    "status": "COMPLETED",
+    "settled_actions": 5,
+    "total_actions": 5,
+    "action_states": [
+      "SETTLED",
+      "SETTLED",
+      "SETTLED",
+      "SETTLED",
+      "SETTLED"
+    ]
+  },
+  "reconciliation": {
+    "reconciliation_id": "reconciliation_40a53b51712c49e380b8552b2f3b95ff",
+    "at": "2026-10-31T00:00:00.000000+00:00",
+    "local_cash_minor": 2800000,
+    "provider_cash_minor": 2800000,
+    "matched": true,
+    "discrepancy_minor": 0,
+    "status": "RECONCILED"
+  },
+  "independent_evaluation": {
+    "evaluator_version": "world-ledger-oracle-v1",
+    "data_mode": "synthetic",
+    "final_cash_minor": 2800000,
+    "arithmetic_cash_minor": 2800000,
+    "minimum_cash_minor": 2000000,
+    "remaining_payables_minor": 0,
+    "remaining_debt_minor": 0,
+    "movement_count": 6,
+    "success": true
+  },
+  "audit": [
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 1,
+      "occurred_at": "2026-10-12T11:43:05.264388+00:00",
+      "event_type": "company.created",
+      "payload": "{\"data_mode\":\"synthetic\"}",
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "5d8494e94f9b53718a3b66904409b9401ce5499abecd7f828f467b0664de0cba"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 2,
+      "occurred_at": "2026-10-12T11:43:05.845742+00:00",
+      "event_type": "source.imported",
+      "payload": "{\"accepted\":6,\"import_id\":\"import_992ed49c79d44595b188d7903793a681\",\"rejected\":0,\"source_id\":\"source_f3bd86779a6e4f52b65995ce2cdc6833\"}",
+      "previous_hash": "5d8494e94f9b53718a3b66904409b9401ce5499abecd7f828f467b0664de0cba",
+      "event_hash": "5024a4feb459250e60bd60e5aa6f486539483a8e1a2ab2d30b084c8623a6c4fb"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 3,
+      "occurred_at": "2026-10-12T11:43:05.918122+00:00",
+      "event_type": "plan.validated",
+      "payload": "{\"plan_id\":\"plan_e43d3c879639cc1fef0574f4\",\"snapshot_id\":\"snap_b648b501ab371fed29a2ce7a1bafee87\"}",
+      "previous_hash": "5024a4feb459250e60bd60e5aa6f486539483a8e1a2ab2d30b084c8623a6c4fb",
+      "event_hash": "b934f88c2cd206d6c789482d7f201be3cfe675b2585d63efdc351e4e70a98277"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 4,
+      "occurred_at": "2026-10-12T11:43:05.972831+00:00",
+      "event_type": "approval.created",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_fund\",\"approval_id\":\"approval_6847e47fdc0de3062a155fcd5419df44\",\"payload_hash\":\"81ae27bd6755a2c80a0452f0d04859576e013a91e637d7985dee6691aaed06e2\"}",
+      "previous_hash": "b934f88c2cd206d6c789482d7f201be3cfe675b2585d63efdc351e4e70a98277",
+      "event_hash": "68590fcfe92ae4e236bdb3ff01faa3e61ec553a1239415e06da5e68f93c86d9e"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 5,
+      "occurred_at": "2026-10-12T11:43:06.009306+00:00",
+      "event_type": "action.reserved",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_fund\",\"amount_minor\":0}",
+      "previous_hash": "68590fcfe92ae4e236bdb3ff01faa3e61ec553a1239415e06da5e68f93c86d9e",
+      "event_hash": "d994cbe8733382457166425f47a0f3c10eb412fb6be65ebed54ee0be10ec8772"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 6,
+      "occurred_at": "2026-10-12T11:43:06.085509+00:00",
+      "event_type": "action.submitted",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_fund\",\"provider_ref\":\"sim_4123a04901a0434e90f46593000eb268\"}",
+      "previous_hash": "d994cbe8733382457166425f47a0f3c10eb412fb6be65ebed54ee0be10ec8772",
+      "event_hash": "a66bf1444b4eafece57a2d56f824a13733a4cf2a93955665b28fab41fdd44fa0"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 7,
+      "occurred_at": "2026-10-12T11:43:06.114078+00:00",
+      "event_type": "action.settled_reconciled",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_fund\",\"transaction_id\":\"fact_0a41112a91d041329ed0e278fca04d22\"}",
+      "previous_hash": "a66bf1444b4eafece57a2d56f824a13733a4cf2a93955665b28fab41fdd44fa0",
+      "event_hash": "b0a7b5317b84a56c1dc9a42a49dde10b9b816b226aa5c2fbbad1f85a4ff4bc72"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 8,
+      "occurred_at": "2026-10-12T11:43:06.216495+00:00",
+      "event_type": "approval.created",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_b31f526e191d\",\"approval_id\":\"approval_1df5b6338f459efdbfe03fa82676643f\",\"payload_hash\":\"87ffcd1210e390bbebf9c1a80344debdbbacef93c4babd70989382e4be9cb0a2\"}",
+      "previous_hash": "b0a7b5317b84a56c1dc9a42a49dde10b9b816b226aa5c2fbbad1f85a4ff4bc72",
+      "event_hash": "f50bcd90e3ed3269ab643e3ad3ae489efeb73512a7365f9f8152e157c2652232"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 9,
+      "occurred_at": "2026-10-12T11:43:06.260707+00:00",
+      "event_type": "action.reserved",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_b31f526e191d\",\"amount_minor\":8000000}",
+      "previous_hash": "f50bcd90e3ed3269ab643e3ad3ae489efeb73512a7365f9f8152e157c2652232",
+      "event_hash": "f27f395bc64db37caf2f4f4294aef3865233ba4afd022fa4b5f175ea1eaeccae"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 10,
+      "occurred_at": "2026-10-12T11:43:06.316865+00:00",
+      "event_type": "action.submitted",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_b31f526e191d\",\"provider_ref\":\"sim_3fde94d144564785b79926929844e28c\"}",
+      "previous_hash": "f27f395bc64db37caf2f4f4294aef3865233ba4afd022fa4b5f175ea1eaeccae",
+      "event_hash": "4bd40af956f17abce2dc2c9df05ce07ea03953b77e52482fdf8d60f553227863"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 11,
+      "occurred_at": "2026-10-12T11:43:06.367269+00:00",
+      "event_type": "action.settled_reconciled",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_b31f526e191d\",\"transaction_id\":\"fact_cf4380bd9c884ac681775a0ac18e9676\"}",
+      "previous_hash": "4bd40af956f17abce2dc2c9df05ce07ea03953b77e52482fdf8d60f553227863",
+      "event_hash": "c650fc624f62ba22939d9360cb0125678941c07891e759221844a4b7bb586ba2"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 12,
+      "occurred_at": "2026-10-12T11:43:06.440150+00:00",
+      "event_type": "approval.created",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_e633aa88f47c\",\"approval_id\":\"approval_c383976c18e816d1c03d9bc4c98cf502\",\"payload_hash\":\"6bf2b2d3577f04ffbb4758b8b858c3b5b832e166e398c8bcc0e02a83e82c8c30\"}",
+      "previous_hash": "c650fc624f62ba22939d9360cb0125678941c07891e759221844a4b7bb586ba2",
+      "event_hash": "e86d0b5d6e8e0b86e2b963672a6d5fa00aba1ad8f8e9cfd1a646fc96efe04966"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 13,
+      "occurred_at": "2026-10-12T11:43:06.470161+00:00",
+      "event_type": "action.reserved",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_e633aa88f47c\",\"amount_minor\":2000000}",
+      "previous_hash": "e86d0b5d6e8e0b86e2b963672a6d5fa00aba1ad8f8e9cfd1a646fc96efe04966",
+      "event_hash": "1020e59b82c9663ba16b36cedce3030eee0f29f5aab6821e2ccae5747ec1e2c8"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 14,
+      "occurred_at": "2026-10-12T11:43:06.540840+00:00",
+      "event_type": "action.submitted",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_e633aa88f47c\",\"provider_ref\":\"sim_992bac9e633e4acfa30896eb69c5a779\"}",
+      "previous_hash": "1020e59b82c9663ba16b36cedce3030eee0f29f5aab6821e2ccae5747ec1e2c8",
+      "event_hash": "089100556f23685523a00025217f066089a775d0aab295569d78de924ef810b9"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 15,
+      "occurred_at": "2026-10-12T11:43:06.573297+00:00",
+      "event_type": "action.settled_reconciled",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_e633aa88f47c\",\"transaction_id\":\"fact_762234ed79bd4b3f85f835b3f39bd2c3\"}",
+      "previous_hash": "089100556f23685523a00025217f066089a775d0aab295569d78de924ef810b9",
+      "event_hash": "eb84b27c3c969e069c2c10e9205d2109ab1bbf3f041d7d578a653adbf774cc79"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 16,
+      "occurred_at": "2026-10-12T11:43:06.666703+00:00",
+      "event_type": "approval.created",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05\",\"approval_id\":\"approval_83452b88d73c01b52a972cfa43c80e31\",\"payload_hash\":\"bc8cad2985f9735cb3bd6742413b7b35ad276957c8a1173955fedacdafc1c40b\"}",
+      "previous_hash": "eb84b27c3c969e069c2c10e9205d2109ab1bbf3f041d7d578a653adbf774cc79",
+      "event_hash": "3848f7e65d6cfda02b3310a095f8665aab35aebc4b290d7eefa2f110782bcf92"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 17,
+      "occurred_at": "2026-10-12T11:43:06.687765+00:00",
+      "event_type": "action.reserved",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05\",\"amount_minor\":9000000}",
+      "previous_hash": "3848f7e65d6cfda02b3310a095f8665aab35aebc4b290d7eefa2f110782bcf92",
+      "event_hash": "45f1d9a668ae614c06f4e1935044ae41d92c31e0f36ea7403862734456acd92e"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 18,
+      "occurred_at": "2026-10-12T11:43:06.732039+00:00",
+      "event_type": "action.submitted",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05\",\"provider_ref\":\"sim_b015bb7e62bd4caaa54a38c37120165d\"}",
+      "previous_hash": "45f1d9a668ae614c06f4e1935044ae41d92c31e0f36ea7403862734456acd92e",
+      "event_hash": "d3d2a1c584bc75b8566378c77b97e371d70fa596441cd38c9a00396d2172ddfb"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 19,
+      "occurred_at": "2026-10-12T11:43:06.760634+00:00",
+      "event_type": "action.settled_reconciled",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_9ff3df0a6b05\",\"transaction_id\":\"fact_13c3f7920f054e2bbf9d60c4f1811659\"}",
+      "previous_hash": "d3d2a1c584bc75b8566378c77b97e371d70fa596441cd38c9a00396d2172ddfb",
+      "event_hash": "a1413054ac776161a2ae962534e1e55a71089f0c4d9638ac1c2c4fd524c24580"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 20,
+      "occurred_at": "2026-10-12T11:43:06.856002+00:00",
+      "event_type": "approval.created",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_repay\",\"approval_id\":\"approval_897b969360c89e50c368f95ca42b8d74\",\"payload_hash\":\"7e550b4ab24a305d56867f26b6da765d5d67b58a1a2c0d198249030d93cc55cd\"}",
+      "previous_hash": "a1413054ac776161a2ae962534e1e55a71089f0c4d9638ac1c2c4fd524c24580",
+      "event_hash": "2747c0f458286784304b8506d0af7718ed1a66c216870f9b7ac769f38a6e88f6"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 21,
+      "occurred_at": "2026-10-12T11:43:06.892209+00:00",
+      "event_type": "action.reserved",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_repay\",\"amount_minor\":9200000}",
+      "previous_hash": "2747c0f458286784304b8506d0af7718ed1a66c216870f9b7ac769f38a6e88f6",
+      "event_hash": "d37e711472df1377e175eaf9dba72cf565adcb64ca5e7bc6b3fcc9487e13f8c9"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 22,
+      "occurred_at": "2026-10-12T11:43:06.935439+00:00",
+      "event_type": "action.submitted",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_repay\",\"provider_ref\":\"sim_242cb260476341f8b514ea14f6738aef\"}",
+      "previous_hash": "d37e711472df1377e175eaf9dba72cf565adcb64ca5e7bc6b3fcc9487e13f8c9",
+      "event_hash": "22fc3068d8b0d88384027b35615ddf4c910c0e706daf4e738369988d7bcc5d39"
+    },
+    {
+      "tenant_id": "demo_company",
+      "audit_id": 23,
+      "occurred_at": "2026-10-12T11:43:06.978522+00:00",
+      "event_type": "action.settled_reconciled",
+      "payload": "{\"action_id\":\"plan_e43d3c879639cc1fef0574f4_repay\",\"transaction_id\":\"fact_9bb70e07a4be4c38b5768ca0c6fd69da\"}",
+      "previous_hash": "22fc3068d8b0d88384027b35615ddf4c910c0e706daf4e738369988d7bcc5d39",
+      "event_hash": "019bda3b0ca699bcdd0de71817634be69fb7f02762d9bae8d9e72ff12669c06f"
+    }
+  ],
+  "live_model_evaluation": {
+    "status": "NOT_RUN",
+    "reason": "No authorized real model configured"
+  }
+}

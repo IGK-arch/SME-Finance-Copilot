@@ -1,0 +1,435 @@
+{
+  "at": "2026-10-13T00:24:00.093459+00:00",
+  "invariants": [
+    {
+      "id": "I01",
+      "requirement": "Инвойс не создаёт банковское поступление самим фактом загрузки.",
+      "responsible_function": "ingestion.snapshot",
+      "acceptance_ids": [
+        "T021"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I02",
+      "requirement": "Договорная дата, прогнозная дата и фактическая дата оплаты — разные поля.",
+      "responsible_function": "compute.obligation_flows / ingestion.snapshot",
+      "acceptance_ids": [
+        "T021",
+        "T024",
+        "T025"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I03",
+      "requirement": "Запрошенная отсрочка не меняет обязательство без подтверждения.",
+      "responsible_function": "contingency.request_extension / observe_decisions",
+      "acceptance_ids": [
+        "T043",
+        "T051"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I04",
+      "requirement": "Заявка или предварительно подходящий продукт не увеличивают остаток.",
+      "responsible_function": "store.objects / ingestion.snapshot",
+      "acceptance_ids": [
+        "T044"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I05",
+      "requirement": "`SUBMITTED` и `SETTLED` — разные состояния; текст LLM не определяет успех.",
+      "responsible_function": "execution.deliver / refresh",
+      "acceptance_ids": [
+        "T080",
+        "T082",
+        "T095"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I06",
+      "requirement": "Повтор импорта не создаёт вторую экономическую операцию.",
+      "responsible_function": "ingestion.import_csv / store.add_fact",
+      "acceptance_ids": [
+        "T002",
+        "T020"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I07",
+      "requirement": "Повтор отправки той же команды не создаёт вторую логическую оплату.",
+      "responsible_function": "execution.prepare / sandbox.World.submit",
+      "acceptance_ids": [
+        "T074",
+        "T075",
+        "T078"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I08",
+      "requirement": "Ни одно действие не исполняется без актуальных прав и требуемого подтверждения.",
+      "responsible_function": "store.authorize / execution._approval_checks",
+      "acceptance_ids": [
+        "T071",
+        "T072"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I09",
+      "requirement": "Два параллельных действия не расходуют один резерв дважды.",
+      "responsible_function": "execution.prepare / BEGIN IMMEDIATE",
+      "acceptance_ids": [
+        "T076"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I10",
+      "requirement": "Потерянный ответ не разрешает освобождать резерв или платить заново вслепую.",
+      "responsible_function": "execution.deliver / refresh",
+      "acceptance_ids": [
+        "T079",
+        "T080",
+        "T081"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I11",
+      "requirement": "Суммы имеют валюту; расчёты разных валют не смешиваются без явной операции FX.",
+      "responsible_function": "domain.Money / ingestion.parse_row",
+      "acceptance_ids": [
+        "T014"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I12",
+      "requirement": "Деньги хранятся в минимальных единицах; нет float для денежных итогов.",
+      "responsible_function": "domain.minor / rate_charge",
+      "acceptance_ids": [
+        "T014",
+        "T015"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I13",
+      "requirement": "Частичная оплата уменьшает задолженность только на связанную сумму.",
+      "responsible_function": "ingestion.allocate / snapshot",
+      "acceptance_ids": [
+        "T007",
+        "T025"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I14",
+      "requirement": "Суммарные аллокации не превышают доступную сумму соответствующего платежа.",
+      "responsible_function": "ingestion.allocate_in_transaction",
+      "acceptance_ids": [
+        "T008",
+        "T009"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I15",
+      "requirement": "Неизвестное назначение платежа не убирает реальное движение денег из учёта.",
+      "responsible_function": "ingestion.snapshot / execution.refresh",
+      "acceptance_ids": [
+        "T010",
+        "T011",
+        "T090"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I16",
+      "requirement": "Торговая выручка и её перечисление через провайдера не считаются двумя продажами.",
+      "responsible_function": "compute.merchant_bridge",
+      "acceptance_ids": [
+        "T013"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I17",
+      "requirement": "Факторинговый аванс и исходное поступление не могут быть независимыми двойными доходами.",
+      "responsible_function": "compute.factoring_flows / obligation_flows",
+      "acceptance_ids": [
+        "T041"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I18",
+      "requirement": "Регулярный прогноз не дублирует известные конкретные обязательства.",
+      "responsible_function": "compute.forecast residual de-duplication",
+      "acceptance_ids": [
+        "T022"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I19",
+      "requirement": "Изменения сохраняют версии; прошлое решение воспроизводится по прошлому snapshot.",
+      "responsible_function": "store.facts / objects",
+      "acceptance_ids": [
+        "T016",
+        "T017"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I20",
+      "requirement": "Исторический расчёт видит только сведения, известные на момент решения.",
+      "responsible_function": "store.facts cutoff / forecast",
+      "acceptance_ids": [
+        "T016",
+        "T031"
+      ],
+      "status": "PARTIAL",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I21",
+      "requirement": "Нельзя финансировать утренний платёж вечерним поступлением без допустимого механизма.",
+      "responsible_function": "compute.trajectory / validation.validate_plan",
+      "acceptance_ids": [
+        "T027"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I22",
+      "requirement": "Обязательства по финансированию не исчезают за концом 30-дневного экрана.",
+      "responsible_function": "compute.financing / forecast",
+      "acceptance_ids": [
+        "T028",
+        "T040"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I23",
+      "requirement": "Жёсткое правило нельзя обменять на снижение стоимости в целевой функции.",
+      "responsible_function": "planner.solve / validation.validate_plan",
+      "acceptance_ids": [
+        "T045",
+        "T046"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I24",
+      "requirement": "Скрытое будущее симулятора недоступно агенту, инструментам и retrieval.",
+      "responsible_function": "sandbox capability interface / future OS isolation",
+      "acceptance_ids": [
+        "T097"
+      ],
+      "status": "PARTIAL",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I25",
+      "requirement": "`UNKNOWN` solver не равен доказанной несовместимости; `FEASIBLE` не равен доказанному оптимуму.",
+      "responsible_function": "planner.solve statuses / tests.test_planner",
+      "acceptance_ids": [
+        "T047",
+        "T048"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I26",
+      "requirement": "Тестовая вероятность не называется вероятностью реального банкротства без калибровки.",
+      "responsible_function": "compute.forecast provenance labels",
+      "acceptance_ids": [
+        "T029",
+        "T030"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I27",
+      "requirement": "Подтверждение относится к конкретной версии команды, сумме, получателю и условиям.",
+      "responsible_function": "execution.approve / _approval_checks",
+      "acceptance_ids": [
+        "T059",
+        "T073"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I28",
+      "requirement": "Чужая компания недоступна через API, фоновые задачи, кэш, embeddings и документы.",
+      "responsible_function": "store.authorize / evidence / API / cache",
+      "acceptance_ids": [
+        "T004",
+        "T060",
+        "T061",
+        "T062",
+        "T097"
+      ],
+      "status": "PARTIAL",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I29",
+      "requirement": "Инструкция внутри документа не расширяет права агента.",
+      "responsible_function": "agents.ToolRegistry / server policy",
+      "acceptance_ids": [
+        "T056",
+        "T057",
+        "T058"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I30",
+      "requirement": "Модельный checkpoint не является платёжным checkpoint.",
+      "responsible_function": "execution.prepare / worker / LangGraph resume",
+      "acceptance_ids": [
+        "T077",
+        "T078",
+        "T086"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I31",
+      "requirement": "Исполненный платёж не откатывается удалением записи; компенсация — новая операция.",
+      "responsible_function": "immutable ledger / execution.cancel_plan",
+      "acceptance_ids": [
+        "T087",
+        "T089"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I32",
+      "requirement": "Недоступность LLM не ослабляет авторизацию или обязательные проверки.",
+      "responsible_function": "agents.ModelGateway / execution.approve",
+      "acceptance_ids": [
+        "T066"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I33",
+      "requirement": "Непроверенный внешний источник не обновляет каталог кредитов прямо в процессе платежа.",
+      "responsible_function": "compute.financing / immutable DEMO terms",
+      "acceptance_ids": [
+        "T042"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I34",
+      "requirement": "Результаты измерений содержат реальные значения и границы; запрещены фиктивные KPI.",
+      "responsible_function": "scripts.test / benchmark / report",
+      "acceptance_ids": [
+        "T098",
+        "T099"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I35",
+      "requirement": "Публичный код и публичные данные могут иметь разные лицензии.",
+      "responsible_function": "docs/data_cards / source manifest",
+      "acceptance_ids": [
+        "T100"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "I36",
+      "requirement": "Наши внутренние резервы не гарантируют контроль операций владельца в стороннем приложении.",
+      "responsible_function": "execution.refresh / deliver funds recheck",
+      "acceptance_ids": [
+        "T090",
+        "T092"
+      ],
+      "status": "VERIFIED",
+      "evidence": "artifacts/regression-agent-data-v3.json",
+      "limitations": "docs/KNOWN_LIMITATIONS.md"
+    }
+  ]
+}

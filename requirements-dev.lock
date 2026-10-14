@@ -1,0 +1,3 @@
+# Optional quality tooling. No runtime dependency or network installation required.
+mypy==1.12.0
+ruff==0.12.0

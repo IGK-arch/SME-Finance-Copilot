@@ -1,0 +1,34 @@
+{
+  "source": "live-qwen7-prerequisite-probe-v3.json",
+  "reviewer": "assistant_manual_review",
+  "scope": "Three visible diagnostic narratives, not independent human review",
+  "findings": [
+    {
+      "case": "forecast_ru",
+      "status": "FAILED",
+      "issues": [
+        "Response was Chinese although the task was Russian",
+        "Said mandatory reserve was excluded; compute.trajectory net_need=max(0,reserve-minimum) includes it",
+        "No source ID citation in final narrative"
+      ]
+    },
+    {
+      "case": "financing_en",
+      "status": "PARTIAL",
+      "issues": [
+        "Correctly distinguishes DEMO eligibility from lender approval",
+        "No exact source citation in final narrative"
+      ]
+    },
+    {
+      "case": "min_cost_ru",
+      "status": "PARTIAL",
+      "issues": [
+        "Listed 2000 CNY cost, 91000 principal and 92000 repayment consistent with returned synthetic quote",
+        "Did not explicitly list 1000 CNY upfront fee or 90000 CNY net proceeds",
+        "Uses a vague server-authorization phrase instead of clearly requesting exact human approval"
+      ]
+    }
+  ],
+  "conclusion": "3/3 structural diagnostic passes do not imply 3/3 narrative accuracy"
+}

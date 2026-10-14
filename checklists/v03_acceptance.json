@@ -1,0 +1,187 @@
+{
+ "schema_version": 1,
+ "source": "SME_Copilot_v0_3_Audit_UX_Package/sme_v03_review/AUDIT_AND_UX_SPEC_RU.md §13 (IDs unchanged) + owner re-prioritisation of 13 Oct 2026",
+ "note": "Separate from checklists/acceptance_cases.json (T001–T100), which stays unchanged. DEFERRED_MODEL items wait for the target model; they are never reported as PASSED from MOCK runs.",
+ "cases": [
+  {
+   "id": "V03-01",
+   "priority": "R0",
+   "requirement": "Baseline, Git and hashes",
+   "verification": "artifact",
+   "evidence": [
+    "artifacts/v03/baseline-regression.json",
+    "artifacts/v03/baseline/"
+   ],
+   "open": "Git repository not initialised: deletion is disabled in the bridged folder and git needs to remove lock files; owner decision pending"
+  },
+  {
+   "id": "V03-02",
+   "priority": "R0",
+   "requirement": "Health backend label and status docs",
+   "verification": "unit"
+  },
+  {
+   "id": "V03-03",
+   "priority": "R0",
+   "requirement": "CompletionGate: 'I will do it' is not COMPLETE",
+   "verification": "live_model",
+   "deferred": true
+  },
+  {
+   "id": "V03-04",
+   "priority": "R0",
+   "requirement": "Typed AnswerBundle/evidence for model answers",
+   "verification": "live_model",
+   "deferred": true,
+   "partial": "UI shows server-typed result cards with evidence refs; model-text validation deferred"
+  },
+  {
+   "id": "V03-05",
+   "priority": "R0",
+   "requirement": "Result-first UI: computation visible without narrative",
+   "verification": "unit"
+  },
+  {
+   "id": "V03-06",
+   "priority": "R0",
+   "requirement": "Skills and scoped tools reduce steps",
+   "verification": "live_model",
+   "deferred": true
+  },
+  {
+   "id": "V03-07",
+   "priority": "R0",
+   "requirement": "SQL filters/pagination for agent reads",
+   "verification": "unit",
+   "not_started": true
+  },
+  {
+   "id": "V03-08",
+   "priority": "R0",
+   "requirement": "Model latency profiling",
+   "verification": "live_model",
+   "deferred": true
+  },
+  {
+   "id": "V03-09",
+   "priority": "R0",
+   "requirement": "Financial case keeps context; no second ledger",
+   "verification": "unit"
+  },
+  {
+   "id": "V03-10",
+   "priority": "R0",
+   "requirement": "Home redesign names problem, date, next action",
+   "verification": "unit+browser",
+   "open": "30-second usability test with participants not run"
+  },
+  {
+   "id": "V03-11",
+   "priority": "R0",
+   "requirement": "Plans: executable / conditional / infeasible with gross/net/repayment/scenario scope",
+   "verification": "unit+browser"
+  },
+  {
+   "id": "V03-12",
+   "priority": "R0",
+   "requirement": "Exact approval and timeline; UNKNOWN has no blind retry",
+   "verification": "unit+e2e+browser"
+  },
+  {
+   "id": "V03-13",
+   "priority": "R0",
+   "requirement": "Planner objectives: PRESERVE distinct, HIGHER with target/price trade-off",
+   "verification": "unit"
+  },
+  {
+   "id": "V03-14",
+   "priority": "R0",
+   "requirement": "LIVE end-to-end browser→graph→approval→worker→sandbox→reconcile",
+   "verification": "e2e+live_model",
+   "deferred": true,
+   "partial": "Product path verified by scripts.e2e_v03 without a model decision; LIVE agent from a free-form request deferred to the target model"
+  },
+  {
+   "id": "V03-15",
+   "priority": "R0",
+   "requirement": "Server session survives refresh; revoke/roles; no localStorage bearer",
+   "verification": "unit+browser",
+   "open": "HTTPS Secure cookie applies only behind TLS; loopback dev uses HttpOnly+SameSite=Strict"
+  },
+  {
+   "id": "V03-16",
+   "priority": "R1",
+   "requirement": "Flexible CSV/XLSX mapping, review, provenance",
+   "verification": "unit"
+  },
+  {
+   "id": "V03-17",
+   "priority": "R1",
+   "requirement": "Alerts with dedup",
+   "verification": "unit",
+   "partial": "Detection is a deterministic projection with first-seen dedup; no debounce scheduler or acknowledgements yet"
+  },
+  {
+   "id": "V03-18",
+   "priority": "R1",
+   "requirement": "Per-invoice what-if",
+   "verification": "unit"
+  },
+  {
+   "id": "V03-19",
+   "priority": "R1",
+   "requirement": "Chinese retrieval holdout",
+   "verification": "live_model",
+   "deferred": true
+  },
+  {
+   "id": "V03-20",
+   "priority": "R1",
+   "requirement": "Real-time approval TTL",
+   "verification": "unit",
+   "not_started": true
+  },
+  {
+   "id": "V03-21",
+   "priority": "R1",
+   "requirement": "Partial replan / stale checks",
+   "verification": "unit",
+   "partial": "Existing STALE_PLAN/STALE_SNAPSHOT checks plus server-side hash re-check at approval; unrelated-change tolerance not changed"
+  },
+  {
+   "id": "V03-22",
+   "priority": "R1",
+   "requirement": "Isolation, roles, backup",
+   "verification": "manual",
+   "not_started": true
+  },
+  {
+   "id": "V03-23",
+   "priority": "R0",
+   "requirement": "Browser regression on real backend",
+   "verification": "browser",
+   "partial": "Manual browser walkthrough recorded; no Playwright runner on this Windows host (PyPI/npm blocked)"
+  },
+  {
+   "id": "V03-24",
+   "priority": "R0",
+   "requirement": "Usability and accessibility",
+   "verification": "manual",
+   "partial": "Semantic markup, focus, dialog, no page overflow at 390/768/1366/1440 measured; participant study not run"
+  },
+  {
+   "id": "V03-25",
+   "priority": "R0",
+   "requirement": "Updated release evidence",
+   "verification": "artifact",
+   "evidence": [
+    "artifacts/v03/regression-v03.json",
+    "artifacts/v03/e2e-latest.json",
+    "artifacts/v03/browser-v03.json",
+    "docs/V03_PLAN.md",
+    "docs/adr/0005-v03-owner-main-path.md"
+   ],
+   "open": "No Git commit/tag; version label in pyproject still 0.2.0"
+  }
+ ]
+}

@@ -1,0 +1,367 @@
+[
+  {
+    "source_id": "R1",
+    "original_name": "international-topics-rules-en.docx",
+    "packaged_path": "sources/R1_rules.docx",
+    "sha256": "e26d8fb969d28bf8a41739417ab510ec73d582a5f096ffcc5ef3156701e8ec2a",
+    "extracted_markdown": "sources/R1_rules.md",
+    "hyperlinks": [],
+    "status": "USER_PROVIDED_SOURCE_NOT_REVERIFIED_IN_THIS_ASSEMBLY"
+  },
+  {
+    "source_id": "R2",
+    "original_name": "SME_Copilot_datasets_links.docx",
+    "packaged_path": "sources/R2_datasets.docx",
+    "sha256": "11634f10c2fe2c1f84f36b878221e0d6ceb50e0c46805ec7c434dd3b0c44e82b",
+    "extracted_markdown": "sources/R2_datasets.md",
+    "hyperlinks": [
+      {
+        "rid": "rId2",
+        "url": "https://www.atlantis-press.com/article/125977116.pdf"
+      },
+      {
+        "rid": "rId3",
+        "url": "https://damodev.csdn.net/6a4331f510ee7a33f284496b.html"
+      },
+      {
+        "rid": "rId4",
+        "url": "https://tianchi.aliyun.com/competition/entrance/531830/information"
+      },
+      {
+        "rid": "rId5",
+        "url": "https://github.com/aliyun/cflue"
+      },
+      {
+        "rid": "rId6",
+        "url": "https://www.paddleocr.ai/v2.9/applications/发票关键信息抽取.html"
+      },
+      {
+        "rid": "rId7",
+        "url": "https://aistudio.baidu.com/aistudio/datasetdetail/165561"
+      },
+      {
+        "rid": "rId8",
+        "url": "https://www.kaggle.com/c/home-credit-default-risk/data"
+      },
+      {
+        "rid": "rId9",
+        "url": "https://ieee-dataport.org/documents/home-credit-default-risk"
+      },
+      {
+        "rid": "rId10",
+        "url": "https://www.kaggle.com/c/GiveMeSomeCredit/data"
+      },
+      {
+        "rid": "rId11",
+        "url": "https://api.openml.org/d/45024"
+      },
+      {
+        "rid": "rId12",
+        "url": "https://relational.fel.cvut.cz/dataset/Financial"
+      },
+      {
+        "rid": "rId13",
+        "url": "https://www.kaggle.com/datasets/ealaxi/paysim1"
+      },
+      {
+        "rid": "rId14",
+        "url": "https://github.com/BBQtime/Synthetic-Financial-Datasets-For-Fraud-Detection"
+      },
+      {
+        "rid": "rId15",
+        "url": "https://github.com/IBM/TabFormer"
+      },
+      {
+        "rid": "rId16",
+        "url": "https://github.com/doc-analysis/XFUND"
+      },
+      {
+        "rid": "rId17",
+        "url": "https://github.com/clovaai/cord"
+      },
+      {
+        "rid": "rId18",
+        "url": "https://rrc.cvc.uab.es/?ch=13"
+      },
+      {
+        "rid": "rId19",
+        "url": "https://github.com/beacandler/EATEN"
+      },
+      {
+        "rid": "rId20",
+        "url": "https://microdata.worldbank.org/catalog/6676"
+      },
+      {
+        "rid": "rId21",
+        "url": "https://github.com/SUFE-AIFLM-Lab/FinEval"
+      },
+      {
+        "rid": "rId22",
+        "url": "https://huggingface.co/datasets/Duxiaoman-DI/FinCorpus"
+      },
+      {
+        "rid": "rId23",
+        "url": "https://github.com/Duxiaoman-DI/XuanYuan"
+      },
+      {
+        "rid": "rId24",
+        "url": "https://github.com/FudanDISC/DISC-FinLLM"
+      },
+      {
+        "rid": "rId25",
+        "url": "https://huggingface.co/datasets/eggbiscuit/DISC-FIN-SFT"
+      },
+      {
+        "rid": "rId26",
+        "url": "https://github.com/ssymmetry/BBT-FinCUGE-Applications"
+      },
+      {
+        "rid": "rId27",
+        "url": "https://github.com/AI4Finance-Foundation/FinGPT"
+      },
+      {
+        "rid": "rId28",
+        "url": "https://github.com/FudanDISC/DISC-LawLLM"
+      },
+      {
+        "rid": "rId29",
+        "url": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5236067/content.html"
+      },
+      {
+        "rid": "rId30",
+        "url": "https://finance.sina.cn/2024-11-12/detail-incvvkfz9333061.d.html"
+      },
+      {
+        "rid": "rId31",
+        "url": "https://cloud.tencent.com/developer/article/2029243"
+      },
+      {
+        "rid": "rId32",
+        "url": "https://pay.weixin.qq.com/doc/v3/partner/4014507142"
+      },
+      {
+        "rid": "rId33",
+        "url": "https://support.huaweicloud.com/tbis-dma/tbis_04.html"
+      },
+      {
+        "rid": "rId34",
+        "url": "https://www.gov.cn/zhengce/2014-08/23/content_2739774.htm"
+      },
+      {
+        "rid": "rId35",
+        "url": "https://paper.people.com.cn/rmrbwap/html/2024-05/20/nw.D110000renmrb_20240520_1-02.htm"
+      },
+      {
+        "rid": "rId36",
+        "url": "https://news.10jqka.com.cn/20260920/c680091504.shtml"
+      },
+      {
+        "rid": "rId37",
+        "url": "https://faker.readthedocs.io/en/master/locales/zh_CN.html"
+      },
+      {
+        "rid": "rId38",
+        "url": "https://pypi.org/project/sdv/1.37.3/"
+      }
+    ],
+    "status": "USER_PROVIDED_SOURCE_NOT_REVERIFIED_IN_THIS_ASSEMBLY"
+  },
+  {
+    "source_id": "R3",
+    "original_name": "SME_Finance_Copilot_—_технический_ресёрч_стеки_конкурентов,_data.docx",
+    "packaged_path": "sources/R3_china_research.docx",
+    "sha256": "569a9eeaf0713fb19a885b880e3da938c89f2354901ee3e75ee268509c529f11",
+    "extracted_markdown": "sources/R3_china_research.md",
+    "hyperlinks": [
+      {
+        "rid": "rId4",
+        "url": "https://news.10jqka.com.cn/20260930/c680423346.shtml"
+      },
+      {
+        "rid": "rId5",
+        "url": "https://www.80aj.com/2026/08/28/ling-3-0-finance-model/"
+      },
+      {
+        "rid": "rId6",
+        "url": "https://www.qbitai.com/2026/09/486288.html"
+      },
+      {
+        "rid": "rId7",
+        "url": "https://www.yicai.com/news/103104465.html"
+      },
+      {
+        "rid": "rId8",
+        "url": "https://arxiv.org/abs/2310.10049"
+      },
+      {
+        "rid": "rId9",
+        "url": "https://www.jiemian.com/article/14835776.html"
+      },
+      {
+        "rid": "rId10",
+        "url": "https://www.mrjjxw.com/articles/2026-05-01/4377479.html"
+      },
+      {
+        "rid": "rId11",
+        "url": "https://m.gmw.cn/2025-07/30/content_38185615.htm"
+      },
+      {
+        "rid": "rId12",
+        "url": "https://www.news.cn/finance/20260601/59130dacab9c4a55bb5c11d20a84207d/c.html"
+      },
+      {
+        "rid": "rId13",
+        "url": "https://www.stdaily.com/web/gdxw/2026-08/12/content_562866.html"
+      },
+      {
+        "rid": "rId14",
+        "url": "https://www.yicai.com/epaper/pc/202609/14/content_54121.html"
+      },
+      {
+        "rid": "rId15",
+        "url": "https://www.bbtnews.com.cn/2026/0911/605648.shtml"
+      },
+      {
+        "rid": "rId16",
+        "url": "https://www.qbitai.com/2026/09/487631.html"
+      },
+      {
+        "rid": "rId17",
+        "url": "https://www.cs.com.cn/yh/04/201903/t20190319_5931813.html"
+      },
+      {
+        "rid": "rId18",
+        "url": "https://m.jiemian.com/article/14572859.html"
+      },
+      {
+        "rid": "rId19",
+        "url": "https://www.yzwb.net/news/ch/202604/t20260429_347586.html"
+      },
+      {
+        "rid": "rId20",
+        "url": "https://www.gov.cn/gongbao/content/2021/content_5654782.htm"
+      },
+      {
+        "rid": "rId21",
+        "url": "https://www.allbrightlaw.com/CN/10475/46c5e7067a551d4b.aspx"
+      },
+      {
+        "rid": "rId22",
+        "url": "https://www.zhonglun.com/research/articles/52828.html"
+      },
+      {
+        "rid": "rId23",
+        "url": "https://m.gmw.cn/2026-07/10/content_1304528476.htm"
+      },
+      {
+        "rid": "rId24",
+        "url": "https://cn.chinadaily.com.cn/a/202411/27/WS6746d909a310b59111da5d3a.html"
+      },
+      {
+        "rid": "rId25",
+        "url": "https://jiangsu.chinatax.gov.cn/art/2026/6/8/art_23638_8741.html"
+      },
+      {
+        "rid": "rId26",
+        "url": "https://www.allbrightlaw.com/CN/10475/b6398b0ba64d4221.aspx"
+      },
+      {
+        "rid": "rId27",
+        "url": "https://www.aibank.com/upload/attachs/2022/12/8-%E9%87%91%E8%9E%8D%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%20%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%88%86%E7%BA%A7%E6%8C%87%E5%8D%97.pdf"
+      },
+      {
+        "rid": "rId28",
+        "url": "https://arxiv.org/abs/2405.10542"
+      },
+      {
+        "rid": "rId29",
+        "url": "https://arxiv.org/abs/2310.15205"
+      },
+      {
+        "rid": "rId30",
+        "url": "https://huggingface.co/Qwen/Qwen3-8B"
+      },
+      {
+        "rid": "rId31",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1"
+      },
+      {
+        "rid": "rId32",
+        "url": "https://huggingface.co/zai-org/GLM-4.5"
+      },
+      {
+        "rid": "rId33",
+        "url": "https://arxiv.org/abs/2508.16279"
+      },
+      {
+        "rid": "rId34",
+        "url": "https://arxiv.org/abs/2510.09407v1"
+      },
+      {
+        "rid": "rId35",
+        "url": "https://news.qq.com/rain/a/20260618A0979C00"
+      },
+      {
+        "rid": "rId36",
+        "url": "https://www.thepaper.cn/newsDetail_forward_33409946"
+      },
+      {
+        "rid": "rId37",
+        "url": "https://www.news.cn/tech/20260617/89dfdc17bc704515a8b06e432b10b51c/c.html"
+      },
+      {
+        "rid": "rId38",
+        "url": "https://finance.eastmoney.com/a/202606293786910569.html"
+      },
+      {
+        "rid": "rId39",
+        "url": "https://www.bbtnews.com.cn/2026/0625/597318.shtml"
+      },
+      {
+        "rid": "rId40",
+        "url": "https://epaper.cs.com.cn/zgzqb/images/2025-10/21/A03/zqDB0321.pdf"
+      },
+      {
+        "rid": "rId41",
+        "url": "https://www.cac.gov.cn/2025-03/14/c_1743654685899683.htm"
+      },
+      {
+        "rid": "rId42",
+        "url": "https://www.webull.com/news/15264219198792704"
+      },
+      {
+        "rid": "rId43",
+        "url": "https://theasianbanker.com/updates-and-articles/ai-gen-ai-application-in-sme-marketing-initiative-in-asia-pacific-is-webank-2025"
+      },
+      {
+        "rid": "rId44",
+        "url": "https://mtz.china.com/touzi/2026/0513/233490.html"
+      },
+      {
+        "rid": "rId45",
+        "url": "https://cs.com.cn/5g/202309/t20230901_6364821.html"
+      },
+      {
+        "rid": "rId46",
+        "url": "https://www.itiger.com/news/1107267213"
+      },
+      {
+        "rid": "rId47",
+        "url": "https://m.sfccn.com/2026/6-12/yMMDE0NDlfMjE1OTMyMA.html"
+      },
+      {
+        "rid": "rId48",
+        "url": "https://news.pedaily.cn/20260316/125522.shtml"
+      },
+      {
+        "rid": "rId49",
+        "url": "https://www.ndrc.gov.cn/xxgk/jianyitianfuwen/qgzxwytafwgk/202511/t20251120_1401757.html"
+      },
+      {
+        "rid": "rId50",
+        "url": "https://www.yicai.com/news/102531619.html"
+      }
+    ],
+    "status": "USER_PROVIDED_SOURCE_NOT_REVERIFIED_IN_THIS_ASSEMBLY"
+  }
+]

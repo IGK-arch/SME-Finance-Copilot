@@ -1,0 +1,58 @@
+{
+  "reviewer": "Codex assistant, not independent human review",
+  "status": "COMPLETED_REVIEW_OF_INTERRUPTED_RUN",
+  "source_report": "live-platform-qwen7-v4.json",
+  "cases": [
+    {
+      "case_id": "supplier_details_ru",
+      "assessment": "PARTIAL",
+      "notes": "Correct amount/outstanding 90,000 CNY and Oct 8 due date; list/detail read. Cites provider synthetic_csv but omits available exact source ID."
+    },
+    {
+      "case_id": "invoice_details_ru",
+      "assessment": "FAILED",
+      "notes": "Read 100,000 CNY invoice due Oct 11 and said it is not received cash, but reversed who owes whom (company to customer rather than customer to company), skipped requested metrics, and treated CONFIRMED as evidence of unpaid status without checking allocations."
+    },
+    {
+      "case_id": "import_review_en",
+      "assessment": "FAILED",
+      "notes": "Correctly listed import batches and quarantined row, but did not read details. Claimed the error reason was unavailable instead of reading the record; requested diagnosis incomplete."
+    },
+    {
+      "case_id": "fact_history_ru",
+      "assessment": "FAILED",
+      "notes": "Read current obligations instead of facts history. Claimed both v1/v2 were 85,000 CNY from the v2 source; actual v1 was 90,000 CNY from a different source."
+    },
+    {
+      "case_id": "saved_plan_prepare_ru",
+      "assessment": "FAILED",
+      "notes": "Tool events show successful snapshot, plan list and get_plan_details with real IDs. Next request timed out at 240 seconds; total 426.5 seconds. No prepare_action or approval. Failure-state summary omits outputs, so some missing-tool checks reflect the terminal state; successful reads remain in events."
+    },
+    {
+      "case_id": "what_if_partial_ru",
+      "assessment": "PARTIAL",
+      "notes": "Correct 50 percent/7-day arguments, Oct 8 first gap, -70,000 CNY minimum and 90,000 CNY need match returned scenario. Explicitly hypothetical, no fact writes. Source ID omitted from prose."
+    },
+    {
+      "case_id": "long_document_ru",
+      "assessment": "PASSED",
+      "notes": "Used search_documents/get_evidence; visible evidence equals the entire source. Correct final 45-day term and exact source ID. Original grader incorrectly required pagination; separate regrade accepts full evidence. Paginated route itself not exercised."
+    },
+    {
+      "case_id": "operations_controls_ru",
+      "assessment": "FAILED",
+      "notes": "No completed answer; request timed out at the 240-second bound, 245.4 seconds total. No fallback or action/approval/job/policy/fact/world change."
+    },
+    {
+      "case_id": "extension_proposal_ru",
+      "assessment": "INTERRUPTED_NO_FINAL_RESULT",
+      "notes": "Workflow failed when guard detected C: free space 268492800 bytes; native tool event exists but no finalized evaluation case. No quality pass claimed."
+    },
+    {
+      "case_id": "private_document_en",
+      "assessment": "NOT_RUN",
+      "notes": "Resource stop and subsequent external OS reboot ended the suite before this case."
+    }
+  ],
+  "source_sha256": "69388bad265aac05950bffc8c9215572e6465fdf87fd769e2cf95e5bc57ca0eb"
+}

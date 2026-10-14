@@ -1,0 +1,53 @@
+{
+  "status": "FAILED",
+  "launcher_pid": 25504,
+  "job_memory_limit_bytes": 2147483648,
+  "runtime_limit_bytes": 21474836480,
+  "poll_seconds": 0.5,
+  "initial": {
+    "system_free_bytes": 15720857600,
+    "workspace_free_bytes": 37862424576,
+    "available_ram_bytes": 19654799360,
+    "available_commit_bytes": 27101741056,
+    "runtime_bytes": 18230723229
+  },
+  "minimum": {
+    "system_free_bytes": 15361429504,
+    "workspace_free_bytes": 37856878592,
+    "available_ram_bytes": 5364383744,
+    "available_commit_bytes": 8131133440
+  },
+  "peak_job_commit_bytes": 1736310784,
+  "peak_runtime_bytes": 18230826263,
+  "runtime_options": {
+    "TEMP": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\temp",
+    "TMP": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\temp",
+    "OLLAMA_HOST": "127.0.0.1:11434",
+    "OLLAMA_MODELS": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\models",
+    "OLLAMA_NO_CLOUD": "1",
+    "OLLAMA_CONTEXT_LENGTH": "8192",
+    "OLLAMA_NUM_PARALLEL": "1",
+    "OLLAMA_MAX_LOADED_MODELS": "1",
+    "OLLAMA_MAX_QUEUE": "1",
+    "OLLAMA_KEEP_ALIVE": "60s",
+    "OLLAMA_LOAD_TIMEOUT": "60s",
+    "OLLAMA_FLASH_ATTENTION": "1",
+    "OLLAMA_KV_CACHE_TYPE": "q8_0",
+    "OLLAMA_VULKAN": "false",
+    "CUDA_CACHE_PATH": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\cuda-cache",
+    "CUDA_CACHE_MAXSIZE": "134217728",
+    "CUDA_VISIBLE_DEVICES": "-1",
+    "HIP_VISIBLE_DEVICES": "-1",
+    "LLAMA_ARG_REPACK": "0"
+  },
+  "updated_unix": 1791846707.3390787,
+  "child_pid": 20504,
+  "latest": {
+    "system_free_bytes": 15897739264,
+    "workspace_free_bytes": 37856878592,
+    "available_ram_bytes": 5364383744,
+    "available_commit_bytes": 12443664384,
+    "runtime_bytes": 18230826263
+  },
+  "reason": "available_ram_bytes below reserve: 5364383744 < 5368709120"
+}

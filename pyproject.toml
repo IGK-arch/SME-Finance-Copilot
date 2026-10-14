@@ -1,0 +1,10 @@
+[project]
+name = "sme-finance-copilot"
+version = "0.2.0"
+description = "Persistent synthetic SME Finance Copilot workspace"
+requires-python = ">=3.11"
+dependencies = ["fastapi==0.143.0", "uvicorn==0.54.0", "langgraph==1.2.14", "langgraph-checkpoint-sqlite==3.1.1", "ortools==9.15.6755", "pypdf==6.20.0", "psycopg[binary]==3.3.6"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100

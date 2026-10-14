@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlanEnvelope — metadata and references, not executable instructions",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "plan_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "plan_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "objective": {
+      "enum": [
+        "MIN_COST",
+        "HIGHER_RESERVE",
+        "NO_NEW_DEBT",
+        "PRESERVE_LIQUIDITY"
+      ]
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "NEEDS_INFORMATION",
+        "CONDITIONAL",
+        "VALIDATED",
+        "AWAITING_APPROVAL",
+        "AUTHORIZED",
+        "EXECUTING",
+        "PARTIALLY_EXECUTED",
+        "COMPLETED",
+        "INVALIDATED",
+        "CANCELLED",
+        "FAILED"
+      ]
+    },
+    "solver_status": {
+      "enum": [
+        "NOT_RUN",
+        "OPTIMAL",
+        "FEASIBLE",
+        "INFEASIBLE",
+        "UNKNOWN",
+        "MODEL_INVALID"
+      ]
+    },
+    "scenario_set_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "action_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "uniqueItems": true
+    },
+    "assumption_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "uniqueItems": true
+    },
+    "constraint_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "uniqueItems": true
+    },
+    "validation_report_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "uniqueItems": true
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "uniqueItems": true
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data_mode": {
+      "enum": [
+        "synthetic",
+        "consented_real"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "plan_id",
+    "plan_version",
+    "snapshot_id",
+    "policy_version",
+    "objective",
+    "status",
+    "solver_status",
+    "scenario_set_id",
+    "action_refs",
+    "assumption_refs",
+    "constraint_refs",
+    "validation_report_refs",
+    "evidence_refs",
+    "expires_at",
+    "data_mode"
+  ]
+}

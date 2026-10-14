@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-12T19:39:46.746454+00:00",
+  "resources": {
+    "system_free_bytes": 6761385984,
+    "workspace_free_bytes": 54748512256,
+    "available_ram_bytes": 14113734656,
+    "available_commit_bytes": 12954787840,
+    "runtime_bytes": 11570865722
+  },
+  "guard": {
+    "status": "RUNNING",
+    "launcher_pid": 5344,
+    "job_memory_limit_bytes": 2147483648,
+    "runtime_limit_bytes": 15032385536,
+    "poll_seconds": 0.5,
+    "initial": {
+      "system_free_bytes": 6728556544,
+      "workspace_free_bytes": 54773731328,
+      "available_ram_bytes": 14621818880,
+      "available_commit_bytes": 13877493760,
+      "runtime_bytes": 11570572573
+    },
+    "minimum": {
+      "system_free_bytes": 6708264960,
+      "workspace_free_bytes": 54748512256,
+      "available_ram_bytes": 7634059264,
+      "available_commit_bytes": 8366751744
+    },
+    "peak_job_commit_bytes": 1840136192,
+    "peak_runtime_bytes": 11570865722,
+    "runtime_options": {
+      "TEMP": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\temp",
+      "TMP": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\temp",
+      "OLLAMA_HOST": "127.0.0.1:11434",
+      "OLLAMA_MODELS": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\models",
+      "OLLAMA_NO_CLOUD": "1",
+      "OLLAMA_CONTEXT_LENGTH": "8192",
+      "OLLAMA_NUM_PARALLEL": "1",
+      "OLLAMA_MAX_LOADED_MODELS": "1",
+      "OLLAMA_MAX_QUEUE": "1",
+      "OLLAMA_KEEP_ALIVE": "60s",
+      "OLLAMA_LOAD_TIMEOUT": "60s",
+      "OLLAMA_FLASH_ATTENTION": "1",
+      "OLLAMA_KV_CACHE_TYPE": "q8_0",
+      "OLLAMA_VULKAN": "false",
+      "CUDA_CACHE_PATH": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\cuda-cache",
+      "CUDA_CACHE_MAXSIZE": "134217728",
+      "CUDA_VISIBLE_DEVICES": "-1",
+      "HIP_VISIBLE_DEVICES": "-1",
+      "LLAMA_ARG_REPACK": "0"
+    },
+    "updated_unix": 1791833986.3311934,
+    "child_pid": 32292,
+    "latest": {
+      "system_free_bytes": 6761385984,
+      "workspace_free_bytes": 54748512256,
+      "available_ram_bytes": 14135439360,
+      "available_commit_bytes": 12989628416,
+      "runtime_bytes": 11570865720
+    }
+  },
+  "note": "Completed CPU comparison and successful Qwen LIVE browser cash query; API restored against existing PG state. No pagefile configuration changed."
+}

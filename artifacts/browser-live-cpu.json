@@ -1,0 +1,53 @@
+{
+  "at": "2026-10-12T19:37:56.182Z",
+  "test_id": "cua.live_cpu_qwen_cash",
+  "status": "PASSED",
+  "scope": "New read-only LIVE workflow in existing PostgreSQL workspace; prior ten-route record unchanged",
+  "url": "http://127.0.0.1:8080/#copilot",
+  "model": {
+    "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "model": "qwen2.5:7b",
+    "provider": "ollama"
+  },
+  "workflow_id": "workflow_b2d6cc9f83414d1589e2226ebccdf06f",
+  "workflow_report": "browser-live-cpu-workflow.json",
+  "usage": {
+    "billing": "LOCAL_ENDPOINT_NO_BILLED_API",
+    "calls": 2,
+    "completion_tokens": 167,
+    "cost": null,
+    "elapsed_seconds": 117.21900000000096,
+    "last_request": {
+      "done_reason": "stop",
+      "eval_count": 149,
+      "eval_duration": 17419801000,
+      "load_duration": 12420400,
+      "prompt_eval_count": 2112,
+      "prompt_eval_duration": 58212899000,
+      "total_duration": 75668983300
+    },
+    "live_metrics_status": "MEASURED_PROVIDER_USAGE",
+    "prompt_tokens": 3251,
+    "tokens": 3418
+  },
+  "screenshots": [
+    "browser-live-cpu.png"
+  ],
+  "webHashes": {
+    "app.js": "133cd1ef130f8be72becf3d2acdb82ea3dc9eda3523631c14508b071bc0b2d37",
+    "style.css": "14487a61ef696d52ec34246dc41f27e5363fe0a08e27bc716338c6c3b9047707",
+    "index.html": "6d8c765f620e83e1958cd2670b289aefa20fd28a684014863e1e3a2e2a77fb41"
+  },
+  "checks": {
+    "live_badge": true,
+    "qwen_model": true,
+    "complete": true,
+    "native_snapshot_only": true,
+    "correct_cash": true,
+    "correct_asof": true,
+    "cites_returned_sources": true,
+    "old_paused_workflow_preserved": true,
+    "no_plan": true,
+    "no_tool_errors": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-12T17:28:01.528964+00:00",
+  "resources": {
+    "system_free_bytes": 6715932672,
+    "workspace_free_bytes": 54773886976,
+    "available_ram_bytes": 13280182272,
+    "available_commit_bytes": 7285288960,
+    "runtime_bytes": 11570525490
+  },
+  "system_disk_floor_bytes": 4294967296,
+  "job_memory_limit_bytes": 6442450944,
+  "inference_started": false,
+  "status": "BLOCKED_PREFLIGHT",
+  "reason": "available_commit_bytes below reserve: 7285288960 < 8589934592"
+}

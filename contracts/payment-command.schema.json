@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaymentCommand — proposed P0 contract",
+  "description": "Internal validated payment command. Authenticated tenant context is supplied by the server, never trusted from a model payload. Structural validity is not authorization.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "action_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "plan_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "plan_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "kind": {
+      "const": "PAY_OBLIGATION"
+    },
+    "obligation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "account_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "beneficiary_version_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "amount_minor": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9223372036854775807
+    },
+    "currency": {
+      "const": "CNY"
+    },
+    "required_approval_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "precondition_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "action_id",
+    "plan_id",
+    "plan_version",
+    "snapshot_id",
+    "kind",
+    "obligation_id",
+    "account_id",
+    "beneficiary_version_id",
+    "amount_minor",
+    "currency",
+    "required_approval_id",
+    "policy_version",
+    "idempotency_key",
+    "precondition_refs"
+  ]
+}

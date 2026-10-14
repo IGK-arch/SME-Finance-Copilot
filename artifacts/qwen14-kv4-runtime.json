@@ -1,0 +1,64 @@
+{
+  "at": "2026-10-12T23:28:12.374182+00:00",
+  "model": "qwen2.5:14b-instruct-q3_K_S",
+  "measurement": "Actual installed runtime log after loading; not estimated",
+  "runtime_lines": [
+    "load_tensors:   CPU_Mapped model buffer size =  6345.39 MiB",
+    "llama_context: n_ctx                 = 8192",
+    "llama_kv_cache:        CPU KV buffer size =   432.00 MiB",
+    "srv    load_model: prompt cache is disabled - use `--cache-ram N` to enable it"
+  ],
+  "guard": {
+    "status": "RUNNING",
+    "launcher_pid": 8252,
+    "job_memory_limit_bytes": 2147483648,
+    "runtime_limit_bytes": 21474836480,
+    "poll_seconds": 0.5,
+    "initial": {
+      "system_free_bytes": 15791718400,
+      "workspace_free_bytes": 37856169984,
+      "available_ram_bytes": 14552981504,
+      "available_commit_bytes": 13710315520,
+      "runtime_bytes": 18230884940
+    },
+    "minimum": {
+      "system_free_bytes": 15790948352,
+      "workspace_free_bytes": 37855543296,
+      "available_ram_bytes": 7433154560,
+      "available_commit_bytes": 6743359488
+    },
+    "peak_job_commit_bytes": 731357184,
+    "peak_runtime_bytes": 18230906941,
+    "runtime_options": {
+      "TEMP": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\temp",
+      "TMP": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\temp",
+      "OLLAMA_HOST": "127.0.0.1:11434",
+      "OLLAMA_MODELS": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\models",
+      "OLLAMA_NO_CLOUD": "1",
+      "OLLAMA_CONTEXT_LENGTH": "8192",
+      "OLLAMA_NUM_PARALLEL": "1",
+      "OLLAMA_MAX_LOADED_MODELS": "1",
+      "OLLAMA_MAX_QUEUE": "1",
+      "OLLAMA_KEEP_ALIVE": "60s",
+      "OLLAMA_LOAD_TIMEOUT": "60s",
+      "OLLAMA_FLASH_ATTENTION": "1",
+      "OLLAMA_KV_CACHE_TYPE": "q4_0",
+      "OLLAMA_VULKAN": "false",
+      "CUDA_CACHE_PATH": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\ollama\\cuda-cache",
+      "CUDA_CACHE_MAXSIZE": "134217728",
+      "CUDA_VISIBLE_DEVICES": "-1",
+      "HIP_VISIBLE_DEVICES": "-1",
+      "LLAMA_ARG_REPACK": "0",
+      "LLAMA_ARG_CACHE_RAM": "0"
+    },
+    "updated_unix": 1791847691.9390771,
+    "child_pid": 26148,
+    "latest": {
+      "system_free_bytes": 15791001600,
+      "workspace_free_bytes": 37855543296,
+      "available_ram_bytes": 7446908928,
+      "available_commit_bytes": 12186083328,
+      "runtime_bytes": 18230906941
+    }
+  }
+}

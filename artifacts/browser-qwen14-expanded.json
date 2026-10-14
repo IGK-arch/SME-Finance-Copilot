@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-13T00:21:40.566Z",
+  "model": {
+    "digest": "c8f457c1f8f593fb2e47d9ea5e5951454f2837420b5abe0b075c650f59e2ada8",
+    "model": "qwen2.5:14b-instruct-q3_K_S",
+    "provider": "ollama"
+  },
+  "phase": "COMPLETE",
+  "workflow_id": "workflow_be4e413ff19142c1afd4fdf6aef8f71c",
+  "usage": {
+    "billing": "LOCAL_ENDPOINT_NO_BILLED_API",
+    "calls": 2,
+    "completion_tokens": 123,
+    "cost": null,
+    "elapsed_seconds": 317.2970000000005,
+    "last_request": {
+      "done_reason": "stop",
+      "eval_count": 94,
+      "eval_duration": 25716886000,
+      "load_duration": 11089100,
+      "prompt_eval_count": 3050,
+      "prompt_eval_duration": 191518863000,
+      "total_duration": 217278767200
+    },
+    "live_metrics_status": "MEASURED_PROVIDER_USAGE",
+    "prompt_tokens": 4652,
+    "tokens": 4775
+  },
+  "assessment": "PARTIAL",
+  "notes": "Actual browser query completed. Correct cash 120000 CNY/as_of 2026-10-10; incorrectly labelled snapshot_id as source_id and used three sentences instead of two. No plan; one snapshot tool call. Supplemental probe excluded from 20-case benchmark.",
+  "checks": {
+    "cash_and_date_correct": true,
+    "source_id_correct": false,
+    "two_sentences": false,
+    "no_plan": true
+  },
+  "source": "browser-qwen14-expanded-workflow.json"
+}

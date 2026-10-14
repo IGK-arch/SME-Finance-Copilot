@@ -1,0 +1,985 @@
+{
+  "schema_version": 1,
+  "episode_count": 3,
+  "runs": [
+    {
+      "starting_cash_minor": 12000000,
+      "comparison": {
+        "mode": "DETERMINISTIC_COMPUTE_ONLY",
+        "baseline_observation_hash": "3c979666b65240ee84e1461c60d75211bdad246e1243ae45effa80a6bc817c7a",
+        "full_observation_hash": "3c979666b65240ee84e1461c60d75211bdad246e1243ae45effa80a6bc817c7a",
+        "scenario_ids": [
+          "f0",
+          "delay_5",
+          "delay_25"
+        ],
+        "B0": {
+          "valid_in_f0": true,
+          "cost_minor": 200000,
+          "paths": [
+            {
+              "scenario_id": "f0",
+              "delay_days": 0,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-11T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_2f4bef3c855c49d4981f2766d141d199",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -9200000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_repay",
+                  "balance_minor": 2800000
+                }
+              ],
+              "minimum_balance_minor": 2000000,
+              "final_balance_minor": 2800000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_5",
+              "delay_days": 5,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-16T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_2f4bef3c855c49d4981f2766d141d199",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -9200000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_repay",
+                  "balance_minor": 2800000
+                }
+              ],
+              "minimum_balance_minor": 2000000,
+              "final_balance_minor": 2800000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_25",
+              "delay_days": 25,
+              "provenance": "DEMO_STRESS",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -9200000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_repay",
+                  "balance_minor": -7200000
+                },
+                {
+                  "at": "2026-11-05T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_2f4bef3c855c49d4981f2766d141d199",
+                  "balance_minor": 2800000
+                }
+              ],
+              "minimum_balance_minor": -7200000,
+              "final_balance_minor": 2800000,
+              "first_gap_at": "2026-10-31T00:00:00.000000+00:00",
+              "net_need_minor": 9200000
+            }
+          ],
+          "elapsed_seconds": 0.0008359000203199685
+        },
+        "optimizer": {
+          "solver_status": "OPTIMAL",
+          "cost_minor": 200000,
+          "paths": [
+            {
+              "scenario_id": "f0",
+              "delay_days": 0,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-11T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_2f4bef3c855c49d4981f2766d141d199",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -9200000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_repay",
+                  "balance_minor": 2800000
+                }
+              ],
+              "minimum_balance_minor": 2000000,
+              "final_balance_minor": 2800000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_5",
+              "delay_days": 5,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-16T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_2f4bef3c855c49d4981f2766d141d199",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -9200000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_repay",
+                  "balance_minor": 2800000
+                }
+              ],
+              "minimum_balance_minor": 2000000,
+              "final_balance_minor": 2800000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_25",
+              "delay_days": 25,
+              "provenance": "DEMO_STRESS",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -9200000,
+                  "reference": "plan_0b9439d7f8601ab4ded7e944_repay",
+                  "balance_minor": -7200000
+                },
+                {
+                  "at": "2026-11-05T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_2f4bef3c855c49d4981f2766d141d199",
+                  "balance_minor": 2800000
+                }
+              ],
+              "minimum_balance_minor": -7200000,
+              "final_balance_minor": 2800000,
+              "first_gap_at": "2026-10-31T00:00:00.000000+00:00",
+              "net_need_minor": 9200000
+            }
+          ],
+          "elapsed_seconds": 0.030605799984186888
+        },
+        "B1": {
+          "status": "NOT_RUN",
+          "reason": "Authorized live LLM unavailable"
+        },
+        "B2": {
+          "status": "NOT_RUN",
+          "reason": "Authorized live LLM unavailable"
+        },
+        "B3_live": {
+          "status": "NOT_RUN",
+          "reason": "No measured real-agent performance"
+        },
+        "limitations": [
+          "Single golden template with changed starting cash is a sensitivity test, not diverse SME holdout",
+          "No empirical calibration or model-quality/ROI claims",
+          "No real-bank or field evidence"
+        ]
+      }
+    },
+    {
+      "starting_cash_minor": 14000000,
+      "comparison": {
+        "mode": "DETERMINISTIC_COMPUTE_ONLY",
+        "baseline_observation_hash": "1b3cc4b735a507b2e9003422b5152e659f475f4aa201d5a03069f8033e5706a6",
+        "full_observation_hash": "1b3cc4b735a507b2e9003422b5152e659f475f4aa201d5a03069f8033e5706a6",
+        "scenario_ids": [
+          "f0",
+          "delay_5",
+          "delay_25"
+        ],
+        "B0": {
+          "valid_in_f0": true,
+          "cost_minor": 200000,
+          "paths": [
+            {
+              "scenario_id": "f0",
+              "delay_days": 0,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 7000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-11T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f468280ef4064fcdb212b5a2e197edf6",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -7200000,
+                  "reference": "plan_4605727e9b2445b75b91717a_repay",
+                  "balance_minor": 4800000
+                }
+              ],
+              "minimum_balance_minor": 2000000,
+              "final_balance_minor": 4800000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_5",
+              "delay_days": 5,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 7000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-16T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f468280ef4064fcdb212b5a2e197edf6",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -7200000,
+                  "reference": "plan_4605727e9b2445b75b91717a_repay",
+                  "balance_minor": 4800000
+                }
+              ],
+              "minimum_balance_minor": 2000000,
+              "final_balance_minor": 4800000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_25",
+              "delay_days": 25,
+              "provenance": "DEMO_STRESS",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 7000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -7200000,
+                  "reference": "plan_4605727e9b2445b75b91717a_repay",
+                  "balance_minor": -5200000
+                },
+                {
+                  "at": "2026-11-05T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f468280ef4064fcdb212b5a2e197edf6",
+                  "balance_minor": 4800000
+                }
+              ],
+              "minimum_balance_minor": -5200000,
+              "final_balance_minor": 4800000,
+              "first_gap_at": "2026-10-31T00:00:00.000000+00:00",
+              "net_need_minor": 7200000
+            }
+          ],
+          "elapsed_seconds": 0.0011713000130839646
+        },
+        "optimizer": {
+          "solver_status": "OPTIMAL",
+          "cost_minor": 200000,
+          "paths": [
+            {
+              "scenario_id": "f0",
+              "delay_days": 0,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 7000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-11T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f468280ef4064fcdb212b5a2e197edf6",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -7200000,
+                  "reference": "plan_4605727e9b2445b75b91717a_repay",
+                  "balance_minor": 4800000
+                }
+              ],
+              "minimum_balance_minor": 2000000,
+              "final_balance_minor": 4800000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_5",
+              "delay_days": 5,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 7000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-16T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f468280ef4064fcdb212b5a2e197edf6",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -7200000,
+                  "reference": "plan_4605727e9b2445b75b91717a_repay",
+                  "balance_minor": 4800000
+                }
+              ],
+              "minimum_balance_minor": 2000000,
+              "final_balance_minor": 4800000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_25",
+              "delay_days": 25,
+              "provenance": "DEMO_STRESS",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-02T00:00:00.000000+00:00",
+                  "amount_minor": 7000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_fund",
+                  "balance_minor": 21000000
+                },
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_b31f526e191d",
+                  "balance_minor": 13000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_e633aa88f47c",
+                  "balance_minor": 11000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_4605727e9b2445b75b91717a_9ff3df0a6b05",
+                  "balance_minor": 2000000
+                },
+                {
+                  "at": "2026-10-31T00:00:00.000000+00:00",
+                  "amount_minor": -7200000,
+                  "reference": "plan_4605727e9b2445b75b91717a_repay",
+                  "balance_minor": -5200000
+                },
+                {
+                  "at": "2026-11-05T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f468280ef4064fcdb212b5a2e197edf6",
+                  "balance_minor": 4800000
+                }
+              ],
+              "minimum_balance_minor": -5200000,
+              "final_balance_minor": 4800000,
+              "first_gap_at": "2026-10-31T00:00:00.000000+00:00",
+              "net_need_minor": 7200000
+            }
+          ],
+          "elapsed_seconds": 0.039385000010952353
+        },
+        "B1": {
+          "status": "NOT_RUN",
+          "reason": "Authorized live LLM unavailable"
+        },
+        "B2": {
+          "status": "NOT_RUN",
+          "reason": "Authorized live LLM unavailable"
+        },
+        "B3_live": {
+          "status": "NOT_RUN",
+          "reason": "No measured real-agent performance"
+        },
+        "limitations": [
+          "Single golden template with changed starting cash is a sensitivity test, not diverse SME holdout",
+          "No empirical calibration or model-quality/ROI claims",
+          "No real-bank or field evidence"
+        ]
+      }
+    },
+    {
+      "starting_cash_minor": 22000000,
+      "comparison": {
+        "mode": "DETERMINISTIC_COMPUTE_ONLY",
+        "baseline_observation_hash": "9c675588446d810002101db53c151e400bb3482b58f652930a17314370a83c04",
+        "full_observation_hash": "9c675588446d810002101db53c151e400bb3482b58f652930a17314370a83c04",
+        "scenario_ids": [
+          "f0",
+          "delay_5",
+          "delay_25"
+        ],
+        "B0": {
+          "valid_in_f0": true,
+          "cost_minor": 0,
+          "paths": [
+            {
+              "scenario_id": "f0",
+              "delay_days": 0,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_b31f526e191d",
+                  "balance_minor": 14000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_e633aa88f47c",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_9ff3df0a6b05",
+                  "balance_minor": 3000000
+                },
+                {
+                  "at": "2026-10-11T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f7c764ba9905496ab1d9e419f2470e48",
+                  "balance_minor": 13000000
+                }
+              ],
+              "minimum_balance_minor": 3000000,
+              "final_balance_minor": 13000000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_5",
+              "delay_days": 5,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_b31f526e191d",
+                  "balance_minor": 14000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_e633aa88f47c",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_9ff3df0a6b05",
+                  "balance_minor": 3000000
+                },
+                {
+                  "at": "2026-10-16T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f7c764ba9905496ab1d9e419f2470e48",
+                  "balance_minor": 13000000
+                }
+              ],
+              "minimum_balance_minor": 3000000,
+              "final_balance_minor": 13000000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_25",
+              "delay_days": 25,
+              "provenance": "DEMO_STRESS",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_b31f526e191d",
+                  "balance_minor": 14000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_e633aa88f47c",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_9ff3df0a6b05",
+                  "balance_minor": 3000000
+                },
+                {
+                  "at": "2026-11-05T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f7c764ba9905496ab1d9e419f2470e48",
+                  "balance_minor": 13000000
+                }
+              ],
+              "minimum_balance_minor": 3000000,
+              "final_balance_minor": 13000000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            }
+          ],
+          "elapsed_seconds": 0.0002810000441968441
+        },
+        "optimizer": {
+          "solver_status": "OPTIMAL",
+          "cost_minor": 0,
+          "paths": [
+            {
+              "scenario_id": "f0",
+              "delay_days": 0,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_b31f526e191d",
+                  "balance_minor": 14000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_e633aa88f47c",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_9ff3df0a6b05",
+                  "balance_minor": 3000000
+                },
+                {
+                  "at": "2026-10-11T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f7c764ba9905496ab1d9e419f2470e48",
+                  "balance_minor": 13000000
+                }
+              ],
+              "minimum_balance_minor": 3000000,
+              "final_balance_minor": 13000000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_5",
+              "delay_days": 5,
+              "provenance": "DEMO",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_b31f526e191d",
+                  "balance_minor": 14000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_e633aa88f47c",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_9ff3df0a6b05",
+                  "balance_minor": 3000000
+                },
+                {
+                  "at": "2026-10-16T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f7c764ba9905496ab1d9e419f2470e48",
+                  "balance_minor": 13000000
+                }
+              ],
+              "minimum_balance_minor": 3000000,
+              "final_balance_minor": 13000000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            },
+            {
+              "scenario_id": "delay_25",
+              "delay_days": 25,
+              "provenance": "DEMO_STRESS",
+              "calibration_status": "UNCALIBRATED",
+              "points": [
+                {
+                  "at": "2026-10-05T00:00:00.000000+00:00",
+                  "amount_minor": -8000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_b31f526e191d",
+                  "balance_minor": 14000000
+                },
+                {
+                  "at": "2026-10-06T00:00:00.000000+00:00",
+                  "amount_minor": -2000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_e633aa88f47c",
+                  "balance_minor": 12000000
+                },
+                {
+                  "at": "2026-10-08T00:00:00.000000+00:00",
+                  "amount_minor": -9000000,
+                  "reference": "plan_1b6d78052e99a1b363a30b01_9ff3df0a6b05",
+                  "balance_minor": 3000000
+                },
+                {
+                  "at": "2026-11-05T00:00:00.000000+00:00",
+                  "amount_minor": 10000000,
+                  "reference": "customer_invoice",
+                  "counterparty": "customer",
+                  "kind": "EXPECTED_RECEIPT",
+                  "source_id": "source_f7c764ba9905496ab1d9e419f2470e48",
+                  "balance_minor": 13000000
+                }
+              ],
+              "minimum_balance_minor": 3000000,
+              "final_balance_minor": 13000000,
+              "first_gap_at": null,
+              "net_need_minor": 0
+            }
+          ],
+          "elapsed_seconds": 0.028516699967440218
+        },
+        "B1": {
+          "status": "NOT_RUN",
+          "reason": "Authorized live LLM unavailable"
+        },
+        "B2": {
+          "status": "NOT_RUN",
+          "reason": "Authorized live LLM unavailable"
+        },
+        "B3_live": {
+          "status": "NOT_RUN",
+          "reason": "No measured real-agent performance"
+        },
+        "limitations": [
+          "Single golden template with changed starting cash is a sensitivity test, not diverse SME holdout",
+          "No empirical calibration or model-quality/ROI claims",
+          "No real-bank or field evidence"
+        ]
+      }
+    }
+  ],
+  "scope": "Three synthetic starting-cash sensitivity points; paired deterministic computation"
+}

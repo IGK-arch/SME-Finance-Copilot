@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Internal synthetic execution command v1",
+  "description": "Extends the handoff payment semantics with schedule, cash delta and DEMO financing. Not a bank API.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": 1},
+    "action_id": {"type": "string", "minLength": 1, "maxLength": 160},
+    "plan_id": {"type": "string", "minLength": 1, "maxLength": 160},
+    "plan_version": {"type": "integer", "minimum": 1},
+    "snapshot_id": {"type": "string", "minLength": 1, "maxLength": 160},
+    "kind": {"enum": ["PAY_OBLIGATION", "DRAW_LOAN", "REPAY_LOAN"]},
+    "obligation_id": {"type": ["string", "null"]},
+    "account_id": {"const": "operating"},
+    "beneficiary_version_id": {"type": "string", "minLength": 1, "maxLength": 160},
+    "amount_minor": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807},
+    "cash_delta_minor": {"type": "integer", "minimum": -9223372036854775808, "maximum": 9223372036854775807},
+    "currency": {"const": "CNY"},
+    "required_approval_id": {"type": "string", "minLength": 1, "maxLength": 160},
+    "policy_version": {"type": "string", "minLength": 1, "maxLength": 160},
+    "idempotency_key": {"type": "string", "minLength": 1, "maxLength": 160},
+    "precondition_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "at": {"type": "string", "format": "date-time"},
+    "dependencies": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "completion_predicate": {"const": "SETTLED_AND_RECONCILED"},
+    "counterparty": {"type": "string"},
+    "obligation_provider": {"type": "string"},
+    "quote": {"type": "object"}
+  },
+  "required": ["schema_version", "action_id", "plan_id", "plan_version", "snapshot_id", "kind", "obligation_id", "account_id", "beneficiary_version_id", "amount_minor", "cash_delta_minor", "currency", "required_approval_id", "policy_version", "idempotency_key", "precondition_refs", "at", "dependencies", "completion_predicate", "counterparty"]
+}
