@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import re
+from datetime import datetime, timedelta, timezone
 
 from finance.compute import forecast, plan_trajectories, scenarios, trajectory, obligation_flows
 from finance.domain import AuthContext, FinanceError, Json, digest, now, require, uid
@@ -135,7 +136,7 @@ def explain_infeasible(snap: Json, objective: str, result: Json) -> list[Json]:
             {
                 "code": "SHORTFALL_WITHOUT_FINANCING",
                 "scenario_ids": ids,
-                "text": f"Without new money cash falls to {cny(low)} (floor {cny(floor)}) on {at[:10]} "
+                "text": f"Without new money cash falls to {cny(low)} (floor {cny(floor)}) on {_day(at)} "
                 f"in {', '.join(ids)}.",
                 "at": at,
                 "shortfall": money(floor - low),
@@ -316,7 +317,7 @@ def alerts(
                 "critical" if payable and o["protected"] else "warning",
                 ("Overdue payment: " if payable else "Overdue receipt: ")
                 + party(names, o["counterparty"]),
-                f"{cny(o['outstanding_minor'])} was due {o['due_at'][:10]}"
+                f"{cny(o['outstanding_minor'])} was due {_day(o['due_at'])}"
                 + (" (protected obligation)." if o["protected"] else "."),
                 "#money",
                 [o["source_id"]],
@@ -328,7 +329,7 @@ def alerts(
             base["first_gap_at"][:10],
             "critical",
             "Cash falls below your reserve",
-            f"Need {cny(base['net_need_minor'])} by {base['first_gap_at'][:10]} to keep the {cny(snap['policy']['reserve_minor'])} reserve.",
+            f"Need {cny(base['net_need_minor'])} by {_day(base['first_gap_at'])} to keep the {cny(snap['policy']['reserve_minor'])} reserve.",
             "#case",
             snap["evidence_refs"],
         )
@@ -341,7 +342,7 @@ def alerts(
                 s["scenario_id"],
                 "warning",
                 "Gap if a customer pays late",
-                f"In scenario {s['scenario_id']} cash falls to {cny(s['minimum_balance_minor'])} on {s['first_gap_at'][:10]}.",
+                f"In scenario {s['scenario_id']} cash falls to {cny(s['minimum_balance_minor'])} on {_day(s['first_gap_at'])}.",
                 "#case",
             )
     for p in snap.get("financing_products") or []:
@@ -369,6 +370,12 @@ def alerts(
                 )
     order = {"critical": 0, "warning": 1, "info": 2}
     return sorted(items, key=lambda i: (order[i["severity"]], i["type"]))
+
+
+def _day(at: str) -> str:
+    """Owner-facing business day, e.g. 'Thu 8 Oct' (Asia/Shanghai, like the UI)."""
+    d = datetime.fromisoformat(at).astimezone(timezone(timedelta(hours=8)))
+    return f"{d:%a} {d.day} {d:%b}"
 
 
 def _plus_day(at: str) -> str:
@@ -561,7 +568,7 @@ def current_case(service: ExecutionService, ctx: AuthContext, snap: Json, fc: Js
 def _problem_text(p: Json) -> str:
     if p["kind"] == "OVERDUE_PAYABLE":
         return "Overdue payments: " + ", ".join(p["overdue"])
-    return f"{p['kind']}: need {cny(p['net_need_minor'])} by {(p['first_gap_at'] or '')[:10]} ({p['scenario_id']})"
+    return f"{p['kind']}: need {cny(p['net_need_minor'])} by {_day(p['first_gap_at']) if p['first_gap_at'] else '—'} ({p['scenario_id']})"
 
 
 def _diff_text(old: Json, new: Json) -> str:
@@ -572,7 +579,7 @@ def _diff_text(old: Json, new: Json) -> str:
         )
     if old.get("first_gap_at") != new.get("first_gap_at"):
         parts.append(
-            f"gap date {(old.get('first_gap_at') or 'none')[:10]} → {(new.get('first_gap_at') or 'none')[:10]}"
+            f"gap date {_day(old['first_gap_at']) if old.get('first_gap_at') else 'none'} → {_day(new['first_gap_at']) if new.get('first_gap_at') else 'none'}"
         )
     if old.get("kind") != new.get("kind"):
         parts.append(f"{old.get('kind')} → {new.get('kind')}")
@@ -658,7 +665,7 @@ def home(service: ExecutionService, ctx: AuthContext) -> Json:
         )
     elif base["first_gap_at"]:
         state = "GAP"
-        headline = f"Cash falls below your reserve on {base['first_gap_at'][:10]}"
+        headline = f"Cash falls below your reserve on {_day(base['first_gap_at'])}"
         cta = {"label": "Compare ways to cover the gap", "route": "#case"}
     elif any(a["type"] == "OVERDUE_PAYABLE" for a in found):
         state, headline, cta = (
@@ -1224,7 +1231,7 @@ def review(
         command = service.command(ctx, plan_id, action_id)
     except FinanceError as exc:
         text = {
-            "PRECONDITION_FAILED": f"Available for approval on {target['at'][:10]} (sandbox clock is {snap['as_of'][:10]}) or after its dependency settles.",
+            "PRECONDITION_FAILED": f"Available for approval on {_day(target['at'])} (sandbox clock is {_day(snap['as_of'])}) or after its dependency settles.",
             "STALE_PLAN": "Facts changed since this plan was built; recompute options.",
             "INSUFFICIENT_DATA": "Resolve import issues first.",
             "PLAN_CANCELLED": "This plan was cancelled.",
