@@ -22,7 +22,9 @@ const Copilot = (() => {
   }
   function close() { panel().hidden = true; document.getElementById('open-copilot').setAttribute('aria-expanded', 'false'); clearTimeout(timer); document.getElementById('open-copilot').focus(); }
   function contextChips() {
-    const chips = [h('span', {class: 'chip'}, 'Screen ' + (context.route || '#home'))];
+    const names = {home: 'Home', money: 'Money', case: 'Plans', plans: 'Plans', review: 'Review of an action', documents: 'Documents', activity: 'Activity', settings: 'Settings'};
+    const screen = (context.route || '#home').slice(1).split('/');
+    const chips = [h('span', {class: 'chip'}, 'Screen: ' + (names[screen[0]] || 'Home') + (screen[0] === 'activity' && screen[1] ? ' · one operation' : ''))];
     if (context.case_id) chips.push(h('span', {class: 'chip'}, 'Financial task'));
     if (context.plan_id) chips.push(h('span', {class: 'chip'}, 'Plan …' + context.plan_id.slice(-6)));
     if (context.obligation_id) chips.push(h('span', {class: 'chip'}, 'Obligation ' + context.obligation_id));

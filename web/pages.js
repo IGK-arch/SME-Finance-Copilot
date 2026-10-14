@@ -2,7 +2,7 @@
 /* Pages of the owner cabinet. Every number comes from the backend read models. */
 const Pages = (() => {
   const {h, day, time, api, toast, statusBadge, metric, table, chart} = UI;
-  const COLORS = {f0: '#141413', delay_5: '#827DBD', delay_25: '#9E2F2A', plan: '#2F6B5A', what_if: '#B07A2A'};
+  const COLORS = {f0: '#141413', delay_5: '#827DBD', delay_25: '#9E2F2A', plan: '#2F6B5A', what_if: '#6A5FA8'};
   const can = roles => roles.includes(App.state.role);
   const head = (title, sub, ...actions) => h('div', {class: 'pagehead'}, h('div', {}, h('h1', {}, title), sub ? h('p', {}, sub) : null), h('div', {class: 'row'}, actions));
   const sourceButton = id => id ? h('button', {class: 'btn link small', type: 'button', onclick: () => evidence(id).catch(e => toast(e.message, 'bad'))}, 'Source') : '';
@@ -41,7 +41,7 @@ const Pages = (() => {
       h('div', {class: 'split'},
         h('section', {class: 'card', 'aria-labelledby': 'h-chart'}, h('div', {class: 'row between'}, h('h2', {id: 'h-chart'}, 'Cash forecast'), h('a', {href: '#money', class: 'small'}, 'Explore scenarios →')),
           h('p', {class: 'muted small'}, 'Cashflow · expected, not settled. Scenarios are uncalibrated DEMO assumptions, not probabilities.'),
-          chart(series, d.chart.reserve, {label: 'Projected cash on contract dates and a late-payment stress'})),
+          chart(series, d.chart.reserve, {label: 'Projected cash on contract dates and a late-payment stress', share: 0.61})),
         h('section', {class: 'card', 'aria-labelledby': 'h-tasks'}, h('h2', {id: 'h-tasks'}, 'Needs your attention'),
           alerts.length ? h('div', {class: 'tasks', style: {marginTop: '12px'}}, alerts.map(a => h('div', {class: 'task ' + a.severity}, h('span', {class: 'sev', 'aria-hidden': 'true'}),
             h('div', {class: 'body'}, h('b', {}, a.title), h('span', {class: 'small muted'}, a.detail), h('div', {}, h('a', {href: a.route, class: 'small'}, 'Open →')))))) : h('p', {class: 'muted', style: {marginTop: '10px'}}, 'Nothing needs attention right now.'),
@@ -221,8 +221,10 @@ const Pages = (() => {
         })}, 'Create request')));
   }
   function planSection(plan) {
+    /* Only the next action awaiting approval is emphasised; later ones stay reviewable but quiet. */
+    const next = plan.steps.find(s => s.status === 'NOT_APPROVED');
     const rows = plan.steps.map(s => [day(s.at), s.title, statusBadge(s.status),
-      s.status === 'NOT_APPROVED' ? h('a', {class: 'btn small primary', href: `#review/${plan.plan_id}/${s.action_id}`}, 'Review') : h('a', {class: 'btn small', href: '#activity/' + s.action_id}, 'Track')]);
+      s.status === 'NOT_APPROVED' ? h('a', {class: 'btn small' + (s === next ? ' primary' : ''), href: `#review/${plan.plan_id}/${s.action_id}`}, 'Review') : h('a', {class: 'btn small', href: '#activity/' + s.action_id}, 'Track')]);
     return h('section', {class: 'card', 'aria-labelledby': 'h-plan'},
       h('div', {class: 'row between'}, h('div', {}, h('h2', {id: 'h-plan'}, '3 · Selected plan'), h('p', {class: 'small muted'}, `${plan.settled} of ${plan.total} actions settled and reconciled. Each action needs its own exact approval when it is due.`)),
         can(['OWNER', 'ADMIN']) ? h('button', {class: 'btn small', type: 'button', onclick: guard(async () => { await api('/v1/demo/advance', {}); toast('Sandbox clock advanced / pending operations settled.'); await App.render(); })}, 'Sandbox: advance clock') : null),
@@ -251,6 +253,7 @@ const Pages = (() => {
       h('div', {class: 'head'}, h('div', {}, h('p', {class: 'small muted'}, 'Review exact action'), h('h2', {id: 'dialog-title'}, r.title)), Dialog.close()),
       h('div', {class: 'body stack'},
         h('div', {class: 'big num'}, r.amount.display),
+        r.block ? h('div', {class: 'notice warn', role: 'alert'}, r.block.text) : null,
         h('dl', {class: 'kv'}, h('dt', {}, 'Recipient'), h('dd', {}, r.recipient.name, ' ', r.recipient.verified ? h('span', {class: 'badge good'}, 'Verified') : h('span', {class: 'badge bad'}, 'Not verified')),
           h('dt', {}, 'Due'), h('dd', {}, day(r.due_at)), h('dt', {}, 'Account'), h('dd', {}, 'Operating account · CNY'),
           h('dt', {}, 'Available now'), h('dd', {}, r.available_now.display), h('dt', {}, 'After this action'), h('dd', {}, r.available_after.display), h('dt', {}, 'Hard reserve'), h('dd', {}, r.reserve.display)),
@@ -258,7 +261,6 @@ const Pages = (() => {
         h('p', {class: 'notice'}, r.scope),
         h('div', {class: 'grid g2'}, h('div', {}, h('h3', {}, 'Approving means'), h('ul', {class: 'reasons'}, r.approval_means.map(x => h('li', {}, x)))),
           h('div', {}, h('h3', {}, 'It does not mean'), h('ul', {class: 'reasons'}, r.approval_does_not_mean.map(x => h('li', {}, x))))),
-        r.block ? h('div', {class: 'notice warn', role: 'alert'}, r.block.text) : null,
         r.approvable ? h('label', {class: 'check', for: 'confirm-exact'}, confirm, `I approve exactly this ${r.kind === 'DRAW_LOAN' ? 'loan draw' : r.kind === 'REPAY_LOAN' ? 'loan repayment' : 'payment'} of ${r.amount.display} to ${r.recipient.name}.`) : null,
         r.command ? h('details', {}, h('summary', {class: 'small'}, 'Command, versions and hash'), h('p', {class: 'small muted'}, 'payload SHA-256 ' + r.payload_hash), h('pre', {}, JSON.stringify(r.command, null, 2))) : null,
         r.approvable ? h('details', {}, h('summary', {class: 'small'}, 'Sandbox test controls'), h('label', {class: 'check', for: 'lost'}, lost, 'Simulate a lost sandbox response for this send (tests UNKNOWN recovery; no double payment).')) : null),
@@ -289,7 +291,7 @@ const Pages = (() => {
             const bps = Math.round(Number(pct.value) * 100);
             const r = await api('/v1/case/what-if', {obligation_id: ob.value, delay_days: Number(delay.value), receipt_bps: bps});
             out.replaceChildren(h('div', {class: 'notice warn', style: {marginTop: '12px'}}, r.label),
-              h('div', {class: 'grid g3', style: {marginTop: '12px'}}, metric('Lowest cash now', r.baseline.minimum, 'Contract dates'),
+              h('div', {class: 'grid g3', style: {marginTop: '12px'}}, metric('Lowest cash now', r.baseline.minimum, 'Contract dates', r.baseline.minimum.minor < d.metrics.reserve.minor),
                 metric('Lowest cash in scenario', r.scenario.minimum, r.scenario.first_gap_at ? 'Gap from ' + day(r.scenario.first_gap_at) : 'No gap', r.scenario.minimum.minor < d.metrics.reserve.minor), metric('Need in scenario', r.scenario.need, 'Includes the reserve')),
               r.selected_plan ? h('p', {class: 'notice ' + (r.selected_plan.holds ? 'good' : 'bad'), style: {marginTop: '10px'}}, 'Your selected plan ' + (r.selected_plan.holds ? 'still keeps' : 'would NOT keep') + ' the reserve in this scenario (lowest ' + r.selected_plan.minimum.display + ').') : null,
               h('p', {class: 'small muted', style: {marginTop: '8px'}}, 'Hypothetical lowest-cost plan for this scenario: ' + r.hypothetical_min_cost.solver_status + (r.hypothetical_min_cost.total_cost ? ' · cost ' + r.hypothetical_min_cost.total_cost.display : '') + ' (not executable).'),
@@ -345,7 +347,7 @@ const Pages = (() => {
   function importWizard() {
     const template = h('select', {id: 'imp-template'}, [['obligations', 'Invoices / obligations (pay or receive)'], ['transactions', 'Bank transactions (settled)']].map(([v, t]) => h('option', {value: v, selected: wizard.template === v}, t)));
     template.addEventListener('change', () => { wizard.template = template.value; wizard.mapping = null; if (wizard.file) runPreview(); else App.render(); });
-    const file = h('input', {id: 'imp-file', type: 'file', accept: '.csv,.xlsx,text/csv'});
+    const file = h('input', {id: 'imp-file', type: 'file', class: 'sr-only', accept: '.csv,.xlsx,text/csv'});
     file.addEventListener('change', guard(async () => {
       const f = file.files[0]; if (!f) return; if (f.size > 1000000) throw new Error('Files up to 1 MB');
       const xlsx = /\.xlsx$/i.test(f.name);
@@ -354,14 +356,16 @@ const Pages = (() => {
     }));
     const p = wizard.preview;
     const parts = [h('h2', {id: 'imp-h'}, 'Import records'), h('p', {class: 'muted small'}, 'CSV or XLSX (first sheet). Generic upload, not a bank connection. Amounts in CNY like 12,500.50; the server converts them exactly.'),
-      h('div', {class: 'form-row', style: {marginTop: '10px'}}, h('label', {for: 'imp-template'}, 'What is in the file?', template), h('label', {for: 'imp-file'}, 'File', file))];
-    if (wizard.file) parts.push(h('p', {class: 'small'}, 'Selected: ' + wizard.file.name));
+      h('div', {class: 'form-row', style: {marginTop: '10px', alignItems: 'start'}}, h('label', {for: 'imp-template'}, 'What is in the file?', template),
+        h('div', {class: 'filepick'}, h('span', {class: 'lbl'}, 'File'), h('label', {for: 'imp-file', class: 'btn'}, file, wizard.file ? 'Choose another file' : 'Choose CSV or XLSX…'),
+          h('span', {class: 'small muted'}, wizard.file ? wizard.file.name : 'No file selected · up to 1 MB')))];
     if (p) {
       const fields = Object.keys(p.mapping);
       const selects = fields.map(f => {
         const sel = h('select', {'data-field': f, id: 'map-' + f}, h('option', {value: ''}, '— not in file —'), p.headers.map(hd => h('option', {value: hd, selected: p.mapping[f] === hd}, hd)));
         sel.addEventListener('change', () => { wizard.mapping = Object.fromEntries(fields.map(x => [x, document.getElementById('map-' + x).value || null])); runPreview(); });
-        return h('label', {for: 'map-' + f}, f.replace('_', ' '), sel);
+        const name = f.replace(/_/g, ' ');
+        return h('label', {for: 'map-' + f}, name.charAt(0).toUpperCase() + name.slice(1), sel);
       });
       const opt = (id, label, values, key) => {
         const sel = h('select', {id}, values.map(([v, t]) => h('option', {value: v, selected: String(p.options[key] ?? '') === v}, t)));
@@ -410,7 +414,8 @@ const Pages = (() => {
     return h('section', {class: 'card', 'aria-labelledby': 'rev-h'}, h('h2', {id: 'rev-h'}, 'Review issues'),
       h('p', {class: 'muted small'}, open.length ? `${open.length} import(s) have rows to review. Plans and payments stay blocked until they are resolved.` : 'No unresolved rows.'),
       h('div', {class: 'stack', style: {marginTop: '10px'}}, batches.slice().reverse().slice(0, 8).map(b => h('div', {class: 'task ' + (b.open_rows ? 'warning' : '')}, h('span', {class: 'sev', 'aria-hidden': 'true'}),
-        h('div', {class: 'body'}, h('b', {}, `${b.review_status} · ${b.accepted} accepted · ${b.open_rows} open`), h('span', {class: 'small muted'}, 'Import ' + b.import_id.slice(-8)),
+        h('div', {class: 'body'}, h('b', {}, `${b.accepted} row${b.accepted === 1 ? '' : 's'} accepted · ` + (b.open_rows ? `${b.open_rows} need${b.open_rows === 1 ? 's' : ''} a decision` : 'nothing to review')),
+          h('span', {class: 'small muted'}, 'Import …' + b.import_id.slice(-8) + ' · ' + b.review_status.replace(/_/g, ' ').toLowerCase()),
           b.rows.filter(r => !r.decision).map(r => rowReview(b, r)))))));
   }
   function rowReview(batch, row) {
@@ -454,6 +459,7 @@ const Pages = (() => {
   }
 
   /* ---------------------------------------------------------------- Settings */
+  const up = v => h('span', {class: 'badge ' + (['CONNECTED', 'RUNNING', 'OK'].includes(v) ? 'good' : 'warn')}, v);
   async function settings(main) {
     const [st, health] = await Promise.all([api('/v1/settings'), api('/v1/health')]);
     const home = App.state.home || await App.refreshHome();
@@ -475,7 +481,7 @@ const Pages = (() => {
           h('hr'), h('h3', {}, 'Sandbox controls'), h('p', {class: 'small muted'}, 'Moves the synthetic business clock to the next contract date and lets pending sandbox operations settle. Not available to the model.'),
           h('button', {class: 'btn', type: 'button', disabled: !can(['OWNER', 'ADMIN']), onclick: guard(async () => { await api('/v1/demo/advance', {}); await App.refreshHome(); toast('Sandbox clock advanced.'); await App.render(); })}, 'Advance sandbox clock'))),
       h('div', {class: 'grid g2', style: {marginTop: '16px'}},
-        h('section', {class: 'card'}, h('h2', {}, 'Runtime'), h('dl', {class: 'kv', style: {marginTop: '10px'}}, h('dt', {}, 'Database'), h('dd', {}, health.database.backend + ' · ' + health.database.status), h('dt', {}, 'Worker'), h('dd', {}, health.worker.status), h('dt', {}, 'Sandbox'), h('dd', {}, health.simulator.status),
+        h('section', {class: 'card'}, h('h2', {}, 'Runtime'), h('dl', {class: 'kv', style: {marginTop: '10px'}}, h('dt', {}, 'Database'), h('dd', {}, health.database.backend + ' ', up(health.database.status)), h('dt', {}, 'Worker'), h('dd', {}, up(health.worker.status)), h('dt', {}, 'Sandbox'), h('dd', {}, up(health.simulator.status)),
           h('dt', {}, 'Model mode'), h('dd', {}, st.model.mode + (st.model.model ? ' · ' + st.model.model : '')), h('dt', {}, 'Model limits'), h('dd', {}, st.model.max_steps + ' steps · ' + st.model.max_elapsed_seconds + ' s')),
           h('p', {class: 'small muted', style: {marginTop: '10px'}}, st.model.mode === 'MOCK' ? 'MOCK is a deterministic offline fixture for integration tests; it does not understand arbitrary language.' : 'Live model output is narrative only; numbers come from tools.')),
         h('section', {class: 'card'}, h('h2', {}, 'Account'), h('dl', {class: 'kv', style: {marginTop: '10px'}}, h('dt', {}, 'Role'), h('dd', {}, App.state.role), h('dt', {}, 'Members'), h('dd', {}, st.memberships.map(m => m.user_id + ' (' + m.role + (m.active ? '' : ', inactive') + ')').join(', '))),

@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>SME Finance Copilot</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css">
 <script src="/assets/ui.js" defer></script>
 <script src="/assets/pages.js" defer></script>
@@ -12,13 +14,15 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
+<div id="boot" class="loading boot" role="status"><span class="spinner" aria-hidden="true"></span>Opening your workspace…</div>
 <div id="login" class="login" hidden>
   <div class="card stack">
     <div class="brand"><span class="mark" aria-hidden="true">F</span><div><b>SME Finance Copilot</b><small>Synthetic data · sandbox execution</small></div></div>
     <h1>Sign in to your workspace</h1>
-    <p class="muted">Paste the OWNER, ACCOUNTANT or AUDITOR membership token from the local login file printed by the server. The token is exchanged for a server session cookie (HttpOnly) and is not stored in the browser.</p>
+    <p>Paste your membership token (OWNER, ACCOUNTANT or AUDITOR) from the local login file the server printed at start-up.</p>
     <form id="login-form" class="stack">
-      <label for="token">Membership token<input id="token" type="password" autocomplete="off" required></label>
+      <label for="token">Membership token<input id="token" type="password" autocomplete="off" spellcheck="false" required aria-describedby="token-help"></label>
+      <p id="token-help" class="small muted">The token is exchanged for an HttpOnly session cookie and is not stored in this browser.</p>
       <button class="btn primary" type="submit">Sign in</button>
       <p id="login-error" class="notice bad" role="alert" hidden></p>
     </form>
@@ -35,7 +39,7 @@
       <a href="#activity" data-nav="activity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3 7 4-14 3 7h4"/></svg><span class="lbl">Activity</span><span class="count" id="activity-count" hidden></span></a>
       <a href="#settings" data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 0 0 5 12a7 7 0 0 0 .1 1.2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 2 1.2L10 21h4l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6A7 7 0 0 0 19 12z"/></svg><span class="lbl">Settings</span></a>
     </nav>
-    <div class="foot"><span class="badge warn">SYNTHETIC DATA</span><span class="badge">SANDBOX EXECUTION</span><span class="muted">No real bank or money. Every payment needs your exact approval.</span></div>
+    <div class="foot"><div class="row"><span class="badge warn">SYNTHETIC DATA</span><span class="badge">SANDBOX</span></div><span class="muted">No real bank or money. Every payment needs your exact approval.</span></div>
   </aside>
   <div class="content">
     <header class="topbar">

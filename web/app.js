@@ -13,7 +13,7 @@ const App = (() => {
       state.model = health.model;
       document.getElementById('model-badge').textContent = 'MODEL ' + health.model.mode;
       document.getElementById('model-badge').className = 'badge ' + (health.model.mode === 'LIVE' ? 'blue' : 'warn');
-      document.getElementById('login').hidden = true; document.getElementById('app').hidden = false;
+      document.getElementById('boot').hidden = true; document.getElementById('login').hidden = true; document.getElementById('app').hidden = false;
       booted = true;
       if (!location.hash) {
         try { const c = await api('/v1/context'); if (c.context.route && /^#[a-z]/.test(c.context.route)) { location.hash = c.context.route; return; } } catch (_) { /* context is a convenience */ }
@@ -23,11 +23,19 @@ const App = (() => {
       await render();
     } catch (e) {
       if (e.status === 401 || e.code === 'UNAUTHORIZED') return signedOut();
-      main().replaceChildren(h('div', {class: 'notice bad'}, e.message));
+      /* Signed in but the workspace could not load: show the shell with a retry, never a blank page. */
+      document.getElementById('boot').hidden = true; document.getElementById('login').hidden = true; document.getElementById('app').hidden = false;
+      main().replaceChildren(failure('Could not open the workspace', e, boot));
     }
+  }
+  function failure(title, e, retry) {
+    return h('div', {class: 'card state'}, h('h1', {}, title), h('p', {class: 'notice bad', role: 'alert'}, e.message),
+      h('p', {class: 'muted small'}, 'Nothing was changed. If the local server was restarted, try again; amounts and approvals are only ever shown from the server.'),
+      h('div', {class: 'row'}, h('button', {class: 'btn primary', type: 'button', onclick: () => retry()}, 'Try again'), h('a', {class: 'btn', href: '#home'}, 'Back to Home')));
   }
   function signedOut() {
     booted = false; state.home = null;
+    document.getElementById('boot').hidden = true;
     document.getElementById('app').hidden = true; document.getElementById('login').hidden = false;
     document.getElementById('copilot').hidden = true;
     document.getElementById('token').focus();
@@ -52,6 +60,7 @@ const App = (() => {
     document.querySelectorAll('nav.main a').forEach(x => x.setAttribute('aria-current', x.dataset.nav === nav ? 'page' : 'false'));
     const m = main();
     m.setAttribute('aria-busy', 'true');
+    if (!m.firstChild) m.replaceChildren(h('div', {class: 'loading', role: 'status'}, h('span', {class: 'spinner', 'aria-hidden': 'true'}), 'Loading from the server…'));
     try {
       if (route === 'home' || !route) await Pages.home(m);
       else if (route === 'money') await Pages.moneyPage(m);
@@ -60,11 +69,11 @@ const App = (() => {
       else if (route === 'activity') { refreshHome().catch(() => {}); await Pages.activity(m, a); }
       else if (route === 'documents') { refreshHome().catch(() => {}); await Pages.documents(m); }
       else if (route === 'settings') await Pages.settings(m);
-      else await Pages.home(m);
+      else m.replaceChildren(h('div', {class: 'card state'}, h('h1', {}, 'Page not found'), h('p', {class: 'muted'}, 'This address is not part of the cabinet.'), h('div', {class: 'row'}, h('a', {class: 'btn primary', href: '#home'}, 'Go to Home'))));
       document.title = (document.querySelector('main h1') || {}).textContent + ' · SME Finance Copilot';
     } catch (e) {
       if (e.status === 401) return;
-      m.replaceChildren(h('div', {class: 'card'}, h('h1', {}, 'Could not load this page'), h('p', {class: 'notice bad', style: {marginTop: '12px'}}, e.message), h('p', {}, h('a', {href: '#home'}, 'Back to Home'))));
+      m.replaceChildren(failure('Could not load this page', e, render));
     } finally { m.setAttribute('aria-busy', 'false'); }
     saveContext(route === 'review' ? '#case' : location.hash);
   }
@@ -83,11 +92,14 @@ const App = (() => {
       ev.preventDefault();
       const err = document.getElementById('login-error'); err.hidden = true;
       const field = document.getElementById('token');
+      const submit = ev.currentTarget.querySelector('button[type=submit]');
+      submit.disabled = true; submit.textContent = 'Signing in…';
       try {
         await api('/session', {token: field.value.trim()});
         field.value = '';
         await boot();
-      } catch (e) { field.value = ''; err.textContent = e.status === 401 ? 'This token is not valid for this workspace.' : e.message; err.hidden = false; }
+      } catch (e) { field.value = ''; err.textContent = e.status === 401 ? 'This token is not valid for this workspace.' : e.message; err.hidden = false; field.focus(); }
+      finally { submit.disabled = false; submit.textContent = 'Sign in'; }
     });
     document.getElementById('open-copilot').addEventListener('click', () => {
       const p = document.getElementById('copilot');

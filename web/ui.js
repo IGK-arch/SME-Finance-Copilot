@@ -97,8 +97,15 @@ const UI = (() => {
   }
   const party = s => s;
   /* Step-line cash chart. series: [{name, points:[{at, balance:{minor}}], color, dash}] */
+  /* Draw at roughly the on-screen width so axis labels stay ~12px instead of being scaled down. */
+  function chartWidth(share) {
+    const main = document.getElementById('main');
+    const inner = main && main.clientWidth ? main.clientWidth - 80 : 860;
+    const s = window.innerWidth > 1100 ? (share || 1) : 1;
+    return Math.round(Math.min(1100, Math.max(560, inner * s - 50)));
+  }
   function chart(series, reserve, opts = {}) {
-    const W = 860, H = 280, L = 74, R = 18, T = 18, B = 40;
+    const W = chartWidth(opts.share), H = 300, L = 74, R = 18, T = 18, B = 40;
     const all = series.flatMap(x => x.points);
     if (!all.length) return h('p', {class: 'muted'}, 'No projected movements.');
     const times = all.map(p => +new Date(p.at));
@@ -111,19 +118,20 @@ const UI = (() => {
     const ticks = 4;
     for (let i = 0; i <= ticks; i++) {
       const v = lo + (hi - lo) * i / ticks, yy = y(v);
-      svg.append(s('line', {x1: L, x2: W - R, y1: yy, y2: yy, stroke: '#14141314'}), s('text', {x: L - 8, y: yy + 4, 'text-anchor': 'end', 'font-size': 11, fill: '#5E5D59'}, (Math.round(v / 100000) * 1000).toLocaleString('en-US')));
+      svg.append(s('line', {x1: L, x2: W - R, y1: yy, y2: yy, stroke: '#14141314'}), s('text', {x: L - 8, y: yy + 4, 'text-anchor': 'end', 'font-size': 12, fill: '#5E5D59'}, (Math.round(v / 100000) < 0 ?'−' : '') + Math.abs(Math.round(v / 100000) * 1000).toLocaleString('en-US')));
     }
     svg.append(s('line', {x1: L, x2: W - R, y1: y(0), y2: y(0), stroke: '#14141366', 'stroke-width': 1}));
     svg.append(s('line', {x1: L, x2: W - R, y1: y(reserve.minor), y2: y(reserve.minor), stroke: '#B07A2A', 'stroke-dasharray': '6 4', 'stroke-width': 1.5}));
-    svg.append(s('text', {x: W - R, y: y(reserve.minor) - 6, 'text-anchor': 'end', 'font-size': 11, fill: '#7A4A12'}, 'Reserve ' + reserve.display));
-    const days = [...new Set(all.map(p => day(p.at)))];
+    svg.append(s('text', {x: W - R, y: y(reserve.minor) - 6, 'text-anchor': 'end', 'font-size': 12, fill: '#7A4A12', stroke: '#FFFFFF', 'stroke-width': 4, 'paint-order': 'stroke'}, 'Reserve ' + reserve.display));
+    /* Date labels: one per day, skipped when it would collide with the previous one. */
     const seen = new Set();
+    let lastX = -Infinity;
     for (const p of all.slice().sort((a, b) => new Date(a.at) - new Date(b.at))) {
       const label = day(p.at); if (seen.has(label)) continue; seen.add(label);
       const xx = x(+new Date(p.at));
-      svg.append(s('text', {x: xx, y: H - 14, 'text-anchor': 'middle', 'font-size': 11, fill: '#5E5D59'}, label.replace(/^\w+ /, '')));
+      if (xx - lastX < 48) continue; lastX = xx;
+      svg.append(s('text', {x: xx, y: H - 14, 'text-anchor': 'middle', 'font-size': 12, fill: '#5E5D59'}, label.replace(/^\w+ /, '')));
     }
-    void days;
     for (const ser of series) {
       const pts = ser.points.slice().sort((a, b) => new Date(a.at) - new Date(b.at));
       let d = '', prev = null;
