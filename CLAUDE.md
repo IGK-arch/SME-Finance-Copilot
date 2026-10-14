@@ -68,7 +68,8 @@ children with `put()`. Theme: warm ivory/near-black; accent token `--accent`; no
   never echo it in chat). `pg-workspace` is the owner's data: read-only browsing only, never seed/reset.
 - Writing big files: `device_bash` heredocs fail above ~40 KB (E2BIG). Write in the cloud under
   `/mnt/user-data/outputs/…` and copy with `device_commit_files`. Small edits: python read-modify-write in VM.
-- Deleting files is disabled in the folder (also blocks git). Move strays into `.runtime/devbridge/out/`.
+- From the Linux VM deleting files in the folder is disabled; move strays into `.runtime/devbridge/out/`.
+  (A Claude session running directly on the Windows host can use PowerShell, git and `.venv` directly.)
 - Browser checks: built-in browser pane at `http://127.0.0.1:8090`; screenshots fail while the pane is
   hidden — use `get_page_text`/JS measurements, ask the owner for Ctrl+Shift+B when images are needed.
   Hard-reload (`location.reload()`) after CSS/JS changes; restart the server after Python changes.
@@ -83,12 +84,18 @@ children with `put()`. Theme: warm ivory/near-black; accent token `--accent`; no
   after UI edits it becomes stale (T094 drops to NOT_RUN) until re-recorded.
 
 ## Current state (update this block when it changes)
-- Last full run: 181/181 tests PASSED; T001–T100: 96 PASSED / 4 NOT_RUN (T023, T031, T032, T097);
-  V03: 9 PASSED, 7 PARTIAL, 6 DEFERRED_MODEL, 3 NOT_RUN; e2e 21/21; check all PASSED.
-- 14 Oct: warm editorial theme (`web/style.css`, chart colours in `ui.js`/`pages.js`) rendered and checked
-  (contrast ≥5.2); browser evidence hashes re-recorded. Fixed: `[hidden]{display:none!important}` needed because
-  `.shell{display:grid}` overrode the hidden attribute.
-- Open: Git baseline (needs delete permission), V03-07 server filters for agent reads, V03-21 unrelated-change
+- Git: repo initialised on the Windows host (`main`), remote `origin` = github.com/IGK-arch/SME-Finance-Copilot
+  (private). `.gitattributes` is `* -text` (bytes stored as-is: hashed files/fixtures must not change EOL).
+  Git commands run directly from PowerShell on the host; no devbridge needed.
+- Last full run (14 Oct, after UX pass): 176 PASSED, 1 FAILED, 4 SKIPPED (PostgreSQL not configured in that
+  shell). The failure is T100: `AGENTS.md` got an orientation header on 14 Oct, so its hash no longer matches
+  `docs/HANDOFF_INVENTORY.json` (owner to decide: re-hash or revert). T094 PASSED with fresh browser evidence;
+  e2e 21/21; check all PASSED.
+- 14 Oct UX pass: boot splash, loading/error/not-found states with retry, phone/tablet bottom tab bar (≤860px),
+  charts drawn at on-screen width (12px labels, collision-free dates), compact metrics ≤520px, custom file
+  picker, owner-facing dates as "Thu 8 Oct" in server texts (`cases._day`), favicon. Verified on a throwaway
+  workspace (`scripts.serve --directory <temp>` on 8091) because the dev token must not be read by Claude.
+- Open: V03-07 server filters for agent reads, V03-21 unrelated-change
   tolerance, V03-22 isolation/backup, alerts ack/debounce, migrate `/legacy` tools (allocation, raw CSV),
   bump version to 0.3.0 + refresh TECHNICAL_REPORT_RU, usability study. LIVE items wait for the target model.
 - Plans/decisions: `docs/V03_PLAN.md`, `docs/adr/0005-v03-owner-main-path.md`, `docs/KNOWN_LIMITATIONS.md`.

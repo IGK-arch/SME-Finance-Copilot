@@ -1,7 +1,7 @@
 # Acceptance matrix v0.3 — V03-01…V03-25
 
-Generated from `artifacts/v03/regression-v03.json` (started 2026-10-13T14:31:42.284070+00:00, 181 tests: {'PASSED': 181}).
-IDs and wording come from the v0.3 audit package; T001–T100 remain in ACCEPTANCE_MATRIX.md (current counts {'PASSED': 96, 'NOT_RUN': 4}).
+Generated from `artifacts/v03/regression-v03.json` (started 2026-10-14T13:58:33.300455+00:00, 181 tests: {'PASSED': 176, 'FAILED': 1, 'SKIPPED': 4}).
+IDs and wording come from the v0.3 audit package; T001–T100 remain in ACCEPTANCE_MATRIX.md (current counts {'PASSED': 95, 'NOT_RUN': 4, 'FAILED': 1}).
 DEFERRED (target model) items are model-dependent and are not counted as passed from MOCK runs.
 
 | ID | Priority | Requirement | Status | Evidence | Note |
@@ -36,7 +36,7 @@ Counts: {'PARTIAL': 7, 'PASSED': 9, 'DEFERRED_MODEL': 6, 'NOT_RUN': 3}
 
 ## Product-path E2E (`python -m scripts.e2e_v03`)
 
-Scope: Real HTTP server + queue worker + independent sandbox via cookie session; MOCK runtime; no LIVE model decisions. Passed: **True**. Workspace `.runtime\v03-e2e\20261013-172559`.
+Scope: Real HTTP server + queue worker + independent sandbox via cookie session; MOCK runtime; no LIVE model decisions. Passed: **True**. Workspace `.runtime\v03-e2e\20261014-170129`.
 
 | Check | Result |
 |---|---|
@@ -66,7 +66,7 @@ Not covered: Pixel rendering (see browser evidence); LIVE agent from a free-form
 
 ## Browser walkthrough (built-in browser pane, real backend)
 
-Scope: Built-in browser pane on the user's Windows host, real backend (FastAPI + SQLite v03-dev workspace + queue worker + independent sandbox), MOCK model. Interactions were real clicks/typing except the file chooser, filled via DataTransfer on the same input change handler. Screenshots: two captured before the pane was hidden; other routes recorded as page text. No real money; synthetic sandbox only. Not a Playwright runner.
+Scope: Built-in browser pane on the user's Windows host, real backend (FastAPI + SQLite v03-dev workspace + queue worker + independent sandbox), MOCK model. Interactions were real clicks/typing except the file chooser, filled via DataTransfer on the same input change handler. Screenshots: two captured before the pane was hidden; other routes recorded as page text. No real money; synthetic sandbox only. Not a Playwright runner. 14 Oct: warm editorial theme re-rendered and re-measured on Home, Plans and Sign-in.
 
 - home_names_gap_date_amount_and_cta: PASS
 - chinese_names_and_cny_amounts_rendered: PASS
@@ -82,4 +82,4 @@ Scope: Built-in browser pane on the user's Windows host, real backend (FastAPI +
 - contrast_pairs_at_least_4_5: PASS
 - no_unexpected_console_errors: PASS
 
-Screenshots: v03/browser/home-gap-684.jpg, v03/browser/home-gap-1366-crop.png
+Screenshots: v03/browser/copilot-390.jpg, v03/browser/home-390-bottom-nav.jpg, v03/browser/home-gap-1366-crop.png, v03/browser/home-gap-684.jpg, v03/browser/home-warm-theme.jpg, v03/browser/login-warm-theme.jpg, v03/browser/money-chart-1366.jpg, v03/browser/operation-timeline-1366.jpg, v03/browser/plans-options-1366.jpg, v03/browser/plans-warm-theme.jpg, v03/browser/review-approval-1366.jpg

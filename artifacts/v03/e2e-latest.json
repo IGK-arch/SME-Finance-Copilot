@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "V03_PRODUCT_PATH_E2E",
   "scope": "Real HTTP server + queue worker + independent sandbox via cookie session; MOCK runtime; no LIVE model decisions",
-  "workspace": ".runtime\\v03-e2e\\20261013-172559",
+  "workspace": ".runtime\\v03-e2e\\20261014-170129",
   "checks": {
     "initial_gap_90000": true,
     "receivable_due_moved": true,
@@ -29,14 +29,14 @@
   "passed": true,
   "steps": [
     {
-      "at": 1791901565.3913932,
+      "at": 1791986496.2418978,
       "step": "home_initial",
       "state": "GAP",
       "need": "CNY 90,000.00",
       "gap": "2026-10-08T00:00:00.000000+00:00"
     },
     {
-      "at": 1791901565.4113605,
+      "at": 1791986496.2783062,
       "step": "import_preview",
       "ready": 1,
       "update": {
@@ -50,13 +50,13 @@
       }
     },
     {
-      "at": 1791901565.459752,
+      "at": 1791986496.3304925,
       "step": "import_commit",
       "status": "IMPORTED",
       "accepted": 1
     },
     {
-      "at": 1791901565.4812663,
+      "at": 1791986496.3729825,
       "step": "home_after_change",
       "state": "GAP",
       "history": [
@@ -65,13 +65,13 @@
       "receivable_due": "2026-10-14T16:00:00.000000+00:00"
     },
     {
-      "at": 1791901565.5427206,
+      "at": 1791986496.4353278,
       "step": "home_after_policy",
       "need": "CNY 95,000.00",
-      "change": "Data changed: need CNY 90,000.00 → CNY 95,000.00; gap date 2026-10-08 → 2026-10-06"
+      "change": "Data changed: need CNY 90,000.00 → CNY 95,000.00; gap date Thu 8 Oct → Tue 6 Oct"
     },
     {
-      "at": 1791901565.883373,
+      "at": 1791986496.9168978,
       "step": "options",
       "summary": "1 executable of 4 options",
       "statuses": {
@@ -82,9 +82,9 @@
       }
     },
     {
-      "at": 1791901565.9339194,
+      "at": 1791986496.9712787,
       "step": "selected",
-      "plan_id": "plan_5b7318400b70c62c0f10700c",
+      "plan_id": "plan_4873db7c620cf50454a90558",
       "actions": [
         "Draw loan · CNY 96,000.00",
         "Pay Payroll · CNY 80,000.00",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "at": 1791901566.1266358,
+      "at": 1791986497.267606,
       "step": "approved",
       "n": 1,
       "title": "Draw loan · CNY 96,000.00",
@@ -102,20 +102,20 @@
       "lost_response": false
     },
     {
-      "at": 1791901567.2103539,
+      "at": 1791986498.3641224,
       "step": "worker_sent",
       "title": "Draw loan · CNY 96,000.00",
       "status": "SUBMITTED"
     },
     {
-      "at": 1791901567.3517184,
+      "at": 1791986498.463024,
       "step": "settled",
       "title": "Draw loan · CNY 96,000.00",
       "status": "SETTLED",
       "attempts": 1
     },
     {
-      "at": 1791901567.5770504,
+      "at": 1791986498.7031276,
       "step": "approved",
       "n": 2,
       "title": "Pay Payroll · CNY 80,000.00",
@@ -123,20 +123,20 @@
       "lost_response": false
     },
     {
-      "at": 1791901568.1054251,
+      "at": 1791986499.2471921,
       "step": "worker_sent",
       "title": "Pay Payroll · CNY 80,000.00",
       "status": "SUBMITTED"
     },
     {
-      "at": 1791901568.1978416,
+      "at": 1791986499.3354182,
       "step": "settled",
       "title": "Pay Payroll · CNY 80,000.00",
       "status": "SETTLED",
       "attempts": 1
     },
     {
-      "at": 1791901568.3896255,
+      "at": 1791986499.598389,
       "step": "approved",
       "n": 3,
       "title": "Pay Landlord · CNY 20,000.00",
@@ -144,20 +144,20 @@
       "lost_response": false
     },
     {
-      "at": 1791901568.9111094,
+      "at": 1791986500.1296427,
       "step": "worker_sent",
       "title": "Pay Landlord · CNY 20,000.00",
       "status": "SUBMITTED"
     },
     {
-      "at": 1791901568.9821677,
+      "at": 1791986500.249259,
       "step": "settled",
       "title": "Pay Landlord · CNY 20,000.00",
       "status": "SETTLED",
       "attempts": 1
     },
     {
-      "at": 1791901569.1421154,
+      "at": 1791986500.5191512,
       "step": "approved",
       "n": 4,
       "title": "Pay 苏州合成供应商 · CNY 90,000.00",
@@ -165,30 +165,30 @@
       "lost_response": true
     },
     {
-      "at": 1791901569.6710107,
+      "at": 1791986501.06921,
       "step": "worker_sent",
       "title": "Pay 苏州合成供应商 · CNY 90,000.00",
       "status": "UNKNOWN"
     },
     {
-      "at": 1791901569.9644556,
+      "at": 1791986501.4867833,
       "step": "server_killed",
       "while_status": "UNKNOWN"
     },
     {
-      "at": 1791901573.5645618,
+      "at": 1791986507.0639606,
       "step": "server_restarted",
       "home_state": "UNKNOWN_PAYMENT"
     },
     {
-      "at": 1791901573.6126251,
+      "at": 1791986507.145813,
       "step": "settled",
       "title": "Pay 苏州合成供应商 · CNY 90,000.00",
       "status": "SETTLED",
       "attempts": 1
     },
     {
-      "at": 1791901574.01457,
+      "at": 1791986507.6262808,
       "step": "approved",
       "n": 5,
       "title": "Repay loan · CNY 97,000.00",
@@ -196,20 +196,20 @@
       "lost_response": false
     },
     {
-      "at": 1791901575.076865,
+      "at": 1791986508.1646843,
       "step": "worker_sent",
       "title": "Repay loan · CNY 97,000.00",
       "status": "SUBMITTED"
     },
     {
-      "at": 1791901575.1522334,
+      "at": 1791986508.2734637,
       "step": "settled",
       "title": "Repay loan · CNY 97,000.00",
       "status": "SETTLED",
       "attempts": 1
     },
     {
-      "at": 1791901575.2665558,
+      "at": 1791986508.417279,
       "step": "final",
       "plan": "COMPLETED",
       "reconciliation": "RECONCILED",
@@ -217,13 +217,13 @@
       "state": "NO_GAP"
     },
     {
-      "at": 1791901575.2823653,
+      "at": 1791986508.4382389,
       "step": "case_after",
       "state": "NO_OPEN_CASE",
       "closed_reason": "RESOLVED_SETTLED_AND_RECONCILED"
     },
     {
-      "at": 1791901575.5269496,
+      "at": 1791986508.8100195,
       "step": "world",
       "operations": 5,
       "movements": 6,

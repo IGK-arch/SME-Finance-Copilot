@@ -11,7 +11,7 @@
     "V03-24"
   ],
   "status": "PASSED",
-  "at": "2026-10-13T14:25:32Z",
+  "at": "2026-10-14T13:58:00Z",
   "scope": "Built-in browser pane on the user's Windows host, real backend (FastAPI + SQLite v03-dev workspace + queue worker + independent sandbox), MOCK model. Interactions were real clicks/typing except the file chooser, filled via DataTransfer on the same input change handler. Screenshots: two captured before the pane was hidden; other routes recorded as page text. No real money; synthetic sandbox only. Not a Playwright runner. 14 Oct: warm editorial theme re-rendered and re-measured on Home, Plans and Sign-in.",
   "checks": {
     "home_names_gap_date_amount_and_cta": true,
@@ -39,19 +39,25 @@
     "nav active": 17.5
   },
   "webHashes": {
-    "app.js": "a745a90c545ef6b1302b9eaaab4d02cd225bb0b0b00ad7d56246446f4aa0691c",
-    "copilot.js": "ec44531f005e7e865d9a382f8f2c2c939eb1cb3784a93f39587e035eed15cc5e",
-    "index.html": "f407bceb5cc28fbe1d26f8b8685f63cf5b4aaaa9dbe4ef401b333940a51761fe",
-    "pages.js": "750173e406e034baa95b3a6b91483b6c71270016ff7952086b07fc0599c3fe74",
-    "style.css": "8d6cc9be7645ecd3ef5d3538d0e5acfa04dc19556bdce0f3f00a38adb2fe4339",
-    "ui.js": "e965f01e551adce006a65c68775fd9e8188e37b7c2dc836542d7d83efa5d9d15"
+    "app.js": "88573a13a97df66156d3b0c68db49329864f9ba21a08b0f391a1244565151b6b",
+    "copilot.js": "0458bad397400fc93d5347cb85d13b1320ce83a13e4ce094eee0931beb3c1aac",
+    "index.html": "08385b0c54533408671e71f7baf9e9867610d2d1688a08b9ba9a5ee3b47cf48c",
+    "pages.js": "7c2d7707ba4fa5c7484b12b5174f2b9eb378c7ab865f1e514669245b9af4c6f1",
+    "style.css": "769ed920752df051c9077a5270b6a78134af3a5677391d58af222717d2fa1811",
+    "ui.js": "9cf811def391597cd05b0ddd5df29fba3b38e3a1ae4e9923cacff1f075dc8f14"
   },
   "screenshots": [
+    "v03/browser/copilot-390.jpg",
+    "v03/browser/home-390-bottom-nav.jpg",
     "v03/browser/home-gap-1366-crop.png",
     "v03/browser/home-gap-684.jpg",
     "v03/browser/home-warm-theme.jpg",
     "v03/browser/login-warm-theme.jpg",
-    "v03/browser/plans-warm-theme.jpg"
+    "v03/browser/money-chart-1366.jpg",
+    "v03/browser/operation-timeline-1366.jpg",
+    "v03/browser/plans-options-1366.jpg",
+    "v03/browser/plans-warm-theme.jpg",
+    "v03/browser/review-approval-1366.jpg"
   ],
   "baseline_screenshots": [
     "v03/baseline/overview-607.jpg",
@@ -63,5 +69,7 @@
     "No automated Playwright trace (registries blocked on this host)"
   ],
   "console_note": "One expected 401 on /v1/home before sign-in (session probe); no other console errors observed",
-  "theme_rechecked_at": "2026-10-14T11:42:02Z"
+  "theme_rechecked_at": "2026-10-14T11:42:02Z",
+  "ux_pass_at": "2026-10-14T13:58:00Z",
+  "ux_pass": "14 Oct UX pass on a fresh throwaway workspace (port 8091, MOCK, synthetic sandbox): every route (Home, Money, Plans, review dialog, Documents wizard, Activity + operation timeline, Settings, Copilot panel, sign-in, page-not-found) opened in the built-in browser pane. Measured document scrollWidth == clientWidth and no element past the viewport edge (tables and charts scroll inside their own wrappers) at 390, 768, 1366 and 1440 px; Copilot scroll area has no horizontal overflow at 390/768/1440. Real clicks through JS: options computed, plan selected, sandbox clock advanced, two exact approvals (one with simulated lost response), import wizard with an ambiguous date flagged. Wrong-token sign-in shows the inline error. No console errors besides the expected 401 session probe."
 }
