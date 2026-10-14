@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="80 90 1094 1066" fill="#141413">
+  <title>SME Finance Copilot</title>
+  <defs>
+    <path id="swoosh" d="M290 855C470 825 720 740 898 548C820 680 640 860 418 970Q345 920 290 855Z"/>
+    <g id="spikes">
+      <path d="M628 108L553 308Q628 296 700 308Z"/>
+      <path d="M557 947Q626 958 694 947L624 1135Z"/>
+      <path d="M100 643L292 580Q284 633 228 686Z"/>
+      <path d="M1152 643L958 580Q966 633 1024 686Z"/>
+    </g>
+    <mask id="ring-gaps" maskUnits="userSpaceOnUse" x="0" y="0" width="1254" height="1254">
+      <rect width="1254" height="1254" fill="#fff"/>
+      <use href="#spikes" fill="#000" stroke="#000" stroke-width="58" stroke-linejoin="round"/>
+      <use href="#swoosh" fill="#000" stroke="#000" stroke-width="58"/>
+      <path d="M627 627L540 1119L347 1041L212 907Z" fill="#000"/>
+    </mask>
+    <mask id="bar-gaps" maskUnits="userSpaceOnUse" x="0" y="0" width="1254" height="1254">
+      <rect width="1254" height="1254" fill="#fff"/>
+      <use href="#swoosh" fill="#000" stroke="#000" stroke-width="58"/>
+    </mask>
+  </defs>
+  <circle cx="627" cy="627" r="364" fill="none" stroke="#141413" stroke-width="62" mask="url(#ring-gaps)"/>
+  <g mask="url(#bar-gaps)">
+    <rect x="412" y="648" width="110" height="172"/>
+    <rect x="552" y="535" width="115" height="235"/>
+    <rect x="699" y="407" width="114" height="300"/>
+  </g>
+  <use href="#swoosh"/>
+  <use href="#spikes"/>
+</svg>
