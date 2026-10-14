@@ -1,20 +1,18 @@
 {
   "schema_version": 1,
-  "started_at": "2026-10-14T13:58:33.300455+00:00",
-  "finished_at": "2026-10-14T14:00:31.828281+00:00",
+  "started_at": "2026-10-14T14:22:23.945370+00:00",
+  "finished_at": "2026-10-14T14:24:17.168713+00:00",
   "command": "python -m scripts.test --pattern test_*.py",
   "python": "3.11.9",
   "platform": "Windows-10-10.0.26200-SP0",
   "tests_run": 181,
   "test_counts": {
-    "PASSED": 176,
-    "FAILED": 1,
+    "PASSED": 177,
     "SKIPPED": 4
   },
   "acceptance_counts": {
-    "PASSED": 95,
-    "NOT_RUN": 4,
-    "FAILED": 1
+    "PASSED": 96,
+    "NOT_RUN": 4
   },
   "actual_tests": [
     {
@@ -23,7 +21,7 @@
         "T061"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.9233154000012291,
+      "elapsed_seconds": 0.9097569999994448,
       "reason": null
     },
     {
@@ -33,70 +31,70 @@
         "T086"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.797187699999995,
+      "elapsed_seconds": 1.6654801000004227,
       "reason": null
     },
     {
       "test_id": "tests.test_agent_data.AgentDataTests.test_all_datasets_scoped_and_paginated_no_secret_or_future",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.9314047999996546,
+      "elapsed_seconds": 0.9351552000007359,
       "reason": null
     },
     {
       "test_id": "tests.test_agent_data.AgentDataTests.test_complete_long_document_and_literal_query_and_argument_bounds",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.7040501000010408,
+      "elapsed_seconds": 0.7135410999999294,
       "reason": null
     },
     {
       "test_id": "tests.test_agent_data.AgentDataTests.test_detail_tools_require_visible_matching_dataset_record_pairs",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.6880617999995593,
+      "elapsed_seconds": 0.7133187999988877,
       "reason": null
     },
     {
       "test_id": "tests.test_agent_data.AgentDataTests.test_details_and_computations_preserve_facts_and_source_ids",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.7758193999998184,
+      "elapsed_seconds": 0.7552694000005431,
       "reason": null
     },
     {
       "test_id": "tests.test_agent_data.AgentDataTests.test_existing_plan_selected_action_pauses_without_auto_executing_other_actions",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.3587127999999211,
+      "elapsed_seconds": 1.3302081000001635,
       "reason": null
     },
     {
       "test_id": "tests.test_agent_data.AgentDataTests.test_extension_is_pending_and_protected_obligation_rejected",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.699714700000186,
+      "elapsed_seconds": 0.6721008000004076,
       "reason": null
     },
     {
       "test_id": "tests.test_agent_data.AgentDataTests.test_plan_action_ids_pairing_and_proposal_never_approve",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.9218884000001708,
+      "elapsed_seconds": 0.8733181999996305,
       "reason": null
     },
     {
       "test_id": "tests.test_agent_data.AgentDataTests.test_review_flags_allow_diagnosis_but_not_an_executable_plan",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.9543275000014546,
+      "elapsed_seconds": 0.8935737000010704,
       "reason": null
     },
     {
       "test_id": "tests.test_agent_data.AgentDataTests.test_role_revocation_rechecked_on_reader_and_proposal",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.691966099999263,
+      "elapsed_seconds": 0.6818839000006847,
       "reason": null
     },
     {
@@ -105,7 +103,7 @@
         "T055"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.3700929000006,
+      "elapsed_seconds": 1.4169658999999228,
       "reason": null
     },
     {
@@ -114,7 +112,7 @@
         "T060"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.2126671000005445,
+      "elapsed_seconds": 1.2089415999998891,
       "reason": null
     },
     {
@@ -123,42 +121,42 @@
         "T093"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.1520469000006415,
+      "elapsed_seconds": 1.1369466999985889,
       "reason": null
     },
     {
       "test_id": "tests.test_api.ApiTests.test_api_full_golden",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 2.624923299999864,
+      "elapsed_seconds": 2.7461446999986947,
       "reason": null
     },
     {
       "test_id": "tests.test_api.ApiTests.test_handoff_contracts",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.1315525000009075,
+      "elapsed_seconds": 1.1544887999989442,
       "reason": null
     },
     {
       "test_id": "tests.test_api.ApiTests.test_payload_shape_fail_closed",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.1743072000008397,
+      "elapsed_seconds": 1.168289500001265,
       "reason": null
     },
     {
       "test_id": "tests.test_api.ApiTests.test_web_utf8_and_security_headers",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.1598651999993308,
+      "elapsed_seconds": 1.2788605999994616,
       "reason": null
     },
     {
       "test_id": "tests.test_asgi.AsgiTests.test_fastapi_real_domain_routes_and_strict_validation",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.9193658999993204,
+      "elapsed_seconds": 0.9100070999993477,
       "reason": null
     },
     {
@@ -167,14 +165,14 @@
         "T051"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.6797246000005543,
+      "elapsed_seconds": 1.6105760999998893,
       "reason": null
     },
     {
       "test_id": "tests.test_contingency.ContingencyTests.test_decline_preserves_original_terms",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.723526399999173,
+      "elapsed_seconds": 0.7088144999997894,
       "reason": null
     },
     {
@@ -183,7 +181,7 @@
         "T058"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.196051400000215,
+      "elapsed_seconds": 1.1283504000002722,
       "reason": null
     },
     {
@@ -192,7 +190,7 @@
         "T001"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.09713430000010703,
+      "elapsed_seconds": 0.1103049999983341,
       "reason": null
     },
     {
@@ -201,7 +199,7 @@
         "T002"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.09804500000063854,
+      "elapsed_seconds": 0.08411809999961406,
       "reason": null
     },
     {
@@ -210,7 +208,7 @@
         "T003"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.18576609999945504,
+      "elapsed_seconds": 0.08609679999972286,
       "reason": null
     },
     {
@@ -219,7 +217,7 @@
         "T004"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.12754990000030375,
+      "elapsed_seconds": 0.10051639999983308,
       "reason": null
     },
     {
@@ -228,7 +226,7 @@
         "T005"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.08627680000063265,
+      "elapsed_seconds": 0.07452720000037516,
       "reason": null
     },
     {
@@ -237,7 +235,7 @@
         "T006"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.0641672000001563,
+      "elapsed_seconds": 0.05448130000149831,
       "reason": null
     },
     {
@@ -246,7 +244,7 @@
         "T007"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.10888239999985672,
+      "elapsed_seconds": 0.2553282999997464,
       "reason": null
     },
     {
@@ -255,7 +253,7 @@
         "T008"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.12784490000012738,
+      "elapsed_seconds": 0.09326940000028117,
       "reason": null
     },
     {
@@ -264,7 +262,7 @@
         "T009"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.0936837999997806,
+      "elapsed_seconds": 0.07154459999946994,
       "reason": null
     },
     {
@@ -273,7 +271,7 @@
         "T010"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.1267649999990681,
+      "elapsed_seconds": 0.08814189999975497,
       "reason": null
     },
     {
@@ -282,7 +280,7 @@
         "T011"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.09728229999927862,
+      "elapsed_seconds": 0.07530769999902986,
       "reason": null
     },
     {
@@ -291,7 +289,7 @@
         "T012"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.09772410000005038,
+      "elapsed_seconds": 0.07410779999918304,
       "reason": null
     },
     {
@@ -300,7 +298,7 @@
         "T013"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.082372500000929,
+      "elapsed_seconds": 0.053646099999241414,
       "reason": null
     },
     {
@@ -309,7 +307,7 @@
         "T014"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.07696860000032757,
+      "elapsed_seconds": 0.058627500000511645,
       "reason": null
     },
     {
@@ -318,7 +316,7 @@
         "T015"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.06732599999850208,
+      "elapsed_seconds": 0.051412999999229214,
       "reason": null
     },
     {
@@ -327,7 +325,7 @@
         "T016"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.09916379999958735,
+      "elapsed_seconds": 0.07506809999904362,
       "reason": null
     },
     {
@@ -336,7 +334,7 @@
         "T017"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.10558809999929508,
+      "elapsed_seconds": 0.08796739999888814,
       "reason": null
     },
     {
@@ -345,7 +343,7 @@
         "T018"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.17138549999981478,
+      "elapsed_seconds": 0.09947889999966719,
       "reason": null
     },
     {
@@ -354,7 +352,7 @@
         "T019"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.1034868999995524,
+      "elapsed_seconds": 0.07333749999997963,
       "reason": null
     },
     {
@@ -363,7 +361,7 @@
         "T020"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.17038639999918814,
+      "elapsed_seconds": 0.1369780000004539,
       "reason": null
     },
     {
@@ -372,7 +370,7 @@
         "T021"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.0863284000006388,
+      "elapsed_seconds": 0.0930398000000423,
       "reason": null
     },
     {
@@ -381,7 +379,7 @@
         "T022"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.08703329999843845,
+      "elapsed_seconds": 0.07786060000034922,
       "reason": null
     },
     {
@@ -390,7 +388,7 @@
         "T024"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.08274950000122772,
+      "elapsed_seconds": 0.06635490000007849,
       "reason": null
     },
     {
@@ -399,7 +397,7 @@
         "T025"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.11575679999987187,
+      "elapsed_seconds": 0.10264119999919785,
       "reason": null
     },
     {
@@ -408,7 +406,7 @@
         "T026"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.08900720000019646,
+      "elapsed_seconds": 0.06817409999894153,
       "reason": null
     },
     {
@@ -417,7 +415,7 @@
         "T027"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.06290410000110569,
+      "elapsed_seconds": 0.05404479999924661,
       "reason": null
     },
     {
@@ -426,7 +424,7 @@
         "T028"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.07582530000036058,
+      "elapsed_seconds": 0.10570569999981672,
       "reason": null
     },
     {
@@ -435,7 +433,7 @@
         "T029"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.08535360000132641,
+      "elapsed_seconds": 0.06771959999969113,
       "reason": null
     },
     {
@@ -444,7 +442,7 @@
         "T030"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.07826800000111689,
+      "elapsed_seconds": 0.07846130000143603,
       "reason": null
     },
     {
@@ -453,7 +451,7 @@
         "T033"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.10826710000037565,
+      "elapsed_seconds": 0.10056519999852753,
       "reason": null
     },
     {
@@ -462,7 +460,7 @@
         "T034"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.0904540999999881,
+      "elapsed_seconds": 0.08339420000083919,
       "reason": null
     },
     {
@@ -471,7 +469,7 @@
         "T035"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.0843313000004855,
+      "elapsed_seconds": 0.07404920000044513,
       "reason": null
     },
     {
@@ -480,7 +478,7 @@
         "T036"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.06707230000029085,
+      "elapsed_seconds": 0.05420080000112648,
       "reason": null
     },
     {
@@ -489,7 +487,7 @@
         "T037"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.07311470000058762,
+      "elapsed_seconds": 0.05415039999934379,
       "reason": null
     },
     {
@@ -498,7 +496,7 @@
         "T038"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.10539570000037202,
+      "elapsed_seconds": 0.1116347000006499,
       "reason": null
     },
     {
@@ -507,7 +505,7 @@
         "T039"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.0650244999997085,
+      "elapsed_seconds": 0.062252199999420554,
       "reason": null
     },
     {
@@ -516,7 +514,7 @@
         "T040"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.07141100000080769,
+      "elapsed_seconds": 0.06731940000099712,
       "reason": null
     },
     {
@@ -525,7 +523,7 @@
         "T041"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.0935073000000557,
+      "elapsed_seconds": 0.07915460000003804,
       "reason": null
     },
     {
@@ -534,7 +532,7 @@
         "T043"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.1038380000009056,
+      "elapsed_seconds": 0.0870269000006374,
       "reason": null
     },
     {
@@ -543,7 +541,7 @@
         "T044"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.09094899999945483,
+      "elapsed_seconds": 0.08565160000034666,
       "reason": null
     },
     {
@@ -552,7 +550,7 @@
         "T045"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.12471170000026177,
+      "elapsed_seconds": 0.15726090000134718,
       "reason": null
     },
     {
@@ -561,7 +559,7 @@
         "T046"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.14127730000109295,
+      "elapsed_seconds": 0.145354899999802,
       "reason": null
     },
     {
@@ -570,7 +568,7 @@
         "T047"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.09925719999955618,
+      "elapsed_seconds": 0.10817800000040734,
       "reason": null
     },
     {
@@ -579,7 +577,7 @@
         "T048"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.09305359999962093,
+      "elapsed_seconds": 0.08867309999914141,
       "reason": null
     },
     {
@@ -588,7 +586,7 @@
         "T049"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.12504789999911736,
+      "elapsed_seconds": 0.12010149999878195,
       "reason": null
     },
     {
@@ -597,7 +595,7 @@
         "T050"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.08249539999997069,
+      "elapsed_seconds": 0.1112539999994624,
       "reason": null
     },
     {
@@ -606,7 +604,7 @@
         "T052"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.14581120000002556,
+      "elapsed_seconds": 0.12335569999959262,
       "reason": null
     },
     {
@@ -615,7 +613,7 @@
         "T053"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.11457400000108464,
+      "elapsed_seconds": 0.100690700000996,
       "reason": null
     },
     {
@@ -624,35 +622,35 @@
         "T054"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.08278539999992063,
+      "elapsed_seconds": 0.06690249999883235,
       "reason": null
     },
     {
       "test_id": "tests.test_domain.DomainTests.test_historical_quality_and_version_no_future",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.10989189999963855,
+      "elapsed_seconds": 0.104374700000335,
       "reason": null
     },
     {
       "test_id": "tests.test_domain.DomainTests.test_money_property",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.08399479999934556,
+      "elapsed_seconds": 0.08118579999973008,
       "reason": null
     },
     {
       "test_id": "tests.test_domain.DomainTests.test_quote_arithmetic_corruption",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.12348549999842362,
+      "elapsed_seconds": 0.11068580000028305,
       "reason": null
     },
     {
       "test_id": "tests.test_evaluator_deadlines.DeadlineTests.test_late_settled_payment_is_not_full_success",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.4442510999997467,
+      "elapsed_seconds": 1.2536519000004773,
       "reason": null
     },
     {
@@ -661,7 +659,7 @@
         "T042"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8171394000000873,
+      "elapsed_seconds": 0.8107396000013978,
       "reason": null
     },
     {
@@ -670,7 +668,7 @@
         "T056"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.7496257000002515,
+      "elapsed_seconds": 0.7733442999997351,
       "reason": null
     },
     {
@@ -679,7 +677,7 @@
         "T057"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8722809999999299,
+      "elapsed_seconds": 0.8570794000006572,
       "reason": null
     },
     {
@@ -688,7 +686,7 @@
         "T059"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.140660499999285,
+      "elapsed_seconds": 1.0750699000000168,
       "reason": null
     },
     {
@@ -697,7 +695,7 @@
         "T061"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.7837995999998384,
+      "elapsed_seconds": 0.7834333000009792,
       "reason": null
     },
     {
@@ -706,7 +704,7 @@
         "T062"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8150220000006811,
+      "elapsed_seconds": 0.8007710999991104,
       "reason": null
     },
     {
@@ -715,7 +713,7 @@
         "T063"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.7653143000006821,
+      "elapsed_seconds": 0.7659430999992765,
       "reason": null
     },
     {
@@ -724,7 +722,7 @@
         "T064"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8213914000007208,
+      "elapsed_seconds": 0.8080362000000605,
       "reason": null
     },
     {
@@ -733,7 +731,7 @@
         "T066"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8328363000000536,
+      "elapsed_seconds": 0.8495827000006102,
       "reason": null
     },
     {
@@ -742,7 +740,7 @@
         "T067"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.7712735000004614,
+      "elapsed_seconds": 0.8154525999998441,
       "reason": null
     },
     {
@@ -751,7 +749,7 @@
         "T068"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.9561196000013297,
+      "elapsed_seconds": 0.9233480999992025,
       "reason": null
     },
     {
@@ -760,7 +758,7 @@
         "T069"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.4582941999997274,
+      "elapsed_seconds": 0.9279867999994167,
       "reason": null
     },
     {
@@ -769,7 +767,7 @@
         "T070"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.9239555999993172,
+      "elapsed_seconds": 0.9543465000006108,
       "reason": null
     },
     {
@@ -778,7 +776,7 @@
         "T071"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8240328000010777,
+      "elapsed_seconds": 0.873989800000345,
       "reason": null
     },
     {
@@ -787,7 +785,7 @@
         "T072"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8658694999994623,
+      "elapsed_seconds": 0.8234448000002885,
       "reason": null
     },
     {
@@ -796,7 +794,7 @@
         "T073"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8401886999999988,
+      "elapsed_seconds": 0.8883253000003606,
       "reason": null
     },
     {
@@ -805,7 +803,7 @@
         "T074"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.9101314999988972,
+      "elapsed_seconds": 0.8689066000006278,
       "reason": null
     },
     {
@@ -814,7 +812,7 @@
         "T075"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8856095999999525,
+      "elapsed_seconds": 0.8416317999999592,
       "reason": null
     },
     {
@@ -823,7 +821,7 @@
         "T076"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.1818375000002561,
+      "elapsed_seconds": 1.089777299999696,
       "reason": null
     },
     {
@@ -832,7 +830,7 @@
         "T077"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.0464164999993955,
+      "elapsed_seconds": 0.9145082000013645,
       "reason": null
     },
     {
@@ -841,7 +839,7 @@
         "T078"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.0706167999996978,
+      "elapsed_seconds": 1.0102077999999892,
       "reason": null
     },
     {
@@ -850,7 +848,7 @@
         "T079"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.0342925999993895,
+      "elapsed_seconds": 0.9881423999995604,
       "reason": null
     },
     {
@@ -859,7 +857,7 @@
         "T080"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.0332041000001482,
+      "elapsed_seconds": 0.992364899999302,
       "reason": null
     },
     {
@@ -868,7 +866,7 @@
         "T081"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.2171092000007775,
+      "elapsed_seconds": 1.1877447999995638,
       "reason": null
     },
     {
@@ -877,7 +875,7 @@
         "T082"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.2714173000003939,
+      "elapsed_seconds": 1.22570480000104,
       "reason": null
     },
     {
@@ -886,7 +884,7 @@
         "T084"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.9521838000000571,
+      "elapsed_seconds": 1.075831100000869,
       "reason": null
     },
     {
@@ -895,7 +893,7 @@
         "T085"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.2515222000001813,
+      "elapsed_seconds": 1.188769600001251,
       "reason": null
     },
     {
@@ -904,7 +902,7 @@
         "T087"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.2433906000005663,
+      "elapsed_seconds": 1.3382910000000265,
       "reason": null
     },
     {
@@ -913,7 +911,7 @@
         "T088"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.1190843000003952,
+      "elapsed_seconds": 1.0766501999987668,
       "reason": null
     },
     {
@@ -922,7 +920,7 @@
         "T089"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.2224714999993012,
+      "elapsed_seconds": 1.1261388000002626,
       "reason": null
     },
     {
@@ -931,7 +929,7 @@
         "T090"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.792210099998556,
+      "elapsed_seconds": 0.8083088000003045,
       "reason": null
     },
     {
@@ -940,7 +938,7 @@
         "T091"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8229180999987875,
+      "elapsed_seconds": 0.7854220000008354,
       "reason": null
     },
     {
@@ -949,7 +947,7 @@
         "T092"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.1838003000011668,
+      "elapsed_seconds": 1.1601777000014408,
       "reason": null
     },
     {
@@ -958,7 +956,7 @@
         "T095"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.9908500000001368,
+      "elapsed_seconds": 1.9394615000001068,
       "reason": null
     },
     {
@@ -967,7 +965,7 @@
         "T096"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.7624416999988171,
+      "elapsed_seconds": 0.7495848999988084,
       "reason": null
     },
     {
@@ -976,77 +974,77 @@
         "T098"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8042382000003272,
+      "elapsed_seconds": 0.764806099999987,
       "reason": null
     },
     {
       "test_id": "tests.test_execution.ExecutionTests.test_admin_cannot_approve",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.8833234000012453,
+      "elapsed_seconds": 0.8126135999991675,
       "reason": null
     },
     {
       "test_id": "tests.test_execution.ExecutionTests.test_call_budget",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.73432209999919,
+      "elapsed_seconds": 0.7620133999989775,
       "reason": null
     },
     {
       "test_id": "tests.test_execution.ExecutionTests.test_crash_settlement_before_lookup",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.9949830000005022,
+      "elapsed_seconds": 0.963912999999593,
       "reason": null
     },
     {
       "test_id": "tests.test_execution.ExecutionTests.test_csv_injection_no_rights",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.9292829999994865,
+      "elapsed_seconds": 0.9273948999998538,
       "reason": null
     },
     {
       "test_id": "tests.test_execution.ExecutionTests.test_final_ledger_cannot_be_deleted",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.0023598999996466,
+      "elapsed_seconds": 0.9419873000006191,
       "reason": null
     },
     {
       "test_id": "tests.test_execution.ExecutionTests.test_financing_and_stress_compute_tools",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.8251856999995653,
+      "elapsed_seconds": 0.8114079999995738,
       "reason": null
     },
     {
       "test_id": "tests.test_execution.ExecutionTests.test_generic_workflow_replay",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.3944274000004953,
+      "elapsed_seconds": 1.2923080999989907,
       "reason": null
     },
     {
       "test_id": "tests.test_execution.ExecutionTests.test_membership_revoked_before_worker",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.9122141999996529,
+      "elapsed_seconds": 0.9026959000002535,
       "reason": null
     },
     {
       "test_id": "tests.test_execution.ExecutionTests.test_remaining_plan_revalidated_before_approval",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.0991773000005196,
+      "elapsed_seconds": 1.0539735999991535,
       "reason": null
     },
     {
       "test_id": "tests.test_execution.ExecutionTests.test_status_tool_never_uses_stale_cache",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.9501531000005343,
+      "elapsed_seconds": 0.9493191000001389,
       "reason": null
     },
     {
@@ -1055,35 +1053,35 @@
         "T065"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.00037759999941044953,
+      "elapsed_seconds": 0.0004668000001402106,
       "reason": null
     },
     {
       "test_id": "tests.test_gateway.GatewayTests.test_connection_reset_is_a_typed_failure_without_fallback",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.0029871999995521037,
+      "elapsed_seconds": 0.0023856999996496597,
       "reason": null
     },
     {
       "test_id": "tests.test_gateway.GatewayTests.test_granite_protocol_preserves_rules_and_does_not_change_qwen_messages",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.0012653999983740505,
+      "elapsed_seconds": 0.0009542000007058959,
       "reason": null
     },
     {
       "test_id": "tests.test_gateway.GatewayTests.test_ollama_contract_tool_calls_usage_and_no_fallback",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 2.539898600000015,
+      "elapsed_seconds": 2.572218499999508,
       "reason": null
     },
     {
       "test_id": "tests.test_gateway.GatewayTests.test_remote_model_endpoint_is_denied",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.00029290000020409934,
+      "elapsed_seconds": 0.00023529999998572748,
       "reason": null
     },
     {
@@ -1092,7 +1090,7 @@
         "T099"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.00012080000124115031,
+      "elapsed_seconds": 0.00014259999989008065,
       "reason": null
     },
     {
@@ -1100,218 +1098,218 @@
       "acceptance_ids": [
         "T100"
       ],
-      "status": "FAILED",
-      "elapsed_seconds": 1.8804744000008213,
-      "reason": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 57, in testPartExecutor\n    yield\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 623, in run\n    self._callTestMethod(testMethod)\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 579, in _callTestMethod\n    if method() is not None:\n       ^^^^^^^^\n  File \"E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\tests\\test_governance.py\", line 50, in test_T100_source_manifest_and_dependencies\n    self.assertEqual(hashlib.sha256(Path(path).read_bytes()).hexdigest(), expected_hash)\nAssertionError: '0e49df4123497f07e7b74fc93cd65fa88e2bed64ba2bdfbdb1ee86cc3d2b9b01' != '014af39f7a882b38c81ff432e52197986d8bf5b5efabcc9643dd6954d12d8141'\n- 0e49df4123497f07e7b74fc93cd65fa88e2bed64ba2bdfbdb1ee86cc3d2b9b01\n+ 014af39f7a882b38c81ff432e52197986d8bf5b5efabcc9643dd6954d12d8141\n\n"
+      "status": "PASSED",
+      "elapsed_seconds": 0.13618479999968258,
+      "reason": null
     },
     {
       "test_id": "tests.test_governance.GovernanceTests.test_fail_closed_environment",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.0073962999995274,
+      "elapsed_seconds": 0.007039100000838516,
       "reason": null
     },
     {
       "test_id": "tests.test_governance.GovernanceTests.test_unreviewed_product_not_published",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.00016539999887754675,
+      "elapsed_seconds": 0.00014100000043981709,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_cloud_alias_is_rejected_before_chat",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.0005603000008704839,
+      "elapsed_seconds": 0.0006216000001586508,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_financing_grade_rejects_currency_unit_error",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.00019099999917671084,
+      "elapsed_seconds": 0.00031090000084077474,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_full_evidence_route_passes_but_missing_or_truncated_visible_text_does_not",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.00043619999996735714,
+      "elapsed_seconds": 0.0009413000007043593,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_literal_search_grade_rejects_shortened_query_or_wrong_matches",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.00017939999997906853,
+      "elapsed_seconds": 0.00016680000044289045,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_missing_tools_or_safety_change_fails_grade",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.0001680999994277954,
+      "elapsed_seconds": 0.00017269999989366625,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_model_display_preserves_exact_minor_units_and_negative_cents",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 9.080000018002465e-05,
+      "elapsed_seconds": 9.940000018104911e-05,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_model_timeout_keeps_successful_tool_evidence_but_never_passes_task",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.0001098000011552358,
+      "elapsed_seconds": 0.00011549999908311293,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_provider_reasoning_is_not_persisted_as_visible_content",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 7.299999924725853e-05,
+      "elapsed_seconds": 6.829999983892776e-05,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_schema_exposes_objective_enum_and_config_bounds",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.012355799999568262,
+      "elapsed_seconds": 0.011661500000627711,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_secret_leak_is_failure_even_when_other_checks_pass",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.00017859999934444204,
+      "elapsed_seconds": 0.0001357000001007691,
       "reason": null
     },
     {
       "test_id": "tests.test_live_evaluation.LiveEvaluationTests.test_truncation_and_empty_output_are_not_success",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.0008321999994223006,
+      "elapsed_seconds": 0.0011670000003505265,
       "reason": null
     },
     {
       "test_id": "tests.test_planner.PlannerTests.test_cp_sat_matches_independent_enumeration_across_inputs",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 2.8394110999997793,
+      "elapsed_seconds": 2.7811318000003666,
       "reason": null
     },
     {
       "test_id": "tests.test_planner.PlannerTests.test_timeout_unknown_and_repayment_tail",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.7694092000001547,
+      "elapsed_seconds": 0.7697298000002775,
       "reason": null
     },
     {
       "test_id": "tests.test_policy_history.PolicyHistoryTests.test_historical_snapshot_does_not_borrow_later_reserve_policy",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.7747384999984206,
+      "elapsed_seconds": 0.7130524999993213,
       "reason": null
     },
     {
       "test_id": "tests.test_policy_history.PolicyHistoryTests.test_legacy_unknown_policy_time_fails_historical_query",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.7170406000004732,
+      "elapsed_seconds": 0.7037758999995276,
       "reason": null
     },
     {
       "test_id": "tests.test_postgres.PostgresTests.test_agent_business_reads_and_real_plan_ids_on_postgresql",
       "acceptance_ids": [],
       "status": "SKIPPED",
-      "elapsed_seconds": 7.120000009308569e-05,
+      "elapsed_seconds": 7.560000085504726e-05,
       "reason": "PostgreSQL integration not configured"
     },
     {
       "test_id": "tests.test_postgres.PostgresTests.test_full_golden_on_postgresql_with_independent_simulator",
       "acceptance_ids": [],
       "status": "SKIPPED",
-      "elapsed_seconds": 3.300000025774352e-05,
+      "elapsed_seconds": 3.8500000300700776e-05,
       "reason": "PostgreSQL integration not configured"
     },
     {
       "test_id": "tests.test_postgres.PostgresTests.test_restart_worker_graph_and_parallel_reservations",
       "acceptance_ids": [],
       "status": "SKIPPED",
-      "elapsed_seconds": 2.9400000130408444e-05,
+      "elapsed_seconds": 3.110000034212135e-05,
       "reason": "PostgreSQL integration not configured"
     },
     {
       "test_id": "tests.test_postgres.PostgresTests.test_rls_restricted_roles_and_cross_tenant_sql",
       "acceptance_ids": [],
       "status": "SKIPPED",
-      "elapsed_seconds": 2.9800001357216388e-05,
+      "elapsed_seconds": 3.639999886217993e-05,
       "reason": "PostgreSQL integration not configured"
     },
     {
       "test_id": "tests.test_product.PersistentProductTests.test_backend_restart_preserves_business_state_and_unknown_key",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.6977160999995249,
+      "elapsed_seconds": 1.6369135000004462,
       "reason": null
     },
     {
       "test_id": "tests.test_product.PersistentProductTests.test_restart_refuses_reseed",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.6758439000004728,
+      "elapsed_seconds": 0.6606716999995115,
       "reason": null
     },
     {
       "test_id": "tests.test_product.PersistentProductTests.test_worker_revoked_approval_cannot_send",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.9945843999994395,
+      "elapsed_seconds": 0.8660589999999502,
       "reason": null
     },
     {
       "test_id": "tests.test_resource_guard.ResourceGuardTests.test_cache_profile_is_bounded_and_keeps_local_cpu_context_controls",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.008254700000179582,
+      "elapsed_seconds": 0.0074397999997017905,
       "reason": null
     },
     {
       "test_id": "tests.test_resource_guard.ResourceGuardTests.test_job_close_kills_process_tree",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.37256730000081006,
+      "elapsed_seconds": 0.3721719999994093,
       "reason": null
     },
     {
       "test_id": "tests.test_resource_guard.ResourceGuardTests.test_job_rejects_large_allocation_in_descendant",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.6366198000014265,
+      "elapsed_seconds": 0.5915659000002051,
       "reason": null
     },
     {
       "test_id": "tests.test_resource_guard.ResourceGuardTests.test_low_disk_ram_commit_or_footprint_refuses",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.00023529999998572748,
+      "elapsed_seconds": 0.000478300000395393,
       "reason": null
     },
     {
       "test_id": "tests.test_resource_guard.ResourceGuardTests.test_singleton_rejects_duplicate_and_recovers_after_close",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.0004484000000957167,
+      "elapsed_seconds": 0.023848500000895,
       "reason": null
     },
     {
       "test_id": "tests.test_resource_guard.ResourceGuardTests.test_status_write_retries_transient_windows_sharing_failure",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.061429100000168546,
+      "elapsed_seconds": 0.058303399999203975,
       "reason": null
     },
     {
@@ -1320,7 +1318,7 @@
         "V03-02"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.6703130999994755,
+      "elapsed_seconds": 0.7741575000000012,
       "reason": null
     },
     {
@@ -1329,7 +1327,7 @@
         "V03-05"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.753765299999941,
+      "elapsed_seconds": 1.1874520999990636,
       "reason": null
     },
     {
@@ -1338,7 +1336,7 @@
         "V03-09"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.805831900001067,
+      "elapsed_seconds": 0.7424408999995649,
       "reason": null
     },
     {
@@ -1347,7 +1345,7 @@
         "V03-09"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.7818454000007478,
+      "elapsed_seconds": 0.7592089000008855,
       "reason": null
     },
     {
@@ -1357,7 +1355,7 @@
         "V03-17"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.711402500000986,
+      "elapsed_seconds": 0.7356997999995656,
       "reason": null
     },
     {
@@ -1366,7 +1364,7 @@
         "V03-11"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.084243700001025,
+      "elapsed_seconds": 1.0440734999992856,
       "reason": null
     },
     {
@@ -1375,7 +1373,7 @@
         "V03-12"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.5978293999996822,
+      "elapsed_seconds": 1.5918722999995225,
       "reason": null
     },
     {
@@ -1384,7 +1382,7 @@
         "V03-13"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.2168008999997255,
+      "elapsed_seconds": 1.1654987999991135,
       "reason": null
     },
     {
@@ -1393,7 +1391,7 @@
         "V03-15"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.9961755999993329,
+      "elapsed_seconds": 0.9921463999999105,
       "reason": null
     },
     {
@@ -1402,7 +1400,7 @@
         "V03-16"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.8741128000001481,
+      "elapsed_seconds": 0.8402815999997983,
       "reason": null
     },
     {
@@ -1411,7 +1409,7 @@
         "V03-18"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.7544730999998137,
+      "elapsed_seconds": 0.7739791000003606,
       "reason": null
     },
     {
@@ -1420,7 +1418,7 @@
         "V03-20"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.2171705999990081,
+      "elapsed_seconds": 1.165888100000302,
       "reason": null
     },
     {
@@ -1429,7 +1427,7 @@
         "T083"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 1.0931773000011162,
+      "elapsed_seconds": 1.1137767000000167,
       "reason": null
     },
     {
@@ -1438,7 +1436,7 @@
         "T065"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 0.00026950000028591603,
+      "elapsed_seconds": 0.0001888999995571794,
       "reason": null
     },
     {
@@ -1447,63 +1445,63 @@
         "T086"
       ],
       "status": "PASSED",
-      "elapsed_seconds": 2.577715100000205,
+      "elapsed_seconds": 2.348002100001395,
       "reason": null
     },
     {
       "test_id": "tests.test_workflows.WorkflowTests.test_live_disabled_has_no_mock_fallback",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.0002781999992294004,
+      "elapsed_seconds": 0.0001885999990918208,
       "reason": null
     },
     {
       "test_id": "tests.test_workflows.WorkflowTests.test_meaningful_clarification_persists_and_resumes",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.9759529999992083,
+      "elapsed_seconds": 0.9313299999994342,
       "reason": null
     },
     {
       "test_id": "tests.test_workflows.WorkflowTests.test_model_cannot_compute_with_unread_or_invented_snapshot",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.8207973000007769,
+      "elapsed_seconds": 1.710031099999469,
       "reason": null
     },
     {
       "test_id": "tests.test_workflows.WorkflowTests.test_resume_rejects_changed_model_identity",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.287498700001379,
+      "elapsed_seconds": 1.2682652000003145,
       "reason": null
     },
     {
       "test_id": "tests.test_workflows.WorkflowTests.test_stale_pending_approval_refresh_requires_new_exact_approval",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 1.6130883999994694,
+      "elapsed_seconds": 1.4818218000000343,
       "reason": null
     },
     {
       "test_id": "tests.test_workspace.WorkspaceTests.test_document_acl_versions_and_injection_remain_data",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.7251267000010557,
+      "elapsed_seconds": 0.6868267999998352,
       "reason": null
     },
     {
       "test_id": "tests.test_workspace.WorkspaceTests.test_policy_role_and_whatif_partial_correlated_shock",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.6978180999994947,
+      "elapsed_seconds": 0.6752174000012019,
       "reason": null
     },
     {
       "test_id": "tests.test_workspace.WorkspaceTests.test_review_corrects_version_and_recalculates_without_cash_duplication",
       "acceptance_ids": [],
       "status": "PASSED",
-      "elapsed_seconds": 0.6952614000001631,
+      "elapsed_seconds": 0.6911305999983597,
       "reason": null
     }
   ],
@@ -2574,7 +2572,7 @@
     {
       "id": "T100",
       "requirement": "source/license manifest и attribution соответствуют включённым файлам и моделям.",
-      "status": "FAILED",
+      "status": "PASSED",
       "tests": [
         "tests.test_governance.GovernanceTests.test_T100_source_manifest_and_dependencies"
       ],

@@ -87,10 +87,9 @@ children with `put()`. Theme: warm ivory/near-black; accent token `--accent`; no
 - Git: repo initialised on the Windows host (`main`), remote `origin` = github.com/IGK-arch/SME-Finance-Copilot
   (private). `.gitattributes` is `* -text` (bytes stored as-is: hashed files/fixtures must not change EOL).
   Git commands run directly from PowerShell on the host; no devbridge needed.
-- Last full run (14 Oct, after UX pass): 176 PASSED, 1 FAILED, 4 SKIPPED (PostgreSQL not configured in that
-  shell). The failure is T100: `AGENTS.md` got an orientation header on 14 Oct, so its hash no longer matches
-  `docs/HANDOFF_INVENTORY.json` (owner to decide: re-hash or revert). T094 PASSED with fresh browser evidence;
-  e2e 21/21; check all PASSED.
+- Last full run (14 Oct, after UX pass): 177 PASSED, 4 SKIPPED (PostgreSQL not configured in that shell);
+  T001–T100: 96 PASSED / 4 NOT_RUN. Owner approved re-hashing `AGENTS.md` (orientation header) in
+  `docs/HANDOFF_INVENTORY.json`. T094 PASSED with fresh browser evidence; e2e 21/21; check all PASSED.
 - 14 Oct UX pass: boot splash, loading/error/not-found states with retry, phone/tablet bottom tab bar (≤860px),
   charts drawn at on-screen width (12px labels, collision-free dates), compact metrics ≤520px, custom file
   picker, owner-facing dates as "Thu 8 Oct" in server texts (`cases._day`), favicon. Verified on a throwaway

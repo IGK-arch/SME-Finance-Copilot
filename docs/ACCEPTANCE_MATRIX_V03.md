@@ -1,7 +1,7 @@
 # Acceptance matrix v0.3 — V03-01…V03-25
 
-Generated from `artifacts/v03/regression-v03.json` (started 2026-10-14T13:58:33.300455+00:00, 181 tests: {'PASSED': 176, 'FAILED': 1, 'SKIPPED': 4}).
-IDs and wording come from the v0.3 audit package; T001–T100 remain in ACCEPTANCE_MATRIX.md (current counts {'PASSED': 95, 'NOT_RUN': 4, 'FAILED': 1}).
+Generated from `artifacts/v03/regression-v03.json` (started 2026-10-14T14:22:23.945370+00:00, 181 tests: {'PASSED': 177, 'SKIPPED': 4}).
+IDs and wording come from the v0.3 audit package; T001–T100 remain in ACCEPTANCE_MATRIX.md (current counts {'PASSED': 96, 'NOT_RUN': 4}).
 DEFERRED (target model) items are model-dependent and are not counted as passed from MOCK runs.
 
 | ID | Priority | Requirement | Status | Evidence | Note |
