@@ -12,7 +12,7 @@
     "artifacts/v03/baseline-regression.json",
     "artifacts/v03/baseline/"
    ],
-   "open": "Git repository not initialised: deletion is disabled in the bridged folder and git needs to remove lock files; owner decision pending"
+   "note": "Git baseline commit aaf467d on main (private GitHub remote), 14 Oct 2026"
   },
   {
    "id": "V03-02",
@@ -181,7 +181,7 @@
     "docs/V03_PLAN.md",
     "docs/adr/0005-v03-owner-main-path.md"
    ],
-   "open": "No Git commit/tag; version label in pyproject still 0.2.0"
+   "note": "Version 0.3.0 in pyproject; history on GitHub main"
   }
  ]
 }

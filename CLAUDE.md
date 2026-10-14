@@ -2,13 +2,13 @@
 
 SME Finance Copilot, Topic E. Local synthetic SME cash workspace: import → facts → snapshot →
 forecast → OR-Tools plan → independent validator → exact owner approval → worker → independent
-sandbox → reconciliation. Version label 0.2.0 in pyproject; code is at the **v0.3 iteration**
+sandbox → reconciliation. Version **0.3.0** (pyproject, FastAPI); code is at the **v0.3 iteration**
 (owner main-path cabinet). Status: PARTIAL, synthetic/sandbox only, MOCK model by default.
 Answer the owner in Russian. Code, UI copy and docs are English unless a doc is `*_RU.md`.
 
 ## Do NOT read unless the task requires it (expensive)
 - `MASTER_SPEC.md` (300 KB), `SME_Finance_Copilot_Master_Spec.docx`, `sources/R*` — original spec.
-- `docs/TECHNICAL_REPORT_RU.md` (100 KB) — describes v0.2.0; this file supersedes it for orientation.
+- `docs/TECHNICAL_REPORT_RU.md` (100 KB) — describes v0.2.0 plus a short "Дополнение: версия 0.3.0" at the top; this file supersedes it for orientation.
 - `SME_Copilot_v0_3_Audit_UX_Package/` — already applied; IDs V03-01…25 live in `checklists/v03_acceptance.json`.
 - `artifacts/*.json` raw runs, `.runtime/`, `.venv/`, `.mypy_cache/`, `__pycache__/`, `web/legacy/`.
 - `docs/LOCAL_14B_*`, `docs/LIVE_MODEL_*`, `docs/AGENT_PLATFORM_RESULTS.md` — historical 14B evaluation.
@@ -74,6 +74,11 @@ children with `put()`. Theme: warm ivory/near-black; accent token `--accent`; no
   hidden — use `get_page_text`/JS measurements, ask the owner for Ctrl+Shift+B when images are needed.
   Hard-reload (`location.reload()`) after CSS/JS changes; restart the server after Python changes.
 
+## Command output (rtk)
+Shell output on this host is condensed by rtk via a hook (matcher `Bash|PowerShell`). `rtk gain` shows token
+savings; `rtk recall` re-reads the full output of a recent command; prefix `rtk proxy <cmd>` only when a result is
+unusable (empty, garbled or contradicting its exit code).
+
 ## Verify (pick the smallest relevant set)
 - Targeted: `{"kind":"module","module":"unittest","args":["tests.test_v03"]}` (~15 s).
 - Full regression incl. PostgreSQL (~150 s): `scripts.test --output artifacts/v03/regression-v03.json`.
@@ -89,12 +94,13 @@ children with `put()`. Theme: warm ivory/near-black; accent token `--accent`; no
   Git commands run directly from PowerShell on the host; no devbridge needed.
 - Last full run (14 Oct, after UX pass): 177 PASSED, 4 SKIPPED (PostgreSQL not configured in that shell);
   T001–T100: 96 PASSED / 4 NOT_RUN. Owner approved re-hashing `AGENTS.md` (orientation header) in
-  `docs/HANDOFF_INVENTORY.json`. T094 PASSED with fresh browser evidence; e2e 21/21; check all PASSED.
+  `docs/HANDOFF_INVENTORY.json`. T094 PASSED with fresh browser evidence; e2e 21/21; check all PASSED. V03: 9 PASSED, 5 PARTIAL,
+  2 EVIDENCE_RECORDED (V03-01 Git, V03-25 release), 6 DEFERRED_MODEL, 3 NOT_RUN.
 - 14 Oct UX pass: boot splash, loading/error/not-found states with retry, phone/tablet bottom tab bar (≤860px),
   charts drawn at on-screen width (12px labels, collision-free dates), compact metrics ≤520px, custom file
   picker, owner-facing dates as "Thu 8 Oct" in server texts (`cases._day`), favicon. Verified on a throwaway
   workspace (`scripts.serve --directory <temp>` on 8091) because the dev token must not be read by Claude.
 - Open: V03-07 server filters for agent reads, V03-21 unrelated-change
   tolerance, V03-22 isolation/backup, alerts ack/debounce, migrate `/legacy` tools (allocation, raw CSV),
-  bump version to 0.3.0 + refresh TECHNICAL_REPORT_RU, usability study. LIVE items wait for the target model.
+  usability study. LIVE items wait for the target model.
 - Plans/decisions: `docs/V03_PLAN.md`, `docs/adr/0005-v03-owner-main-path.md`, `docs/KNOWN_LIMITATIONS.md`.

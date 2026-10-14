@@ -31,6 +31,8 @@ preview and review) and **Settings**. Copilot is a context panel over the real w
 Sign-in creates a server session cookie, so a reload keeps you signed in. The previous cabinet
 remains at `/legacy`. See [the v0.3 plan](docs/V03_PLAN.md),
 [V03 acceptance](docs/ACCEPTANCE_MATRIX_V03.md) and [ADR 0005](docs/adr/0005-v03-owner-main-path.md).
+Version 0.3.0 (14 Oct 2026) adds a UX pass: loading/error states, a bottom tab bar on phones and
+tablets, charts sized to the screen and the owner's logo; layout checked at 390/768/1366/1440 px.
 
 ```powershell
 .venv\Scripts\python.exe -m scripts.e2e_v03     # product path over server + worker + sandbox

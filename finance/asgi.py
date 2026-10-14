@@ -73,7 +73,7 @@ def make_app(
     demo_decision: Callable[[Json], Json] | None = None,
     webhook: tuple[AuthContext, str] | None = None,
 ) -> FastAPI:
-    app = FastAPI(title="SME Finance Copilot", version="0.2.0")
+    app = FastAPI(title="SME Finance Copilot", version="0.3.0")
     root = Path(__file__).resolve().parent.parent / "web"
 
     @app.post("/hooks/sandbox")

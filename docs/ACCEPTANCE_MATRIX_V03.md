@@ -1,12 +1,12 @@
 # Acceptance matrix v0.3 — V03-01…V03-25
 
-Generated from `artifacts/v03/regression-v03.json` (started 2026-10-14T14:22:23.945370+00:00, 181 tests: {'PASSED': 177, 'SKIPPED': 4}).
+Generated from `artifacts/v03/regression-v03.json` (started 2026-10-14T14:43:20.246823+00:00, 181 tests: {'PASSED': 177, 'SKIPPED': 4}).
 IDs and wording come from the v0.3 audit package; T001–T100 remain in ACCEPTANCE_MATRIX.md (current counts {'PASSED': 96, 'NOT_RUN': 4}).
 DEFERRED (target model) items are model-dependent and are not counted as passed from MOCK runs.
 
 | ID | Priority | Requirement | Status | Evidence | Note |
 |---|---|---|---|---|---|
-| V03-01 | R0 | Baseline, Git and hashes | PARTIAL | artifacts/v03/baseline-regression.json<br>artifacts/v03/baseline/ | Git repository not initialised: deletion is disabled in the bridged folder and git needs to remove lock files; owner decision pending |
+| V03-01 | R0 | Baseline, Git and hashes | EVIDENCE_RECORDED | artifacts/v03/baseline-regression.json<br>artifacts/v03/baseline/ |  |
 | V03-02 | R0 | Health backend label and status docs | PASSED | test_V03_02_health_reports_actual_backend |  |
 | V03-03 | R0 | CompletionGate: 'I will do it' is not COMPLETE | DEFERRED (target model) | — |  |
 | V03-04 | R0 | Typed AnswerBundle/evidence for model answers | DEFERRED (target model) | — | UI shows server-typed result cards with evidence refs; model-text validation deferred |
@@ -30,9 +30,9 @@ DEFERRED (target model) items are model-dependent and are not counted as passed 
 | V03-22 | R1 | Isolation, roles, backup | NOT_RUN | — |  |
 | V03-23 | R0 | Browser regression on real backend | PARTIAL | v03_owner_main_path | Manual browser walkthrough recorded; no Playwright runner on this Windows host (PyPI/npm blocked) |
 | V03-24 | R0 | Usability and accessibility | PARTIAL | v03_owner_main_path | Semantic markup, focus, dialog, no page overflow at 390/768/1366/1440 measured; participant study not run |
-| V03-25 | R0 | Updated release evidence | PARTIAL | artifacts/v03/regression-v03.json<br>artifacts/v03/e2e-latest.json<br>artifacts/v03/browser-v03.json<br>docs/V03_PLAN.md<br>docs/adr/0005-v03-owner-main-path.md | No Git commit/tag; version label in pyproject still 0.2.0 |
+| V03-25 | R0 | Updated release evidence | EVIDENCE_RECORDED | artifacts/v03/regression-v03.json<br>artifacts/v03/e2e-latest.json<br>artifacts/v03/browser-v03.json<br>docs/V03_PLAN.md<br>docs/adr/0005-v03-owner-main-path.md |  |
 
-Counts: {'PARTIAL': 7, 'PASSED': 9, 'DEFERRED_MODEL': 6, 'NOT_RUN': 3}
+Counts: {'EVIDENCE_RECORDED': 2, 'PASSED': 9, 'DEFERRED_MODEL': 6, 'NOT_RUN': 3, 'PARTIAL': 5}
 
 ## Product-path E2E (`python -m scripts.e2e_v03`)
 
