@@ -306,7 +306,9 @@ def view(service: ExecutionService, ctx: AuthContext, run_id: str) -> Json:
             "computation": "RESULTS_AVAILABLE"
             if ok_tools
             else ("RUNNING" if phase == "RUNNING" else "NONE"),
-            "narrative": "COMPLETE"
+            "narrative": "PARTIAL"
+            if (state.get("summary") or {}).get("answer_status") == "PARTIAL"
+            else "COMPLETE"
             if text
             else ("WRITING" if phase == "RUNNING" else "NOT_COMPLETED"),
             "execution": (state.get("pending") or [{}])[0].get("kind") or None,

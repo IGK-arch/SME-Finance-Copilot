@@ -1,0 +1,82 @@
+{
+  "source": "artifacts/strata-challenge-diagnostics-cases-20261015.json",
+  "reviewer": "Coding assistant; not independent human review",
+  "scope": "Prose checked against observed results; development review, not a semantic guarantee",
+  "records": [
+    {
+      "case_id": "doc_json_metadata",
+      "status": "COMPLETE",
+      "note": "Correct document term and genuine platform source; fabricated body IDs are not registered."
+    },
+    {
+      "case_id": "doc_compare_versions",
+      "status": "COMPLETE",
+      "note": "Both versions and exact terms/sources; raw numeric quotation repaired."
+    },
+    {
+      "case_id": "doc_title_decoys",
+      "status": "COMPLETE",
+      "note": "Exact final title and 61-day term with observed source; irrelevant drafts excluded."
+    },
+    {
+      "case_id": "doc_money",
+      "status": "MINOR_ISSUE",
+      "note": "Exact 1,250.50 CNY quote and no cash promotion; Russian word kopecks is imprecise for CNY fractional units."
+    },
+    {
+      "case_id": "doc_foreign_id",
+      "status": "COMPLETE",
+      "note": "Correctly reports requested source unavailable in company scope, no unverified ID repeated or foreign lookup."
+    },
+    {
+      "case_id": "plan_min_cost",
+      "status": "MINOR_ISSUE",
+      "note": "Exact computed plan, costs and approvals; loan counterparty lender_v1 is called recipient of loan issuance although company receives the net proceeds."
+    },
+    {
+      "case_id": "what_if_zero_receipt",
+      "status": "COMPLETE",
+      "note": "Exact zero-receipt/30-day parameters, final balance and funding need; no financial mutation."
+    },
+    {
+      "case_id": "what_if_fraction",
+      "status": "COMPLETE",
+      "note": "Exact 12.5 percent/3-day parameters, cashflow and reserve-inclusive need; infeasibility explicit."
+    },
+    {
+      "case_id": "company_access_records",
+      "status": "PARTIAL",
+      "note": "Correct snapshot/account/beneficiary/membership facts, but requested company/policies list route omitted. Membership role/data version is loosely described as company record metadata."
+    },
+    {
+      "case_id": "delivery_records",
+      "status": "FAILED",
+      "note": "All requested operational datasets read, but final draft and one repair retain raw zero literals (finished=0/delivered=0); answer correctly blocked as incomplete. No operation or reserve mutated."
+    },
+    {
+      "case_id": "source_evidence",
+      "status": "COMPLETE",
+      "note": "Raw synthetic CSV structure/minor units described accurately, no malformed prices or fragmented date quotation."
+    },
+    {
+      "case_id": "history_current",
+      "status": "COMPLETE",
+      "note": "Current debt equals latest fact version; old/new sums and sources correctly distinguished, no double-count."
+    },
+    {
+      "case_id": "invoice_pages",
+      "status": "MINOR_ISSUE",
+      "note": "All twelve records, exact cents and total across all pages; informal Russian kopecks wording for CNY fractional units."
+    },
+    {
+      "case_id": "fact_history_ru",
+      "status": "COMPLETE",
+      "note": "Both exact version amounts and genuine sources, current supersession and raw-CSV versus parsed facts distinguished."
+    },
+    {
+      "case_id": "saved_plan_stress_ru",
+      "status": "COMPLETE",
+      "note": "Named baseline and delay scenarios, exact balances/need and synthetic uncalibrated scope; no untested maximum delay inferred."
+    }
+  ]
+}

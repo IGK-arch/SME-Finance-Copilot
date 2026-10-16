@@ -1,0 +1,19 @@
+{
+  "started_at": "2026-10-14T14:55:05.673849+00:00",
+  "finished_at": "2026-10-14T14:55:09.320465+00:00",
+  "scope": "One diagnostic rerun after Windows database cleanup failure; no implementation changes",
+  "test": "tests.test_v03.V03Tests.test_V03_05_background_copilot_shows_results_without_narrative",
+  "tests_run": 1,
+  "actual_tests": [
+    {
+      "test_id": "tests.test_v03.V03Tests.test_V03_05_background_copilot_shows_results_without_narrative",
+      "acceptance_ids": [
+        "V03-05"
+      ],
+      "status": "PASSED",
+      "elapsed_seconds": 2.667019900000014,
+      "reason": null
+    }
+  ],
+  "passed": true
+}

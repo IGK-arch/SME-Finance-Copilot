@@ -30,6 +30,12 @@ def main() -> None:
         require_guard(ROOT)
         info = ChatGateway().describe()
         print(f"Local weights verified: {info['model']} / {info['digest']}", flush=True)
+    elif GatewayConfig.environment().provider == "strata":
+        info = ChatGateway().describe()
+        print(
+            f"Strata instance verified: {info['model']} / engine {info['engine_version']}",
+            flush=True,
+        )
     Config.from_environment()
     directory = Path(args.directory)
     with Runtime(directory, resume=True) as runtime:

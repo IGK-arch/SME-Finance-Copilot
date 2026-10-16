@@ -1,6 +1,149 @@
 # Precise continuation point
 
-## Current completed state — 2026-10-13 00:24 UTC
+<!-- QUALITY-V5-STATUS-START -->
+## Latest checkpoint: 16 Oct 2026 — incomplete evaluation, SSH unavailable
+
+Current contracts: agent-tools-v4 / answer-refs-v5 / answer-quality-v3.
+Last complete EN/ZH run full2: 66 PASS / 8 FAIL (74), on earlier code.
+Current frozen code full5: 20 PASS / 3 FAIL (23/74); transport stopped between cases.
+51 cases remain NOT_RUN in this attempt. No new inference on 16 Oct.
+All 23 available answers reviewed: 19 COMPLETE / 1 PARTIAL / 3 FAILED.
+Review is by the coding assistant, not independent. Remaining failures include
+needless clarification, rejected final formatting, off-topic document answers and
+a missing title despite all 24 documents being read (strict PASS, prose PARTIAL).
+Offline: 230 PASS / 1 sandbox-port setup FAIL / 4 PG SKIP; isolated failed test PASS.
+Targeted tests: 29 PASS; quality: nine PASS. Never replace the recorded full failure.
+85 frozen files verified unchanged; approval/execution/validation and original graders unchanged.
+T001–T100: 96 PASS / 4 NOT_RUN; V03 unchanged. No production-quality claim.
+SSH 195.208.16.1:45161 failed before authentication (missing protocol banner),
+both bridge startup and independent read-only check. Remote model health UNKNOWN.
+Local listeners 18443 and 8092 were absent. No remote restart or fallback.
+After access is restored, continue the 51 remaining case IDs from
+artifacts/quality-v5-enzh-status-20261016.json in explicit sequential segments,
+preserving full5 outcomes and verifying same model/config/code/cases. This is a plan,
+not completed evidence. Do not change runtime during the remaining evaluation.
+See STRATA_QUALITY_V5_STATUS_RU.md, STRATA_QUALITY_V5_PARTIAL_ANSWERS_RU.md,
+TECHNICAL_REPORT_RU.md and the immutable raw artifacts linked there.
+Older dated checkpoints below are historical, including prior running-process claims.
+<!-- QUALITY-V5-STATUS-END -->
+
+## Expanded evaluation, 15 Oct — completed with remaining failures
+
+Read `STRATA_CHALLENGE_RESULTS_RU.md`, `STRATA_CHALLENGE_FIXES_RU.md` and
+`AGENT_CHALLENGE_DESIGN_RU.md`. Full 54 new + 20 original LIVE cases completed:
+67 PASS / 7 FAIL; actual successful coverage 18 tools / 29 datasets. Baseline
+51: 37 -> 46 PASS. Text review retained independent of the strict grader.
+Source cutoff, retrieval, money/ID binding and history semantics have fixes.
+Current answer-refs-v4 excludes raw non-document source text from numeric refs
+and supplies repair diagnostics without a rejected draft. The draft variant
+regressed (8/15), retained as evidence, and was replaced. Full v4 follow-up is
+COMPLETED: 13 PASS / 2 FAIL in `strata-challenge-diagnostics-cases-20261015.json`.
+Read `STRATA_CHALLENGE_FOLLOWUP_RU.md`: company/policies list omission and rejected
+delivery final remain; all latest source hashes match. Cabinet 8092 runs v4 and
+HTTP checks passed in `strata-cabinet-challenge-v4-20261015.json`.
+Final4 offline regression 213 PASS / 4 SKIP, quality nine PASS. Do not upgrade
+V03 or claim unrestricted semantic correctness. The full 74 run uses v2 refs;
+latest v4 must be assessed using its own source hashes and affected-case run.
+
+The sections below are historical checkpoints.
+
+
+## Latest work — 15 Oct completed rerun, semantic limits remain
+
+Read `STRATA_FINAL_SCENARIOS_20261015_RU.md` first: **20 PASS / 0 FAIL** on all
+same 20 synthetic cases; text review **18 COMPLETE / 2 PARTIAL** (assistant review).
+Technical changes and every failed/interrupted attempt: `STRATA_FIXES_20261015_RU.md`.
+Exact-value references, observed IDs, bounded repair, tool-phase completion and
+Strata final-writer protocol are implemented. Financial authorization/execution
+modules and the original scenario grader were not changed.
+
+Full regression 195 PASS / 4 PostgreSQL SKIP (199); target 47 PASS; quality nine PASS.
+Latest raw run `strata-final4-20261015.json` and regression of the same suffix.
+Next quality work: typed semantic claims/AnswerBundle, history version semantics,
+independent holdout and LIVE approval-to-reconciliation acceptance. Do not equate
+exact value substitution or strict PASS with unrestricted financial correctness.
+
+Owner supplied SSH port 45161; pinned key verified. Existing synthetic cabinet
+8092 resumed without seed/reset and health/home/auth checked; bridge 18443.
+See `strata-cabinet-final-20261015.json`. Recheck listeners before reconnecting;
+never print SSH or membership credentials. No weights downloaded, remote model
+restart, owner data access or real payments. All earlier user changes preserved.
+
+The following sections describe earlier checkpoints, not current test counts.
+
+## Latest authorized work — Strata, 14 Oct 2026
+
+The owner requested server inference and scenario tests. Connection and provider
+implementation are complete; read `STRATA_RESULTS_RU.md` for measured outcomes
+and `runbooks/strata.md` for safe restart instructions. The running remote model
+already existed: engine 0.1.43.1 / `qwen3.8-flash-next-iq3_xxs`, RTX 3090, 64 GB.
+Do not reinstall weights or restart the remote service merely to reconnect.
+
+Local authenticated SSH bridge: 127.0.0.1:18443. New synthetic LIVE cabinet:
+127.0.0.1:8092, `.runtime/strata-demo`; its membership file stays private.
+Bridge configuration, PID/log files and optional Paramiko installation are in
+`.runtime/strata-client`. Verify live processes before using a saved PID.
+`SSH_key.txt` is ignored; never print it. No owner data or real payments were used.
+
+Final regression: 184 PASSED / 4 PostgreSQL SKIPPED, nine quality checks PASSED;
+final targeted adapter/gateway/governance tests 16 PASSED. New LIVE reports keep
+all failures and a separate assistant review. Critical finding: model prose
+repeatedly converts money by the wrong scale despite correct tool results.
+Do not close V03-03/04/14 from these connection/reading/proposal tests.
+
+The following documentation-sync checkpoint predates this work.
+
+## Current state — v0.3.0, 14 Oct 2026
+
+Read `../CLAUDE.md` first, then `CURRENT_STATE_RU.md` for the current Russian
+summary, `V03_PLAN.md` and `ACCEPTANCE_MATRIX_V03.md` for scope and priorities.
+Code baseline: `d3e24b6` on `main`; Git was clean before this documentation sync.
+There is now a private origin; old statements below saying there is no Git are historical.
+
+The main cabinet is Home / Money / Plans / Documents / Activity / Settings with
+Copilot as a panel. Financial cases, option comparison, hash-bound action review,
+CSV/XLSX mapping, per-receivable what-if, 8-hour cookie sessions and 24-hour
+real-time TTL for new approvals are implemented. LangGraph, OR-Tools, independent
+validation, queue worker and sandbox reconciliation remain the financial kernel.
+
+Priority: finish the owner path. The 14B model is temporary; model optimisation,
+CompletionGate, narrative validation and LIVE E2E wait for the target model.
+Do not resume the old 14B evaluation merely because of a historical checkpoint.
+
+Verification during this sync:
+
+- `scripts.test --pattern test_v03.py --output artifacts/v03/codex-sync-tests-host-20261014.json`:
+  11 PASSED / 1 FAILED. The background Copilot test encountered WinError 32 while
+  removing its temporary SQLite database. One isolated rerun passed; the cleanup
+  instability remains unresolved. Both reports are preserved.
+- The first restricted-shell run failed all 12 during sandbox startup (loopback
+  denied, WinError 10013); see `codex-sync-tests-20261014.json`, not product failures.
+- `scripts.e2e_v03 --output artifacts/v03/codex-sync-e2e-20261014.json`: 21/21 PASSED,
+  five settled operations, matched reconciliation, restart recovery without duplicates.
+- Saved browser evidence: 6/6 current web hashes match; 11/11 screenshots exist.
+  No new browser walkthrough, full regression, PostgreSQL suite or LIVE model run.
+
+Last full release regression is still `artifacts/v03/regression-v03.json`:
+177 PASSED / 4 SKIPPED (PostgreSQL not configured), T001–T100 96 PASSED / 4 NOT_RUN.
+The release V03 matrix has 9 PASSED / 5 PARTIAL / 2 EVIDENCE_RECORDED /
+6 DEFERRED_MODEL / 3 NOT_RUN. Partial refresh runs do not regenerate that matrix.
+
+Open: V03-07 server read filters, V03-21 unrelated-change tolerance, V03-22
+isolation/backup/roles, alerts ack/debounce, remaining legacy tools, usability,
+background-test cleanup and complete validation of UI context references.
+
+Use Windows `.venv` directly from Codex; devbridge is for the Linux VM. Keep
+`.runtime/pg-workspace` read-only; never seed/reset it. Dev cabinet: v03-dev on 8090;
+test E2E uses a fresh directory under `.runtime/v03-e2e`. Verify live processes
+before relying on any port or PID. No app process or model was started for ongoing
+use by this sync; only short-lived test processes were launched.
+
+## Historical v0.2 checkpoints below
+
+The following records preserve old commands, outcomes and resource incidents.
+Their process IDs, active model choice, priorities and Git statements are not current.
+
+## Historical completed state — 2026-10-13 00:24 UTC
 
 Latest authorized task (more diverse14B tests) is completed:20 distinct scenarios,
 21 attempts,7 immutable raw reports. Read LOCAL_14B_RESULTS.md and

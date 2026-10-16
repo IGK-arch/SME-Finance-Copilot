@@ -16,6 +16,7 @@ private/
 *.pem
 *.key
 *.token
+SSH_key.txt
 artifacts/*.db
 artifacts/*.db-*
 artifacts/**/*.db

@@ -1,0 +1,53 @@
+{
+  "source": "artifacts/strata-challenge-after2-20261015.json",
+  "selected": {
+    "doc_json_metadata": [
+      "rejected_answer_repair_branch"
+    ],
+    "doc_compare_versions": [
+      "rejected_answer_repair_branch"
+    ],
+    "doc_title_decoys": [
+      "rejected_answer_repair_branch"
+    ],
+    "doc_money": [
+      "rejected_answer_repair_branch"
+    ],
+    "doc_foreign_id": [
+      "rejected_answer_repair_branch"
+    ],
+    "plan_min_cost": [
+      "rejected_answer_repair_branch"
+    ],
+    "what_if_zero_receipt": [
+      "rejected_answer_repair_branch"
+    ],
+    "what_if_fraction": [
+      "rejected_answer_repair_branch"
+    ],
+    "company_access_records": [
+      "rejected_answer_repair_branch"
+    ],
+    "delivery_records": [
+      "rejected_answer_repair_branch"
+    ],
+    "source_evidence": [
+      "raw_nondocument_source",
+      "rejected_answer_repair_branch"
+    ],
+    "history_current": [
+      "raw_nondocument_source"
+    ],
+    "invoice_pages": [
+      "rejected_answer_repair_branch"
+    ],
+    "fact_history_ru": [
+      "raw_nondocument_source",
+      "rejected_answer_repair_branch"
+    ],
+    "saved_plan_stress_ru": [
+      "rejected_answer_repair_branch"
+    ]
+  },
+  "scope": "All observed repair branches and non-document source/detail reads from the completed full run; not a full 74-case rerun."
+}

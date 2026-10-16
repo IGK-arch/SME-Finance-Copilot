@@ -1,0 +1,9 @@
+{
+  "disks_free_gib": {
+    "C:/": 6.94,
+    "E:/": 34.18
+  },
+  "evaluation_workspace_mib": 222.61,
+  "challenge_artifacts_mib": 17.62,
+  "new_weights_downloaded": false
+}

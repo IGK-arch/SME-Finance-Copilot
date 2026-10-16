@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "at": "2026-10-14T15:01:54.015460+00:00",
+  "kind": "V03_CONTEXT_AND_DOCUMENTATION_SYNC",
+  "code_head": "d3e24b62fb0f2b5ab840cf8d6d36b3059d50e516",
+  "changed_documents": [
+    "CLAUDE.md",
+    "README.md",
+    "docs/CURRENT_STATE_RU.md",
+    "docs/CONTINUATION.md",
+    "docs/IMPLEMENTATION_STATUS.md",
+    "docs/KNOWN_LIMITATIONS.md",
+    "docs/V03_PLAN.md",
+    "docs/architecture/README.md",
+    "docs/TECHNICAL_REPORT_RU.md"
+  ],
+  "source_hashes": {
+    "finance/cases.py": "aab9d15bac2e0f69e9db3ce2dcc20251308f8edc0c57d33b0e94a94966e14aab",
+    "finance/copilot.py": "107befe7ebc55b78ce2d34bb10d24dcd770897debf1b24b84419661adc395985",
+    "finance/digest_check.py": "8bc033ccf6e856b77e415d81827194638d18075a9bb2f72dd9f6a495ff6a4e49",
+    "finance/mapping.py": "cf498038ea5246048cce0af33d8f95f4650e42f2e2c780f46aa8f8219447f746",
+    "finance/planner.py": "b4594922edd2728835f3ae9be8d8a2c249d51adac0010287098f45d3b9597934",
+    "finance/execution.py": "9f4848fd166942dedd227918b14a02c9e79fed8cfc12c3726f2488bedfe39bd0",
+    "finance/asgi.py": "98881dd903077b04b8e2a5f3227a096a7398a6ff995c7269d6183bfc044eb692",
+    "finance/api.py": "306edb40f857cb35267ac16de1968fcc465472806aca0eee922f080f9e7553bc",
+    "tests/test_v03.py": "1348508a987c83e55594e8ff1cf2d2f6174085035aaf05a50a992793d14cdb6b",
+    "scripts/e2e_v03.py": "85bb6d3b9c7bde5b6996635abe3ffeb2b27bacfc0d05b4ab7e330602cd20e78e",
+    "docs/adr/0005-v03-owner-main-path.md": "937052e770652bf772541f92cd9afa022a475892cf09df908baabdc0d047cde6"
+  },
+  "fresh_runs": [
+    {
+      "path": "artifacts/v03/codex-sync-tests-20261014.json",
+      "sha256": "159b5edc52e5e6c15d2560dd55561d2d57009a5f03b1d7f3a94964d0076054b6",
+      "started_at": "2026-10-14T14:51:59.288100+00:00",
+      "finished_at": "2026-10-14T14:53:05.130001+00:00",
+      "tests_run": 12,
+      "test_counts": {
+        "FAILED": 12
+      },
+      "checks_passed": 0,
+      "checks_total": 0,
+      "passed": null
+    },
+    {
+      "path": "artifacts/v03/codex-sync-tests-host-20261014.json",
+      "sha256": "5959c35092c145630beac95f2add61faf7fffcd84a9a47e814fb086b284d5e71",
+      "started_at": "2026-10-14T14:53:28.316406+00:00",
+      "finished_at": "2026-10-14T14:53:42.880400+00:00",
+      "tests_run": 12,
+      "test_counts": {
+        "PASSED": 11,
+        "FAILED": 1
+      },
+      "checks_passed": 0,
+      "checks_total": 0,
+      "passed": null
+    },
+    {
+      "path": "artifacts/v03/codex-sync-background-rerun-20261014.json",
+      "sha256": "4cf940e98f6792cf41c43f1ab05386387c342a56445a298d469d0f0a8dbff677",
+      "started_at": "2026-10-14T14:55:05.673849+00:00",
+      "finished_at": "2026-10-14T14:55:09.320465+00:00",
+      "tests_run": 1,
+      "test_counts": {
+        "PASSED": 1
+      },
+      "checks_passed": 0,
+      "checks_total": 0,
+      "passed": true
+    },
+    {
+      "path": "artifacts/v03/codex-sync-e2e-20261014.json",
+      "sha256": "f645cbef28c2f54966c0a59feff868a7cffcb14111019be0cfeae625d8230f5d",
+      "started_at": null,
+      "finished_at": null,
+      "tests_run": null,
+      "test_counts": {},
+      "checks_passed": 21,
+      "checks_total": 21,
+      "passed": true
+    }
+  ],
+  "verification": {
+    "relative_file_links_checked": 85,
+    "missing_links": [],
+    "existing_line_endings": [
+      {
+        "file": "CLAUDE.md",
+        "preserved": true
+      },
+      {
+        "file": "README.md",
+        "preserved": true
+      },
+      {
+        "file": "docs/CONTINUATION.md",
+        "preserved": true
+      },
+      {
+        "file": "docs/IMPLEMENTATION_STATUS.md",
+        "preserved": true
+      },
+      {
+        "file": "docs/KNOWN_LIMITATIONS.md",
+        "preserved": true
+      },
+      {
+        "file": "docs/V03_PLAN.md",
+        "preserved": true
+      },
+      {
+        "file": "docs/architecture/README.md",
+        "preserved": true
+      },
+      {
+        "file": "docs/TECHNICAL_REPORT_RU.md",
+        "preserved": true
+      }
+    ],
+    "browser_web_hashes": {
+      "app.js": true,
+      "copilot.js": true,
+      "index.html": true,
+      "pages.js": true,
+      "style.css": true,
+      "ui.js": true
+    },
+    "browser_screenshot_paths": {
+      "v03/browser/copilot-390.jpg": true,
+      "v03/browser/home-390-bottom-nav.jpg": true,
+      "v03/browser/home-gap-1366-crop.png": true,
+      "v03/browser/home-gap-684.jpg": true,
+      "v03/browser/home-warm-theme.jpg": true,
+      "v03/browser/login-warm-theme.jpg": true,
+      "v03/browser/money-chart-1366.jpg": true,
+      "v03/browser/operation-timeline-1366.jpg": true,
+      "v03/browser/plans-options-1366.jpg": true,
+      "v03/browser/plans-warm-theme.jpg": true,
+      "v03/browser/review-approval-1366.jpg": true
+    },
+    "product_code_requirements_unchanged": true,
+    "existing_release_evidence_unchanged": true,
+    "diff_check": {
+      "command": "git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff --check",
+      "exit_code": 0,
+      "output": ""
+    }
+  },
+  "not_run": [
+    "New full regression",
+    "PostgreSQL integration",
+    "LIVE model inference",
+    "New browser interaction",
+    "New quality commands"
+  ],
+  "unresolved": [
+    "Background Copilot test had Windows SQLite cleanup error; isolated rerun passed, no fix verified",
+    "case_id is a generic context hint; action_id without plan_id is ignored",
+    "Legacy approval real-time TTL migration not implemented"
+  ],
+  "scope": "Documentation and fresh synthetic isolated verification; no application code or owner workspace changes"
+}

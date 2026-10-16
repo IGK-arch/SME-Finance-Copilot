@@ -5,21 +5,30 @@ and allocations → F0/F1 forecasts → OR-Tools plan → independent validation
 owner approval → separate execution worker → independent sandbox → reconciliation.
 **DATA: SYNTHETIC · EXECUTION: SANDBOX · MODEL: MOCK by default.**
 
-The ten linked English sections are Overview, Imports & Data Quality,
-Receivables/Payables, Cash Flow, Financing, Plans, Copilot, Approvals & Operations,
-Evidence & Reports and Settings. Chinese text and CNY are supported. Financial
-values come from backend calculations, not frontend fixtures or localStorage.
+Version **0.3.0** has six English sections: Home, Money, Plans, Documents, Activity
+and Settings, with Copilot as a context panel. The previous ten-section cabinet
+remains at `/legacy`. Chinese text and CNY are supported. Financial values come
+from backend calculations, not frontend fixtures or localStorage.
+
+Read [CLAUDE.md](CLAUDE.md) first for navigation and machine-specific instructions.
+The [current Russian overview](docs/CURRENT_STATE_RU.md) records the v0.3 changes,
+verification scope and remaining work.
 
 The agent's current data/tool coverage and approval boundaries are documented in
 [AGENT_CAPABILITIES.md](docs/AGENT_CAPABILITIES.md). It can page through authorized
 records and full details, inspect existing plans and prepare a selected action.
 Human approvals and execution checks remain separate server controls.
 
-The detailed Russian [technical report](docs/TECHNICAL_REPORT_RU.md) covers the
-implemented architecture, data model, workflow/payment transitions, tools,
-operational controls, measured results and remaining limitations.
+An opt-in Strata adapter connects to the owner's existing self-hosted model through
+an authenticated SSH bridge. Setup: [Strata runbook](docs/runbooks/strata.md).
+Measured scenarios and observed answer errors: [Strata results](docs/STRATA_RESULTS_RU.md).
+The default remains MOCK; financial tool success is not proof that model prose is correct.
 
-## v0.3 owner cabinet (13 Oct 2026)
+The detailed Russian [technical report](docs/TECHNICAL_REPORT_RU.md) preserves
+the v0.2 architecture and measurements, with a v0.3 addendum. Its older UI, Git,
+strategy and runtime descriptions are historical; use the current overview above.
+
+## v0.3 owner cabinet (14 Oct 2026)
 
 The cabinet is reorganised around one task: problem → cause → options → choice → exact
 approval → execution → reconciled result. Sections: **Home** (one main problem, metrics,
@@ -42,7 +51,10 @@ tablets, charts sized to the screen and the owner's logo; layout checked at 390/
 ## Start or resume
 
 Use CPython 3.11+ (Windows CPython 3.11.9 was tested; MSYS Python cannot use these
-Windows OR-Tools wheels). From this project directory:
+Windows OR-Tools wheels). The setup commands below are for a **new demo workspace**.
+On this machine the environment already exists: follow CLAUDE.md and resume the
+intended workspace. The owner's `.runtime/pg-workspace` must not be seeded or reset.
+From this project directory:
 
 ```powershell
 py -3.11 -m venv .venv
@@ -69,8 +81,10 @@ The current installed cluster and `.runtime/pg-workspace` are already provisione
 Open [the local cabinet](http://127.0.0.1:8080). Copy the `OWNER` value from that
 workspace's `local-login.secret.json` into **Membership token**. The terminal prints
 its full path. ACCOUNTANT imports/proposes, AUDITOR reads, ADMIN controls the kill
-switch but cannot approve payments. Tokens remain only in page memory; reload
-requires sign-in. Never publish `.runtime`, DSNs, tokens or private world files.
+switch but cannot approve payments. The new cabinet exchanges the token for an
+8-hour server session in an HttpOnly, SameSite=Strict cookie; reload preserves a
+valid session and logout revokes it. Bearer authentication remains for scripts and
+the legacy cabinet. Never publish `.runtime`, DSNs, tokens or private world files.
 
 ## Use the workflow
 
@@ -105,22 +119,32 @@ fixture outcomes, not real lender terms or business/model-quality metrics.
 Set `SME_POSTGRES_TEST_CONFIG=.runtime/postgres/cluster.secret.json` in PowerShell
 before the suite to include actual PostgreSQL integration; otherwise those tests
 are SKIPPED. Tests need loopback networking. Rehearsal uses pinned local wheels if
-`.runtime/wheelhouse` exists. Browser E2E was run through Codex's browser tools;
-`artifacts/browser-smoke.json` identifies its scope and screenshot/source hashes.
-`make e2e` checks that recorded evidence and does not pretend to launch a new browser.
+`.runtime/wheelhouse` exists. Current cabinet browser evidence is
+`artifacts/v03/browser-v03.json`; `artifacts/browser-smoke.json` describes the older
+cabinet. Recorded browser evidence counts only while its web hashes match.
+`make e2e` checks recorded evidence and does not launch a new browser.
+
+Release full regression: **177 PASSED / 4 SKIPPED** (PostgreSQL unavailable in that
+shell), original acceptance **96 PASSED / 4 NOT_RUN**. The 14 Oct Codex refresh
+reran the product E2E: **21/21 PASSED**. Focused v0.3 tests: **11 PASSED / 1 FAILED**
+(Windows temporary database cleanup); an isolated rerun passed. The failure is
+retained, not declared fixed. See [current status](docs/IMPLEMENTATION_STATUS.md).
 
 [Actual status](docs/IMPLEMENTATION_STATUS.md) · [I/T/W matrix](docs/ACCEPTANCE_MATRIX.md)
-· [test evidence](artifacts/test-results.json) · [results](docs/RESULTS.md)
-· [plan](docs/IMPLEMENTATION_PLAN.md) · [continuation](docs/CONTINUATION.md).
-The source checklists, AGENTS.md and R1–R3 remain unchanged; their handoff statuses
-are not rewritten to fabricate progress. Original README: docs/HANDOFF_README.original.md.
+· [v0.3 release regression](artifacts/v03/regression-v03.json) · [results](docs/RESULTS.md)
+· [v0.3 plan](docs/V03_PLAN.md) · [continuation](docs/CONTINUATION.md).
+Source checklists and R1–R3 retain their handoff statuses. The owner-approved
+AGENTS.md orientation header was re-hashed in HANDOFF_INVENTORY.json on 14 Oct.
+Original README: docs/HANDOFF_README.original.md.
 
 ## Scope still open
 
 Full acceptance is **PARTIAL**. Actual FastAPI/Pydantic, OR-Tools, LangGraph,
 PostgreSQL RLS, persistent worker and document retrieval exist. Guarded local
 Ollama inference has run on synthetic tasks; tool use and financial prose still
-have measured failures. The expanded 14B evaluation is recorded in
+have measured failures. The current priority is the owner path; 14B is a temporary
+integration model. LIVE quality work waits for the target model (DEFERRED_MODEL).
+The historical expanded 14B evaluation is recorded in
 [platform results](docs/AGENT_PLATFORM_RESULTS.md), with
 [20 scenario definitions](docs/LOCAL_14B_SCENARIOS.md) and
 [completed 14B results](docs/LOCAL_14B_RESULTS.md): 8/20 strict passes, with narrative

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "-m",
+    "unittest",
+    "tests.test_answers",
+    "tests.test_retrieval_quality",
+    "tests.test_workflows"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "............................\n----------------------------------------------------------------------\nRan 28 tests in 17.570s\n\nOK\n"
+}

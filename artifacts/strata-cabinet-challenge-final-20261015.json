@@ -1,0 +1,82 @@
+{
+  "checked_at": "2026-10-15T12:52:52.128980+00:00",
+  "workspace": ".runtime\\strata-demo",
+  "url": "http://127.0.0.1:8092",
+  "checks": {
+    "/v1/health": {
+      "http_status": 200,
+      "result": {
+        "database": {
+          "backend": "sqlite",
+          "status": "CONNECTED"
+        },
+        "worker": {
+          "status": "RUNNING"
+        },
+        "simulator": {
+          "status": "CONNECTED",
+          "clock": "2026-10-01T00:00:00.000000+00:00"
+        },
+        "model": {
+          "provider": "strata",
+          "model": "qwen3.8-flash-next-iq3_xxs",
+          "mode": "LIVE",
+          "configured": true,
+          "max_steps": 12,
+          "max_tokens": 64000,
+          "timeout_seconds": 120,
+          "max_elapsed_seconds": 240,
+          "max_billed_cost_minor": 0,
+          "context_tokens": 16384,
+          "output_tokens": 2048,
+          "think": false,
+          "execution_device": "self_hosted_server",
+          "batch_tokens": null,
+          "memory_mapped_weights": null
+        }
+      }
+    },
+    "/v1/home": {
+      "http_status": 200,
+      "result": {
+        "keys": [
+          "schema_version",
+          "computed_at",
+          "business_as_of",
+          "snapshot_id",
+          "data_version",
+          "company",
+          "state",
+          "headline",
+          "cta",
+          "problem",
+          "metrics",
+          "chart",
+          "upcoming",
+          "alerts",
+          "transactions",
+          "case",
+          "next_review",
+          "stopped",
+          "quality_flags",
+          "evidence_refs"
+        ]
+      }
+    },
+    "/": {
+      "http_status": 200,
+      "html_present": true
+    },
+    "unauthenticated_home": {
+      "denied": true,
+      "http_status": 401
+    }
+  },
+  "scope": "Existing synthetic workspace resumed; authenticated HTTP reads only. No new model generation, approval, dispatch, seed/reset or browser walkthrough.",
+  "financial_record_counts": {
+    "actions": 0,
+    "approvals": 0,
+    "execution_jobs": 0
+  },
+  "passed": true
+}

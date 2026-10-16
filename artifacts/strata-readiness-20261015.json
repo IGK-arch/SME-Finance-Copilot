@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-15T08:45:03.070360+00:00",
+  "status": "SSH_UNAVAILABLE",
+  "scope": "SSH reachability only; no inference or scenario execution",
+  "host": "195.208.16.1",
+  "port": 40769,
+  "phase": "SSH_BANNER",
+  "error_type": "TimeoutError",
+  "error": "timed out"
+}

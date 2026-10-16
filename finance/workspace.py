@@ -6,9 +6,21 @@ import json
 import re
 import subprocess
 import sys
+import unicodedata
 
 from finance.compute import catalog, eligibility, forecast, metrics
-from finance.domain import AuthContext, FinanceError, Json, canonical, minor, now, require, uid, utc
+from finance.domain import (
+    AuthContext,
+    FinanceError,
+    Json,
+    canonical,
+    digest,
+    minor,
+    now,
+    require,
+    uid,
+    utc,
+)
 from finance.ingestion import parse_row, snapshot
 from finance.store import READ_ROLES, Store
 
@@ -218,12 +230,36 @@ def add_document(
         }
 
 
-def retrieve(store: Store, ctx: AuthContext, query: str, cutoff: str | None = None) -> Json:
+def search_text(value: str) -> str:
+    return (
+        unicodedata.normalize("NFKC", value)
+        .casefold()
+        .replace("ё", "е")
+        .translate(str.maketrans("‐‑‒–—−", "------"))
+    )
+
+
+def retrieve(
+    store: Store, ctx: AuthContext, query: str, cutoff: str | None = None, offset: int = 0
+) -> Json:
     require(
         isinstance(query, str) and 1 <= len(query) <= 200, "INVALID_QUERY", "Search text required"
     )
-    cutoff = utc(cutoff or store.company(ctx)["clock"])
-    terms = re.findall(r"\w+", query.casefold())
+    clock = store.company(ctx)["clock"]
+    cutoff = utc(cutoff or clock)
+    require(cutoff <= clock, "POLICY_DENIED", "Future observation cutoff is not allowed")
+    require(
+        type(offset) is int and 0 <= offset <= 10000000,
+        "INVALID_QUERY",
+        "Bounded search offset required",
+    )
+    normalized = search_text(query)
+    terms = list(dict.fromkeys(re.findall(r"\w+", normalized)))
+    # Character bigrams support Chinese lexical matching; this is not embeddings
+    # or semantic search. Keep original evidence text unchanged in the response.
+    for segment in re.findall(r"[\u3400-\u9fff]{2,}", normalized):
+        terms += [segment[i : i + 2] for i in range(len(segment) - 1)]
+    terms = list(dict.fromkeys(terms))
     hits = []
     with store.connect() as db:
         store.authorize(db, ctx)
@@ -234,26 +270,51 @@ def retrieve(store: Store, ctx: AuthContext, query: str, cutoff: str | None = No
         for row in rows:
             if ctx.role not in json.loads(row["read_roles"]):
                 continue
-            for number, line in enumerate(row["text_content"].splitlines(), 1):
-                score = sum(term in line.casefold() for term in terms)
+            title = search_text(row["title"])
+            title_score = sum(term in title for term in terms)
+            exact_title = normalized == title
+            lines = row["text_content"].splitlines()
+            for number, line in enumerate(lines, 1):
+                normalized_line = search_text(line)
+                matched = [term for term in terms if term in normalized_line]
+                score = len(matched) + 3 * title_score + (20 if exact_title else 0)
+                # Title-only matches get one useful body excerpt, not a duplicate
+                # for every unrelated line. Text hits retain line-level provenance.
+                if not matched and number != 1:
+                    continue
                 if score:
+                    # Preserve original text; compatibility normalization can make
+                    # the estimated matching window differ slightly in position.
+                    position = min((normalized_line.find(t) for t in matched), default=0)
+                    start = max(0, min(len(line) - 1200, position - 200))
                     hits.append(
                         {
+                            "record_id": row["document_id"] + ":" + str(row["version"]),
                             "document_id": row["document_id"],
                             "version": row["version"],
                             "source_id": row["source_id"],
                             "title": row["title"],
                             "line": number,
-                            "excerpt": line[:1200],
+                            "excerpt": line[start : start + 1200],
+                            "excerpt_start": start,
+                            "excerpt_truncated": start > 0 or len(line) > start + 1200,
                             "score": score,
                             "trust": "UNTRUSTED_DATA",
                         }
                     )
+    ranked = sorted(hits, key=lambda h: (-h["score"], h["document_id"], h["line"]))
     return {
         "mode": "LEXICAL_FULL_TEXT",
+        "search_fields": ["title", "text"],
+        "normalization": "NFKC, casefold, е/ё, dash variants; Chinese character bigrams",
         "semantic_search": False,
         "cutoff": cutoff,
-        "hits": sorted(hits, key=lambda h: -h["score"])[:20],
+        "hits": ranked[offset : offset + 20],
+        "total_hits": len(ranked),
+        "offset": offset,
+        "next_offset": offset + 20 if offset + 20 < len(ranked) else None,
+        "collection_hash": digest(ranked),
+        "scope": "Latest observed version per document; lexical matches, not semantic truth. Excerpts may be partial; read the record or source for full context.",
     }
 
 

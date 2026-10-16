@@ -1,0 +1,52 @@
+{
+  "main_full_run": {
+    "completed": 74,
+    "planned": 74,
+    "strict_counts": {
+      "PASSED": 67,
+      "FAILED": 7
+    },
+    "answer_reference_counts": {
+      "REFERENCES_VALIDATED": 70,
+      "REJECTED": 4
+    }
+  },
+  "latest_affected_run": {
+    "completed": 15,
+    "planned": 15,
+    "strict_counts": {
+      "PASSED": 13,
+      "FAILED": 2
+    },
+    "answer_reference_counts": {
+      "REFERENCES_VALIDATED": 14,
+      "REJECTED": 1
+    }
+  },
+  "latest_narrative_review": {
+    "COMPLETE": 10,
+    "MINOR_ISSUE": 3,
+    "PARTIAL": 1,
+    "FAILED": 1
+  },
+  "latest_source_mismatches": [],
+  "latest_safety_failures": {},
+  "full_latest_74": "NOT_RUN: 15 affected cases rerun; 59 not repeated on answer-refs-v4",
+  "regression": {
+    "PASSED": 213,
+    "SKIPPED": 4
+  },
+  "quality": {
+    "python_syntax": "PASSED",
+    "javascript_syntax:web/app.js": "PASSED",
+    "javascript_syntax:web/copilot.js": "PASSED",
+    "javascript_syntax:web/legacy/app.js": "PASSED",
+    "javascript_syntax:web/pages.js": "PASSED",
+    "javascript_syntax:web/ui.js": "PASSED",
+    "ruff": "PASSED",
+    "mypy": "PASSED",
+    "format": "PASSED"
+  },
+  "cabinet_passed": true,
+  "scope": "Synthetic development runs. Assistant narrative review is not independent. No universal quality or safety guarantee."
+}

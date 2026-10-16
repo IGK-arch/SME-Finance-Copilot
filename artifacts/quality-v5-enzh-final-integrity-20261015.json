@@ -1,0 +1,28 @@
+{
+  "run_status": "RUNNING",
+  "completed": 1,
+  "planned": 74,
+  "unique_completed": 1,
+  "language_counts": {
+    "en": 54,
+    "zh": 20
+  },
+  "criteria_or_fixture_changes": [],
+  "protected_files_unchanged_since_task_start": {
+    "finance/execution.py": true,
+    "finance/worker.py": true,
+    "finance/validation.py": true,
+    "finance/digest_check.py": true,
+    "finance/planner.py": true,
+    "scripts/agent_eval.py": true,
+    "scripts/agent_scenarios.py": true,
+    "scripts/live_compare.py": true
+  },
+  "frozen_file_count": 85,
+  "changed_since_freeze": [],
+  "same_model_identity": true,
+  "same_configuration": true,
+  "review_records": 0,
+  "review_counts": {},
+  "scope": "Translations intentionally change prompts; scores are not a controlled same-prompt comparison. Protected hashes do not alone prove safety; see per-case assertions."
+}

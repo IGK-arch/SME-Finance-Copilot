@@ -1,0 +1,1207 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-10-15T11:21:48.816917+00:00",
+  "finished_at": "2026-10-15T11:21:52.609630+00:00",
+  "command": "python -m scripts.test --pattern test_retrieval_quality.py",
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "tests_run": 6,
+  "test_counts": {
+    "FAILED": 6
+  },
+  "acceptance_counts": {
+    "NOT_RUN": 99,
+    "PASSED": 1
+  },
+  "actual_tests": [
+    {
+      "test_id": "tests.test_retrieval_quality.RetrievalQualityTests.test_chinese_numbers_and_quoted_currency_keep_units",
+      "acceptance_ids": [],
+      "status": "FAILED",
+      "elapsed_seconds": 0.020306000000346103,
+      "reason": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 57, in testPartExecutor\n    yield\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 623, in run\n    self._callTestMethod(testMethod)\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 579, in _callTestMethod\n    if method() is not None:\n       ^^^^^^^^\n  File \"E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\tests\\test_retrieval_quality.py\", line 64, in test_chinese_numbers_and_quoted_currency_keep_units\n    self.assertIn(\"23\", by_value)\nAssertionError: '23' not found in {'250.50': 'v0', '2,345': 'v1', '67': 'v2'}\n"
+    },
+    {
+      "test_id": "tests.test_retrieval_quality.RetrievalQualityTests.test_future_source_id_does_not_bypass_observation_cutoff",
+      "acceptance_ids": [],
+      "status": "FAILED",
+      "elapsed_seconds": 1.5398588000007294,
+      "reason": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 57, in testPartExecutor\n    yield\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 623, in run\n    self._callTestMethod(testMethod)\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 579, in _callTestMethod\n    if method() is not None:\n       ^^^^^^^^\n  File \"E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\tests\\test_retrieval_quality.py\", line 19, in test_future_source_id_does_not_bypass_observation_cutoff\n    with self.assertRaises(FinanceError):\nAssertionError: FinanceError not raised\n"
+    },
+    {
+      "test_id": "tests.test_retrieval_quality.RetrievalQualityTests.test_history_is_not_aggregated_as_current_debt",
+      "acceptance_ids": [],
+      "status": "FAILED",
+      "elapsed_seconds": 0.626941499998793,
+      "reason": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 57, in testPartExecutor\n    yield\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 623, in run\n    self._callTestMethod(testMethod)\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 579, in _callTestMethod\n    if method() is not None:\n       ^^^^^^^^\n  File \"E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\tests\\test_retrieval_quality.py\", line 51, in test_history_is_not_aggregated_as_current_debt\n    self.assertNotIn(\"amount_minor\", history[\"field_totals\"])\nAssertionError: 'amount_minor' unexpectedly found in {'amount_minor': 17500000}\n"
+    },
+    {
+      "test_id": "tests.test_retrieval_quality.RetrievalQualityTests.test_search_pages_have_no_duplicates_and_stable_total",
+      "acceptance_ids": [],
+      "status": "FAILED",
+      "elapsed_seconds": 0.7817114999998012,
+      "reason": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 57, in testPartExecutor\n    yield\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 623, in run\n    self._callTestMethod(testMethod)\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 579, in _callTestMethod\n    if method() is not None:\n       ^^^^^^^^\n  File \"E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\tests\\test_retrieval_quality.py\", line 39, in test_search_pages_have_no_duplicates_and_stable_total\n    second = retrieve(r.store, r.ctx, \"PAGEDOC\", offset=first[\"next_offset\"])\n                                                        ~~~~~^^^^^^^^^^^^^^^\nKeyError: 'next_offset'\n"
+    },
+    {
+      "test_id": "tests.test_retrieval_quality.RetrievalQualityTests.test_source_reference_cannot_be_labeled_as_customer",
+      "acceptance_ids": [],
+      "status": "FAILED",
+      "elapsed_seconds": 0.0016476000000693602,
+      "reason": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 57, in testPartExecutor\n    yield\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 623, in run\n    self._callTestMethod(testMethod)\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 579, in _callTestMethod\n    if method() is not None:\n       ^^^^^^^^\n  File \"E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\tests\\test_retrieval_quality.py\", line 78, in test_source_reference_cannot_be_labeled_as_customer\n    self.assertEqual(answers.render(\"От клиента {{v0}}.\", refs)[\"status\"], \"REJECTED\")\nAssertionError: 'REFERENCES_VALIDATED' != 'REJECTED'\n- REFERENCES_VALIDATED\n+ REJECTED\n\n"
+    },
+    {
+      "test_id": "tests.test_retrieval_quality.RetrievalQualityTests.test_title_unicode_and_long_line_hits_are_usable",
+      "acceptance_ids": [],
+      "status": "FAILED",
+      "elapsed_seconds": 0.6656296999990445,
+      "reason": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 57, in testPartExecutor\n    yield\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 623, in run\n    self._callTestMethod(testMethod)\n  File \"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\unittest\\case.py\", line 579, in _callTestMethod\n    if method() is not None:\n       ^^^^^^^^\n  File \"E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\tests\\test_retrieval_quality.py\", line 25, in test_title_unicode_and_long_line_hits_are_usable\n    hit = retrieve(r.store, r.ctx, \"Березка–Сервис\")[\"hits\"][0]\n          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^\nIndexError: list index out of range\n"
+    }
+  ],
+  "supplemental_checks": [
+    {
+      "test_id": "browser.v03_owner_main_path",
+      "acceptance_ids": [
+        "T094",
+        "V03-23",
+        "V03-10",
+        "V03-11",
+        "V03-12",
+        "V03-15",
+        "V03-16",
+        "V03-24"
+      ],
+      "status": "PASSED",
+      "at": "2026-10-14T13:58:00Z",
+      "scope": "Built-in browser pane on the user's Windows host, real backend (FastAPI + SQLite v03-dev workspace + queue worker + independent sandbox), MOCK model. Interactions were real clicks/typing except the file chooser, filled via DataTransfer on the same input change handler. Screenshots: two captured before the pane was hidden; other routes recorded as page text. No real money; synthetic sandbox only. Not a Playwright runner. 14 Oct: warm editorial theme re-rendered and re-measured on Home, Plans and Sign-in.",
+      "checks": {
+        "home_names_gap_date_amount_and_cta": true,
+        "chinese_names_and_cny_amounts_rendered": true,
+        "options_compared_executable_infeasible_conditional": true,
+        "review_dialog_blocks_before_due_with_reason": true,
+        "exact_approval_checkbox_and_specific_button": true,
+        "lost_response_single_attempt_and_settled_timeline": true,
+        "session_survives_reload_and_server_restart": true,
+        "copilot_cards_separate_from_model_text": true,
+        "import_mapping_ambiguity_flagged_and_review_unblocks": true,
+        "no_horizontal_overflow_390_768_1366_1440": true,
+        "all_form_fields_labelled": true,
+        "contrast_pairs_at_least_4_5": true,
+        "no_unexpected_console_errors": true
+      },
+      "contrast": {
+        "muted on bg": 6.26,
+        "muted on surface-2": 5.67,
+        "primary button": 17.5,
+        "accent badge": 5.24,
+        "warn badge": 6.31,
+        "good badge": 6.44,
+        "bad badge": 5.87,
+        "nav active": 17.5
+      },
+      "webHashes": {
+        "app.js": "88573a13a97df66156d3b0c68db49329864f9ba21a08b0f391a1244565151b6b",
+        "copilot.js": "0458bad397400fc93d5347cb85d13b1320ce83a13e4ce094eee0931beb3c1aac",
+        "index.html": "5a5084a4f9101dd552f62a98f3ed59231ab0649e8083b7fbe90bfb3f1d487fb3",
+        "pages.js": "7c2d7707ba4fa5c7484b12b5174f2b9eb378c7ab865f1e514669245b9af4c6f1",
+        "style.css": "6efcba357389d6784c4dd7bfd3e16de8f5e5395827e16957b70acd3b46e5f9d7",
+        "ui.js": "9cf811def391597cd05b0ddd5df29fba3b38e3a1ae4e9923cacff1f075dc8f14"
+      },
+      "screenshots": [
+        "v03/browser/copilot-390.jpg",
+        "v03/browser/home-390-bottom-nav.jpg",
+        "v03/browser/home-gap-1366-crop.png",
+        "v03/browser/home-gap-684.jpg",
+        "v03/browser/home-warm-theme.jpg",
+        "v03/browser/login-warm-theme.jpg",
+        "v03/browser/money-chart-1366.jpg",
+        "v03/browser/operation-timeline-1366.jpg",
+        "v03/browser/plans-options-1366.jpg",
+        "v03/browser/plans-warm-theme.jpg",
+        "v03/browser/review-approval-1366.jpg"
+      ],
+      "baseline_screenshots": [
+        "v03/baseline/overview-607.jpg",
+        "v03/baseline/overview-1366.png"
+      ],
+      "limitations": [
+        "No participant usability study",
+        "Screenshots limited while the browser pane was hidden",
+        "No automated Playwright trace (registries blocked on this host)"
+      ],
+      "console_note": "One expected 401 on /v1/home before sign-in (session probe); no other console errors observed",
+      "theme_rechecked_at": "2026-10-14T11:42:02Z",
+      "ux_pass_at": "2026-10-14T13:58:00Z",
+      "ux_pass": "14 Oct UX pass on a fresh throwaway workspace (port 8091, MOCK, synthetic sandbox): every route (Home, Money, Plans, review dialog, Documents wizard, Activity + operation timeline, Settings, Copilot panel, sign-in, page-not-found) opened in the built-in browser pane. Measured document scrollWidth == clientWidth and no element past the viewport edge (tables and charts scroll inside their own wrappers) at 390, 768, 1366 and 1440 px; Copilot scroll area has no horizontal overflow at 390/768/1440. Real clicks through JS: options computed, plan selected, sandbox clock advanced, two exact approvals (one with simulated lost response), import wizard with an ambiguous date flagged. Wrong-token sign-in shows the inline error. No console errors besides the expected 401 session probe."
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "T001",
+      "requirement": "корректный CSV импортируется; сумма движений согласуется с остатком.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T002",
+      "requirement": "повтор того же файла не меняет balances/обязательства второй раз.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T003",
+      "requirement": "одинаковые external IDs у разных providers не склеиваются.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T004",
+      "requirement": "одинаковые IDs у разных tenants не создают cross-tenant связи.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T005",
+      "requirement": "повреждённая строка попадает в quarantine с причиной, остальные обрабатываются по политике.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T006",
+      "requirement": "неизвестная схема возвращает UNSUPPORTED_SCHEMA, без ложного success.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T007",
+      "requirement": "частичная оплата уменьшает outstanding только на фактическую сумму.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T008",
+      "requirement": "один платёж может корректно закрыть несколько обязательств.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T009",
+      "requirement": "сумма allocations не превышает сумму платежа.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T010",
+      "requirement": "переплата остаётся явным credit/unallocated balance, а не исчезает.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T011",
+      "requirement": "unmatched transaction сохраняется в cash history.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T012",
+      "requirement": "corrected/red invoice связывается с исходником и не дублирует деньги.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T013",
+      "requirement": "commission/refund/settlement считаются согласованно, без двойной выручки.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T014",
+      "requirement": "разные валюты не складываются как одна сумма.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T015",
+      "requirement": "округление fees и процентов воспроизводимо в minor units.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T016",
+      "requirement": "поздно полученное событие не видно в прошлом snapshot.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T017",
+      "requirement": "исправление факта сохраняет прежнюю версию и evidence.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T018",
+      "requirement": "неполная выписка создаёт quality flag, а не искусственную проводку.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T019",
+      "requirement": "конфликт суммы/даты/получателя требует review критичного поля.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T020",
+      "requirement": "перестановка независимых строк не меняет итоговый financial state.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T021",
+      "requirement": "invoice_date не создаёт cash receipt до фактической/сценарной оплаты.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T022",
+      "requirement": "обязательство и residual forecast не учитываются дважды.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T023",
+      "requirement": "неоплаченный счёт не исключается из обучающего survival набора как будто его нет.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No trained survival dataset/model in this milestone",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T024",
+      "requirement": "прогноз overdue invoice условен на отсутствие оплаты до текущей даты.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T025",
+      "requirement": "частичный платёж уменьшает последующее прогнозируемое поступление.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T026",
+      "requirement": "счета одного клиента получают общий сценарный shock.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T027",
+      "requirement": "morning payment не финансируется evening receipt того же дня.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T028",
+      "requirement": "forecast включает repayment после основного UI-горизонта.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T029",
+      "requirement": "sparse history использует явно маркированный fallback.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T030",
+      "requirement": "сценарная частота не выводится как «вероятность банкротства».",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T031",
+      "requirement": "временная валидация не использует признаки после cutoff.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No training/temporal-validation pipeline; observed cutoff is covered by T016",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T032",
+      "requirement": "компании holdout не попадают в обучение через invoice-level split.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No training/company-holdout pipeline or downloaded dataset",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T033",
+      "requirement": "изменённый snapshot инвалидирует зависимый forecast cache.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T034",
+      "requirement": "недостаток бухгалтерских данных блокирует неподтверждённый P&L.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T035",
+      "requirement": "объяснение метрик ссылается на правильные calculation IDs.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T036",
+      "requirement": "eligibility UNKNOWN сохраняет missing fields, не становится PASS.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T037",
+      "requirement": "заведомое несоответствие выдаёт FAIL с источником условия.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T038",
+      "requirement": "дешёвый продукт с поздней выдачей исключается из закрытия раннего дефицита.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T039",
+      "requirement": "upfront fee учитывается в чистом поступлении.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T040",
+      "requirement": "график долга включает проценты, комиссии и остаток principal.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T041",
+      "requirement": "factoring не создаёт двойного прихода от invoice и advance.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T042",
+      "requirement": "устаревшая quote требует обновления/пересогласования.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T043",
+      "requirement": "неподтверждённая extension не изменяет due_date.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T044",
+      "requirement": "loan application не увеличивает current cash.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T045",
+      "requirement": "solver не нарушает protected salary ради уменьшения cost.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T046",
+      "requirement": "hard reserve не превращается в soft penalty без согласия.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T047",
+      "requirement": "FEASIBLE не отображается как OPTIMAL.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T048",
+      "requirement": "UNKNOWN не отображается как INFEASIBLE.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T049",
+      "requirement": "независимый validator обнаруживает искусственно испорченный план.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T050",
+      "requirement": "отсутствующий допустимый план объясняет конфликт без выдуманного решения.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T051",
+      "requirement": "contingent branch активируется только наблюдаемым подтверждением.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T052",
+      "requirement": "решение не меняется от скрытого будущего при одинаковых наблюдениях.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T053",
+      "requirement": "план содержит нециклические зависимости и completion predicates.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T054",
+      "requirement": "no-debt вариант сравнивается, но не выдумывается при невозможности.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T055",
+      "requirement": "what-if меняет scenario, но не actual facts без отдельного workflow.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T056",
+      "requirement": "неизвестное название инструмента отвергается allowlist.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T057",
+      "requirement": "аргумент SQL/shell не исполняется как код.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T058",
+      "requirement": "prompt injection в PDF не меняет policy и tool permissions.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T059",
+      "requirement": "подмена банковских реквизитов требует новой beneficiary version и approval.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T060",
+      "requirement": "cross-tenant API request получает отказ независимо от текста prompt.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T061",
+      "requirement": "cross-tenant retrieval не возвращает документы/embeddings.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T062",
+      "requirement": "кэш с чужим tenant или policy scope не используется.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T063",
+      "requirement": "LLM output invalid JSON проходит bounded repair или явный failure.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T064",
+      "requirement": "schema-valid, но экономически неверная сумма отклоняется доменным validator.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T065",
+      "requirement": "превышение call/time/cost budget завершает этап контролируемо.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T066",
+      "requirement": "outage LLM не разрешает обход approval или policy.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T067",
+      "requirement": "fallback provider не получает запрещённые данные.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T068",
+      "requirement": "секреты отсутствуют в prompt, клиентском bundle и логах.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T069",
+      "requirement": "пользовательская фраза не меняет постоянную политику без подтверждения.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T070",
+      "requirement": "объяснение не обещает банковское одобрение или гарантированную доходность.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T071",
+      "requirement": "action без approval не отправляется.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T072",
+      "requirement": "истёкший/revoked approval не используется.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T073",
+      "requirement": "изменённый payload не проходит approval hash check.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T074",
+      "requirement": "тот же idempotency key и payload возвращают прежнее logical action.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T075",
+      "requirement": "тот же key и другой payload дают conflict.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T076",
+      "requirement": "две параллельные команды не расходуют один бюджет дважды.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T077",
+      "requirement": "crash после commit до dispatch не теряет outbox event.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T078",
+      "requirement": "повтор outbox delivery не создаёт вторую внешнюю операцию.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T079",
+      "requirement": "crash после отправки до сохранения ответа восстанавливается через status lookup.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T080",
+      "requirement": "timeout переводит в UNKNOWN, не в подтверждённый FAILED.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T081",
+      "requirement": "UNKNOWN удерживает необходимый резерв до безопасного reconciliation.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T082",
+      "requirement": "поздний settlement закрывает резерв и ledger ровно один раз.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T083",
+      "requirement": "повторный webhook не дублирует проводку.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T084",
+      "requirement": "out-of-order event не откатывает SETTLED в SUBMITTED.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T085",
+      "requirement": "provider hold и внутренний резерв не вычитаются дважды.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T086",
+      "requirement": "LangGraph resume не создаёт новую логическую оплату.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T087",
+      "requirement": "partial execution сохраняет проведённые действия при replan.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T088",
+      "requirement": "kill switch блокирует новые sends, но позволяет читать статус и сверять.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T089",
+      "requirement": "отмена плана не притворяется отменой уже отправленного платежа.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T090",
+      "requirement": "операция владельца вне Copilot обнаруживается refresh/reconciliation и влияет на план.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T091",
+      "requirement": "изменение data source приводит к новому snapshot и видимой причине пересчёта.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T092",
+      "requirement": "materiality/debounce не скрывает обязательную pre-execution проверку.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T093",
+      "requirement": "пользователь видит различие actual/scenario и confirmed/expected cash.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T094",
+      "requirement": "английский UI корректно отображает китайские строки, суммы и валюту.",
+      "status": "PASSED",
+      "tests": [
+        "browser.v03_owner_main_path"
+      ],
+      "reason": null,
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T095",
+      "requirement": "полный golden path проходит из чистого окружения без ручной правки БД.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T096",
+      "requirement": "evaluator определяет успех по WorldState, не по словам агента.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T097",
+      "requirement": "агент не читает private truth files, seeds и labels.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "Observation capability is scoped but private files are not OS/container isolated from local administrators",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T098",
+      "requirement": "baseline/full используют одинаковые наблюдения и внешние сценарии.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T099",
+      "requirement": "отчёт различает PASSED, FAILED, SKIPPED и NOT_RUN без фиктивных значений.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    },
+    {
+      "id": "T100",
+      "requirement": "source/license manifest и attribution соответствуют включённым файлам и моделям.",
+      "status": "NOT_RUN",
+      "tests": [],
+      "reason": "No executable acceptance implementation",
+      "scope": "Synthetic local milestone; see docs/KNOWN_LIMITATIONS.md"
+    }
+  ],
+  "v03_acceptance": [
+    {
+      "id": "V03-01",
+      "priority": "R0",
+      "requirement": "Baseline, Git and hashes",
+      "status": "EVIDENCE_RECORDED",
+      "tests": [],
+      "evidence": [
+        "artifacts/v03/baseline-regression.json",
+        "artifacts/v03/baseline/"
+      ],
+      "note": null
+    },
+    {
+      "id": "V03-02",
+      "priority": "R0",
+      "requirement": "Health backend label and status docs",
+      "status": "NOT_RUN",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-03",
+      "priority": "R0",
+      "requirement": "CompletionGate: 'I will do it' is not COMPLETE",
+      "status": "DEFERRED_MODEL",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-04",
+      "priority": "R0",
+      "requirement": "Typed AnswerBundle/evidence for model answers",
+      "status": "DEFERRED_MODEL",
+      "tests": [],
+      "evidence": [],
+      "note": "UI shows server-typed result cards with evidence refs; model-text validation deferred"
+    },
+    {
+      "id": "V03-05",
+      "priority": "R0",
+      "requirement": "Result-first UI: computation visible without narrative",
+      "status": "NOT_RUN",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-06",
+      "priority": "R0",
+      "requirement": "Skills and scoped tools reduce steps",
+      "status": "DEFERRED_MODEL",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-07",
+      "priority": "R0",
+      "requirement": "SQL filters/pagination for agent reads",
+      "status": "NOT_RUN",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-08",
+      "priority": "R0",
+      "requirement": "Model latency profiling",
+      "status": "DEFERRED_MODEL",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-09",
+      "priority": "R0",
+      "requirement": "Financial case keeps context; no second ledger",
+      "status": "NOT_RUN",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-10",
+      "priority": "R0",
+      "requirement": "Home redesign names problem, date, next action",
+      "status": "PARTIAL",
+      "tests": [
+        "browser.v03_owner_main_path"
+      ],
+      "evidence": [],
+      "note": "30-second usability test with participants not run"
+    },
+    {
+      "id": "V03-11",
+      "priority": "R0",
+      "requirement": "Plans: executable / conditional / infeasible with gross/net/repayment/scenario scope",
+      "status": "PASSED",
+      "tests": [
+        "browser.v03_owner_main_path"
+      ],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-12",
+      "priority": "R0",
+      "requirement": "Exact approval and timeline; UNKNOWN has no blind retry",
+      "status": "PASSED",
+      "tests": [
+        "browser.v03_owner_main_path"
+      ],
+      "evidence": [
+        "artifacts/v03/e2e-latest.json (passed)"
+      ],
+      "note": null
+    },
+    {
+      "id": "V03-13",
+      "priority": "R0",
+      "requirement": "Planner objectives: PRESERVE distinct, HIGHER with target/price trade-off",
+      "status": "NOT_RUN",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-14",
+      "priority": "R0",
+      "requirement": "LIVE end-to-end browser→graph→approval→worker→sandbox→reconcile",
+      "status": "DEFERRED_MODEL",
+      "tests": [],
+      "evidence": [
+        "artifacts/v03/e2e-latest.json (passed)"
+      ],
+      "note": "Product path verified by scripts.e2e_v03 without a model decision; LIVE agent from a free-form request deferred to the target model"
+    },
+    {
+      "id": "V03-15",
+      "priority": "R0",
+      "requirement": "Server session survives refresh; revoke/roles; no localStorage bearer",
+      "status": "PARTIAL",
+      "tests": [
+        "browser.v03_owner_main_path"
+      ],
+      "evidence": [],
+      "note": "HTTPS Secure cookie applies only behind TLS; loopback dev uses HttpOnly+SameSite=Strict"
+    },
+    {
+      "id": "V03-16",
+      "priority": "R1",
+      "requirement": "Flexible CSV/XLSX mapping, review, provenance",
+      "status": "PASSED",
+      "tests": [
+        "browser.v03_owner_main_path"
+      ],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-17",
+      "priority": "R1",
+      "requirement": "Alerts with dedup",
+      "status": "NOT_RUN",
+      "tests": [],
+      "evidence": [],
+      "note": "Detection is a deterministic projection with first-seen dedup; no debounce scheduler or acknowledgements yet"
+    },
+    {
+      "id": "V03-18",
+      "priority": "R1",
+      "requirement": "Per-invoice what-if",
+      "status": "NOT_RUN",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-19",
+      "priority": "R1",
+      "requirement": "Chinese retrieval holdout",
+      "status": "DEFERRED_MODEL",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-20",
+      "priority": "R1",
+      "requirement": "Real-time approval TTL",
+      "status": "NOT_RUN",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-21",
+      "priority": "R1",
+      "requirement": "Partial replan / stale checks",
+      "status": "NOT_RUN",
+      "tests": [],
+      "evidence": [],
+      "note": "Existing STALE_PLAN/STALE_SNAPSHOT checks plus server-side hash re-check at approval; unrelated-change tolerance not changed"
+    },
+    {
+      "id": "V03-22",
+      "priority": "R1",
+      "requirement": "Isolation, roles, backup",
+      "status": "NOT_RUN",
+      "tests": [],
+      "evidence": [],
+      "note": null
+    },
+    {
+      "id": "V03-23",
+      "priority": "R0",
+      "requirement": "Browser regression on real backend",
+      "status": "PARTIAL",
+      "tests": [
+        "browser.v03_owner_main_path"
+      ],
+      "evidence": [],
+      "note": "Manual browser walkthrough recorded; no Playwright runner on this Windows host (PyPI/npm blocked)"
+    },
+    {
+      "id": "V03-24",
+      "priority": "R0",
+      "requirement": "Usability and accessibility",
+      "status": "PARTIAL",
+      "tests": [
+        "browser.v03_owner_main_path"
+      ],
+      "evidence": [],
+      "note": "Semantic markup, focus, dialog, no page overflow at 390/768/1366/1440 measured; participant study not run"
+    },
+    {
+      "id": "V03-25",
+      "priority": "R0",
+      "requirement": "Updated release evidence",
+      "status": "EVIDENCE_RECORDED",
+      "tests": [],
+      "evidence": [
+        "artifacts/v03/regression-v03.json",
+        "artifacts/v03/e2e-latest.json",
+        "artifacts/v03/browser-v03.json",
+        "docs/V03_PLAN.md",
+        "docs/adr/0005-v03-owner-main-path.md"
+      ],
+      "note": null
+    }
+  ],
+  "v03_counts": {
+    "EVIDENCE_RECORDED": 2,
+    "NOT_RUN": 10,
+    "DEFERRED_MODEL": 6,
+    "PARTIAL": 4,
+    "PASSED": 3
+  },
+  "live_model_metrics": {
+    "status": "NOT_RUN",
+    "value": null,
+    "reason": "No authorized live model"
+  }
+}

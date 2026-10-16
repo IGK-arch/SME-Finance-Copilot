@@ -25,6 +25,11 @@ Status words: DONE (implemented and verified here), PARTIAL, NOT_STARTED, DEFERR
 
 ## After the target model is connected (DEFERRED_MODEL)
 
+14 Oct update: the owner requested and authorized Strata server connection and
+scenario testing. The adapter and synthetic evaluation now exist; see
+`STRATA_RESULTS_RU.md`. This does not select it as the final target model or close
+the gates below. Repeated narrative amount errors remain a blocker for trusted answers.
+
 Repeat the same process starting from a free-form owner request, with the existing guards:
 V03-03 CompletionGate, V03-04 AnswerBundle validation of model text (amount/sign/date/source type),
 V03-06 skills and scoped tools with measured step counts, V03-08 latency profile (cold/warm),
@@ -32,10 +37,18 @@ V03-14 LIVE end-to-end, V03-19 Chinese retrieval holdout. Keep the 20 historical
 their grader for comparability; add authorized execution tasks and a closed holdout. A new provider
 is added as a `ChatGateway` provider with explicit opt-in; no quality is claimed beforehand.
 
+## Approval expiry completed
+
+V03-20 is implemented: new approvals also expire after 24 real hours, independently
+of the synthetic clock. Pre-v0.3 approvals without a TTL record keep business-time
+expiry only. Verified again by the 14 Oct targeted run (see CURRENT_STATE_RU.md).
+
 ## Open items not done in this iteration
 
-- V03-07 server-side filters/aggregates for agent reads; V03-20 real-time approval TTL; V03-21
-  unrelated-change tolerance; V03-22 process isolation/roles/backup — not started.
+- V03-07 server-side filters/aggregates for agent reads; V03-21 unrelated-change
+  tolerance; V03-22 process isolation/roles/backup — not started.
+- The 14 Oct refresh found a Windows SQLite cleanup error in the background Copilot
+  test; an isolated rerun passed. Cleanup reliability remains to be investigated.
 - V03-17 alerts: first-seen dedup projection exists; no debounce scheduler or acknowledgement.
 - V03-23 Playwright runner: no Playwright/Node packages installable on this host (registries blocked);
   evidence is a recorded walkthrough in the built-in browser plus the HTTP E2E above.

@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-15T15:35:17.069488+00:00",
+  "command": [
+    "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+    "-m",
+    "unittest",
+    "tests.test_execution.ExecutionTests.test_call_budget"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 1.693s\n\nOK\n",
+  "scope": "Isolated rerun after Windows socket bind failed during setUp; original full regression is preserved."
+}

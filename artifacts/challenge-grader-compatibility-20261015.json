@@ -1,0 +1,6 @@
+{
+  "source": "artifacts/strata-challenge-before-20261015.json",
+  "run_count": 51,
+  "changed_original_checks_or_status": [],
+  "scope": "Replay saved outputs through added optional grader checks; no new model calls"
+}

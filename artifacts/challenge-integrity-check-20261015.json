@@ -1,0 +1,15 @@
+{
+  "critical_unchanged": {
+    "finance/execution.py": true,
+    "finance/worker.py": true,
+    "finance/validation.py": true,
+    "finance/digest_check.py": true,
+    "finance/planner.py": true
+  },
+  "scope": "Comparison against beginning-of-task hashes, not Git HEAD; preexisting user edits preserved.",
+  "known_credentials_scan": {
+    "files_checked": 304,
+    "matched_files": [],
+    "scope": "Exact known SSH/bridge/demo login values only; not a general secret scanner."
+  }
+}

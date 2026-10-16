@@ -1,4 +1,4 @@
-"""Ollama native chat contract. Explicit local opt-in; no mock fallback on errors."""
+"""Explicit Ollama/Strata chat contracts; no mock fallback on live errors."""
 
 from __future__ import annotations
 
@@ -61,11 +61,18 @@ class GatewayConfig:
 
     @classmethod
     def environment(cls) -> GatewayConfig:
+        provider = os.getenv("MODEL_PROVIDER", "mock")
         return cls(
-            provider=os.getenv("MODEL_PROVIDER", "mock"),
+            provider=provider,
             model=os.getenv("MODEL_NAME", ""),
             base_url=os.getenv("MODEL_BASE_URL", "http://127.0.0.1:11434"),
-            enabled=os.getenv("ALLOW_LOCAL_MODEL_INFERENCE", "false") == "true",
+            enabled=os.getenv(
+                "ALLOW_SERVER_MODEL_INFERENCE"
+                if provider == "strata"
+                else "ALLOW_LOCAL_MODEL_INFERENCE",
+                "false",
+            )
+            == "true",
             timeout_seconds=int(os.getenv("MODEL_TIMEOUT_SECONDS", "60")),
             max_elapsed_seconds=int(os.getenv("MODEL_MAX_ELAPSED_SECONDS", "240")),
             context_tokens=int(os.getenv("MODEL_CONTEXT_TOKENS", "8192")),
@@ -79,7 +86,7 @@ class GatewayConfig:
             "mode": "MOCK"
             if self.provider == "mock"
             else "LIVE"
-            if self.provider == "ollama" and self.enabled and self.model
+            if self.provider in {"ollama", "strata"} and self.enabled and self.model
             else "DISABLED",
             "configured": self.provider == "mock" or bool(self.enabled and self.model),
             "max_steps": self.max_steps,
@@ -90,9 +97,9 @@ class GatewayConfig:
             "context_tokens": self.context_tokens,
             "output_tokens": self.output_tokens,
             "think": self.think,
-            "execution_device": "cpu",
-            "batch_tokens": 128,
-            "memory_mapped_weights": True,
+            "execution_device": "self_hosted_server" if self.provider == "strata" else "cpu",
+            "batch_tokens": None if self.provider == "strata" else 128,
+            "memory_mapped_weights": None if self.provider == "strata" else True,
         }
 
 
@@ -106,7 +113,11 @@ class ChatGateway:
         self.last_attempt: Json = {}
 
     def describe(self) -> Json:
-        """Check exact local weights, not a remote/cloud alias. Never pulls a model."""
+        """Check provider identity (weight digest or Strata instance); never pull weights."""
+        if self.config.provider == "strata":
+            from finance.strata import describe
+
+            return describe(self.config, self._request)
         installed = self._request("/api/tags")
         entry = next(
             (m for m in installed.get("models", []) if m.get("name") == self.config.model),
@@ -151,7 +162,7 @@ class ChatGateway:
             and not parsed.query
             and not parsed.fragment,
             "MODEL_EGRESS_DENIED",
-            "Only a configured loopback Ollama endpoint is authorized",
+            "Only a configured loopback model endpoint is authorized",
         )
         require(
             config.enabled and bool(config.model),
@@ -159,6 +170,11 @@ class ChatGateway:
             "Set a locally installed model and explicitly enable local inference",
         )
         headers = {"Content-Type": "application/json"}
+        require(
+            config.provider != "strata" or bool(os.getenv(config.secret_env)),
+            "MODEL_DISABLED",
+            "Strata requires the authenticated SSH bridge token",
+        )
         if secret := os.getenv(config.secret_env):
             headers["Authorization"] = "Bearer " + secret
         request = Request(
@@ -183,9 +199,12 @@ class ChatGateway:
             ) from exc
 
     def chat(self, messages: list[Json], tools: list[Json], usage: Json) -> Json:
+        # A preflight rejection must not reuse the previous request's measurements.
+        self.last_attempt = {"status": "NOT_SENT"}
         cfg = self.config
         require(
-            cfg.max_billed_cost_minor == 0 and cfg.provider in {"mock", "ollama", "disabled"},
+            cfg.max_billed_cost_minor == 0
+            and cfg.provider in {"mock", "ollama", "strata", "disabled"},
             "MODEL_COST_POLICY_DENIED",
             "Only offline fixtures or a local endpoint with no billed API are permitted",
         )
@@ -245,6 +264,28 @@ class ChatGateway:
                     }
                 )
             tokens = 0
+        elif cfg.provider == "strata":
+            from finance.strata import completion
+
+            identity = self.describe()
+            require(
+                self.local_model is None or identity["digest"] == self.local_model["digest"],
+                "MODEL_CHANGED",
+                "Strata service instance changed; start a new workflow",
+            )
+            self.local_model = identity
+            remaining_time -= time.monotonic() - start
+            require(remaining_time > 0, "BUDGET_EXCEEDED", "Model wall-time budget exhausted")
+            message, measured = completion(
+                cfg,
+                self._request,
+                messages,
+                tools,
+                min(cfg.timeout_seconds, remaining_time),
+                self.last_attempt,
+            )
+            message = visible_message(message)
+            tokens = measured["prompt_eval_count"] + measured["eval_count"]
         else:
             require(
                 cfg.provider == "ollama",
@@ -382,7 +423,9 @@ class ChatGateway:
                 "tokens": usage.get("tokens", 0) + tokens,
                 "elapsed_seconds": usage.get("elapsed_seconds", 0) + time.monotonic() - start,
                 "cost": None,
-                "billing": "LOCAL_ENDPOINT_NO_BILLED_API",
+                "billing": "SELF_HOSTED_SERVER_NO_BILLED_MODEL_API"
+                if cfg.provider == "strata"
+                else "LOCAL_ENDPOINT_NO_BILLED_API",
                 "live_metrics_status": "NOT_RUN"
                 if cfg.provider == "mock"
                 else "MEASURED_PROVIDER_USAGE",

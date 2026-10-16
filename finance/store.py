@@ -306,12 +306,13 @@ class Store:
                 "Document evidence access denied",
             )
             row = db.execute(
-                "SELECT * FROM sources WHERE tenant_id=? AND source_id=?",
-                (ctx.tenant_id, source_id),
+                "SELECT * FROM sources WHERE tenant_id=? AND source_id=? AND observed_at<=(SELECT clock FROM companies WHERE tenant_id=?)",
+                (ctx.tenant_id, source_id, ctx.tenant_id),
             ).fetchone()
             require(row is not None, "NOT_FOUND", "Scoped source not found")
             return {
                 "source_id": row["source_id"],
+                "provider": row["provider"],
                 "hash": row["content_hash"],
                 "observed_at": row["observed_at"],
                 "trust": "SYNTHETIC_UNTRUSTED_DATA",

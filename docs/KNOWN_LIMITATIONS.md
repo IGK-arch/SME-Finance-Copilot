@@ -1,10 +1,85 @@
 # Current boundaries and unverified work
 
+<!-- QUALITY-V5-STATUS-START -->
+## Latest checkpoint: 16 Oct 2026 — incomplete evaluation, SSH unavailable
+
+Current contracts: agent-tools-v4 / answer-refs-v5 / answer-quality-v3.
+Last complete EN/ZH run full2: 66 PASS / 8 FAIL (74), on earlier code.
+Current frozen code full5: 20 PASS / 3 FAIL (23/74); transport stopped between cases.
+51 cases remain NOT_RUN in this attempt. No new inference on 16 Oct.
+All 23 available answers reviewed: 19 COMPLETE / 1 PARTIAL / 3 FAILED.
+Review is by the coding assistant, not independent. Remaining failures include
+needless clarification, rejected final formatting, off-topic document answers and
+a missing title despite all 24 documents being read (strict PASS, prose PARTIAL).
+Offline: 230 PASS / 1 sandbox-port setup FAIL / 4 PG SKIP; isolated failed test PASS.
+Targeted tests: 29 PASS; quality: nine PASS. Never replace the recorded full failure.
+85 frozen files verified unchanged; approval/execution/validation and original graders unchanged.
+T001–T100: 96 PASS / 4 NOT_RUN; V03 unchanged. No production-quality claim.
+SSH 195.208.16.1:45161 failed before authentication (missing protocol banner),
+both bridge startup and independent read-only check. Remote model health UNKNOWN.
+Local listeners 18443 and 8092 were absent. No remote restart or fallback.
+After access is restored, continue the 51 remaining case IDs from
+artifacts/quality-v5-enzh-status-20261016.json in explicit sequential segments,
+preserving full5 outcomes and verifying same model/config/code/cases. This is a plan,
+not completed evidence. Do not change runtime during the remaining evaluation.
+See STRATA_QUALITY_V5_STATUS_RU.md, STRATA_QUALITY_V5_PARTIAL_ANSWERS_RU.md,
+TECHNICAL_REPORT_RU.md and the immutable raw artifacts linked there.
+Older dated checkpoints below are historical, including prior running-process claims.
+<!-- QUALITY-V5-STATUS-END -->
+
+15 Oct expanded evaluation supersedes earlier history/lookup examples below.
+The latest full 74-case run passed 67 strict checks and all recorded safety
+checks; text review found additional defects (53 complete, 11 minor, 5 partial,
+5 failed). Exact references do not establish the meaning of surrounding prose.
+Observed errors include job-done claims on UNKNOWN/done=0, lender approval versus
+OWNER payment approval, unsupported causal explanations of NOT_FOUND, optional
+quarantine fields, and inconsistent tool-route completion. No general semantic
+AnswerBundle/CompletionGate, independent holdout, OCR/large PDF corpus, concurrent
+load test or LIVE approval-to-reconciliation target-model gate is completed.
+
+Historical versions are no longer totaled as current debt. Future source lookup
+is denied server-side, including known source IDs. Title/Unicode/Chinese search,
+matched excerpts, stable pagination and typed observed IDs have regression tests.
+Raw CSV source tokens are no longer offered as quoted monetary references.
+The v3 rejected-draft repair variant regressed and is superseded by v4 diagnostics
+only; final v4 affected-case evidence is `strata-challenge-diagnostics-cases-20261015.json`.
+It completed 13 PASS / 2 FAIL (company/policies list omission, rejected delivery
+final); 59 other cases were not repeated on v4. It is not a full repeat of 74.
+Full details and unsuccessful attempts: `STRATA_CHALLENGE_FIXES_RU.md`.
+
+Older checkpoints follow; their counts and examples describe those versions.
+
+
 The delivered code goes beyond the first milestone, but full P0/product-P1 acceptance
 is PARTIAL. Read ACCEPTANCE_MATRIX.md for individual requirements and executed proof.
 Historical S0–S6 notes in ITERATIONS.md describe the earlier implementation only.
 
-## v0.3 (13 Oct 2026) — owner main path
+15 Oct: `answer-refs-v1` rejects unbound numeric/ID prose and renders exact server
+values with one bounded repair and explicit PARTIAL on rejection. Observed-ID
+preconditions and a final tool-phase boundary apply server-side. All same 20
+Strata cases rerun: **20 PASS / 0 FAIL**; assistant text review **18 COMPLETE / 2 PARTIAL**.
+See `STRATA_FINAL_SCENARIOS_20261015_RU.md` and `STRATA_FIXES_20261015_RU.md`.
+Reference correctness is narrower than meaning: history may misleadingly sum
+versions; an earlier final-writer smoke mislabeled a cash outflow as confirmed
+cash. The final stress answer also called a source ID a customer and extrapolated
+an unsupported five-day resilience threshold from three tested scenarios.
+Those are retained limitations, not hidden by the strict score. No general
+semantic validator, independent holdout or LIVE execution acceptance gate closed.
+After a recorded proposal or an INFEASIBLE objective, further reads/proposals need
+a new user request; arbitrary multi-objective tasks are not a universal completion gate.
+
+## v0.3.0 (14 Oct 2026) — owner main path
+
+- The owner-authorized Strata connection now has synthetic LIVE scenario evidence
+  (`STRATA_RESULTS_RU.md`), but model prose contains factor-of-ten amount errors,
+  unsupported instructions and incomplete tasks. Strict tool grades do not measure
+  answer correctness. No LIVE approval/dispatch E2E or closed holdout was run.
+- Strata identity is a fingerprint of model ID, engine version, start time and
+  context, not a weight-file SHA256. Remote restarts require a new workflow. The
+  SSH bridge is a manual local process; reconnect supervision and production secret
+  storage are not implemented. RAM is checked between evaluation cases, not enforced
+  as an OS allocation limit. The demo uses a 64000-token task budget; evaluation uses
+  128000, so complex tasks may hit the demo budget earlier.
 
 - The new cabinet (Home / Money / Plans / Documents / Activity / Settings, Copilot panel) is
   verified on synthetic data with the MOCK model. No usability study with independent
@@ -26,7 +101,16 @@ Historical S0–S6 notes in ITERATIONS.md describe the earlier implementation on
   acknowledgement or notifications.
 - Sessions: HttpOnly + SameSite=Strict cookie over loopback HTTP; `Secure` is set only under HTTPS.
   A public deployment still needs TLS, a secret vault and process isolation (V03-22, T097).
-- Git baseline (V03-01) is not created: the bridged folder disallows deletions that git needs.
+- Git baseline and private origin now exist (V03-01); inspected HEAD is `d3e24b6`
+  on `main`. No release tag was present. Older no-Git statements are superseded.
+- New approvals have a 24-hour real-time TTL. Legacy approvals without an
+  `approval_ttl` record keep business-clock expiry only; no blanket TTL migration.
+- Context validation in `compose_task` covers plan access, actions within the given
+  plan and current obligations. `case_id` currently adds generic case context; an
+  `action_id` without `plan_id` is ignored. Do not describe every reference as verified.
+- Fresh focused verification: 11 PASSED / 1 FAILED due to WinError 32 at background
+  Copilot temporary-DB cleanup; isolated rerun PASSED. The instability is unresolved.
+  Fresh product E2E: 21/21 PASSED. See CURRENT_STATE_RU.md and codex-sync reports.
 - The worker re-records an unchanged operation status on every poll; Activity collapses these
   repeats for display, the audit log keeps them.
 
@@ -38,8 +122,8 @@ Historical S0–S6 notes in ITERATIONS.md describe the earlier implementation on
   AGENT_CAPABILITIES.md and the latest platform-suite evidence.
 - Historical local CPU evaluation covers ten synthetic tasks per model:
   Qwen2.5 7B and Granite 3.3 8B each passed 8/10 strict tool/state cases.
-  Qwen 7B was faster in that historical run. The current experimental UI selects
-  Qwen2.5 14B Q3_K_S; completed expanded evaluation has 8/20 strict passes,
+  Qwen 7B was faster in that historical run. The earlier experimental UI selected
+  Qwen2.5 14B Q3_K_S; v0.3 defaults to MOCK. Historical expanded evaluation has 8/20 strict passes,
   with 6 complete /5 partial /7 failed /2 RAM-interrupted scenarios in assistant
   review. See LOCAL_14B_RESULTS.md. The additional browser probe confused snapshot
   and source IDs. Missing tool calls, invented IDs and final-answer timeouts remain.
@@ -50,7 +134,8 @@ Historical S0–S6 notes in ITERATIONS.md describe the earlier implementation on
   See LIVE_MODEL_RESULTS.md and separate assistant narrative reviews. The Granite
   adapter was corrected after its baseline and Qwen results reused; this is
   iterative development evaluation, not held-out/repeated performance evidence.
-- The three models and portable runtime occupy approximately 17.0 GiB on E:.
+- The historical three-model/runtime footprint was approximately 17.0 GiB on E:
+  (not remeasured during this documentation sync).
   The expanded 14B run hit the unchanged 5 GiB free-RAM guard three times despite
   sufficient disk space. Disk capacity and available RAM are separate constraints;
   actual footprint and inference outcomes are in AGENT_PLATFORM_RESULTS.md. CPU-only mapped weights avoid the
@@ -67,8 +152,10 @@ Historical S0–S6 notes in ITERATIONS.md describe the earlier implementation on
   simulator is a separate process/database with scoped capabilities, but local OS
   administrators and the development user can read both files. T097 / I24 / full
   I28 deployment isolation are not complete. No container boundary was deployed.
-- CSV is fixed synthetic-csv-v1 (1 MB/5000 rows), synchronous. Review correction
-  and discard work and preserve original evidence. Arbitrary export mapping and
+- The v0.3 CSV/XLSX wizard maps two templates (transactions, obligations) to
+  synthetic-csv-v1; limits remain 1 MB/5000 rows. XLSX reads the first worksheet
+  and stored values, with no formula evaluation. Preview, mapping, versioned
+  correction and quarantine retain provenance. Arbitrary financial formats and
   durable asynchronous import/parser jobs are not implemented.
 - Text and text PDF extraction/retrieval work. PDF limits: 500 KB, 30 pages,
   200000 extracted characters and a 20-second subprocess timeout. OCR, OFD, XML,
@@ -93,9 +180,10 @@ Historical S0–S6 notes in ITERATIONS.md describe the earlier implementation on
 - Durable worker leases, atomic outbox, UNKNOWN recovery and signed internal sandbox
   webhook ingestion are tested. The simulator normally polls, not auto-pushes. No
   external bank webhook contract is claimed. Automatic safely reviewed cancellation
-  of an unsent RESERVED action, generalized materiality/debounce and internal alert
-  inbox remain incomplete. Sent operations are never fictionally cancelled.
-- Browser evidence covers this in-app Chromium session, actual APIs, ten routes,
+  of an unsent RESERVED action, generalized materiality/debounce and acknowledged
+  alert inbox remain incomplete. The v0.3 first-seen projection is implemented.
+  Sent operations are never fictionally cancelled.
+- Historical v0.2 browser evidence covers an in-app Chromium session, actual APIs, ten routes,
   golden execution/restart, source review/retrieval and policy sensitivity. It is
   recorded CUA automation, not a standalone CI browser runner. Cross-browser,
   screen-reader, accessibility and load/performance audits remain NOT_RUN.
@@ -104,6 +192,6 @@ Historical S0–S6 notes in ITERATIONS.md describe the earlier implementation on
 - The deterministic comparison uses three starting-cash cases. A diverse linked
   3–5-company world generator, calibrated shocks and live B1/B2/B3 ablations remain.
 - Metadata/license inventory is evidence, not a legal opinion. Local model weights were explicitly downloaded; no external
-  financial dataset was downloaded. Source rights require owner review. No Git repository,
-  remote CI run, release tag, final contest deck/video or current rule/legal review
-  was produced. No claim of full product or production readiness is made.
+  financial dataset was downloaded. Source rights require owner review. Git exists;
+  a remote CI run, release tag, final contest deck/video and current rule/legal
+  review remain unverified or absent. No claim of full product or production readiness is made.

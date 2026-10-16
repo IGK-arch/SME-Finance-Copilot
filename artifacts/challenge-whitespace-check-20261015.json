@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 2,
+      "diagnostic_lines": 320,
+      "reported_paths": [
+        ".env.example",
+        "artifacts/quality-results.json",
+        "docs/IMPLEMENTATION_STATUS.md",
+        "docs/architecture/README.md",
+        "finance/agents.py",
+        "finance/gateway.py",
+        "scripts/serve.py"
+      ],
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.whitespace=cr-at-eol",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "diagnostic_lines": 0,
+      "reported_paths": [],
+      "stderr": ""
+    }
+  ],
+  "scope": "Repository uses * -text and contains preexisting CRLF files. CR-aware check changes only this command interpretation, not files or Git configuration."
+}

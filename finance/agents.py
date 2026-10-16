@@ -76,6 +76,7 @@ class ToolRegistry:
         "what_if_cashflow": {"snapshot_id", "delay_days", "receipt_bps"},
         "propose_supplier_extension": {"fact_id", "due_at"},
     }
+    OPTIONAL_ARGUMENTS = {"search_documents": {"offset"}}
 
     def __init__(self, service: ExecutionService, ctx: AuthContext) -> None:
         self.service, self.ctx = service, ctx
@@ -90,7 +91,9 @@ class ToolRegistry:
             )
             require(
                 isinstance(arguments, dict)
-                and set(arguments) == self.ARGUMENTS[name]
+                and self.ARGUMENTS[name] <= set(arguments)
+                and set(arguments)
+                <= self.ARGUMENTS[name] | self.OPTIONAL_ARGUMENTS.get(name, set())
                 and all(
                     (
                         type(v) is int
@@ -174,7 +177,9 @@ class ToolRegistry:
             elif name == "search_documents":
                 from finance.workspace import retrieve
 
-                result = retrieve(store, self.ctx, arguments["query"])
+                result = retrieve(
+                    store, self.ctx, arguments["query"], offset=arguments.get("offset", 0)
+                )
             elif name == "get_financial_snapshot":
                 result = snapshot(store, self.ctx)
                 snap = result

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-15T08:49:40.355213+00:00",
+  "status": "NOT_RUN",
+  "planned": 20,
+  "completed": 0,
+  "reason": "TCP connects to owner endpoint but SSH banner times out; no model request sent",
+  "readiness_report": "artifacts/strata-readiness-20261015.json",
+  "model": "qwen3.8-flash-next-iq3_xxs",
+  "suites": [
+    "platform",
+    "exploratory"
+  ],
+  "source_hashes": {
+    "finance/answers.py": "5603a2845f7f9403b6f80c5eb5bcca253d0ee0d2fefaa9fdc609a1d1021cf2e9",
+    "finance/workflows.py": "57ba202214d80cde83d53fa93891d5e945a2793df6bc24410268c7d2f8a69dd9",
+    "finance/copilot.py": "54a3f9f56d1a8d6c216776391cec70519434b89c77c75ae249acb664626b30e0",
+    "finance/agent_data.py": "59da7fd29b83309cbd8a995b577dbe5fafca82e7f3467fa25fd3ea235474bd17",
+    "scripts/strata_eval.py": "a1bce3faf5b64adb1108bb4b52829b7093b52efbed8eea1f92aec93bff9d21b9",
+    "tests/test_answers.py": "9ac21baf9af27bf7d6bf4b4703405302288917e9df6f32d11f2004911526635b"
+  },
+  "case_definitions_and_grader_sha256": "46ddbc2195f2aa3a8a0e579778d7f97e3e82f467bfe8211c8aadb455b85e2042",
+  "regression": "artifacts/regression-answer-refs-20261015.json"
+}

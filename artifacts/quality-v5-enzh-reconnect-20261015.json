@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-15T14:26:25.853542+00:00",
+  "identity": {
+    "model": "qwen3.8-flash-next-iq3_xxs",
+    "engine_version": "0.1.43.1",
+    "server_started": 1792056462,
+    "context_tokens": 131072,
+    "digest": "75d40b473c70d7dd4ee323e3500b3497142d18e990a6b8180aacfef5982a7f86",
+    "identity_scope": "STRATA_SERVICE_INSTANCE_METADATA_NOT_WEIGHT_HASH",
+    "weight_digest": null,
+    "license": null,
+    "capabilities": [
+      "chat_completions"
+    ]
+  },
+  "server": {
+    "at": 1792074385,
+    "gpu": {
+      "name": "NVIDIA GeForce RTX 3090",
+      "used_mib": 24162.0,
+      "total_mib": 24576.0,
+      "util_pct": 0,
+      "temp_c": 25,
+      "power_w": 17.619
+    },
+    "ram": {
+      "used_gib": 48.3,
+      "total_gib": 63.9
+    }
+  },
+  "same_model_identity": true,
+  "scope": "Read-only reconnection check; no generation or remote restart"
+}

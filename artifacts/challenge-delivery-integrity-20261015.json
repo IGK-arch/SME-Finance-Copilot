@@ -1,0 +1,7 @@
+{
+  "missing_local_report_links": [],
+  "current_runtime_hash_mismatches": [],
+  "known_credential_matches": [],
+  "files_scanned": 317,
+  "scope": "Exact known credential values and local report links; not exhaustive secret or semantic validation"
+}

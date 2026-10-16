@@ -9,7 +9,7 @@ from finance.domain import AuthContext, FinanceError, Json, canonical, digest, r
 from finance.execution import ExecutionService
 from finance.ingestion import snapshot
 
-VERSION = "agent-tools-v2"
+VERSION = "agent-tools-v4"
 PAGE_SIZE = 5
 TEXT_PAGE = 3000
 # Table/column names are server constants. Caller input is never SQL syntax.
@@ -253,6 +253,9 @@ def list_records(
         for key in ("amount_minor", "outstanding_minor", "total_cost_minor")
         if any(type(v.get(key)) is int for v in matches)
     }
+    if dataset == "facts":
+        # Versions of one economic fact are alternatives, never additive debt.
+        totals = {}
     return {
         "contract_version": VERSION,
         "dataset": dataset,
@@ -263,7 +266,9 @@ def list_records(
         "next_offset": offset + PAGE_SIZE if offset + PAGE_SIZE < len(matches) else None,
         "collection_hash": digest(matches),
         "field_totals": totals,
-        "totals_scope": "All matching rows, not just this page. Field sums are not revenue or cash balance.",
+        "totals_scope": "History includes superseded versions; no financial aggregation is valid. Use current obligations or metrics."
+        if dataset == "facts"
+        else "All matching rows, not just this page. Field sums are not revenue or cash balance.",
         "detail_tool": "read_business_record",
         "trust": "UNTRUSTED_DATA",
     }
@@ -279,6 +284,35 @@ def read_record(
         value = value | service.store.evidence(ctx, record_id)
     elif dataset == "plans":
         value = value | {"execution": service.plan_status(ctx, record_id)}
+    elif dataset == "reviews":
+        from finance.ingestion import parse_row
+
+        diagnostic: Json = {"scope": "CURRENT_PARSER_RECHECK_NOT_IMPORT_ACCEPTANCE"}
+        try:
+            parse_row(value["raw"], service.store.company(ctx)["clock"])
+        except FinanceError as exc:
+            diagnostic.update({"status": "REJECTED", "code": exc.code, "message": str(exc)})
+            if exc.safe_message == "Amounts/versions must be integers":
+                diagnostic["invalid_integer_fields"] = [
+                    field
+                    for field in ("amount_minor", "version")
+                    if not (
+                        value["raw"][field].lstrip("-")
+                        if field == "amount_minor"
+                        else value["raw"][field]
+                    ).isdigit()
+                ]
+                diagnostic["field_scope"] = (
+                    "Only these fields failed the parser's integer check; do not attribute this error to the other fields."
+                )
+        else:
+            diagnostic.update(
+                {
+                    "status": "PARSER_PASSED",
+                    "notice": "Original quarantine decision remains; parser success alone does not establish business validity or accept this row.",
+                }
+            )
+        value = value | {"validation_diagnostic": diagnostic}
     elif dataset == "workflows":
         from finance.workflows import WorkflowEngine
 
@@ -386,7 +420,7 @@ def capabilities() -> Json:
         "human_controls": [
             {
                 "operation": "Import CSV or documents; correct/discard quarantined rows; allocate settlements",
-                "route": "#imports",
+                "route": "#documents",
                 "authority": "OWNER/ACCOUNTANT",
             },
             {
@@ -396,8 +430,8 @@ def capabilities() -> Json:
             },
             {
                 "operation": "Approve/revoke exact payment; dispatch/recover; stop new sends",
-                "route": "#operations",
-                "authority": "Server role checks and exact approval",
+                "route": "#plans",
+                "authority": "Only OWNER may approve/revoke an exact payment; ACCOUNTANT cannot approve. Server worker dispatches after approval and current precondition checks.",
             },
             {
                 "operation": "Cancel remaining plan",
@@ -406,7 +440,7 @@ def capabilities() -> Json:
             },
             {
                 "operation": "Refresh/reconcile observed sandbox events",
-                "route": "#overview",
+                "route": "#home",
                 "authority": "Server observation contract",
             },
             {

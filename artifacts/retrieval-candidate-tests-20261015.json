@@ -1,0 +1,16 @@
+{
+  "command": [
+    "-m",
+    "unittest",
+    "tests.test_retrieval_quality",
+    "tests.test_domain",
+    "tests.test_planner",
+    "tests.test_answers",
+    "tests.test_agent_data",
+    "tests.test_workspace"
+  ],
+  "cwd": ".runtime/challenge-candidate",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": ".E....................................................................................\n======================================================================\nERROR: test_detail_ids_come_from_typed_outputs_never_document_content (tests.test_retrieval_quality.RetrievalQualityTests.test_detail_ids_come_from_typed_outputs_never_document_content)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\tests\\test_retrieval_quality.py\", line 25, in test_detail_ids_come_from_typed_outputs_never_document_content\n    mapping = known_records([typed, quote, search])\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\challenge-candidate\\finance\\workflows.py\", line 239, in known_records\n    value = model_result(envelope)[\"result\"]\n            ^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.runtime\\challenge-candidate\\finance\\workflows.py\", line 515, in model_result\n    \"evidence_refs\": envelope[\"evidence_refs\"],\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^\nKeyError: 'evidence_refs'\n\n----------------------------------------------------------------------\nRan 86 tests in 27.890s\n\nFAILED (errors=1)\n"
+}

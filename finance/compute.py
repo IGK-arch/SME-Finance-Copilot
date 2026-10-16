@@ -7,7 +7,7 @@ from typing import Iterable
 
 from finance.domain import Json, digest, minor, rate_charge, require, utc
 
-CALCULATION_VERSION = "compute-v1"
+CALCULATION_VERSION = "compute-v2"
 
 
 def shift(timestamp: str, days: int) -> str:
@@ -155,11 +155,11 @@ def obligation_flows(
     return flows
 
 
-def trajectory(cash: int, flows: list[Json], reserve: int) -> Json:
+def trajectory(cash: int, flows: list[Json], reserve: int, *, as_of: str | None = None) -> Json:
     # Conservative tie ordering. Earlier times can never borrow later receipts.
     balance = minimum = minor(cash)
     points: list[Json] = []
-    first_gap = None
+    first_gap = utc(as_of) if as_of is not None and balance < reserve else None
     for f in sorted(flows, key=lambda f: (f["at"], f["amount_minor"] >= 0, f["reference"])):
         balance = minor(balance + f["amount_minor"])
         minimum = min(minimum, balance)
@@ -198,13 +198,18 @@ def forecast(
         flows = obligation_flows(snap, scenario) + (additional_flows or []) + residual
         result.append(
             scenario
-            | trajectory(snap["confirmed_cash_minor"], flows, snap["policy"]["reserve_minor"])
+            | trajectory(
+                snap["confirmed_cash_minor"],
+                flows,
+                snap["policy"]["reserve_minor"],
+                as_of=snap["as_of"],
+            )
         )
     return {
         "snapshot_id": snap["snapshot_id"],
         "calculation_version": CALCULATION_VERSION,
         "forecast_id": "forecast_"
-        + digest([snap["snapshot_id"], scenario_set, additional_flows])[:24],
+        + digest([CALCULATION_VERSION, snap["snapshot_id"], scenario_set, additional_flows])[:24],
         "ui_horizon_days": 30,
         "computed_through": max(
             (p["at"] for r in result for p in r["points"]), default=snap["as_of"]
@@ -484,6 +489,7 @@ def plan_trajectories(snap: Json, plan: Json, scenario_set: list[Json]) -> list[
             snap["confirmed_cash_minor"],
             obligation_flows(snap, s, False) + flows,
             snap["policy"]["reserve_minor"],
+            as_of=snap["as_of"],
         )
         for s in scenario_set
     ]

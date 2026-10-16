@@ -429,14 +429,36 @@ class V03Tests(unittest.TestCase):
 
     def test_V03_05_background_copilot_shows_results_without_narrative(self) -> None:
         import time
+        import threading
+        from contextlib import ExitStack
+        from unittest.mock import patch
         from finance.copilot import start_background, view
 
-        with tempfile.TemporaryDirectory() as folder, Runtime(Path(folder)) as runtime:
-            started = start_background(
-                runtime.service,
-                runtime.ctx,
-                {"task": "How much cash do we have?", "context": {"route": "#home"}},
-            )
+        with (
+            tempfile.TemporaryDirectory() as folder,
+            Runtime(Path(folder)) as runtime,
+            ExitStack() as background,
+        ):
+            thread_type = threading.Thread
+
+            def start_thread(*args, **kwargs):
+                thread = thread_type(*args, **kwargs)
+
+                def finish():
+                    # A visible terminal checkpoint can precede connection close.
+                    # Join the actual worker before deleting its SQLite files.
+                    thread.join(timeout=60)
+                    self.assertFalse(thread.is_alive(), "Background Copilot did not finish")
+
+                background.callback(finish)
+                return thread
+
+            with patch("finance.copilot.threading.Thread", side_effect=start_thread):
+                started = start_background(
+                    runtime.service,
+                    runtime.ctx,
+                    {"task": "How much cash do we have?", "context": {"route": "#home"}},
+                )
             self.assertIn("Server-verified UI context", started["task"])
             deadline = time.time() + 60
             result = None

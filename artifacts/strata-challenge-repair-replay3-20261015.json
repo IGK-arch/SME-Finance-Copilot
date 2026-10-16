@@ -1,0 +1,1141 @@
+{
+  "status": "COMPLETED",
+  "started_at": "2026-10-15T12:53:52.394542+00:00",
+  "source": "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff/artifacts/strata-challenge-after2-20261015.json",
+  "source_hash": "2e3de1ea7a88b2bad2c8b4e960c083882128378f069e5276e1d37389ce14d27f",
+  "model_identity": {
+    "model": "qwen3.8-flash-next-iq3_xxs",
+    "engine_version": "0.1.43.1",
+    "server_started": 1792056462,
+    "context_tokens": 131072,
+    "digest": "75d40b473c70d7dd4ee323e3500b3497142d18e990a6b8180aacfef5982a7f86",
+    "identity_scope": "STRATA_SERVICE_INSTANCE_METADATA_NOT_WEIGHT_HASH",
+    "weight_digest": null,
+    "license": null,
+    "capabilities": [
+      "chat_completions"
+    ]
+  },
+  "configuration": {
+    "provider": "strata",
+    "model": "qwen3.8-flash-next-iq3_xxs",
+    "mode": "LIVE",
+    "configured": true,
+    "max_steps": 1,
+    "max_tokens": 128000,
+    "timeout_seconds": 120,
+    "max_elapsed_seconds": 120,
+    "max_billed_cost_minor": 0,
+    "context_tokens": 16384,
+    "output_tokens": 2048,
+    "think": false,
+    "execution_device": "self_hosted_server",
+    "batch_tokens": null,
+    "memory_mapped_weights": null
+  },
+  "answer_code_hash": "ffa29bde08e3c49ba756231d45ae07be3b1ed5a9a81b63d6cc7641dbe1e58180",
+  "runs": [
+    {
+      "case_id": "doc_foreign_id",
+      "original_attempt_index": 1,
+      "original_draft_hash": "2d9fbd8296f1fe34371b3a5370631c8ed61bfaee6b6050b89bf035e6fb567fbb",
+      "repair_context_hash": "e7594e71b6aac0793c9cd716298a60fddb94d5e366692662a3110d232753b4d7",
+      "original_check": {
+        "contract_version": "answer-refs-v3",
+        "status": "REJECTED",
+        "errors": [
+          "Malformed evidence reference"
+        ],
+        "unbound_literals": [
+          "{{requested_source}}"
+        ],
+        "needs_tool_followup": false,
+        "text": "",
+        "bindings": {},
+        "scope": "Exact referenced values only; prose meaning and task completeness are not independently proven"
+      },
+      "replay_check": {
+        "contract_version": "answer-refs-v3",
+        "status": "REFERENCES_VALIDATED",
+        "errors": [],
+        "unbound_literals": [],
+        "needs_tool_followup": false,
+        "text": "Запрошенный источник недоступен в текущей области доступа компании.",
+        "bindings": {},
+        "scope": "Exact referenced values only; prose meaning and task completeness are not independently proven"
+      },
+      "attempts": [
+        {
+          "input_hash": "e7594e71b6aac0793c9cd716298a60fddb94d5e366692662a3110d232753b4d7",
+          "tools_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "status": "OK",
+          "message": {
+            "role": "assistant",
+            "content": "Запрошенный источник недоступен в текущей области доступа компании.",
+            "tool_calls": []
+          },
+          "usage": {
+            "calls": 1,
+            "tokens": 2460,
+            "elapsed_seconds": 10.578000000001339,
+            "cost": null,
+            "billing": "SELF_HOSTED_SERVER_NO_BILLED_MODEL_API",
+            "live_metrics_status": "MEASURED_PROVIDER_USAGE",
+            "last_request": {
+              "prompt_eval_count": 2446,
+              "eval_count": 14,
+              "provider_usage": {
+                "prompt_tokens": 2446,
+                "completion_tokens": 14,
+                "total_tokens": 2460
+              },
+              "done_reason": "stop",
+              "measurement_source": "STRATA_RESPONSE_USAGE"
+            },
+            "prompt_tokens": 2446,
+            "completion_tokens": 14
+          },
+          "elapsed_seconds": 10.58548620000147,
+          "provider_measurement": {
+            "status": "ACCEPTED",
+            "request_hash": "33e79db8a9b0d7b11244816944d7baacbae7058f26328a93d864f8eb6a8225fb",
+            "metrics": {
+              "prompt_eval_count": 2446,
+              "eval_count": 14,
+              "provider_usage": {
+                "prompt_tokens": 2446,
+                "completion_tokens": 14,
+                "total_tokens": 2460
+              },
+              "done_reason": "stop",
+              "measurement_source": "STRATA_RESPONSE_USAGE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "what_if_zero_receipt",
+      "original_attempt_index": 2,
+      "original_draft_hash": "e2ee7137a163f415b1294df9e81a1d66a46a4127249397a9e067b8a04d58cd1d",
+      "repair_context_hash": "bf5d28d3d96b54b64a90a0955409936cd73f19886cc4df5f819dcba5f62d501a",
+      "original_check": {
+        "contract_version": "answer-refs-v3",
+        "status": "REJECTED",
+        "errors": [
+          "Use reference markers for all numbers, dates and identifiers. For a denied/missing record, omit numbers, dates and IDs that occur only in the user request or failed tool calls; say the requested date or specified record."
+        ],
+        "unbound_literals": [
+          "0%",
+          "30"
+        ],
+        "needs_tool_followup": false,
+        "text": "",
+        "bindings": {
+          "v12": {
+            "kind": "identifier",
+            "value": "user_what_if",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).scenario_id"
+            ]
+          },
+          "v2": {
+            "kind": "identifier",
+            "value": "snap_d1799d289a438a7ec85117f24f4c3ad1",
+            "fields": [
+              "read[0].result.snapshot_id",
+              "read[1].result.forecast.snapshot_id"
+            ]
+          },
+          "v10": {
+            "kind": "identifier",
+            "value": "result_af6de8b0bb0b4cbab7ca21d393af9b05",
+            "fields": [
+              "read[1].result_id"
+            ]
+          },
+          "v4": {
+            "kind": "money",
+            "value": "120,000.00 CNY",
+            "fields": [
+              "read[0].result.confirmed_cash_minor"
+            ]
+          },
+          "v3": {
+            "kind": "value",
+            "value": "2026-10-01T00:00:00.000000+00:00",
+            "fields": [
+              "read[0].result.as_of"
+            ]
+          },
+          "v5": {
+            "kind": "money",
+            "value": "20,000.00 CNY",
+            "fields": [
+              "read[0].result.policy.reserve_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).balance_minor"
+            ]
+          },
+          "v26": {
+            "kind": "value",
+            "value": "2026-11-10T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).at",
+              "read[1].result.forecast.computed_through"
+            ]
+          },
+          "v18": {
+            "kind": "percentage",
+            "value": "0%",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).receipt_bps.percent"
+            ]
+          },
+          "v16": {
+            "kind": "number",
+            "value": "30",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).delay_days"
+            ]
+          },
+          "v25": {
+            "kind": "money",
+            "value": "0.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).amount_minor"
+            ]
+          },
+          "v20": {
+            "kind": "value",
+            "value": "2026-10-05T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).at"
+            ]
+          },
+          "v19": {
+            "kind": "money",
+            "value": "-80,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).amount_minor"
+            ]
+          },
+          "v21": {
+            "kind": "money",
+            "value": "40,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).balance_minor"
+            ]
+          },
+          "v23": {
+            "kind": "value",
+            "value": "2026-10-06T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).at"
+            ]
+          },
+          "v22": {
+            "kind": "money",
+            "value": "-20,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).amount_minor"
+            ]
+          },
+          "v24": {
+            "kind": "money",
+            "value": "-90,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).amount_minor"
+            ]
+          },
+          "v15": {
+            "kind": "value",
+            "value": "2026-10-08T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).first_gap_at",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).at"
+            ]
+          },
+          "v13": {
+            "kind": "money",
+            "value": "-70,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).minimum_balance_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).final_balance_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).balance_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).balance_minor"
+            ]
+          },
+          "v11": {
+            "kind": "value",
+            "value": "max(0, mandatory reserve - minimum projected balance); already includes the mandatory reserve",
+            "fields": [
+              "read[1].result.forecast.metric_definitions.net_need_minor"
+            ]
+          },
+          "v14": {
+            "kind": "money",
+            "value": "90,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).net_need_minor"
+            ]
+          },
+          "v8": {
+            "kind": "identifier",
+            "value": "source_d40a7082a6f6464da33a6e26135779c7",
+            "fields": [
+              "read[0].result.evidence_refs[0]",
+              "read[0].evidence_refs[0]",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).source_id",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).source_id"
+            ]
+          }
+        },
+        "scope": "Exact referenced values only; prose meaning and task completeness are not independently proven"
+      },
+      "replay_check": {
+        "contract_version": "answer-refs-v3",
+        "status": "REFERENCES_VALIDATED",
+        "errors": [],
+        "unbound_literals": [],
+        "needs_tool_followup": false,
+        "text": "Сценарий what-if (user_what_if) для 苏州合成精密配件 · Synthetic B2B на основе снимка snap_d1799d289a438a7ec85117f24f4c3ad1 от 2026-10-01T00:00:00.000000+00:00:\n\n- Условия: задержка 30 дней, доля оплаты клиента 0% (0 б.п.).\n- Итоговый баланс: -70,000.00 CNY.\n- Нехватка (net_need): 90,000.00 CNY — это уже включает обязательный резерв 20,000.00 CNY.\n- Первый разрыв ниже резерва: 2026-10-08T00:00:00.000000+00:00 (поставщик -90,000.00 CNY).\n- Ключевые события: зарплата -80,000.00 CNY (2026-10-05T00:00:00.000000+00:00), аренда -20,000.00 CNY (2026-10-06T00:00:00.000000+00:00), поступление клиента 0.00 CNY (2026-11-10T00:00:00.000000+00:00).\n\nРеальные факты не изменены; гипотетический план не зарегистрирован (INFEASIBLE). Источник: source_d40a7082a6f6464da33a6e26135779c7.",
+        "bindings": {
+          "v12": {
+            "kind": "identifier",
+            "value": "user_what_if",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).scenario_id"
+            ]
+          },
+          "v9": {
+            "kind": "value",
+            "value": "苏州合成精密配件 · Synthetic B2B",
+            "fields": [
+              "read[0].result.profile.name"
+            ]
+          },
+          "v2": {
+            "kind": "identifier",
+            "value": "snap_d1799d289a438a7ec85117f24f4c3ad1",
+            "fields": [
+              "read[0].result.snapshot_id",
+              "read[1].result.forecast.snapshot_id"
+            ]
+          },
+          "v3": {
+            "kind": "value",
+            "value": "2026-10-01T00:00:00.000000+00:00",
+            "fields": [
+              "read[0].result.as_of"
+            ]
+          },
+          "v16": {
+            "kind": "number",
+            "value": "30",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).delay_days"
+            ]
+          },
+          "v18": {
+            "kind": "percentage",
+            "value": "0%",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).receipt_bps.percent"
+            ]
+          },
+          "v17": {
+            "kind": "number",
+            "value": "0",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).receipt_bps"
+            ]
+          },
+          "v13": {
+            "kind": "money",
+            "value": "-70,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).minimum_balance_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).final_balance_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).balance_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).balance_minor"
+            ]
+          },
+          "v14": {
+            "kind": "money",
+            "value": "90,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).net_need_minor"
+            ]
+          },
+          "v5": {
+            "kind": "money",
+            "value": "20,000.00 CNY",
+            "fields": [
+              "read[0].result.policy.reserve_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).balance_minor"
+            ]
+          },
+          "v15": {
+            "kind": "value",
+            "value": "2026-10-08T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).first_gap_at",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).at"
+            ]
+          },
+          "v24": {
+            "kind": "money",
+            "value": "-90,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).amount_minor"
+            ]
+          },
+          "v19": {
+            "kind": "money",
+            "value": "-80,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).amount_minor"
+            ]
+          },
+          "v20": {
+            "kind": "value",
+            "value": "2026-10-05T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).at"
+            ]
+          },
+          "v22": {
+            "kind": "money",
+            "value": "-20,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).amount_minor"
+            ]
+          },
+          "v23": {
+            "kind": "value",
+            "value": "2026-10-06T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).at"
+            ]
+          },
+          "v25": {
+            "kind": "money",
+            "value": "0.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).amount_minor"
+            ]
+          },
+          "v26": {
+            "kind": "value",
+            "value": "2026-11-10T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).at",
+              "read[1].result.forecast.computed_through"
+            ]
+          },
+          "v8": {
+            "kind": "identifier",
+            "value": "source_d40a7082a6f6464da33a6e26135779c7",
+            "fields": [
+              "read[0].result.evidence_refs[0]",
+              "read[0].evidence_refs[0]",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).source_id",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).source_id"
+            ]
+          }
+        },
+        "scope": "Exact referenced values only; prose meaning and task completeness are not independently proven"
+      },
+      "attempts": [
+        {
+          "input_hash": "bf5d28d3d96b54b64a90a0955409936cd73f19886cc4df5f819dcba5f62d501a",
+          "tools_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "status": "OK",
+          "message": {
+            "role": "assistant",
+            "content": "Сценарий what-if ({{v12}}) для {{v9}} на основе снимка {{v2}} от {{v3}}:\n\n- Условия: задержка {{v16}} дней, доля оплаты клиента {{v18}} ({{v17}} б.п.).\n- Итоговый баланс: {{v13}}.\n- Нехватка (net_need): {{v14}} — это уже включает обязательный резерв {{v5}}.\n- Первый разрыв ниже резерва: {{v15}} (поставщик {{v24}}).\n- Ключевые события: зарплата {{v19}} ({{v20}}), аренда {{v22}} ({{v23}}), поступление клиента {{v25}} ({{v26}}).\n\nРеальные факты не изменены; гипотетический план не зарегистрирован (INFEASIBLE). Источник: {{v8}}.",
+            "tool_calls": []
+          },
+          "usage": {
+            "calls": 1,
+            "tokens": 5374,
+            "elapsed_seconds": 18.360000000000582,
+            "cost": null,
+            "billing": "SELF_HOSTED_SERVER_NO_BILLED_MODEL_API",
+            "live_metrics_status": "MEASURED_PROVIDER_USAGE",
+            "last_request": {
+              "prompt_eval_count": 5163,
+              "eval_count": 211,
+              "provider_usage": {
+                "prompt_tokens": 5163,
+                "completion_tokens": 211,
+                "total_tokens": 5374
+              },
+              "done_reason": "stop",
+              "measurement_source": "STRATA_RESPONSE_USAGE"
+            },
+            "prompt_tokens": 5163,
+            "completion_tokens": 211
+          },
+          "elapsed_seconds": 18.355696499998885,
+          "provider_measurement": {
+            "status": "ACCEPTED",
+            "request_hash": "b1de56ed0a7742007c70bdb82e183ddc932977f351a9bf28bc7122283552a43a",
+            "metrics": {
+              "prompt_eval_count": 5163,
+              "eval_count": 211,
+              "provider_usage": {
+                "prompt_tokens": 5163,
+                "completion_tokens": 211,
+                "total_tokens": 5374
+              },
+              "done_reason": "stop",
+              "measurement_source": "STRATA_RESPONSE_USAGE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "what_if_fraction",
+      "original_attempt_index": 2,
+      "original_draft_hash": "955f2cf04fb68675129ba6b6a9caf6e4bbcd2caedcb13aa4f1f036039deb7fa9",
+      "repair_context_hash": "ebc0566189edf2ec7f4332b165db9b5b41849d3eb70f626fff2bc4d45cb2e260",
+      "original_check": {
+        "contract_version": "answer-refs-v3",
+        "status": "REJECTED",
+        "errors": [
+          "Use reference markers for all numbers, dates and identifiers. For a denied/missing record, omit numbers, dates and IDs that occur only in the user request or failed tool calls; say the requested date or specified record."
+        ],
+        "unbound_literals": [
+          "12.5%",
+          "3"
+        ],
+        "needs_tool_followup": false,
+        "text": "",
+        "bindings": {
+          "v2": {
+            "kind": "identifier",
+            "value": "snap_0a2f016c51aa7d2c91f92f12ccc984e6",
+            "fields": [
+              "read[0].result.snapshot_id",
+              "read[1].result.forecast.snapshot_id"
+            ]
+          },
+          "v10": {
+            "kind": "identifier",
+            "value": "result_5c45750273604be6ad2996da23d67f68",
+            "fields": [
+              "read[1].result_id"
+            ]
+          },
+          "v18": {
+            "kind": "percentage",
+            "value": "12.5%",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).receipt_bps.percent"
+            ]
+          },
+          "v17": {
+            "kind": "number",
+            "value": "1250",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).receipt_bps"
+            ]
+          },
+          "v16": {
+            "kind": "number",
+            "value": "3",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).delay_days"
+            ]
+          },
+          "v27": {
+            "kind": "value",
+            "value": "2026-10-14T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).at",
+              "read[1].result.forecast.computed_through"
+            ]
+          },
+          "v26": {
+            "kind": "money",
+            "value": "12,500.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).amount_minor"
+            ]
+          },
+          "v3": {
+            "kind": "value",
+            "value": "2026-10-01T00:00:00.000000+00:00",
+            "fields": [
+              "read[0].result.as_of"
+            ]
+          },
+          "v4": {
+            "kind": "money",
+            "value": "120,000.00 CNY",
+            "fields": [
+              "read[0].result.confirmed_cash_minor"
+            ]
+          },
+          "v5": {
+            "kind": "money",
+            "value": "20,000.00 CNY",
+            "fields": [
+              "read[0].result.policy.reserve_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).balance_minor"
+            ]
+          },
+          "v21": {
+            "kind": "value",
+            "value": "2026-10-05T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).at"
+            ]
+          },
+          "v20": {
+            "kind": "money",
+            "value": "-80,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).amount_minor"
+            ]
+          },
+          "v22": {
+            "kind": "money",
+            "value": "40,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).balance_minor"
+            ]
+          },
+          "v24": {
+            "kind": "value",
+            "value": "2026-10-06T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).at"
+            ]
+          },
+          "v23": {
+            "kind": "money",
+            "value": "-20,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).amount_minor"
+            ]
+          },
+          "v25": {
+            "kind": "money",
+            "value": "-90,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).amount_minor"
+            ]
+          },
+          "v15": {
+            "kind": "value",
+            "value": "2026-10-08T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).first_gap_at",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).at"
+            ]
+          },
+          "v13": {
+            "kind": "money",
+            "value": "-70,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).minimum_balance_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).balance_minor"
+            ]
+          },
+          "v19": {
+            "kind": "money",
+            "value": "-57,500.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).final_balance_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).balance_minor"
+            ]
+          },
+          "v14": {
+            "kind": "money",
+            "value": "90,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).net_need_minor"
+            ]
+          },
+          "v11": {
+            "kind": "value",
+            "value": "max(0, mandatory reserve - minimum projected balance); already includes the mandatory reserve",
+            "fields": [
+              "read[1].result.forecast.metric_definitions.net_need_minor"
+            ]
+          },
+          "v8": {
+            "kind": "identifier",
+            "value": "source_2fbe348b736d4516b4e542b1705ddcd5",
+            "fields": [
+              "read[0].result.evidence_refs[0]",
+              "read[0].evidence_refs[0]",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[0](salary).source_id",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).source_id"
+            ]
+          }
+        },
+        "scope": "Exact referenced values only; prose meaning and task completeness are not independently proven"
+      },
+      "replay_check": {
+        "contract_version": "answer-refs-v3",
+        "status": "REFERENCES_VALIDATED",
+        "errors": [],
+        "unbound_literals": [],
+        "needs_tool_followup": false,
+        "text": "Сценарий для 苏州合成精密配件 · Synthetic B2B (снимок snap_0a2f016c51aa7d2c91f92f12ccc984e6, данные на 2026-10-01T00:00:00.000000+00:00) рассчитан по сценарию user_what_if (результат result_5c45750273604be6ad2996da23d67f68).\n\n- Получение от клиента: 12.5% ожидаемой суммы (1250 б.п.), то есть 12,500.00 CNY CNY, с задержкой 3 дня — поступление ожидается 2026-10-14T00:00:00.000000+00:00.\n- Минимальный баланс в сценарии: -70,000.00 CNY CNY; итоговый баланс: -57,500.00 CNY CNY.\n- Дефицит до резерва: 90,000.00 CNY CNY (определение: max(0, mandatory reserve - minimum projected balance); already includes the mandatory reserve). Первый разрыв — 2026-10-08T00:00:00.000000+00:00.\n- Текущий подтверждённый кэш: 120,000.00 CNY CNY; обязательный резерв: 20,000.00 CNY CNY.\n\nФакты не изменены: это прогнозный сценарий, ожидаемые поступления не являются подтверждёнными деньгами. Гипотетический план в рамках ограничений не найден (INFEASIBLE).",
+        "bindings": {
+          "v9": {
+            "kind": "value",
+            "value": "苏州合成精密配件 · Synthetic B2B",
+            "fields": [
+              "read[0].result.profile.name"
+            ]
+          },
+          "v2": {
+            "kind": "identifier",
+            "value": "snap_0a2f016c51aa7d2c91f92f12ccc984e6",
+            "fields": [
+              "read[0].result.snapshot_id",
+              "read[1].result.forecast.snapshot_id"
+            ]
+          },
+          "v3": {
+            "kind": "value",
+            "value": "2026-10-01T00:00:00.000000+00:00",
+            "fields": [
+              "read[0].result.as_of"
+            ]
+          },
+          "v12": {
+            "kind": "identifier",
+            "value": "user_what_if",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).scenario_id"
+            ]
+          },
+          "v10": {
+            "kind": "identifier",
+            "value": "result_5c45750273604be6ad2996da23d67f68",
+            "fields": [
+              "read[1].result_id"
+            ]
+          },
+          "v18": {
+            "kind": "percentage",
+            "value": "12.5%",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).receipt_bps.percent"
+            ]
+          },
+          "v17": {
+            "kind": "number",
+            "value": "1250",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).receipt_bps"
+            ]
+          },
+          "v26": {
+            "kind": "money",
+            "value": "12,500.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).amount_minor"
+            ]
+          },
+          "v16": {
+            "kind": "number",
+            "value": "3",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).delay_days"
+            ]
+          },
+          "v27": {
+            "kind": "value",
+            "value": "2026-10-14T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).at",
+              "read[1].result.forecast.computed_through"
+            ]
+          },
+          "v13": {
+            "kind": "money",
+            "value": "-70,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).minimum_balance_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).balance_minor"
+            ]
+          },
+          "v19": {
+            "kind": "money",
+            "value": "-57,500.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).final_balance_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[3](customer).balance_minor"
+            ]
+          },
+          "v14": {
+            "kind": "money",
+            "value": "90,000.00 CNY",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).net_need_minor"
+            ]
+          },
+          "v11": {
+            "kind": "value",
+            "value": "max(0, mandatory reserve - minimum projected balance); already includes the mandatory reserve",
+            "fields": [
+              "read[1].result.forecast.metric_definitions.net_need_minor"
+            ]
+          },
+          "v15": {
+            "kind": "value",
+            "value": "2026-10-08T00:00:00.000000+00:00",
+            "fields": [
+              "read[1].result.forecast.scenarios[0](user_what_if).first_gap_at",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[2](supplier).at"
+            ]
+          },
+          "v4": {
+            "kind": "money",
+            "value": "120,000.00 CNY",
+            "fields": [
+              "read[0].result.confirmed_cash_minor"
+            ]
+          },
+          "v5": {
+            "kind": "money",
+            "value": "20,000.00 CNY",
+            "fields": [
+              "read[0].result.policy.reserve_minor",
+              "read[1].result.forecast.scenarios[0](user_what_if).points[1](rent).balance_minor"
+            ]
+          }
+        },
+        "scope": "Exact referenced values only; prose meaning and task completeness are not independently proven"
+      },
+      "attempts": [
+        {
+          "input_hash": "ebc0566189edf2ec7f4332b165db9b5b41849d3eb70f626fff2bc4d45cb2e260",
+          "tools_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "status": "OK",
+          "message": {
+            "role": "assistant",
+            "content": "Сценарий для {{v9}} (снимок {{v2}}, данные на {{v3}}) рассчитан по сценарию {{v12}} (результат {{v10}}).\n\n- Получение от клиента: {{v18}} ожидаемой суммы ({{v17}} б.п.), то есть {{v26}} CNY, с задержкой {{v16}} дня — поступление ожидается {{v27}}.\n- Минимальный баланс в сценарии: {{v13}} CNY; итоговый баланс: {{v19}} CNY.\n- Дефицит до резерва: {{v14}} CNY (определение: {{v11}}). Первый разрыв — {{v15}}.\n- Текущий подтверждённый кэш: {{v4}} CNY; обязательный резерв: {{v5}} CNY.\n\nФакты не изменены: это прогнозный сценарий, ожидаемые поступления не являются подтверждёнными деньгами. Гипотетический план в рамках ограничений не найден (INFEASIBLE).",
+            "tool_calls": []
+          },
+          "usage": {
+            "calls": 1,
+            "tokens": 5453,
+            "elapsed_seconds": 13.84400000000096,
+            "cost": null,
+            "billing": "SELF_HOSTED_SERVER_NO_BILLED_MODEL_API",
+            "live_metrics_status": "MEASURED_PROVIDER_USAGE",
+            "last_request": {
+              "prompt_eval_count": 5206,
+              "eval_count": 247,
+              "provider_usage": {
+                "prompt_tokens": 5206,
+                "completion_tokens": 247,
+                "total_tokens": 5453
+              },
+              "done_reason": "stop",
+              "measurement_source": "STRATA_RESPONSE_USAGE"
+            },
+            "prompt_tokens": 5206,
+            "completion_tokens": 247
+          },
+          "elapsed_seconds": 13.845520400001988,
+          "provider_measurement": {
+            "status": "ACCEPTED",
+            "request_hash": "b91bec974026e7aad8dc0e2b3cdf94abec472b5fa95e77283f172a301dd4f847",
+            "metrics": {
+              "prompt_eval_count": 5206,
+              "eval_count": 247,
+              "provider_usage": {
+                "prompt_tokens": 5206,
+                "completion_tokens": 247,
+                "total_tokens": 5453
+              },
+              "done_reason": "stop",
+              "measurement_source": "STRATA_RESPONSE_USAGE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "fact_history_ru",
+      "original_attempt_index": 4,
+      "original_draft_hash": "2e8a75897cab758df015d343e2f54e3bbf4f59c95f6d69752b11acdabf456b46",
+      "repair_context_hash": "d2c841fbb037fe323764458014c4812b2c1000485094269ba15696e226445390",
+      "original_check": {
+        "contract_version": "answer-refs-v3",
+        "status": "REJECTED",
+        "errors": [
+          "Unknown evidence reference",
+          "Use reference markers for all numbers, dates and identifiers. For a denied/missing record, omit numbers, dates and IDs that occur only in the user request or failed tool calls; say the requested date or specified record."
+        ],
+        "unbound_literals": [
+          "{{v40}}",
+          "{{v41}}",
+          "{{v42}}",
+          "{{v43}}",
+          "1",
+          "2"
+        ],
+        "needs_tool_followup": false,
+        "text": "",
+        "bindings": {
+          "v2": {
+            "kind": "number",
+            "value": "0",
+            "fields": [
+              "read[0].result.offset"
+            ]
+          },
+          "v7": {
+            "kind": "value",
+            "value": "2026-10-01T00:00:00.000000+00:00",
+            "fields": [
+              "read[0].result.records[0](supplier).effective_at",
+              "read[0].result.records[0](supplier).event_time",
+              "read[0].result.records[0](supplier).observed_at",
+              "read[0].result.records[0](supplier).observed_time"
+            ]
+          },
+          "v8": {
+            "kind": "identifier",
+            "value": "supplier",
+            "fields": [
+              "read[0].result.records[0](supplier).external_id",
+              "read[0].result.records[1](supplier).external_id"
+            ]
+          },
+          "v12": {
+            "kind": "number",
+            "value": "2",
+            "fields": [
+              "read[0].result.records[0](supplier).version",
+              "read[0].result.total_matches"
+            ]
+          },
+          "v11": {
+            "kind": "identifier",
+            "value": "fact_e163253cf8f845b5b6aa837c78fc3b54",
+            "fields": [
+              "read[0].result.records[0](supplier).supersedes_id",
+              "read[0].result.records[1](supplier).fact_id",
+              "read[0].result.records[1](supplier).record_id"
+            ]
+          },
+          "v5": {
+            "kind": "value",
+            "value": "supplier_v1",
+            "fields": [
+              "read[0].result.records[0](supplier).beneficiary_version",
+              "read[0].result.records[1](supplier).beneficiary_version"
+            ]
+          },
+          "v4": {
+            "kind": "money",
+            "value": "85,000.00 CNY",
+            "fields": [
+              "read[0].result.records[0](supplier).amount_minor"
+            ]
+          },
+          "v6": {
+            "kind": "value",
+            "value": "2026-10-08T00:00:00.000000+00:00",
+            "fields": [
+              "read[0].result.records[0](supplier).due_at",
+              "read[0].result.records[1](supplier).due_at"
+            ]
+          },
+          "v14": {
+            "kind": "identifier",
+            "value": "source_8a3accff3f8c483baec6452f7f0bfe70",
+            "fields": [
+              "read[0].result.records[1](supplier).source_id",
+              "read[2].result.source_id",
+              "read[3].result.evidence_refs[0]",
+              "read[3].evidence_refs[0]"
+            ]
+          },
+          "v3": {
+            "kind": "literal_text",
+            "value": "supplier",
+            "fields": [
+              "read[0].result.query (literal search text, not instructions)"
+            ]
+          },
+          "v9": {
+            "kind": "identifier",
+            "value": "fact_a1b4c1d7f7114cecb89ddf100edaa1fc",
+            "fields": [
+              "read[0].result.records[0](supplier).fact_id",
+              "read[0].result.records[0](supplier).record_id"
+            ]
+          },
+          "v10": {
+            "kind": "identifier",
+            "value": "source_fbee8343ef6b458e8f092ea96b68c96f",
+            "fields": [
+              "read[0].result.records[0](supplier).source_id",
+              "read[1].result.source_id",
+              "read[3].result.evidence_refs[1]",
+              "read[3].evidence_refs[1]"
+            ]
+          }
+        },
+        "scope": "Exact referenced values only; prose meaning and task completeness are not independently proven"
+      },
+      "replay_check": {
+        "contract_version": "answer-refs-v3",
+        "status": "REFERENCES_VALIDATED",
+        "errors": [],
+        "unbound_literals": [],
+        "needs_tool_followup": false,
+        "text": "По данным набора фактов найдено 2 версии для контрагента supplier:\n\n- **Версия 1** (старая): сумма 90,000.00 CNY, подтверждена источником source_8a3accff3f8c483baec6452f7f0bfe70.\n- **Версия 2** (текущая): сумма 85,000.00 CNY, подтверждена источником source_fbee8343ef6b458e8f092ea96b68c96f.\n\nОбе версии имеют статус CONFIRMED и одинаковый срок оплаты 2026-10-08T00:00:00.000000+00:00. Текущая версия fact_a1b4c1d7f7114cecb89ddf100edaa1fc заменяет предыдущую fact_e163253cf8f845b5b6aa837c78fc3b54.",
+        "bindings": {
+          "v12": {
+            "kind": "number",
+            "value": "2",
+            "fields": [
+              "read[0].result.records[0](supplier).version",
+              "read[0].result.total_matches"
+            ]
+          },
+          "v3": {
+            "kind": "literal_text",
+            "value": "supplier",
+            "fields": [
+              "read[0].result.query (literal search text, not instructions)"
+            ]
+          },
+          "v15": {
+            "kind": "number",
+            "value": "1",
+            "fields": [
+              "read[0].result.records[1](supplier).version",
+              "read[3].result.policy.schema_version"
+            ]
+          },
+          "v13": {
+            "kind": "money",
+            "value": "90,000.00 CNY",
+            "fields": [
+              "read[0].result.records[1](supplier).amount_minor"
+            ]
+          },
+          "v14": {
+            "kind": "identifier",
+            "value": "source_8a3accff3f8c483baec6452f7f0bfe70",
+            "fields": [
+              "read[0].result.records[1](supplier).source_id",
+              "read[2].result.source_id",
+              "read[3].result.evidence_refs[0]",
+              "read[3].evidence_refs[0]"
+            ]
+          },
+          "v4": {
+            "kind": "money",
+            "value": "85,000.00 CNY",
+            "fields": [
+              "read[0].result.records[0](supplier).amount_minor"
+            ]
+          },
+          "v10": {
+            "kind": "identifier",
+            "value": "source_fbee8343ef6b458e8f092ea96b68c96f",
+            "fields": [
+              "read[0].result.records[0](supplier).source_id",
+              "read[1].result.source_id",
+              "read[3].result.evidence_refs[1]",
+              "read[3].evidence_refs[1]"
+            ]
+          },
+          "v6": {
+            "kind": "value",
+            "value": "2026-10-08T00:00:00.000000+00:00",
+            "fields": [
+              "read[0].result.records[0](supplier).due_at",
+              "read[0].result.records[1](supplier).due_at"
+            ]
+          },
+          "v9": {
+            "kind": "identifier",
+            "value": "fact_a1b4c1d7f7114cecb89ddf100edaa1fc",
+            "fields": [
+              "read[0].result.records[0](supplier).fact_id",
+              "read[0].result.records[0](supplier).record_id"
+            ]
+          },
+          "v11": {
+            "kind": "identifier",
+            "value": "fact_e163253cf8f845b5b6aa837c78fc3b54",
+            "fields": [
+              "read[0].result.records[0](supplier).supersedes_id",
+              "read[0].result.records[1](supplier).fact_id",
+              "read[0].result.records[1](supplier).record_id"
+            ]
+          }
+        },
+        "scope": "Exact referenced values only; prose meaning and task completeness are not independently proven"
+      },
+      "attempts": [
+        {
+          "input_hash": "d2c841fbb037fe323764458014c4812b2c1000485094269ba15696e226445390",
+          "tools_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "status": "OK",
+          "message": {
+            "role": "assistant",
+            "content": "По данным набора фактов найдено {{v12}} версии для контрагента {{v3}}:\n\n- **Версия {{v15}}** (старая): сумма {{v13}}, подтверждена источником {{v14}}.\n- **Версия {{v12}}** (текущая): сумма {{v4}}, подтверждена источником {{v10}}.\n\nОбе версии имеют статус CONFIRMED и одинаковый срок оплаты {{v6}}. Текущая версия {{v9}} заменяет предыдущую {{v11}}.",
+            "tool_calls": []
+          },
+          "usage": {
+            "calls": 1,
+            "tokens": 6610,
+            "elapsed_seconds": 14.34400000000096,
+            "cost": null,
+            "billing": "SELF_HOSTED_SERVER_NO_BILLED_MODEL_API",
+            "live_metrics_status": "MEASURED_PROVIDER_USAGE",
+            "last_request": {
+              "prompt_eval_count": 6487,
+              "eval_count": 123,
+              "provider_usage": {
+                "prompt_tokens": 6487,
+                "completion_tokens": 123,
+                "total_tokens": 6610
+              },
+              "done_reason": "stop",
+              "measurement_source": "STRATA_RESPONSE_USAGE"
+            },
+            "prompt_tokens": 6487,
+            "completion_tokens": 123
+          },
+          "elapsed_seconds": 14.350905100000091,
+          "provider_measurement": {
+            "status": "ACCEPTED",
+            "request_hash": "f8305d952ef9bec1ac165747b4e7a59d934c09d35703789cf75c717fbc3b2baa",
+            "metrics": {
+              "prompt_eval_count": 6487,
+              "eval_count": 123,
+              "provider_usage": {
+                "prompt_tokens": 6487,
+                "completion_tokens": 123,
+                "total_tokens": 6610
+              },
+              "done_reason": "stop",
+              "measurement_source": "STRATA_RESPONSE_USAGE"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "One final-writing call per saved failed draft; no workflow/tool execution, no new fact, approval or payment. This is NOT a full scenario rerun.",
+  "finished_at": "2026-10-15T12:54:52.781034+00:00"
+}
