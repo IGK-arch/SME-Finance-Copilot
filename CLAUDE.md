@@ -92,30 +92,23 @@ unusable (empty, garbled or contradicting its exit code).
 ## Current state (update this block when it changes)
 
 <!-- QUALITY-V5-START -->
-## Latest checkpoint: 16 Oct 2026 — incomplete evaluation, SSH unavailable
-
-Current contracts: agent-tools-v4 / answer-refs-v5 / answer-quality-v3.
-Last complete EN/ZH run full2: 66 PASS / 8 FAIL (74), on earlier code.
-Current frozen code full5: 20 PASS / 3 FAIL (23/74); transport stopped between cases.
-51 cases remain NOT_RUN in this attempt. No new inference on 16 Oct.
-All 23 available answers reviewed: 19 COMPLETE / 1 PARTIAL / 3 FAILED.
-Review is by the coding assistant, not independent. Remaining failures include
-needless clarification, rejected final formatting, off-topic document answers and
-a missing title despite all 24 documents being read (strict PASS, prose PARTIAL).
-Offline: 230 PASS / 1 sandbox-port setup FAIL / 4 PG SKIP; isolated failed test PASS.
-Targeted tests: 29 PASS; quality: nine PASS. Never replace the recorded full failure.
-85 frozen files verified unchanged; approval/execution/validation and original graders unchanged.
-T001–T100: 96 PASS / 4 NOT_RUN; V03 unchanged. No production-quality claim.
-SSH 195.208.16.1:45161 failed before authentication (missing protocol banner),
-both bridge startup and independent read-only check. Remote model health UNKNOWN.
-Local listeners 18443 and 8092 were absent. No remote restart or fallback.
-After access is restored, continue the 51 remaining case IDs from
-artifacts/quality-v5-enzh-status-20261016.json in explicit sequential segments,
-preserving full5 outcomes and verifying same model/config/code/cases. This is a plan,
-not completed evidence. Do not change runtime during the remaining evaluation.
-See docs/STRATA_QUALITY_V5_STATUS_RU.md, docs/STRATA_QUALITY_V5_PARTIAL_ANSWERS_RU.md,
-docs/TECHNICAL_REPORT_RU.md and the immutable raw artifacts linked there.
-Older dated checkpoints below are historical, including prior running-process claims.
+Latest checkpoint, 16 Oct: all remaining 51 EN/ZH scenarios executed.
+Combined 74 unique cases: 67 PASS / 7 FAIL.
+New 51: 47 PASS / 4 FAIL. Original full5 failures preserved.
+Two primary failures were transport-only; separate retries: {'PASSED': 1, 'FAILED': 1}, not substituted into the primary score.
+Execution mode: SEGMENTED_RESUMPTION_AFTER_SERVICE_RESTART, two service identities;
+same model/engine/context metadata and budgets, no weight-hash proof.
+SSH port 40390 with unchanged pinned host key. No agent-initiated remote restart.
+Successful coverage 18/18 tools, 29/29 datasets; recorded safety assertions passed.
+Narrative review: {'COMPLETE': 54, 'PARTIAL': 4, 'FAILED': 7, 'MINOR_ISSUE': 9}; coding assistant, not independent. Errors remain.
+All 22 measured Strata source files unchanged. Wider 85-file freeze differs only
+in owner commit d1647af resource_guard.py (typing alias); six existing guard tests PASS.
+No fresh full regression, PostgreSQL, UI test or cabinet 8092 restart this series.
+Previous regression 230 PASS / 1 setup FAIL / 4 PG SKIP, isolated failed test PASS.
+T001–T100 96 PASS / 4 NOT_RUN; V03 unchanged. No new production-quality claim.
+Evidence: artifacts/strata-quality-v5-enzh-resumed-20261016.json and raw segments.
+See docs/STRATA_QUALITY_V5_RESUMED_RESULTS_RU.md and
+docs/STRATA_QUALITY_V5_RESUMED_ANSWERS_RU.md. Prior partial checkpoints are historical.
 <!-- QUALITY-V5-END -->
 
 Earlier checkpoints follow.

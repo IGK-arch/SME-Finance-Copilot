@@ -1,5 +1,25 @@
 # Precise continuation point
 
+<!-- QUALITY-V5-RESUMED-START -->
+Latest checkpoint, 16 Oct: all remaining 51 EN/ZH scenarios executed.
+Combined 74 unique cases: 67 PASS / 7 FAIL.
+New 51: 47 PASS / 4 FAIL. Original full5 failures preserved.
+Two primary failures were transport-only; separate retries: {'PASSED': 1, 'FAILED': 1}, not substituted into the primary score.
+Execution mode: SEGMENTED_RESUMPTION_AFTER_SERVICE_RESTART, two service identities;
+same model/engine/context metadata and budgets, no weight-hash proof.
+SSH port 40390 with unchanged pinned host key. No agent-initiated remote restart.
+Successful coverage 18/18 tools, 29/29 datasets; recorded safety assertions passed.
+Narrative review: {'COMPLETE': 54, 'PARTIAL': 4, 'FAILED': 7, 'MINOR_ISSUE': 9}; coding assistant, not independent. Errors remain.
+All 22 measured Strata source files unchanged. Wider 85-file freeze differs only
+in owner commit d1647af resource_guard.py (typing alias); six existing guard tests PASS.
+No fresh full regression, PostgreSQL, UI test or cabinet 8092 restart this series.
+Previous regression 230 PASS / 1 setup FAIL / 4 PG SKIP, isolated failed test PASS.
+T001–T100 96 PASS / 4 NOT_RUN; V03 unchanged. No new production-quality claim.
+Evidence: artifacts/strata-quality-v5-enzh-resumed-20261016.json and raw segments.
+See STRATA_QUALITY_V5_RESUMED_RESULTS_RU.md and
+STRATA_QUALITY_V5_RESUMED_ANSWERS_RU.md. Prior partial checkpoints are historical.
+<!-- QUALITY-V5-RESUMED-END -->
+
 <!-- QUALITY-V5-STATUS-START -->
 ## Latest checkpoint: 16 Oct 2026 — incomplete evaluation, SSH unavailable
 

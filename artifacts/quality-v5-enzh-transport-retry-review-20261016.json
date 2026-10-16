@@ -1,0 +1,18 @@
+{
+  "source": "artifacts/strata-quality-v5-enzh-transport-retry-20261016.json",
+  "reviewer": "Coding assistant; not independent human review",
+  "status": "COMPLETED",
+  "scope": "Separate follow-ups after transport failure; primary failed outcomes are preserved. No best-of replacement.",
+  "records": [
+    {
+      "case_id": "fact_history_ru",
+      "status": "COMPLETE",
+      "note": "Обе версии supplier прочитаны: old 90 000 и current 85 000 CNY, правильные источники и supersedes. Версии не сложены, план не создан."
+    },
+    {
+      "case_id": "literal_lookup_ru",
+      "status": "PARTIAL",
+      "note": "Правильный obligations dataset, literal search и 0 совпадений; SQL не исполнен. Но tool query содержит один лишний пробел после --, поэтому literal_query_preserved строго FAILED. Ответ ошибочно называет строку точной. Исходные критерии не изменены."
+    }
+  ]
+}

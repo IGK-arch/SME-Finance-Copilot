@@ -1,0 +1,84 @@
+{
+  "scope": "Documentation, source/provenance and protected-file checks only; not a new model evaluation or regression",
+  "combined_summary": {
+    "completed": 74,
+    "planned": 74,
+    "strict_counts": {
+      "PASSED": 67,
+      "FAILED": 7
+    },
+    "answer_reference_counts": {
+      "REFERENCES_VALIDATED": 67,
+      "NOT_RUN": 3,
+      "REJECTED": 4
+    }
+  },
+  "unique_cases": 74,
+  "same_case_definitions": true,
+  "original_run_objects_preserved": true,
+  "changed_raw_segments": [],
+  "service_instance_count": 2,
+  "measured_strata_source_files_unchanged": 22,
+  "wider_freeze": {
+    "file_count": 85,
+    "changed": [
+      "scripts/resource_guard.py"
+    ],
+    "unchanged_strata_source_files": 22,
+    "reviewed_external_commit": "d1647af",
+    "scope": "resource_guard.py typing-only concurrent commit is outside Strata runtime; existing limits preserved. All measured Strata and execution sources unchanged."
+  },
+  "protected_files_unchanged_since_task_start": {
+    "finance/execution.py": true,
+    "finance/worker.py": true,
+    "finance/validation.py": true,
+    "finance/digest_check.py": true,
+    "finance/planner.py": true,
+    "scripts/agent_eval.py": true,
+    "scripts/agent_scenarios.py": true,
+    "scripts/live_compare.py": true
+  },
+  "language_counts": {
+    "en": 54,
+    "zh": 20
+  },
+  "narrative_counts": {
+    "COMPLETE": 54,
+    "PARTIAL": 4,
+    "FAILED": 7,
+    "MINOR_ISSUE": 9
+  },
+  "safety_failures": {},
+  "documents_checked": [
+    "docs/TECHNICAL_REPORT_RU.md",
+    "docs/STRATA_QUALITY_V5_RESUMED_RESULTS_RU.md",
+    "docs/STRATA_QUALITY_V5_RESUMED_ANSWERS_RU.md",
+    "docs/CURRENT_STATE_RU.md",
+    "docs/CONTINUATION.md",
+    "docs/KNOWN_LIMITATIONS.md",
+    "docs/STRATA_QUALITY_V5_FIXES_RU.md",
+    "docs/AGENT_QUALITY_V5_PLAN_RU.md",
+    "docs/runbooks/strata.md",
+    "CLAUDE.md"
+  ],
+  "missing_local_links": [],
+  "answer_sections": 74,
+  "all_saved_final_answers_preserved": true,
+  "transport_retry_counts": {
+    "PASSED": 1,
+    "FAILED": 1
+  },
+  "transport_retry_kept_separate": true,
+  "document_sha256": {
+    "docs/TECHNICAL_REPORT_RU.md": "8909d0e1f1b13301465efb5ed2dcbaf2522cd860460031e4e5453704e7eed427",
+    "docs/STRATA_QUALITY_V5_RESUMED_RESULTS_RU.md": "2e8fa716144093e762890cb6b8dccb68ffb73a076dd826dcb07f5abacd37e1a2",
+    "docs/STRATA_QUALITY_V5_RESUMED_ANSWERS_RU.md": "a1578275603ecb80c9dd897f3d80e63a838cdfa73183b1afdf7ccedcf3ef02f5",
+    "docs/CURRENT_STATE_RU.md": "50347a49e99fa166dede4593566b32d9306c4f6aec005affb3512ccf9e4dca19",
+    "docs/CONTINUATION.md": "2ad5b4407586744e9b385274a342d99ca8059e74c73fa7bf3a99342a025e5e89",
+    "docs/KNOWN_LIMITATIONS.md": "01003915682c8243cb8cd00a8cf3600be522367c46be40f49ef1121fbe260f26",
+    "docs/STRATA_QUALITY_V5_FIXES_RU.md": "f97b4dd6a0f5ba651d91e54de192a5fb9e4ac38ab83514d6e9b88676b0ee99ee",
+    "docs/AGENT_QUALITY_V5_PLAN_RU.md": "e1e8204d2553db25d4cffd24b58ab6d28357a7d228aac9a1aac8b89841217476",
+    "docs/runbooks/strata.md": "b350c534e1f6bf9b6b21c42ff9dd1f7304c049a349ada6bf4f5a16e6070bfb87",
+    "CLAUDE.md": "67794e817dd903e2b840ee3a0432c0c0a5684d0d3201c84bdc8242500f54ec44"
+  }
+}
