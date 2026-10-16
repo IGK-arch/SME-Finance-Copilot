@@ -15,6 +15,9 @@ import subprocess
 import sys
 from typing import Any
 
+# Windows-only ctypes members, typed loosely so mypy passes on every platform (CI runs on Linux).
+WIN: Any = ct
+
 GIB = 1024**3
 RUNTIME_LIMIT_BYTES = 20 * GIB  # E: only; user requested an additional larger model.
 
@@ -66,7 +69,7 @@ class ExtendedLimits(ct.Structure):
 def kernel() -> Any:
     if os.name != "nt":
         raise ResourceLimitError("This resource-limited launcher requires Windows")
-    return ct.WinDLL("kernel32", use_last_error=True)
+    return WIN.WinDLL("kernel32", use_last_error=True)
 
 
 def tree_bytes(root: Path) -> int:
@@ -92,7 +95,7 @@ def resource_snapshot(root: Path) -> dict[str, int]:
     memory = MemoryStatus()
     memory.length = ct.sizeof(memory)
     if not kernel().GlobalMemoryStatusEx(ct.byref(memory)):
-        raise ct.WinError(ct.get_last_error())
+        raise WIN.WinError(WIN.get_last_error())
     return {
         "system_free_bytes": shutil.disk_usage(os.environ.get("SystemDrive", "C:") + "\\").free,
         "workspace_free_bytes": shutil.disk_usage(root.anchor).free,
@@ -127,9 +130,9 @@ class Singleton:
         self.api.CreateMutexW.restype = wt.HANDLE
         self.api.CloseHandle.argtypes = [wt.HANDLE]
         self.handle = self.api.CreateMutexW(None, False, name)
-        error = ct.get_last_error()
+        error = WIN.get_last_error()
         if not self.handle:
-            raise ct.WinError(error)
+            raise WIN.WinError(error)
         if error == 183:  # ERROR_ALREADY_EXISTS
             self.close()
             raise ResourceLimitError("Another guarded local-model operation is already running")
@@ -167,7 +170,7 @@ class WindowsJob:
         self.api.CloseHandle.argtypes = [wt.HANDLE]
         self.handle = self.api.CreateJobObjectW(None, None)
         if not self.handle:
-            raise ct.WinError(ct.get_last_error())
+            raise WIN.WinError(WIN.get_last_error())
         limits = ExtendedLimits()
         # JOB_MEMORY | KILL_ON_JOB_CLOSE | ACTIVE_PROCESS; breakaway is not allowed.
         limits.basic.flags = 0x200 | 0x2000 | 0x8
@@ -176,9 +179,9 @@ class WindowsJob:
         if not self.api.SetInformationJobObject(
             self.handle, 9, ct.byref(limits), ct.sizeof(limits)
         ):
-            error = ct.get_last_error()
+            error = WIN.get_last_error()
             self.close()
-            raise ct.WinError(error)
+            raise WIN.WinError(error)
 
     def start(self, command: list[str], **kwargs: Any) -> subprocess.Popen:
         process = subprocess.Popen(
@@ -189,7 +192,7 @@ class WindowsJob:
         handle = self.api.OpenProcess(0x100 | 0x1, False, process.pid)  # SET_QUOTA | TERMINATE
         try:
             if not handle or not self.api.AssignProcessToJobObject(self.handle, handle):
-                raise ct.WinError(ct.get_last_error())
+                raise WIN.WinError(WIN.get_last_error())
             assert process.stdin is not None
             process.stdin.write(b"G")
             process.stdin.flush()
@@ -209,7 +212,7 @@ class WindowsJob:
         if not self.api.QueryInformationJobObject(
             self.handle, 9, ct.byref(limits), ct.sizeof(limits), None
         ):
-            raise ct.WinError(ct.get_last_error())
+            raise WIN.WinError(WIN.get_last_error())
         return limits.peak_job
 
     def close(self) -> None:
