@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 from decimal import Decimal, ROUND_HALF_UP
 
-from finance.domain import Json, digest
+from finance.domain import MAX_ANNUALIZED_COST_BPS, Json, digest
 
 
 def validate_plan(snap: Json, plan: Json, scenario_set: list[Json]) -> Json:
@@ -60,6 +60,14 @@ def validate_plan(snap: Json, plan: Json, scenario_set: list[Json]) -> Json:
             != quote["principal_minor"] + independent_interest + terms["repayment_fee_minor"]
         ):
             errors.append("REPAYMENT_ARITHMETIC")
+        net = quote["principal_minor"] - terms["upfront_fee_minor"]
+        cost = quote["principal_minor"] + independent_interest + terms["repayment_fee_minor"] - net
+        if (
+            net <= 0
+            or days <= 0
+            or -(-cost * 365 * 10000 // (net * days)) > MAX_ANNUALIZED_COST_BPS
+        ):
+            errors.append("COST_CAP")
         if quote["net_minor"] != quote["principal_minor"] - terms["upfront_fee_minor"]:
             errors.append("NET_ARITHMETIC")
         draws = [a for a in actions if a["kind"] == "DRAW_LOAN"]
@@ -131,7 +139,7 @@ def validate_plan(snap: Json, plan: Json, scenario_set: list[Json]) -> Json:
                             o["external_id"] + "_remainder",
                         )
                     )
-        ordered = sorted(events, key=lambda e: (e[0], e[1] >= 0, e[2]))
+        ordered = sorted(events, key=lambda e: (datetime.fromisoformat(e[0]), e[1] >= 0, e[2]))
         prefixes = [
             snap["confirmed_cash_minor"] + sum(e[1] for e in ordered[:end])
             for end in range(len(ordered) + 1)

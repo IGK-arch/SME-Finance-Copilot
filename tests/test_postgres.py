@@ -39,7 +39,7 @@ class PostgresTests(unittest.TestCase):
             with Runtime(directory, tenant=tenant, store=store, bootstrap_tokens=tokens) as runtime:
                 result = run_golden(runtime, lost_response=True)
                 self.assertTrue(result["independent_evaluation"]["success"])
-                self.assertEqual(result["independent_evaluation"]["final_cash_minor"], 2800000)
+                self.assertEqual(result["independent_evaluation"]["final_cash_minor"], 2900000)
                 self.assertEqual(result["reconciliation"]["discrepancy_minor"], 0)
                 self.assertEqual(len(runtime.adapter.observation()["movements"]), 6)
 

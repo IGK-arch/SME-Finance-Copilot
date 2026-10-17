@@ -58,7 +58,8 @@ From this project directory:
 
 ```powershell
 py -3.11 -m venv .venv
-.venv\Scripts\python.exe -m pip install -r requirements.lock
+.venv\Scripts\python.exe -m pip install --upgrade pip
+.venv\Scripts\python.exe -m pip install --index-url https://pypi.org/simple -r requirements.lock
 .venv\Scripts\python.exe -m scripts.task setup
 .venv\Scripts\python.exe -m scripts.task migrate
 .venv\Scripts\python.exe -m scripts.task seed-demo

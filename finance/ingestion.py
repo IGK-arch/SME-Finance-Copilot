@@ -129,7 +129,7 @@ def import_csv(
         )
         store.audit(
             db,
-            ctx.tenant_id,
+            ctx,
             "source.imported",
             {
                 "source_id": source_id,
@@ -299,14 +299,7 @@ def snapshot(
             "currency": "CNY",
             "business_timezone": "Asia/Shanghai",
             "data_mode": "synthetic",
-            "data_version": db.execute(
-                "SELECT COUNT(*) FROM facts WHERE tenant_id=? AND observed_at<=?",
-                (ctx.tenant_id, cutoff),
-            ).fetchone()[0]
-            + db.execute(
-                "SELECT COUNT(*) FROM allocations WHERE tenant_id=? AND observed_at<=?",
-                (ctx.tenant_id, cutoff),
-            ).fetchone()[0],
+            "data_version": observed_data_version(db, ctx.tenant_id, cutoff),
             "policy": store.policy(db, ctx.tenant_id, min(as_of, cutoff)),
             "profile": json.loads(company["profile"]),
             "confirmed_cash_minor": cash,
@@ -334,6 +327,15 @@ def snapshot(
             store.put_object(db, ctx.tenant_id, "snapshot", value["snapshot_id"], value)
         return value
 
+
+def observed_data_version(db: sqlite3.Connection, tenant: str, cutoff: str) -> int:
+    facts = db.execute(
+        "SELECT COUNT(*) FROM facts WHERE tenant_id=? AND observed_at<=?", (tenant, cutoff)
+    ).fetchone()[0]
+    allocations = db.execute(
+        "SELECT COUNT(*) FROM allocations WHERE tenant_id=? AND observed_at<=?", (tenant, cutoff)
+    ).fetchone()[0]
+    return int(facts) + int(allocations)
 
 def digest_snapshot(value: Json) -> str:
     from finance.domain import digest

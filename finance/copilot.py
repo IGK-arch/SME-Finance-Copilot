@@ -22,6 +22,9 @@ from finance.execution import ExecutionService
 from finance.ingestion import snapshot
 
 CONTEXT_KEYS = {"case_id", "plan_id", "obligation_id", "action_id", "route"}
+COPILOT_ROLES = {"OWNER", "ACCOUNTANT"}
+MAX_BACKGROUND_RUNS = 2
+_slots = threading.BoundedSemaphore(MAX_BACKGROUND_RUNS)
 
 
 def compose_task(
@@ -70,17 +73,32 @@ def _run(engine, ctx: AuthContext, kwargs: Json) -> None:
         pass  # recorded as FAILED with an error event by the engine itself
     except Exception:  # pragma: no cover - recorded by engine; keep thread silent
         logging.exception("Background workflow failure")
+    finally:
+        _slots.release()
+
+
+def _start(engine, ctx: AuthContext, kwargs: Json) -> None:
+    require(
+        _slots.acquire(blocking=False),
+        "WORKFLOW_BUSY",
+        "Copilot is busy with other requests; try again in a minute",
+    )
+    try:
+        threading.Thread(target=_run, args=(engine, ctx, kwargs), daemon=True).start()
+    except BaseException:
+        _slots.release()
+        raise
 
 
 def start_background(service: ExecutionService, ctx: AuthContext, value: Json) -> Json:
     from finance.workflows import WorkflowEngine
 
+    with service.store.connect() as db:
+        service.store.authorize(db, ctx, COPILOT_ROLES)
     task = compose_task(service, ctx, value["task"], value.get("context"))
     run_id = uid("workflow")
     engine = WorkflowEngine(service)
-    threading.Thread(
-        target=_run, args=(engine, ctx, {"task": task, "new_run_id": run_id}), daemon=True
-    ).start()
+    _start(engine, ctx, {"task": task, "new_run_id": run_id})
     return {"workflow_id": run_id, "phase": "STARTING", "task": task}
 
 
@@ -89,6 +107,8 @@ def resume_background(
 ) -> Json:
     from finance.workflows import WorkflowEngine
 
+    with service.store.connect() as db:
+        service.store.authorize(db, ctx, COPILOT_ROLES)
     engine = WorkflowEngine(service)
     prior = engine.read(ctx, run_id)  # authorizes ownership before the thread starts
     require(
@@ -96,9 +116,7 @@ def resume_background(
         "WORKFLOW_BUSY",
         "Only a paused workflow can resume",
     )
-    threading.Thread(
-        target=_run, args=(engine, ctx, {"run_id": run_id, "answer": answer}), daemon=True
-    ).start()
+    _start(engine, ctx, {"run_id": run_id, "answer": answer})
     return {"workflow_id": run_id, "phase": "RESUMING"}
 
 

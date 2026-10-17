@@ -186,7 +186,12 @@ class Store:
         return json.loads(row[0])
 
     @staticmethod
-    def audit(db: sqlite3.Connection, tenant: str, event_type: str, payload: Json) -> None:
+    def audit(
+        db: sqlite3.Connection, tenant: str | AuthContext, event_type: str, payload: Json
+    ) -> None:
+        if isinstance(tenant, AuthContext):
+            payload = {"actor": tenant.user_id, "actor_role": tenant.role} | payload
+            tenant = tenant.tenant_id
         row = db.execute(
             "SELECT event_hash FROM audit WHERE tenant_id=? ORDER BY audit_id DESC LIMIT 1",
             (tenant,),
@@ -318,6 +323,32 @@ class Store:
                 "trust": "SYNTHETIC_UNTRUSTED_DATA",
                 "text": bytes(row["content"]).decode("utf-8", errors="replace"),
             }
+
+    def verify_audit(self, ctx: AuthContext) -> Json:
+        with self.connect() as db:
+            self.authorize(db, ctx)
+            previous = "0" * 64
+            count = 0
+            for row in db.execute(
+                "SELECT audit_id,occurred_at,event_type,payload,previous_hash,event_hash "
+                "FROM audit WHERE tenant_id=? ORDER BY audit_id",
+                (ctx.tenant_id,),
+            ):
+                expected = digest(
+                    [previous, row["occurred_at"], row["event_type"], json.loads(row["payload"])]
+                )
+                if row["previous_hash"] != previous or row["event_hash"] != expected:
+                    return {
+                        "valid": False,
+                        "checked": count,
+                        "first_bad_audit_id": row["audit_id"],
+                        "reason": "LINK_BROKEN"
+                        if row["previous_hash"] != previous
+                        else "HASH_MISMATCH",
+                    }
+                previous = row["event_hash"]
+                count += 1
+        return {"valid": True, "checked": count, "head_hash": previous}
 
     def audit_log(self, ctx: AuthContext) -> list[Json]:
         with self.connect() as db:

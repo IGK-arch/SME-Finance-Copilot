@@ -113,7 +113,7 @@ class ApiTests(unittest.TestCase):
                 self.request("/v1/actions/" + action["action_id"])[1]["result"]["status"], "SETTLED"
             )
         self.assertEqual(
-            self.request("/v1/dashboard")[1]["result"]["snapshot"]["confirmed_cash_minor"], 2800000
+            self.request("/v1/dashboard")[1]["result"]["snapshot"]["confirmed_cash_minor"], 2900000
         )
         self.assertTrue(
             self.runtime.admin("/admin/evaluate", {"reserve_minor": 2000000})["success"]

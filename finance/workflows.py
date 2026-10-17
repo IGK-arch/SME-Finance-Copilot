@@ -626,6 +626,30 @@ class WorkflowEngine:
                 "events": events,
             }
 
+    def _model_identity(self, ctx: AuthContext, run_id: str, fail_run: bool) -> Json:
+        try:
+            if self.gateway.config.provider == "ollama":
+                self.gateway.local_model = self.gateway.describe()
+        except Exception as exc:
+            failure = (
+                exc
+                if isinstance(exc, FinanceError)
+                else FinanceError("MODEL_UNAVAILABLE", "Local model could not be reached")
+            )
+            self.event(ctx, run_id, "error", failure.envelope())
+            if fail_run:
+                with self.store.transaction() as db:
+                    db.execute(
+                        "UPDATE workflow_runs SET status='FAILED',updated_at=? WHERE tenant_id=? AND run_id=?",
+                        (now(), ctx.tenant_id, run_id),
+                    )
+            raise failure from exc
+        return {
+            "provider": self.gateway.config.provider,
+            "model": self.gateway.config.model,
+            "digest": (self.gateway.local_model or {}).get("digest"),
+        }
+
     def run(
         self,
         ctx: AuthContext,

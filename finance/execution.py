@@ -21,13 +21,14 @@ from finance.domain import (
     uid,
     utc,
 )
-from finance.ingestion import allocate_in_transaction, snapshot
+from finance.ingestion import allocate_in_transaction, observed_data_version, snapshot
 from finance.store import Store
 from finance.validation import validate_plan
 
 
 APPROVAL_REAL_TTL_SECONDS = 24 * 3600
 
+OBSERVE_ROLES = {"OWNER", "ACCOUNTANT", "ADMIN"}
 
 class ExecutionService:
     def __init__(self, store: Store, adapter: SandboxAdapter) -> None:
@@ -58,7 +59,7 @@ class ExecutionService:
                     self.store.put_object(db, ctx.tenant_id, "plan", plan["plan_id"], plan)
                     self.store.audit(
                         db,
-                        ctx.tenant_id,
+                        ctx,
                         "plan.validated",
                         {"plan_id": plan["plan_id"], "snapshot_id": snap["snapshot_id"]},
                     )
@@ -244,11 +245,8 @@ class ExecutionService:
                     "Previous approval cannot be reused",
                 )
                 if not self._ttl_ok(db, ctx, approval_id):
-                    # An explicit new OWNER approval of the same exact payload renews the TTL.
                     self._grant_ttl(db, ctx, approval_id)
-                    self.store.audit(
-                        db, ctx.tenant_id, "approval.renewed", {"approval_id": approval_id}
-                    )
+                    self.store.audit(db, ctx, "approval.renewed", {"approval_id": approval_id})
                 return {
                     "approval_id": approval_id,
                     "payload_hash": old["payload_hash"],
@@ -269,7 +267,7 @@ class ExecutionService:
             self._grant_ttl(db, ctx, approval_id)
             self.store.audit(
                 db,
-                ctx.tenant_id,
+                ctx,
                 "approval.created",
                 {
                     "approval_id": approval_id,
@@ -307,11 +305,10 @@ class ExecutionService:
         ).fetchone()
         require(stored is not None, "STALE_SNAPSHOT", "Scoped snapshot missing")
         snap = json.loads(stored[0])
-        require(
-            snap["data_version"] == company["data_version"] and snap["as_of"] == company["clock"],
-            "STALE_SNAPSHOT",
-            "Material state changed; compile and approve a fresh command",
-        )
+
+        require(snap["as_of"] == company["clock"]
+                and snap["data_version"] == observed_data_version(db, ctx.tenant_id, company["clock"]),
+                "STALE_SNAPSHOT", "Material state changed; compile and approve a fresh command")
         beneficiary = db.execute(
             "SELECT * FROM beneficiaries WHERE tenant_id=? AND version_id=?",
             (ctx.tenant_id, command["beneficiary_version_id"]),
@@ -518,7 +515,7 @@ class ExecutionService:
                 )
             self.store.audit(
                 db,
-                ctx.tenant_id,
+                ctx,
                 "action.reserved",
                 {"action_id": command["action_id"], "amount_minor": cash_required},
             )
@@ -531,7 +528,9 @@ class ExecutionService:
         command = action["payload"]
         if action["status"] in ("SETTLED", "FAILED"):
             return action
-        # Status lookup precedes any resend, even after a worker crash or revoked approval.
+        with self.store.connect() as db:
+            self.store.authorize(db, ctx, OBSERVE_ROLES)
+
         external = self.adapter.status(command["idempotency_key"])
         if external["status"] != "NOT_FOUND":
             self._record_result(ctx, action_id, external)
@@ -543,7 +542,6 @@ class ExecutionService:
             self.store.authorize(db, ctx, {"OWNER"})
             self._current_checks(db, ctx, command)
             self._approval_checks(db, ctx, command)
-            # A fresh provider read and current internal reserves protect queued commands too.
             reservations = [
                 dict(r)
                 for r in db.execute(
@@ -595,7 +593,7 @@ class ExecutionService:
         # SETTLED becomes local SETTLED only when its movement is reconciled.
         local = "SUBMITTED" if status == "SETTLED" else status
         with self.store.transaction() as db:
-            self.store.authorize(db, ctx)
+            self.store.authorize(db, ctx, OBSERVE_ROLES)
             row = db.execute(
                 "SELECT status FROM actions WHERE tenant_id=? AND action_id=?",
                 (ctx.tenant_id, action_id),
@@ -622,15 +620,17 @@ class ExecutionService:
                 )
             self.store.audit(
                 db,
-                ctx.tenant_id,
+                ctx,
                 "action." + local.lower(),
                 {"action_id": action_id, "provider_ref": result.get("ref")},
             )
 
     def refresh(self, ctx: AuthContext, observation: Json | None = None) -> Json:
+        with self.store.connect() as db:
+            self.store.authorize(db, ctx, OBSERVE_ROLES)
         observation = observation or self.adapter.observation()
         with self.store.transaction() as db:
-            self.store.authorize(db, ctx)
+            self.store.authorize(db, ctx, OBSERVE_ROLES)
             clock = utc(observation["clock"])
             db.execute(
                 "UPDATE companies SET clock=? WHERE tenant_id=? AND clock<=?",
@@ -752,7 +752,7 @@ class ExecutionService:
                     )
                     self.store.audit(
                         db,
-                        ctx.tenant_id,
+                        ctx,
                         "action.settled_reconciled",
                         {"action_id": action["action_id"], "transaction_id": tx_id},
                     )
@@ -790,7 +790,7 @@ class ExecutionService:
             )
             if not result["matched"]:
                 db.execute("UPDATE companies SET stopped=1 WHERE tenant_id=?", (ctx.tenant_id,))
-                self.store.audit(db, ctx.tenant_id, "reconciliation.mismatch", result)
+                self.store.audit(db, ctx, "reconciliation.mismatch", result)
             return result
 
     def revoke(self, ctx: AuthContext, approval_id: str) -> None:
@@ -801,7 +801,7 @@ class ExecutionService:
                 (ctx.tenant_id, approval_id),
             ).rowcount
             require(count == 1, "NOT_FOUND", "Scoped approval not found")
-            self.store.audit(db, ctx.tenant_id, "approval.revoked", {"approval_id": approval_id})
+            self.store.audit(db, ctx, "approval.revoked", {"approval_id": approval_id})
 
     def stop(self, ctx: AuthContext, enabled: bool, reason: str) -> None:
         require(
@@ -809,16 +809,34 @@ class ExecutionService:
             "INVALID_ARGUMENTS",
             "Explicit stop state and reason required",
         )
+        roles = {"OWNER", "ADMIN"} if enabled else {"OWNER"}
+        reconciliation_id = None
+        if not enabled:
+            with self.store.connect() as db:
+                self.store.authorize(db, ctx, roles)
+            recon = self.refresh(ctx)
+            require(
+                recon["matched"],
+                "RECONCILIATION_REQUIRED",
+                "Cash does not reconcile with the sandbox; resolve the difference before resuming",
+            )
+            reconciliation_id = recon["reconciliation_id"]
         with self.store.transaction() as db:
-            self.store.authorize(db, ctx, {"OWNER", "ADMIN"})
+            self.store.authorize(db, ctx, roles)
             db.execute(
                 "UPDATE companies SET stopped=? WHERE tenant_id=?", (int(enabled), ctx.tenant_id)
             )
             self.store.audit(
                 db,
-                ctx.tenant_id,
+                ctx,
                 "control.stop",
-                {"enabled": enabled, "reason": reason, "actor": ctx.user_id},
+                {
+                    "enabled": enabled,
+                    "reason": reason,
+                    "actor": ctx.user_id,
+                    "role": ctx.role,
+                    "reconciliation_id": reconciliation_id,
+                },
             )
 
     def cancel_plan(self, ctx: AuthContext, plan_id: str) -> Json:
@@ -834,7 +852,7 @@ class ExecutionService:
                     self.store.company(ctx)["clock"],
                 ),
             )
-            self.store.audit(db, ctx.tenant_id, "plan.cancelled", {"plan_id": plan_id})
+            self.store.audit(db, ctx, "plan.cancelled", {"plan_id": plan_id})
         return {
             "status": "CANCELLED",
             "sent_operations": "Continue status lookup and reconciliation",

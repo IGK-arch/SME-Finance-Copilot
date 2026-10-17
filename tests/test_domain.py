@@ -391,7 +391,11 @@ class DomainTests(unittest.TestCase):
     def test_T040_debt_schedule(self) -> None:
         item = catalog(ORIGIN)[0] | {"rate": "0.06"}
         result = financing(item, 9100000)
-        self.assertEqual(result["repayment_minor"], 9100000 + result["interest_minor"] + 100000)
+        self.assertEqual(
+            result["repayment_minor"],
+            9100000 + result["interest_minor"] + item["repayment_fee_minor"],
+        )
+        self.assertTrue(result["within_cost_cap"])
         self.assertEqual(result["residual_principal_minor"], 0)
 
     def test_T041_factoring(self) -> None:
