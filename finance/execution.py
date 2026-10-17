@@ -30,6 +30,7 @@ APPROVAL_REAL_TTL_SECONDS = 24 * 3600
 
 OBSERVE_ROLES = {"OWNER", "ACCOUNTANT", "ADMIN"}
 
+
 class ExecutionService:
     def __init__(self, store: Store, adapter: SandboxAdapter) -> None:
         self.store, self.adapter = store, adapter
@@ -306,9 +307,12 @@ class ExecutionService:
         require(stored is not None, "STALE_SNAPSHOT", "Scoped snapshot missing")
         snap = json.loads(stored[0])
 
-        require(snap["as_of"] == company["clock"]
-                and snap["data_version"] == observed_data_version(db, ctx.tenant_id, company["clock"]),
-                "STALE_SNAPSHOT", "Material state changed; compile and approve a fresh command")
+        require(
+            snap["as_of"] == company["clock"]
+            and snap["data_version"] == observed_data_version(db, ctx.tenant_id, company["clock"]),
+            "STALE_SNAPSHOT",
+            "Material state changed; compile and approve a fresh command",
+        )
         beneficiary = db.execute(
             "SELECT * FROM beneficiaries WHERE tenant_id=? AND version_id=?",
             (ctx.tenant_id, command["beneficiary_version_id"]),

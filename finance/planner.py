@@ -32,6 +32,7 @@ OBJECTIVES = {
 def instant(value: str) -> datetime:
     return datetime.fromisoformat(value)
 
+
 def objective_scope(
     snap: Json, objective: str, scenario_set: list[Json] | None, target: int | None
 ) -> tuple[list[Json], int]:

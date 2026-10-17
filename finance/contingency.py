@@ -71,7 +71,8 @@ def observe_decisions(
     for event in events:
         if db.execute(
             "SELECT 1 FROM inbox WHERE tenant_id=? AND provider='sandbox_decision' AND event_id=?",
-            (tenant, event["event_id"])).fetchone():
+            (tenant, event["event_id"]),
+        ).fetchone():
             continue
         db.execute("SAVEPOINT observe_decision")
         try:

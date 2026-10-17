@@ -337,6 +337,7 @@ def observed_data_version(db: sqlite3.Connection, tenant: str, cutoff: str) -> i
     ).fetchone()[0]
     return int(facts) + int(allocations)
 
+
 def digest_snapshot(value: Json) -> str:
     from finance.domain import digest
 

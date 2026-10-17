@@ -439,7 +439,9 @@ def case_events(db, tenant: str) -> list[Json]:
     return sorted(events, key=lambda e: (e["at"], e["seq"]))
 
 
-def _append(service: ExecutionService, ctx: AuthContext, case_id: str, kind: str, data: Json) -> Json | None:
+def _append(
+    service: ExecutionService, ctx: AuthContext, case_id: str, kind: str, data: Json
+) -> Json | None:
     with service.store.transaction() as db:
         service.store.authorize(db, ctx, WRITE_ROLES)
         current = fold(case_events(db, ctx.tenant_id))
