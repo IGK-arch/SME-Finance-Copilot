@@ -14,7 +14,14 @@ import json
 import re
 from datetime import datetime, timedelta, timezone
 
-from finance.compute import forecast, plan_trajectories, scenarios, trajectory, obligation_flows
+from finance.compute import (
+    analysis,
+    forecast,
+    obligation_flows,
+    plan_trajectories,
+    scenarios,
+    trajectory,
+)
 from finance.domain import (
     MAX_ANNUALIZED_COST_BPS,
     AuthContext,
@@ -26,6 +33,7 @@ from finance.domain import (
     require,
     uid,
 )
+from finance.anchor import latest as latest_anchor
 from finance.execution import ExecutionService
 from finance.ingestion import snapshot
 
@@ -623,6 +631,51 @@ def _diff_text(old: Json, new: Json) -> str:
 # ---------------------------------------------------------------- home
 
 
+def analysis_view(snap: Json, fc: Json, names: dict[str, str]) -> Json:
+    """Owner-facing business health: money objects and readable counterparty names."""
+    a = analysis(snap, fc)
+
+    def concentration(c: Json) -> Json:
+        return {
+            "total": money(c["total_minor"]),
+            "parties": c["parties"],
+            "top": [
+                {
+                    "party": party(names, t["counterparty"]),
+                    "amount": money(t["amount_minor"]),
+                    "share_bps": t["share_bps"],
+                }
+                for t in c["top"]
+            ],
+        }
+
+    return {
+        "analysis_version": a["analysis_version"],
+        "net_working_position": money(a["net_working_position_minor"])
+        | {"definition": "Confirmed cash + open receivables − open payables"},
+        "liquidity_buffer": money(a["liquidity_buffer_minor"])
+        | {"definition": "Lowest projected cash (contract dates) minus the hard reserve"},
+        "days_to_gap": a["days_to_gap"],
+        "payables_due_30d": money(a["payables_due_30d_minor"]),
+        "coverage_30d_bps": a["coverage_30d_bps"],
+        "aging": [
+            {
+                "bucket": name,
+                "receivables": money(a["receivables_aging"][name]),
+                "payables": money(a["payables_aging"][name]),
+            }
+            for name in a["receivables_aging"]
+        ],
+        "customers": concentration(a["customer_concentration"]),
+        "suppliers": concentration(a["supplier_concentration"]),
+        "settled_window_days": a["settled_window_days"],
+        "settled_inflow": money(a["settled_inflow_minor"]),
+        "settled_outflow": money(a["settled_outflow_minor"]),
+        "pnl": a["pnl"],
+        "label": a["label"],
+    }
+
+
 def home(service: ExecutionService, ctx: AuthContext) -> Json:
     store = service.store
     snap = snapshot(store, ctx)
@@ -777,6 +830,7 @@ def home(service: ExecutionService, ctx: AuthContext) -> Json:
             },
         },
         "chart": chart(snap, fc),
+        "analysis": analysis_view(snap, fc, names) if has_facts else None,
         "upcoming": upcoming,
         "alerts": found,
         "transactions": [
@@ -1517,6 +1571,7 @@ def load_context(service: ExecutionService, ctx: AuthContext) -> Json:
 
 
 EVENT_LABELS = {
+    "audit.anchored": "Audit trail anchored on a public testnet",
     "approval.created": "Approved",
     "approval.revoked": "Approval revoked",
     "action.reserved": "Funds reserved",
@@ -1599,5 +1654,6 @@ def activity(service: ExecutionService, ctx: AuthContext) -> Json:
             for e in reversed(events)
         ],
         "reconciliation": json.loads(recon[0]) if recon else None,
+        "anchor": latest_anchor(service.store, ctx),
         "stopped": bool(stopped),
     }

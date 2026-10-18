@@ -1,0 +1,128 @@
+# Security self-assessment report
+
+Topic E · SME Finance Copilot · version 0.3.0 · 18 Oct 2026.
+Scope: the code in this repository running locally on synthetic data with a
+simulated bank (sandbox). No real money, real bank, real customer data or paid
+service is connected. Every statement below points to code or a test that can be
+re-run; nothing here is a legal, regulatory or bank certification.
+
+## 1. Design principle
+
+The language model is an advisor, never an actor. It can read scoped data, run
+deterministic calculations and propose a plan. It cannot approve, send, cancel or
+change money, policies or records. Every payment needs one exact approval by a
+human OWNER for one exact payload, then a separate worker re-checks everything
+before the sandbox bank is called.
+
+```
+model (read / compute / propose)  ──►  server validation  ──►  OWNER exact approval + step-up
+        no money tools                   independent             one action, one payload hash
+                                         validator
+                                              │
+                                              ▼
+              reconciliation  ◄──  sandbox bank  ◄──  worker (re-checks, stable idempotency key)
+```
+
+## 2. Permission tiers
+
+### 2.1 Agent (model) tiers
+
+| Tier | What it allows | Agent tools | Who can trigger it |
+|---|---|---|---|
+| T0 · Read | Scoped, paginated reads of tenant data and documents (untrusted text) | `get_financial_snapshot`, `list_business_records`, `read_business_record`, `search_documents`, `get_evidence`, `get_plan_details`, `get_action_status`, `get_platform_capabilities` | Model, for OWNER/ACCOUNTANT runs |
+| T1 · Compute | Deterministic calculations, no state change to facts | `calculate_business_metrics`, `forecast_cashflow`, `what_if_cashflow`, `screen_financing_products`, `simulate_financing`, `stress_test_plan` | Model |
+| T2 · Propose | Create a validated plan or a pending proposal; nothing executes | `optimize_plan`, `prepare_action`, `propose_supplier_extension` | Model; result is a proposal only |
+| T3 · Approve | Bind one action to one SHA-256 payload hash | none (no agent tool exists) | Human OWNER only, with step-up re-authentication |
+| T4 · Execute | Reserve funds and send to the bank | none | Separate worker process, only after T3 |
+
+The tool registry is in `finance/agents.py`; the tool list and read boundaries are
+documented in [AGENT_CAPABILITIES.md](../AGENT_CAPABILITIES.md). Detail tools are
+only exposed after the model has obtained matching record IDs, and the server
+rejects fabricated or mismatched plan/action IDs.
+
+### 2.2 Human role tiers
+
+| Capability | OWNER | ACCOUNTANT | AUDITOR | ADMIN | Enforced in |
+|---|:-:|:-:|:-:|:-:|---|
+| Read workspace, reports, audit | ✓ | ✓ | ✓ | ✓ | `finance/store.py` `READ_ROLES` |
+| Import / map data, review quarantine | ✓ | ✓ | – | – | `finance/ingestion.py`, `finance/mapping.py` |
+| Start Copilot, compute options | ✓ | ✓ | – | – | `finance/copilot.py` `COPILOT_ROLES` |
+| Change policy (reserve, limits) | ✓ | – | – | – | `finance/workspace.py:129` |
+| Approve a payment (exact payload + step-up) | ✓ | – | – | – | `finance/execution.py` `approve`, `finance/digest_check.py` `step_up` |
+| Revoke approval, cancel plan | ✓ | – | – | – | `finance/execution.py` `revoke`, `cancel_plan` |
+| Stop new sends (kill switch) | ✓ | – | – | ✓ | `finance/execution.py` `stop` |
+| Resume sends | ✓ (only after matched reconciliation) | – | – | – | `finance/execution.py` `stop`; test `test_resume_requires_matching_reconciliation` |
+
+Tenant and role come from the membership record on every request, never from a
+request field. Tests: `tests/test_audit_fixes.py::test_R4_R5_role_boundaries`,
+`test_auditor_cannot_start_copilot`.
+
+## 3. Controls implemented
+
+| Area | Control | Evidence |
+|---|---|---|
+| Authentication | Membership token exchanged for an 8-hour HttpOnly, SameSite=Strict session cookie stored as a hash; logout revokes; membership re-checked per request | `finance/asgi.py` `/session` |
+| Step-up for money | Browser approval requires re-entering the owner token; legacy browser money routes are closed | `finance/digest_check.py`; test `test_S01_browser_session_needs_step_up_and_no_legacy_route` |
+| Exact approval | Server recompiles the command and compares the reviewed payload hash; one approval per action, no approve-all; 24-hour real-time TTL; revocable | `finance/digest_check.py`, `finance/execution.py`; tests T071–T073 |
+| Freshness | Approval rejected if facts, policy, beneficiary or plan changed after the command was built | `tests/test_audit_fixes.py` R-series |
+| Financial limits | Hard reserve; annualised cost cap is a hard solver constraint; validator re-checks independently | `finance/planner.py`, `finance/validation.py`; test `test_S02_cost_cap_is_a_hard_constraint` |
+| Independent validation | Validator never calls the solver or its trajectory code | `finance/validation.py` |
+| Idempotency | Stable key per tenant/action; status lookup before any resend; UNKNOWN keeps the reserve | `finance/worker.py`; E2E `lost_response_single_attempt` |
+| Atomicity | Approval check, reservation, outbox and job in one transaction | `finance/execution.py` `prepare` |
+| Tenant isolation | PostgreSQL FORCE row-level security keyed on `session_user`; immutable ledger/source rows | `finance/postgres.py`, ADR 0003 |
+| Audit trail | Every audit record stores the actor role and is hash-chained; tampering is detected | `finance/store.py` `verify_audit`, `scripts/verify_audit.py`; test `test_S06_audit_records_actor_and_detects_tampering` |
+| On-chain anchor | Chain head published on a public testnet; mainnet refused; only OWNER/ADMIN may anchor; only hashes leave the machine; testnet wallet holds no business money | `finance/anchor.py`; `tests/test_anchor.py` |
+| Prompt injection | Documents are labelled untrusted; no tool can be added by document text; model has no SQL, shell, secret or payment tool | `SECURITY.md`; injection tests in `tests/` |
+| Web | CSP `style-src 'self'`, DOM built from text nodes (no `innerHTML` with data), same-origin check, no tokens in localStorage or URLs | `web/ui.js`, `finance/asgi.py` |
+| Honest status | SUBMITTED is never shown as paid; case is RESOLVED only after settlement and matched reconciliation | `finance/cases.py`; E2E `case_resolved_only_after_reconciliation` |
+| Model fallback | A failing live model is recorded as a failed run, never silently replaced by MOCK | test `test_R8_unreachable_model_is_recorded_as_failed_run` |
+| Webhooks | Optional HMAC-SHA256 signed wakeup with 300 s window; body is never trusted for balances | `finance/hooks.py` |
+| Supply chain | Pinned `requirements.lock`; license inventory | `scripts/licenses.py`, `artifacts/dependency-inventory.json` |
+
+## 4. Compliance considerations
+
+- **Data minimisation and residency.** All data is synthetic and stays on the
+  local machine; no third-party API receives financial data by default. The
+  optional self-hosted model is reached only through an authenticated SSH bridge
+  that exposes chat endpoints and no financial tools.
+- **Human in the loop.** No autonomous money movement: every action has a human
+  OWNER approval of the exact amount, recipient and terms.
+- **Explainability.** Each number carries snapshot ID, calculation version and
+  source references; options show why they are infeasible.
+- **No advice claims.** Financing products are labelled DEMO; eligibility is not
+  lender approval; scenarios are uncalibrated and not probabilities of default.
+- **Separation of duties.** ACCOUNTANT prepares, OWNER approves, AUDITOR reads,
+  ADMIN can stop sends but cannot approve payments.
+
+## 5. Known-risk list
+
+Severity is for a hypothetical production deployment; in the current local
+synthetic setup the impact is limited to demo data.
+
+| ID | Risk | Severity | Current mitigation | Status |
+|---|---|---|---|---|
+| K01 | Host or database administrator can replace the database, including the hash-chained audit | High → Medium | Hash chain detects edits by non-admins; the chain head is anchored on a public testnet (`scripts.anchor_audit`), so a consistent rewrite of anchored records is detected. Records after the last anchor stay unprotected until the next anchor | Partly mitigated |
+| K02 | API and worker share one PostgreSQL tenant role; no worker-only grant set | Medium | RLS still limits both to one tenant | Open |
+| K03 | Simulator and LangGraph SQLite files are not in separately permissioned containers; no OS-level isolation of private simulator truth | Medium | Process separation and tools never expose private world state | Open |
+| K04 | Credentials live in ignored local files, not a secret vault | Medium | `.gitignore`, no secrets in outputs/URLs/localStorage | Open (by design for local demo) |
+| K05 | HTTP binds to 127.0.0.1 without TLS/SSO | Medium for hosting, Low locally | Loopback only | Open |
+| K06 | Live model prose can still contain semantic errors even when tool calls pass | Medium | Result cards come from tool results, not prose; exact money references are validated; failures recorded in evaluation reports | Open, measured |
+| K07 | Prompt injection through imported documents against a live model | Medium | No dangerous tools exist; documents labelled untrusted; mock tests only, not proof of real-model robustness | Partly mitigated |
+| K08 | Document parser has time/size bounds but no OS memory sandbox | Low | Subprocess with resource limits | Open |
+| K09 | No compensating payments or external cancellation; UNKNOWN reserves cannot be force-released | Low (safety over liquidity) | Status lookup by stable key | Accepted |
+| K10 | Business analysis is descriptive; P&L is not computed from bank data | Low | Labelled `INSUFFICIENT_DATA` | Accepted |
+| K11 | Alerts have no acknowledgement/debounce workflow | Low | Alerts are idempotent per rule/subject | Open |
+| K12 | Testnet wallet key is stored in the ignored workspace folder | Low (testnet coins only) | Separate from business credentials; mainnet refused by chain-id check | Accepted |
+
+## 6. How to verify
+
+```bash
+python -m scripts.test        # full regression
+python -m scripts.check       # ruff, mypy, format, JS syntax
+python -m scripts.e2e_v03     # product path through server + worker + sandbox
+python -m scripts.verify_audit --directory .runtime/workspace   # audit chain
+```
+
+Latest run on Linux (CPython 3.13, 18 Oct 2026): 278 tests, 0 failures,
+7 skipped (PostgreSQL and Windows-only resource guard); `scripts.check` all
+PASSED; product E2E 21/21 checks PASSED.

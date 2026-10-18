@@ -598,3 +598,96 @@ def optimize(
             }
         )
     return result
+
+
+ANALYSIS_VERSION = "analysis-v1"
+AGING_BUCKETS = (
+    ("overdue", None, 0),
+    ("d0_30", 0, 31),
+    ("d31_60", 31, 61),
+    ("d61_90", 61, 91),
+    ("d90_plus", 91, None),
+)
+
+
+def _days_until(as_of: str, at: str) -> int:
+    delta = datetime.fromisoformat(utc(at)) - datetime.fromisoformat(utc(as_of))
+    return delta.days if delta.total_seconds() >= 0 else -1
+
+
+def _aging(snap: Json, kind: str) -> Json:
+    buckets = {name: 0 for name, _, _ in AGING_BUCKETS}
+    for o in snap["obligations"]:
+        if o["kind"] != kind or not o["outstanding_minor"]:
+            continue
+        days = _days_until(snap["as_of"], o["due_at"])
+        for name, low, high in AGING_BUCKETS:
+            if (low is None or days >= low) and (high is None or days < high):
+                buckets[name] += o["outstanding_minor"]
+                break
+    return buckets
+
+
+def _concentration(snap: Json, kind: str) -> Json:
+    by_party: dict[str, int] = {}
+    for o in snap["obligations"]:
+        if o["kind"] == kind and o["outstanding_minor"]:
+            by_party[o["counterparty"]] = (
+                by_party.get(o["counterparty"], 0) + o["outstanding_minor"]
+            )
+    total = sum(by_party.values())
+    top = sorted(by_party.items(), key=lambda kv: (-kv[1], kv[0]))[:3]
+    return {
+        "total_minor": total,
+        "parties": len(by_party),
+        "top": [
+            {"counterparty": party, "amount_minor": amount, "share_bps": amount * 10000 // total}
+            for party, amount in top
+        ],
+    }
+
+
+def analysis(snap: Json, fc: Json | None = None, window_days: int = 30) -> Json:
+    """Business health ratios derived only from the observed snapshot (integer money, bps)."""
+    fc = fc or forecast(snap)
+    base = fc["scenarios"][0]
+    receivables = _aging(snap, "RECEIVABLE")
+    payables = _aging(snap, "PAYABLE")
+    cash = snap["confirmed_cash_minor"]
+    reserve = snap["policy"]["reserve_minor"]
+    due_soon = payables["overdue"] + payables["d0_30"]
+    since = shift(snap["as_of"], -window_days)
+    inflow = outflow = 0
+    for f in snap["facts"]:
+        v = f["value"]
+        if (
+            f["kind"] == "TRANSACTION"
+            and v.get("status") == "SETTLED"
+            and since < utc(v["event_time"]) <= snap["as_of"]
+        ):
+            if v["amount_minor"] > 0:
+                inflow += v["amount_minor"]
+            else:
+                outflow -= v["amount_minor"]
+    return {
+        "analysis_version": ANALYSIS_VERSION,
+        "snapshot_id": snap["snapshot_id"],
+        "as_of": snap["as_of"],
+        "net_working_position_minor": cash + sum(receivables.values()) - sum(payables.values()),
+        "liquidity_buffer_minor": base["minimum_balance_minor"] - reserve,
+        "days_to_gap": (
+            _days_until(snap["as_of"], base["first_gap_at"]) if base["first_gap_at"] else None
+        ),
+        "payables_due_30d_minor": due_soon,
+        "coverage_30d_bps": (cash * 10000 // due_soon) if due_soon else None,
+        "receivables_aging": receivables,
+        "payables_aging": payables,
+        "customer_concentration": _concentration(snap, "RECEIVABLE"),
+        "supplier_concentration": _concentration(snap, "PAYABLE"),
+        "settled_window_days": window_days,
+        "settled_inflow_minor": inflow,
+        "settled_outflow_minor": outflow,
+        "evidence_refs": snap["evidence_refs"],
+        "pnl": {"status": "INSUFFICIENT_DATA", "reason": "A bank statement is not a P&L"},
+        "label": "Computed from observed facts; ratios are descriptive, not a credit score",
+    }

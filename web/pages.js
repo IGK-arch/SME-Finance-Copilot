@@ -272,6 +272,25 @@ const Pages = (() => {
       h('div', {class: 'foot'}, h('button', {class: 'btn', type: 'button', onclick: () => Dialog.dismiss()}, r.approvable ? 'Not now' : 'Close'), r.approvable ? approve : null));
   }
 
+  /* Business health: descriptive ratios computed by the server from observed facts. */
+  const pct = bps => (bps / 100).toFixed(bps % 100 ? 1 : 0) + '%';
+  const BUCKETS = {overdue: 'Overdue', d0_30: 'Due in 0–30 days', d31_60: '31–60 days', d61_90: '61–90 days', d90_plus: 'Over 90 days'};
+  function healthCard(a) {
+    const cover = a.coverage_30d_bps === null ? {display: 'No payables'} : {display: pct(a.coverage_30d_bps)};
+    const gap = {display: a.days_to_gap === null ? 'No gap' : a.days_to_gap + (a.days_to_gap === 1 ? ' day' : ' days')};
+    const top = c => table(['Counterparty', 'Open amount', 'Share'], c.top.map(t => [t.party, t.amount.display, pct(t.share_bps)]), {right: [1, 2], empty: 'None open.'});
+    return h('section', {class: 'card', 'aria-labelledby': 'h-health'}, h('h2', {id: 'h-health'}, 'Business health'),
+      h('p', {class: 'muted small'}, a.label + '. Profit and loss needs accounting data, not only bank movements.'),
+      h('div', {class: 'grid g4 health', style: {marginTop: '12px'}},
+        metric('Days until cash gap', gap, 'Contract dates, below the reserve', a.days_to_gap !== null),
+        metric('Liquidity buffer', a.liquidity_buffer, null, a.liquidity_buffer.minor < 0),
+        metric('Cash vs bills due in 30 days', cover, 'Payables due ' + a.payables_due_30d.display, a.coverage_30d_bps !== null && a.coverage_30d_bps < 10000),
+        metric('Net working position', a.net_working_position, null, a.net_working_position.minor < 0)),
+      h('div', {class: 'split', style: {marginTop: '12px'}},
+        h('div', {}, h('h3', {}, 'Ageing of open items'), table(['Due', 'Money in', 'Money out'], a.aging.map(b => [BUCKETS[b.bucket] || b.bucket, b.receivables.display, b.payables.display]), {right: [1, 2]})),
+        h('div', {}, h('h3', {}, 'Largest customers'), top(a.customers), h('h3', {style: {marginTop: '12px'}}, 'Largest payees'), top(a.suppliers))));
+  }
+
   /* ---------------------------------------------------------------- Money */
   let scenarioPick = 'f0';
   async function moneyPage(main) {
@@ -302,6 +321,7 @@ const Pages = (() => {
               h('p', {class: 'small muted', style: {marginTop: '8px'}}, 'Hypothetical lowest-cost plan for this scenario: ' + r.hypothetical_min_cost.solver_status + (r.hypothetical_min_cost.total_cost ? ' · cost ' + r.hypothetical_min_cost.total_cost.display : '') + ' (not executable).'),
               chart([{name: 'Contract dates', color: COLORS.f0, points: r.chart.series[0].points}, {name: 'What-if', color: COLORS.what_if, dash: '5 4', points: r.chart.series[1].points}], r.chart.reserve));
           })}, 'Calculate scenario')) : h('p', {class: 'muted'}, 'No open receivables.'), out),
+      d.analysis ? healthCard(d.analysis) : null,
       h('div', {class: 'split'},
         h('section', {class: 'card'}, h('h2', {}, 'Money in and out'), h('div', {style: {marginTop: '10px'}}, obligationsTable(d.upcoming))),
         h('section', {class: 'card'}, h('h2', {}, 'Settled cash movements'), h('p', {class: 'muted small'}, 'Observed by the sandbox bank or imported statements.'),
@@ -321,6 +341,11 @@ const Pages = (() => {
           recon ? h('dl', {class: 'kv', style: {marginTop: '10px'}}, h('dt', {}, 'Status'), h('dd', {}, h('span', {class: 'badge ' + (recon.matched ? 'good' : 'bad')}, recon.status)), h('dt', {}, 'Local cash'), h('dd', {}, UI.minorText(recon.local_cash_minor)),
             h('dt', {}, 'Sandbox cash'), h('dd', {}, UI.minorText(recon.provider_cash_minor)), h('dt', {}, 'Difference'), h('dd', {}, UI.minorText(recon.discrepancy_minor)), h('dt', {}, 'Business time'), h('dd', {}, time(recon.at))) : h('p', {class: 'muted'}, 'Not reconciled yet.'),
           h('button', {class: 'btn small', type: 'button', style: {marginTop: '10px'}, disabled: !can(['OWNER', 'ACCOUNTANT', 'ADMIN']), title: can(['OWNER', 'ACCOUNTANT', 'ADMIN']) ? '' : 'Auditors read reconciliations; they do not run them', onclick: guard(async () => { const r = await api('/v1/reconcile', {}); toast('Reconciliation: ' + r.status, r.matched ? 'good' : 'bad'); await App.render(); })}, 'Refresh & reconcile'))),
+      a.anchor ? h('section', {class: 'card', style: {marginTop: '16px'}, 'aria-labelledby': 'h-anchor'}, h('h2', {id: 'h-anchor'}, 'On-chain proof of the audit trail'),
+        h('p', {class: 'muted small'}, 'The hash of the first ' + a.anchor.audit_count + ' audit records is published on ' + a.anchor.network + '. Only hashes leave this machine; any later rewrite of those records no longer matches.'),
+        h('dl', {class: 'kv', style: {marginTop: '10px'}}, h('dt', {}, 'Status'), h('dd', {}, h('span', {class: 'badge ' + (a.anchor.status === 'CONFIRMED' ? 'good' : 'warn')}, a.anchor.status)),
+          h('dt', {}, 'Chain head'), h('dd', {class: 'num small'}, a.anchor.head_hash.slice(0, 16) + '…'), h('dt', {}, 'Anchored'), h('dd', {}, UI.real(a.anchor.anchored_at)),
+          h('dt', {}, 'Transaction'), h('dd', {}, h('a', {href: a.anchor.explorer_url, target: '_blank', rel: 'noopener noreferrer'}, a.anchor.tx_hash.slice(0, 18) + '…')))) : null,
       h('section', {class: 'card', style: {marginTop: '16px'}}, h('h2', {}, 'Journal'), h('ul', {class: 'reasons', style: {marginTop: '10px'}}, a.events.map(e => h('li', {}, UI.real(e.at) + ' · ' + e.label + (e.repeats > 1 ? (e.type.startsWith('action.') ? ` (status re-checked ${e.repeats}× until ${UI.real(e.last_at)})` : ` (×${e.repeats})`) : ''))))));
   }
   async function operation(main, actionId) {
