@@ -76,8 +76,14 @@ request field. Tests: `tests/test_audit_fixes.py::test_R4_R5_role_boundaries`,
 | Web | CSP `style-src 'self'`, DOM built from text nodes (no `innerHTML` with data), same-origin check, no tokens in localStorage or URLs | `web/ui.js`, `finance/asgi.py` |
 | Honest status | SUBMITTED is never shown as paid; case is RESOLVED only after settlement and matched reconciliation | `finance/cases.py`; E2E `case_resolved_only_after_reconciliation` |
 | Model fallback | A failing live model is recorded as a failed run, never silently replaced by MOCK | test `test_R8_unreachable_model_is_recorded_as_failed_run` |
-| Webhooks | Optional HMAC-SHA256 signed wakeup with 300 s window; body is never trusted for balances | `finance/hooks.py` |
-| Supply chain | Pinned `requirements.lock`; license inventory | `scripts/licenses.py`, `artifacts/dependency-inventory.json` |
+| Webhooks | Optional HMAC-SHA256 signed wakeup with 300 s window; body is never trusted for balances; a replayed event ID does no work | `finance/hooks.py`; test `test_replayed_signed_webhook_does_not_reconcile_again` |
+| DNS rebinding | `Host` must be a loopback name (or one listed in `SME_ALLOWED_HOSTS`); other hosts get 400 before any route runs | `finance/asgi.py` `host_allowed`; `tests/test_security_hardening.py` |
+| Security headers | CSP with `object-src 'none'`, `form-action 'self'`, `frame-ancestors 'none'`; `X-Frame-Options`, COOP, CORP, `Permissions-Policy`, `nosniff`, `no-referrer`, `no-store`; HSTS when served over HTTPS | `finance/asgi.py` |
+| Brute force | Failed sign-ins and failed API bearer tokens each lock after 20 failures in 5 minutes (429); step-up locks after 5 wrong confirmations | `finance/asgi.py` `FailureLimiter`, `finance/digest_check.py` |
+| Security logging | Failed sign-ins, bad tokens, lockouts, foreign origins/hosts, missing CSRF header and rejected sessions go to the `sme.security` logger as JSON lines without tokens, cookies or bodies | `finance/asgi.py` `security_event` |
+| Agent audit | Every model-initiated proposal (`optimize_plan`, `prepare_action`, `propose_supplier_extension`) adds an `agent.tool_call` record to the hash-chained audit, marked `executed: false` | `finance/agents.py`; test `test_model_proposals_are_in_the_hash_chained_audit` |
+| Input parsing | JSON refuses `NaN`/`Infinity`; deep nesting is a 400, not a 500; workbook XML must be plain UTF-8 with no DTD or entity declarations (XXE, entity expansion) | `finance/asgi.py` `parse_body`, `finance/mapping.py` `safe_xml` |
+| Supply chain | Pinned `requirements.lock`; license inventory; CI runs a secret scan and an OSV vulnerability audit of every pinned package; CI actions pinned to commit SHAs with a read-only token | `scripts/security_scan.py`, `scripts/licenses.py`, `.github/workflows/ci.yml` |
 
 ## 4. Compliance considerations
 
@@ -113,6 +119,8 @@ synthetic setup the impact is limited to demo data.
 | K10 | Business analysis is descriptive; P&L is not computed from bank data | Low | Labelled `INSUFFICIENT_DATA` | Accepted |
 | K11 | Alerts have no acknowledgement/debounce workflow | Low | Alerts are idempotent per rule/subject | Open |
 | K12 | Testnet wallet key is stored in the ignored workspace folder | Low (testnet coins only) | Separate from business credentials; mainnet refused by chain-id check | Accepted |
+| K13 | The model server's public IP address remains in old commits (removed from current files; no key or password was ever committed, confirmed by `python -m scripts.security_scan --history`) | Low | Server reached only through an SSH key that is not in the repository; repository is private | Open until history is rewritten or the address is retired |
+| K14 | Sign-in and token lockouts are global per process, so repeated bad attempts can delay legitimate sign-in for five minutes | Low locally | Loopback binding; separate budgets for browser sign-in and API tokens | Accepted |
 
 ## 6. How to verify
 

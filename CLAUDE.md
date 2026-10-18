@@ -91,6 +91,12 @@ unusable (empty, garbled or contradicting its exit code).
 
 ## Current state (update this block when it changes)
 
+18 Oct security audit (branch security-hardening): Host allowlist (`SME_ALLOWED_HOSTS`
+adds hosts; TestClient must use base_url http://127.0.0.1:...), extra headers, bearer
+lockout, `sme.security` log, strict JSON, XLSX DTD refusal, webhook replay no-op,
+`agent.tool_call` audit for T2 tools, `scripts.security_scan` in CI. Server IP remains
+only in git history (K13). See docs/submission/SECURITY_AUDIT.md.
+
 18 Oct: PR #2 merged (0b1720f): English reviewer docs in `docs/submission/`, Business
 health card on Money, on-chain audit anchor (`finance/anchor.py`, `scripts.anchor_audit`,
 optional `requirements-onchain.txt`, installed in `.venv`). First anchor on Ethereum Sepolia:
