@@ -29,7 +29,9 @@ class WebhookTests(unittest.TestCase):
             signature = hmac.new(
                 secret.encode(), stamp.encode() + b"." + body, hashlib.sha256
             ).hexdigest()
-            with TestClient(make_app(r.service, webhook=(r.ctx, secret))) as client:
+            with TestClient(
+                make_app(r.service, webhook=(r.ctx, secret)), base_url="http://127.0.0.1:8080"
+            ) as client:
                 headers = {"X-SME-Timestamp": stamp, "X-SME-Signature": signature}
                 first = client.post("/hooks/sandbox", content=body, headers=headers)
                 self.assertEqual(first.status_code, 200, first.text)

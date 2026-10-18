@@ -11,7 +11,7 @@ from scripts.runtime import Runtime
 class AsgiTests(unittest.TestCase):
     def test_fastapi_real_domain_routes_and_strict_validation(self) -> None:
         with tempfile.TemporaryDirectory() as folder, Runtime(Path(folder)) as r:
-            with TestClient(make_app(r.service)) as client:
+            with TestClient(make_app(r.service), base_url="http://127.0.0.1:8080") as client:
                 self.assertEqual(client.get("/v1/dashboard").status_code, 401)
                 headers = {"Authorization": "Bearer " + r.tokens["OWNER"]}
                 for endpoint in (

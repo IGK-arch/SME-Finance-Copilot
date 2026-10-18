@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-18T20:33:00.286995+00:00",
+  "secrets": {
+    "status": "PASSED",
+    "findings": []
+  },
+  "dependencies": {
+    "status": "PASSED",
+    "checked": 80,
+    "vulnerable": [],
+    "source": "osv.dev"
+  }
+}

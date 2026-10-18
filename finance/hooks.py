@@ -42,6 +42,14 @@ def receive(
         "INVALID_WEBHOOK",
         "Only a bounded event ID is accepted",
     )
+    # A replayed signed wakeup (same event ID inside the timestamp window) does no work.
+    with service.store.connect() as db:
+        service.store.authorize(db, ctx)
+        if db.execute(
+            "SELECT 1 FROM inbox WHERE tenant_id=? AND provider='sandbox_webhook' AND event_id=?",
+            (ctx.tenant_id, value["event_id"]),
+        ).fetchone():
+            return {"status": "DUPLICATE_IGNORED", "duplicate": True}
     # Do not trust balances/commands in a webhook. Read the sandbox observation API.
     result = service.refresh(ctx)
     with service.store.transaction() as db:
