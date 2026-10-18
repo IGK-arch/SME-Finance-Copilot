@@ -33,12 +33,12 @@ tests; the remaining items are listed in the
 | 8 | Proposals made by the model were indistinguishable from the user's own actions in the audit | `agent.tool_call` audit record per T2 tool call | `test_model_proposals_are_in_the_hash_chained_audit` |
 | 9 | CI had a default-permission token, tag-pinned actions and no secret or vulnerability check | `contents: read`, SHA-pinned actions, `scripts.security_scan` step | `test_tracked_files_contain_no_secrets_or_public_hosts` |
 
-## Open, needs the owner
+## Accepted risk
 
 - **Server address in git history (K13).** Current files are clean, but three older
-  commits still contain the model server's public IP. Removing it means rewriting
-  `main` and force-pushing, which changes every commit hash after that point. Run
-  `python -m scripts.security_scan --history` to list the affected commits.
+  commits still contain the model server's public IP (no key or password). The owner
+  decided not to rewrite history because hosting moves to another server, which retires
+  the address. `python -m scripts.security_scan --history` lists the affected commits.
 
 ## Verification after the fixes (Windows, CPython 3.11.9, 18 Oct 2026)
 

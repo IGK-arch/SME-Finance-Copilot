@@ -119,7 +119,7 @@ synthetic setup the impact is limited to demo data.
 | K10 | Business analysis is descriptive; P&L is not computed from bank data | Low | Labelled `INSUFFICIENT_DATA` | Accepted |
 | K11 | Alerts have no acknowledgement/debounce workflow | Low | Alerts are idempotent per rule/subject | Open |
 | K12 | Testnet wallet key is stored in the ignored workspace folder | Low (testnet coins only) | Separate from business credentials; mainnet refused by chain-id check | Accepted |
-| K13 | The model server's public IP address remains in old commits (removed from current files; no key or password was ever committed, confirmed by `python -m scripts.security_scan --history`) | Low | Server reached only through an SSH key that is not in the repository; repository is private | Open until history is rewritten or the address is retired |
+| K13 | The model server's public IP address remains in old commits (removed from current files; no key or password was ever committed, confirmed by `python -m scripts.security_scan --history`) | Low | Server reached only through an SSH key that is not in the repository; repository is private; the owner is moving hosting to another server, which retires the address | Accepted (owner decision 18 Oct: history not rewritten) |
 | K14 | Sign-in and token lockouts are global per process, so repeated bad attempts can delay legitimate sign-in for five minutes | Low locally | Loopback binding; separate budgets for browser sign-in and API tokens | Accepted |
 
 ## 6. How to verify
