@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import sqlite3
 
-from finance.domain import AuthContext, Json, canonical, digest, require, utc
+from finance.domain import AuthContext, FinanceError, Json, canonical, digest, require, utc
 from finance.ingestion import snapshot
 from finance.planner import solve
 from finance.store import Store
@@ -54,7 +54,7 @@ def request_extension(store: Store, ctx: AuthContext, fact_id: str, due_at: str)
             store.put_object(db, ctx.tenant_id, "contingent_plan", request_id, envelope)
             store.audit(
                 db,
-                ctx.tenant_id,
+                ctx,
                 "extension.requested",
                 {
                     "request_id": request_id,
@@ -74,50 +74,76 @@ def observe_decisions(
             (tenant, event["event_id"]),
         ).fetchone():
             continue
-        request = db.execute(
-            "SELECT r.*,f.provider,f.external_id,f.kind,f.version,f.payload FROM extension_requests r JOIN facts f ON r.tenant_id=f.tenant_id AND r.obligation_fact_id=f.fact_id WHERE r.tenant_id=? AND r.request_id=?",
-            (tenant, event["request_id"]),
-        ).fetchone()
-        require(
-            request is not None, "UNMATCHED_DECISION", "Observed decision has no scoped request"
-        )
-        require(
-            event["obligation_id"] == request["external_id"]
-            and event["due_at"] == request["proposed_due_at"]
-            and event["observed_at"] <= clock,
-            "DECISION_MISMATCH",
-            "Decision differs from the request",
-        )
-        source, _ = store.source(db, tenant, "sandbox_decision", canonical(event).encode(), clock)
-        status = "DECLINED"
-        if event["accepted"] is True:
-            latest = db.execute(
-                "SELECT MAX(version) FROM facts WHERE tenant_id=? AND kind=? AND provider=? AND external_id=?",
-                (tenant, request["kind"], request["provider"], request["external_id"]),
-            ).fetchone()[0]
-            require(
-                latest == request["version"],
-                "STALE_EXTENSION",
-                "Obligation changed after extension request; manual review needed",
+        db.execute("SAVEPOINT observe_decision")
+        try:
+            _apply_decision(store, db, tenant, event, clock)
+            db.execute("RELEASE SAVEPOINT observe_decision")
+        except FinanceError as exc:
+            db.execute("ROLLBACK TO SAVEPOINT observe_decision")
+            db.execute("RELEASE SAVEPOINT observe_decision")
+            db.execute(
+                "UPDATE extension_requests SET status='NEEDS_REVIEW' WHERE tenant_id=? AND request_id=?",
+                (tenant, event.get("request_id")),
             )
-            value = json.loads(request["payload"])
-            value = value | {
-                "original_due_at": value["due_at"],
-                "due_at": event["due_at"],
-                "version": latest + 1,
-                "observed_time": clock,
-                "event_time": clock,
-            }
-            store.add_fact(db, tenant, request["provider"], source, value)
-            status = "CONFIRMED"
-        db.execute(
-            "UPDATE extension_requests SET status=?,decision_source_id=? WHERE tenant_id=? AND request_id=?",
-            (status, source, tenant, request["request_id"]),
+            db.execute(
+                "INSERT INTO inbox VALUES(?,'sandbox_decision',?)", (tenant, event["event_id"])
+            )
+            store.audit(
+                db,
+                tenant,
+                "extension.needs_review",
+                {
+                    "event_id": event["event_id"],
+                    "request_id": event.get("request_id"),
+                    "code": exc.code,
+                    "impact": "NO_FACT_CHANGED",
+                },
+            )
+
+
+def _apply_decision(store: Store, db: sqlite3.Connection, tenant: str, event: Json, clock: str):
+    request = db.execute(
+        "SELECT r.*,f.provider,f.external_id,f.kind,f.version,f.payload FROM extension_requests r JOIN facts f ON r.tenant_id=f.tenant_id AND r.obligation_fact_id=f.fact_id WHERE r.tenant_id=? AND r.request_id=?",
+        (tenant, event["request_id"]),
+    ).fetchone()
+    require(request is not None, "UNMATCHED_DECISION", "Observed decision has no scoped request")
+    require(
+        event["obligation_id"] == request["external_id"]
+        and event["due_at"] == request["proposed_due_at"]
+        and event["observed_at"] <= clock,
+        "DECISION_MISMATCH",
+        "Decision differs from the request",
+    )
+    source, _ = store.source(db, tenant, "sandbox_decision", canonical(event).encode(), clock)
+    status = "DECLINED"
+    if event["accepted"] is True:
+        latest = db.execute(
+            "SELECT MAX(version) FROM facts WHERE tenant_id=? AND kind=? AND provider=? AND external_id=?",
+            (tenant, request["kind"], request["provider"], request["external_id"]),
+        ).fetchone()[0]
+        require(
+            latest == request["version"],
+            "STALE_EXTENSION",
+            "Obligation changed after extension request; manual review needed",
         )
-        db.execute("INSERT INTO inbox VALUES(?,'sandbox_decision',?)", (tenant, event["event_id"]))
-        store.audit(
-            db,
-            tenant,
-            "extension." + status.lower(),
-            {"request_id": request["request_id"], "source_id": source, "impact": "REPLAN_REQUIRED"},
-        )
+        value = json.loads(request["payload"])
+        value = value | {
+            "original_due_at": value["due_at"],
+            "due_at": event["due_at"],
+            "version": latest + 1,
+            "observed_time": clock,
+            "event_time": clock,
+        }
+        store.add_fact(db, tenant, request["provider"], source, value)
+        status = "CONFIRMED"
+    db.execute(
+        "UPDATE extension_requests SET status=?,decision_source_id=? WHERE tenant_id=? AND request_id=?",
+        (status, source, tenant, request["request_id"]),
+    )
+    db.execute("INSERT INTO inbox VALUES(?,'sandbox_decision',?)", (tenant, event["event_id"]))
+    store.audit(
+        db,
+        tenant,
+        "extension." + status.lower(),
+        {"request_id": request["request_id"], "source_id": source, "impact": "REPLAN_REQUIRED"},
+    )

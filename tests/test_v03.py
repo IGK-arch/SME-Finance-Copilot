@@ -103,7 +103,7 @@ class V03Tests(unittest.TestCase):
             fin = by["FINANCE_MIN_COST"]["financing"]
             self.assertEqual(
                 (fin["gross"]["minor"], fin["net"]["minor"], fin["repayment"]["minor"]),
-                (9100000, 9000000, 9200000),
+                (9100000, 9000000, 9100000),
             )
             self.assertEqual(by["NO_NEW_DEBT"]["status"], "INFEASIBLE")
             self.assertIn(
@@ -147,9 +147,23 @@ class V03Tests(unittest.TestCase):
                     runtime.ctx,
                     plan_id,
                     draw["action_id"],
-                    {"payload_hash": "0" * 64, "confirm": True},
+                    {
+                        "payload_hash": "0" * 64,
+                        "confirm": True,
+                        "reauth": runtime.tokens["OWNER"],
+                    },
                 )
             self.assertEqual(mismatch.exception.code, "APPROVAL_HASH_MISMATCH")
+            for wrong in (None, "", runtime.tokens["ACCOUNTANT"], "x" * 40):
+                with self.assertRaises(FinanceError) as no_step_up:
+                    approve_and_queue(
+                        runtime.service,
+                        runtime.ctx,
+                        plan_id,
+                        draw["action_id"],
+                        {"payload_hash": review["payload_hash"], "confirm": True, "reauth": wrong},
+                    )
+                self.assertEqual(no_step_up.exception.code, "STEP_UP_REQUIRED")
             queued = approve_and_queue(
                 runtime.service,
                 runtime.ctx,
@@ -158,6 +172,7 @@ class V03Tests(unittest.TestCase):
                 {
                     "payload_hash": review["payload_hash"],
                     "confirm": True,
+                    "reauth": runtime.tokens["OWNER"],
                     "inject_lost_response": True,
                 },
             )

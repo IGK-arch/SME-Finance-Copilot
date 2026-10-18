@@ -171,6 +171,7 @@ const Pages = (() => {
       add('Net cash received', f.net.display); add('Gross principal', f.gross.display); add('Upfront fee', f.upfront_fee.display);
       add('Interest + repayment fee', UI.minorText({minor_str: String(BigInt(f.interest.minor_str) + BigInt(f.repayment_fee.minor_str))}));
       add('Repay', f.repayment.display + ' on ' + day(f.repay_at)); add('Total cost', f.total_cost.display);
+      if (f.annual_cost) add('Effective cost', f.annual_cost.display + ' (cap ' + f.annual_cost.cap_display + ')');
       add('Money arrives', day(f.disburse_at)); add('Offer valid until', time(f.quote_expires_at));
     } else if (o.status === 'EXECUTABLE') add('New debt', 'CNY 0.00');
     if (o.status === 'EXECUTABLE') {
@@ -240,15 +241,18 @@ const Pages = (() => {
     const r = await api(`/v1/review/${encodeURIComponent(planId)}/${encodeURIComponent(actionId)}`);
     const confirm = h('input', {type: 'checkbox', id: 'confirm-exact'});
     const lost = h('input', {type: 'checkbox', id: 'lost'});
+    const reauth = h('input', {type: 'password', id: 'approve-reauth', autocomplete: 'off', placeholder: 'Owner access token'});
     const approve = h('button', {class: 'btn primary', type: 'button', disabled: true, onclick: guard(async () => {
-      const result = await api(`/v1/review/${encodeURIComponent(planId)}/${encodeURIComponent(actionId)}/approve`, {payload_hash: r.payload_hash, confirm: true, inject_lost_response: lost.checked});
+      const secret = reauth.value; reauth.value = '';
+      const result = await api(`/v1/review/${encodeURIComponent(planId)}/${encodeURIComponent(actionId)}/approve`, {payload_hash: r.payload_hash, confirm: true, reauth: secret, inject_lost_response: lost.checked});
       Dialog.dismiss(); toast('Approved and queued. Track it until it is reconciled.', 'good'); location.hash = '#activity/' + result.action_id;
     })}, r.button || 'Approve');
-    confirm.addEventListener('change', () => { approve.disabled = !confirm.checked || !r.approvable; });
+    const sync = () => { approve.disabled = !confirm.checked || !r.approvable || !reauth.value; };
+    confirm.addEventListener('change', sync); reauth.addEventListener('input', sync);
     const lt = r.loan_terms;
     const terms = lt ? h('div', {class: 'card', style: {padding: '14px'}}, h('h3', {}, 'Loan terms · ' + lt.product),
       h('dl', {class: 'kv', style: {marginTop: '8px'}}, ...[['Gross principal', lt.gross], ['Net cash received', lt.net], ['Upfront fee', lt.upfront_fee], ['Interest', lt.interest], ['Repayment fee', lt.repayment_fee], ['Repayment', lt.repayment]].flatMap(([k, v]) => [h('dt', {}, k), h('dd', {}, v.display)]),
-        h('dt', {}, 'Repay on'), h('dd', {}, day(lt.repay_at)), h('dt', {}, 'Quote valid until'), h('dd', {}, time(lt.quote_expires_at))), h('p', {class: 'small muted'}, lt.binding)) : null;
+        h('dt', {}, 'Repay on'), h('dd', {}, day(lt.repay_at)), lt.annual_cost ? h('dt', {}, 'Effective cost') : null, lt.annual_cost ? h('dd', {}, lt.annual_cost.display) : null, h('dt', {}, 'Quote valid until'), h('dd', {}, time(lt.quote_expires_at))), h('p', {class: 'small muted'}, lt.binding)) : null;
     Dialog.open(
       h('div', {class: 'head'}, h('div', {}, h('p', {class: 'small muted'}, 'Review exact action'), h('h2', {id: 'dialog-title'}, r.title)), Dialog.close()),
       h('div', {class: 'body stack'},
@@ -262,6 +266,7 @@ const Pages = (() => {
         h('div', {class: 'grid g2'}, h('div', {}, h('h3', {}, 'Approving means'), h('ul', {class: 'reasons'}, r.approval_means.map(x => h('li', {}, x)))),
           h('div', {}, h('h3', {}, 'It does not mean'), h('ul', {class: 'reasons'}, r.approval_does_not_mean.map(x => h('li', {}, x))))),
         r.approvable ? h('label', {class: 'check', for: 'confirm-exact'}, confirm, `I approve exactly this ${r.kind === 'DRAW_LOAN' ? 'loan draw' : r.kind === 'REPAY_LOAN' ? 'loan repayment' : 'payment'} of ${r.amount.display} to ${r.recipient.name}.`) : null,
+        r.approvable ? h('label', {for: 'approve-reauth'}, 'Confirm it is you: re-enter your owner access token', reauth) : null,
         r.command ? h('details', {}, h('summary', {class: 'small'}, 'Command, versions and hash'), h('p', {class: 'small muted'}, 'payload SHA-256 ' + r.payload_hash), h('pre', {}, JSON.stringify(r.command, null, 2))) : null,
         r.approvable ? h('details', {}, h('summary', {class: 'small'}, 'Sandbox test controls'), h('label', {class: 'check', for: 'lost'}, lost, 'Simulate a lost sandbox response for this send (tests UNKNOWN recovery; no double payment).')) : null),
       h('div', {class: 'foot'}, h('button', {class: 'btn', type: 'button', onclick: () => Dialog.dismiss()}, r.approvable ? 'Not now' : 'Close'), r.approvable ? approve : null));
@@ -315,7 +320,7 @@ const Pages = (() => {
         h('section', {class: 'card'}, h('h2', {}, 'Last reconciliation'),
           recon ? h('dl', {class: 'kv', style: {marginTop: '10px'}}, h('dt', {}, 'Status'), h('dd', {}, h('span', {class: 'badge ' + (recon.matched ? 'good' : 'bad')}, recon.status)), h('dt', {}, 'Local cash'), h('dd', {}, UI.minorText(recon.local_cash_minor)),
             h('dt', {}, 'Sandbox cash'), h('dd', {}, UI.minorText(recon.provider_cash_minor)), h('dt', {}, 'Difference'), h('dd', {}, UI.minorText(recon.discrepancy_minor)), h('dt', {}, 'Business time'), h('dd', {}, time(recon.at))) : h('p', {class: 'muted'}, 'Not reconciled yet.'),
-          h('button', {class: 'btn small', type: 'button', style: {marginTop: '10px'}, onclick: guard(async () => { const r = await api('/v1/reconcile', {}); toast('Reconciliation: ' + r.status, r.matched ? 'good' : 'bad'); await App.render(); })}, 'Refresh & reconcile'))),
+          h('button', {class: 'btn small', type: 'button', style: {marginTop: '10px'}, disabled: !can(['OWNER', 'ACCOUNTANT', 'ADMIN']), title: can(['OWNER', 'ACCOUNTANT', 'ADMIN']) ? '' : 'Auditors read reconciliations; they do not run them', onclick: guard(async () => { const r = await api('/v1/reconcile', {}); toast('Reconciliation: ' + r.status, r.matched ? 'good' : 'bad'); await App.render(); })}, 'Refresh & reconcile'))),
       h('section', {class: 'card', style: {marginTop: '16px'}}, h('h2', {}, 'Journal'), h('ul', {class: 'reasons', style: {marginTop: '10px'}}, a.events.map(e => h('li', {}, UI.real(e.at) + ' · ' + e.label + (e.repeats > 1 ? (e.type.startsWith('action.') ? ` (status re-checked ${e.repeats}× until ${UI.real(e.last_at)})` : ` (×${e.repeats})`) : ''))))));
   }
   async function operation(main, actionId) {
@@ -475,7 +480,7 @@ const Pages = (() => {
               toast('New policy version saved. Recompute options; re-approve due actions.', 'good'); await App.refreshHome(); await App.render(); })}, 'Save new policy version'))),
         h('section', {class: 'card'}, h('h2', {}, 'Send controls'), h('p', {class: 'small muted'}, home.stopped ? 'New sends are STOPPED.' : 'New sends are allowed. Stopping does not recall operations already sent.'),
           h('div', {class: 'form-row', style: {marginTop: '10px'}}, h('label', {for: 'stop-reason'}, 'Reason', reason),
-            h('button', {class: 'btn danger', type: 'button', disabled: !can(['OWNER', 'ADMIN']), onclick: guard(async () => {
+            h('button', {class: 'btn danger', type: 'button', disabled: home.stopped ? !can(['OWNER']) : !can(['OWNER', 'ADMIN']), title: home.stopped && !can(['OWNER']) ? 'Only the owner can resume, after cash reconciles' : '', onclick: guard(async () => {
               const stop = !home.stopped; await api('/v1/controls/stop', {enabled: stop, reason: reason.value || (stop ? 'Owner stop from settings' : 'Owner resume from settings')});
               await App.refreshHome(); toast(stop ? 'New sends stopped.' : 'New sends resumed.', 'warn'); await App.render(); })}, home.stopped ? 'Resume new sends' : 'Stop new sends')),
           h('hr'), h('h3', {}, 'Sandbox controls'), h('p', {class: 'small muted'}, 'Moves the synthetic business clock to the next contract date and lets pending sandbox operations settle. Not available to the model.'),

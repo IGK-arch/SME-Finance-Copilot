@@ -67,6 +67,20 @@ def rate_charge(amount: int, rate: str, days: int, basis: int = 365) -> int:
         raise FinanceError("INVALID_RATE", "Invalid decimal rate") from exc
 
 
+MAX_ANNUALIZED_COST_BPS = 2400
+
+
+def annualized_cost_bps(cost_minor: int, net_minor: int, days: int) -> int:
+    require(
+        type(cost_minor) is int and cost_minor >= 0 and net_minor > 0 and days > 0,
+        "UNSUPPORTED_PRODUCT_TERMS",
+        "Cost, net proceeds and term are required to annualize cost",
+    )
+    numerator = cost_minor * 365 * 10000
+    denominator = net_minor * days
+    return -(-numerator // denominator)
+
+
 def utc(value: str) -> str:
     try:
         dt = datetime.fromisoformat(value.replace("Z", "+00:00"))

@@ -5,7 +5,16 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 from typing import Iterable
 
-from finance.domain import Json, digest, minor, rate_charge, require, utc
+from finance.domain import (
+    MAX_ANNUALIZED_COST_BPS,
+    Json,
+    annualized_cost_bps,
+    digest,
+    minor,
+    rate_charge,
+    require,
+    utc,
+)
 
 CALCULATION_VERSION = "compute-v2"
 
@@ -263,7 +272,13 @@ def catalog(origin: str) -> list[Json]:
         "disburse_at": shift(origin, 1),
     }
     return [
-        base | {"product_id": "demo_bridge_v1", "name": "DEMO bridge", "upfront_fee_minor": 100000},
+        base
+        | {
+            "product_id": "demo_bridge_v1",
+            "name": "DEMO bridge",
+            "upfront_fee_minor": 100000,
+            "repayment_fee_minor": 0,
+        },
         base
         | {
             "product_id": "demo_late_v1",
@@ -352,6 +367,7 @@ def financing(item: Json, principal: int) -> Json:
     net = minor(principal - item["upfront_fee_minor"])
     require(net > 0 and days > 0, "UNSUPPORTED_PRODUCT_TERMS", "Invalid timing/net proceeds")
     repayment = minor(principal + interest + item["repayment_fee_minor"])
+    annual_bps = annualized_cost_bps(repayment - net, net, days)
     return {
         "quote_id": "quote_" + digest([item, principal])[:24],
         "product_version": item["product_id"],
@@ -362,6 +378,9 @@ def financing(item: Json, principal: int) -> Json:
         "repayment_fee_minor": item["repayment_fee_minor"],
         "repayment_minor": repayment,
         "total_cost_minor": repayment - net,
+        "term_days": days,
+        "annualized_cost_bps": annual_bps,
+        "within_cost_cap": annual_bps <= MAX_ANNUALIZED_COST_BPS,
         "disburse_at": item["disburse_at"],
         "repay_at": item["repay_at"],
         "expires_at": item["expires_at"],
@@ -520,7 +539,9 @@ def optimize(
         if screen["status"] == "PASS" and objective != "NO_NEW_DEBT":
             for principal in range(item["min_minor"], item["max_minor"] + 1, item["grid_minor"]):
                 if principal > item["upfront_fee_minor"]:
-                    options.append(financing(item, principal))
+                    offer = financing(item, principal)
+                    if offer["within_cost_cap"]:
+                        options.append(offer)
     best: Json | None = None
     best_key: tuple[int, ...] | None = None
     checked = 0

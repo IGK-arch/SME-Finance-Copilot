@@ -64,14 +64,22 @@ const Copilot = (() => {
   async function resume(value) {
     try { await api('/v1/workflows/' + runId + '/resume', Object.assign({background: true}, value)); startedAt = Date.now(); last.statuses.workflow = 'RESUMING'; render(); poll(); } catch (e) { toast(e.message, 'bad'); }
   }
+  const POLL_LIMIT_MS = 10 * 60 * 1000, MISSING_LIMIT = 15;
+  let missing = 0;
   async function poll() {
     clearTimeout(timer);
     if (!runId) return;
-    try { last = await api('/v1/copilot/' + runId); } catch (e) { if (e.code !== 'NOT_FOUND') { toast(e.message, 'bad'); return; } }
+    try { last = await api('/v1/copilot/' + runId); missing = 0; } catch (e) {
+      if (e.code !== 'NOT_FOUND') { toast(e.message, 'bad'); return; }
+      if (++missing >= MISSING_LIMIT) { missing = 0; toast('Copilot run did not start. Try again.', 'bad'); return; }
+    }
     if (!panel().hidden) render();
     const wf = last && last.statuses.workflow;
-    if (!last || ['RUNNING', 'STARTING', 'RESUMING'].includes(wf)) timer = setTimeout(poll, 1000);
-    else if (wf !== 'FAILED') App.refreshHome().catch(() => {});
+    const age = startedAt ? Date.now() - startedAt : 0;
+    if (!last || ['RUNNING', 'STARTING', 'RESUMING'].includes(wf)) {
+      if (age > POLL_LIMIT_MS) { toast('Copilot is taking too long; reopen the run later from history.', 'warn'); return; }
+      timer = setTimeout(poll, age > 60000 ? 3000 : 1000);
+    } else if (wf !== 'FAILED') App.refreshHome().catch(() => {});
   }
   function view(r) {
     const s = r.statuses;

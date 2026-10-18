@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+from datetime import datetime
 from importlib.metadata import version
 
 from ortools.sat.python import cp_model
@@ -26,6 +27,10 @@ OBJECTIVES = {
     "HIGHER_RESERVE": "Lowest cost keeping an explicit higher cash target (reserve_target_minor) in the base scenario",
     "PRESERVE_LIQUIDITY": "Lowest cost keeping the hard reserve in every DEMO stress scenario (f0, delay_5, delay_25)",
 }
+
+
+def instant(value: str) -> datetime:
+    return datetime.fromisoformat(value)
 
 
 def objective_scope(
@@ -101,7 +106,9 @@ def solve(
         ):
             for principal in range(item["min_minor"], item["max_minor"] + 1, item["grid_minor"]):
                 if principal > item["upfront_fee_minor"]:
-                    options.append(financing(item, principal))
+                    offer = financing(item, principal)
+                    if offer["within_cost_cap"]:
+                        options.append(offer)
     plans = [candidate(snap, quote, objective) for quote in options]
     model = cp_model.CpModel()
     choose = [model.new_bool_var(f"option_{i}") for i in range(len(plans))]
@@ -116,7 +123,9 @@ def solve(
             + [{"at": a["at"], "amount_minor": a["cash_delta_minor"]} for a in p["actions"]]
             for p in plans
         ]
-        times = sorted({(f["at"], f["amount_minor"] >= 0) for flows in option_flows for f in flows})
+        times = sorted(
+            {(instant(f["at"]), f["amount_minor"] >= 0) for flows in option_flows for f in flows}
+        )
         balances = [snap["confirmed_cash_minor"]] * len(plans)
         prefixes.append(sum(b * x for b, x in zip(balances, choose)))
         for stamp, incoming in times:
@@ -126,7 +135,7 @@ def solve(
                     + sum(
                         f["amount_minor"]
                         for f in flows
-                        if f["at"] == stamp and (f["amount_minor"] >= 0) == incoming
+                        if instant(f["at"]) == stamp and (f["amount_minor"] >= 0) == incoming
                     )
                 )
                 minima[i] = min(minima[i], balances[i])
@@ -158,7 +167,7 @@ def solve(
         solver = cp_model.CpSolver()
         solver.parameters.num_search_workers = 1
         solver.parameters.random_seed = 0
-        solver.parameters.max_time_in_seconds = max(0, deadline - time.monotonic())
+        solver.parameters.max_time_in_seconds = max(0, int(deadline - time.monotonic()))
         status = solver.solve(model)
         if status == cp_model.MODEL_INVALID:
             require(False, "MODEL_INVALID", "CP-SAT compiler produced an invalid model")

@@ -49,6 +49,10 @@ def work_once(service: ExecutionService, tenant: str, worker_id: str) -> Json:
             "UPDATE execution_jobs SET lease_owner=?,lease_until=?,attempts=attempts+1 WHERE tenant_id=? AND action_id=?",
             (worker_id, stamp + 30, tenant, row["action_id"]),
         )
+        before = db.execute(
+            "SELECT status FROM actions WHERE tenant_id=? AND action_id=?",
+            (tenant, row["action_id"]),
+        ).fetchone()[0]
     error = None
     status = "BLOCKED"
     try:
@@ -73,12 +77,18 @@ def work_once(service: ExecutionService, tenant: str, worker_id: str) -> Json:
                 worker_id,
             ),
         )
-        service.store.audit(
-            db,
-            tenant,
-            "worker.attempt",
-            {"action_id": row["action_id"], "status": status, "error": error},
-        )
+        if status != before or error != row["last_error"]:
+            service.store.audit(
+                db,
+                tenant,
+                "worker.attempt",
+                {
+                    "action_id": row["action_id"],
+                    "status": status,
+                    "previous_status": before,
+                    "error": error,
+                },
+            )
     return {"action_id": row["action_id"], "status": status, "error": error}
 
 

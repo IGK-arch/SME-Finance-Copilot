@@ -31,6 +31,21 @@ class TaskRequest(BaseModel):
 SESSION_COOKIE = "sme_session"
 SESSION_SECONDS = 8 * 3600
 NAME = re.compile(r"^[a-z0-9_-]{1,40}\.(js|css|svg)$")
+LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
+LEGACY_MONEY_ROUTE = re.compile(r"^(approvals|actions/[^/]+/dispatch)$")
+
+
+def check_origin(request: Request) -> None:
+    origin = request.headers.get("Origin")
+    if origin:
+        parsed = urlparse(origin)
+        require(
+            parsed.scheme in ("http", "https")
+            and parsed.hostname in LOOPBACK_HOSTS
+            and parsed.netloc == request.headers.get("host"),
+            "POLICY_DENIED",
+            "Cross-origin request denied",
+        )
 
 
 def _session_key(value: str) -> str:
@@ -143,22 +158,10 @@ def make_app(
         ]
         return FileResponse(path, media_type=kind)
 
-    def same_origin(request: Request) -> None:
-        origin = request.headers.get("Origin")
-        if origin:
-            parsed = urlparse(origin)
-            require(
-                parsed.scheme in ("http", "https")
-                and parsed.hostname == "127.0.0.1"
-                and parsed.netloc == request.headers.get("host"),
-                "POLICY_DENIED",
-                "Cross-origin request denied",
-            )
-
     @app.post("/session")
     async def create_session(request: Request):
         try:
-            same_origin(request)
+            check_origin(request)
             body = await request.json()
             require(
                 isinstance(body, dict)
@@ -187,9 +190,7 @@ def make_app(
                             "expires_at": expires,
                         },
                     )
-                    service.store.audit(
-                        db, ctx.tenant_id, "session.created", {"user_id": ctx.user_id}
-                    )
+                    service.store.audit(db, ctx, "session.created", {"user_id": ctx.user_id})
 
             await run_in_threadpool(save)
             response = JSONResponse(
@@ -225,7 +226,7 @@ def make_app(
     async def logout(request: Request):
         raw = request.cookies.get(SESSION_COOKIE, "")
         try:
-            same_origin(request)
+            check_origin(request)
             ctx = await run_in_threadpool(session_context, service, raw)
 
             def revoke() -> None:
@@ -233,9 +234,7 @@ def make_app(
                     service.store.put_object(
                         db, ctx.tenant_id, "session_revoked", _session_key(raw), {"at": time.time()}
                     )
-                    service.store.audit(
-                        db, ctx.tenant_id, "session.revoked", {"user_id": ctx.user_id}
-                    )
+                    service.store.audit(db, ctx, "session.revoked", {"user_id": ctx.user_id})
 
             await run_in_threadpool(revoke)
         except FinanceError:
@@ -248,16 +247,7 @@ def make_app(
     async def endpoint(resource: str, request: Request):
         request_id = uid("request")
         try:
-            origin = request.headers.get("Origin")
-            if origin:
-                parsed = urlparse(origin)
-                require(
-                    parsed.scheme == "http"
-                    and parsed.hostname == "127.0.0.1"
-                    and parsed.netloc == request.headers.get("host"),
-                    "POLICY_DENIED",
-                    "Cross-origin request denied",
-                )
+            check_origin(request)
             bearer = request.headers.get("Authorization", "").removeprefix("Bearer ")
             cookie = request.cookies.get(SESSION_COOKIE)
             if bearer:
@@ -271,6 +261,11 @@ def make_app(
                     "Missing request header",
                 )
                 ctx = await run_in_threadpool(session_context, service, cookie or "")
+                require(
+                    not (request.method == "POST" and LEGACY_MONEY_ROUTE.match(resource)),
+                    "POLICY_DENIED",
+                    "Browser sessions approve money only through review + step-up",
+                )
             body = bytearray()
             async for chunk in request.stream():
                 body.extend(chunk)
@@ -331,7 +326,12 @@ def make_app(
             )
             return {"schema_version": 1, "request_id": request_id, "result": result}
         except FinanceError as exc:
-            code = {"UNAUTHORIZED": 401, "POLICY_DENIED": 403, "NOT_FOUND": 404}.get(exc.code, 409)
+            code = {
+                "UNAUTHORIZED": 401,
+                "STEP_UP_REQUIRED": 403,
+                "POLICY_DENIED": 403,
+                "NOT_FOUND": 404,
+            }.get(exc.code, 409)
             return JSONResponse(
                 {"request_id": request_id, "error": exc.envelope()}, status_code=code
             )

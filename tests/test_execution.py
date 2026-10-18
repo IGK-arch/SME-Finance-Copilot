@@ -86,7 +86,7 @@ class ExecutionTests(unittest.TestCase):
         )
         self.assertEqual(quote["result"]["net_minor"], 9000000)
         stress = registry.call("stress_test_plan", {"plan_id": self.plan["plan_id"]})
-        self.assertEqual(stress["result"]["paths"][-1]["minimum_balance_minor"], -7200000)
+        self.assertEqual(stress["result"]["paths"][-1]["minimum_balance_minor"], -7100000)
 
     def test_status_tool_never_uses_stale_cache(self) -> None:
         command = self.draw()
@@ -448,7 +448,7 @@ class ExecutionTests(unittest.TestCase):
     def test_T095_fresh_golden(self) -> None:
         result = run_golden(self.runtime)
         self.assertTrue(result["independent_evaluation"]["success"])
-        self.assertEqual(result["after"]["confirmed_cash_minor"], 2800000)
+        self.assertEqual(result["after"]["confirmed_cash_minor"], 2900000)
         self.assertEqual(result["plan_status"]["status"], "COMPLETED")
 
     def test_T096_evaluator_ignores_agent_text(self) -> None:

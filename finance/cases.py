@@ -15,13 +15,41 @@ import re
 from datetime import datetime, timedelta, timezone
 
 from finance.compute import forecast, plan_trajectories, scenarios, trajectory, obligation_flows
-from finance.domain import AuthContext, FinanceError, Json, digest, now, require, uid
+from finance.domain import (
+    MAX_ANNUALIZED_COST_BPS,
+    AuthContext,
+    FinanceError,
+    Json,
+    annualized_cost_bps,
+    digest,
+    now,
+    require,
+    uid,
+)
 from finance.execution import ExecutionService
 from finance.ingestion import snapshot
 
 RULE_VERSION = "alerts-v1"
 WRITE_ROLES = {"OWNER", "ACCOUNTANT"}
 ID = re.compile(r"^[A-Za-z0-9_.:\-]{1,160}$")
+
+
+def annual_cost(q: Json) -> Json:
+    """Effective yearly cost on net proceeds, shown next to flat-fee amounts.
+    Recomputed for quotes stored before the cost cap existed.
+    """
+    bps = q.get("annualized_cost_bps")
+    if bps is None:
+        days = (
+            datetime.fromisoformat(q["repay_at"]) - datetime.fromisoformat(q["disburse_at"])
+        ).days
+        bps = annualized_cost_bps(q["total_cost_minor"], q["net_minor"], days)
+    return {
+        "bps": bps,
+        "display": f"{bps // 100}.{bps % 100:02d}% per year",
+        "within_cap": bps <= MAX_ANNUALIZED_COST_BPS,
+        "cap_display": f"{MAX_ANNUALIZED_COST_BPS // 100}% per year",
+    }
 
 
 def cny(amount: int) -> str:
@@ -413,9 +441,15 @@ def case_events(db, tenant: str) -> list[Json]:
 
 def _append(
     service: ExecutionService, ctx: AuthContext, case_id: str, kind: str, data: Json
-) -> Json:
+) -> Json | None:
     with service.store.transaction() as db:
         service.store.authorize(db, ctx, WRITE_ROLES)
+        current = fold(case_events(db, ctx.tenant_id))
+        if kind == "OPENED":
+            if any(not c["closed"] for c in current.values()):
+                return None
+        elif case_id not in current or current[case_id]["closed"]:
+            return None
         seq = (
             db.execute(
                 "SELECT COUNT(*) FROM objects WHERE tenant_id=? AND kind='case_event'",
@@ -432,9 +466,7 @@ def _append(
             "data": data,
         }
         service.store.put_object(db, ctx.tenant_id, "case_event", uid("case_event"), event)
-        service.store.audit(
-            db, ctx.tenant_id, "case." + kind.lower(), {"case_id": case_id, "seq": seq}
-        )
+        service.store.audit(db, ctx, "case." + kind.lower(), {"case_id": case_id, "seq": seq})
     return event
 
 
@@ -885,6 +917,7 @@ def option_card(
             "interest": money(q["interest_minor"]),
             "repayment": money(q["repayment_minor"]),
             "total_cost": money(q["total_cost_minor"]),
+            "annual_cost": annual_cost(q),
             "disburse_at": q["disburse_at"],
             "repay_at": q["repay_at"],
             "quote_expires_at": q["expires_at"],
@@ -1008,7 +1041,11 @@ def compute_options(
         "note": "No option is labelled recommended: compare cost, scenarios and conditions.",
         "summary": f"{len(executable)} executable of {len(cards)} options",
     }
-    _append(service, ctx, case["case_id"], "OPTIONS_COMPUTED", data)
+    require(
+        _append(service, ctx, case["case_id"], "OPTIONS_COMPUTED", data) is not None,
+        "STALE_CASE",
+        "This case was closed or replaced meanwhile; reload the home page",
+    )
     return data
 
 
@@ -1107,7 +1144,11 @@ def select_option(service: ExecutionService, ctx: AuthContext, key: str) -> Json
         "snapshot_id": snap["snapshot_id"],
         "summary": f"Selected {card['label']} ({card['total_cost']['display']} cost)",
     }
-    _append(service, ctx, case["case_id"], "OPTION_SELECTED", data)
+    require(
+        _append(service, ctx, case["case_id"], "OPTION_SELECTED", data) is not None,
+        "STALE_CASE",
+        "This case was closed or replaced meanwhile; reload the home page",
+    )
     return data
 
 
@@ -1216,6 +1257,7 @@ def review(
             "interest": money(q["interest_minor"]),
             "repayment_fee": money(q["repayment_fee_minor"]),
             "repayment": money(q["repayment_minor"]),
+            "annual_cost": annual_cost(q),
             "repay_at": q["repay_at"],
             "quote_expires_at": q["expires_at"],
             "binding": "SYNTHETIC_QUOTE — not a lender offer",

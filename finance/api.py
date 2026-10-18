@@ -276,6 +276,8 @@ def dispatch(
             "simulator": simulator,
             "model": GatewayConfig.environment().public(),
         }
+    elif method == "GET" and path == "/v1/audit/verify":
+        result = service.store.verify_audit(ctx)
     elif method == "GET" and path == "/v1/audit":
         result = {"events": service.store.audit_log(ctx)}
     elif method == "GET" and len(parts) == 3 and parts[1] == "evidence":

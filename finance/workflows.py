@@ -626,6 +626,30 @@ class WorkflowEngine:
                 "events": events,
             }
 
+    def _model_identity(self, ctx: AuthContext, run_id: str, fail_run: bool) -> Json:
+        try:
+            if self.gateway.config.provider in {"ollama", "strata", "llamacpp"}:
+                self.gateway.local_model = self.gateway.describe()
+        except Exception as exc:
+            failure = (
+                exc
+                if isinstance(exc, FinanceError)
+                else FinanceError("MODEL_UNAVAILABLE", "Local model could not be reached")
+            )
+            self.event(ctx, run_id, "error", failure.envelope())
+            if fail_run:
+                with self.store.transaction() as db:
+                    db.execute(
+                        "UPDATE workflow_runs SET status='FAILED',updated_at=? WHERE tenant_id=? AND run_id=?",
+                        (now(), ctx.tenant_id, run_id),
+                    )
+            raise failure from exc
+        return {
+            "provider": self.gateway.config.provider,
+            "model": self.gateway.config.model,
+            "digest": (self.gateway.local_model or {}).get("digest"),
+        }
+
     def run(
         self,
         ctx: AuthContext,
@@ -638,13 +662,6 @@ class WorkflowEngine:
         # Authenticate before probing any model endpoint, including on resume.
         with self.store.connect() as db:
             self.store.authorize(db, ctx, {"OWNER", "ACCOUNTANT"})
-        if self.gateway.config.provider in {"ollama", "strata", "llamacpp"}:
-            self.gateway.local_model = self.gateway.describe()
-        identity = {
-            "provider": self.gateway.config.provider,
-            "model": self.gateway.config.model,
-            "digest": (self.gateway.local_model or {}).get("digest"),
-        }
         if fresh:
             require(
                 isinstance(task, str) and 0 < len(task) <= 2000,
@@ -672,9 +689,10 @@ class WorkflowEngine:
                         now(),
                     ),
                 )
-        else:
-            assert run_id is not None
-            prior = self.read(ctx, run_id)
+        assert run_id is not None
+        prior = None if fresh else self.read(ctx, run_id)
+        identity = self._model_identity(ctx, run_id, fail_run=fresh)
+        if prior is not None:
             task = prior["task"]
             require(
                 prior["provider"] == self.gateway.config.provider,

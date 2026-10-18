@@ -196,8 +196,20 @@ def main() -> None:
     step("selected", plan_id=plan_id, actions=[s["title"] for s in plan["steps"]])
     refused = c.call(
         f"/v1/review/{plan_id}/{plan['steps'][0]['action_id']}/approve",
-        {"payload_hash": "0" * 64, "confirm": True},
+        {"payload_hash": "0" * 64, "confirm": True, "reauth": owner},
         expect=409,
+    )
+    no_step_up = c.call(
+        f"/v1/review/{plan_id}/{plan['steps'][0]['action_id']}/approve",
+        {"payload_hash": "0" * 64, "confirm": True},
+        expect=403,
+    )
+    checks["approval_requires_step_up"] = (
+        no_step_up.get("error", {}).get("code") == "STEP_UP_REQUIRED"
+    )
+    legacy = c.call("/v1/approvals", {"command": {}}, expect=403)
+    checks["browser_session_cannot_use_legacy_money_route"] = (
+        legacy.get("error", {}).get("code") == "POLICY_DENIED"
     )
     checks["tampered_hash_refused"] = refused.get("error", {}).get("code") in {
         "APPROVAL_HASH_MISMATCH",
@@ -217,7 +229,12 @@ def main() -> None:
         lost = s["kind"] == "PAY_OBLIGATION" and "supplier" in review["command"]["obligation_id"]
         result = c.call(
             f"/v1/review/{plan_id}/{action}/approve",
-            {"payload_hash": review["payload_hash"], "confirm": True, "inject_lost_response": lost},
+            {
+                "payload_hash": review["payload_hash"],
+                "confirm": True,
+                "reauth": owner,
+                "inject_lost_response": lost,
+            },
         )
         step(
             "approved",
@@ -266,8 +283,7 @@ def main() -> None:
     )
     checks["plan_completed"] = progress["status"] == "COMPLETED"
     checks["reconciled_zero_difference"] = recon["matched"] and recon["discrepancy_minor"] == 0
-    # Reserve 25,000 -> need 95,000 -> principal 96,000; 120+95-190+100-97 = 28,000 CNY.
-    checks["final_cash_28000"] = final["metrics"]["confirmed_cash"]["minor"] == 2800000
+    checks["final_cash_29000"] = final["metrics"]["confirmed_cash"]["minor"] == 2900000
     closed = c.call("/v1/case")
     step(
         "case_after",
@@ -306,7 +322,7 @@ def main() -> None:
     )
     checks["world_one_operation_per_key"] = not duplicates and operations == 5
     checks["world_movements_6"] = movements == 6
-    checks["world_cash_matches"] = cash == 2800000
+    checks["world_cash_matches"] = cash == 2900000
     checks["ledger_one_balanced_pair_per_movement"] = ledger_pairs == movements and not unbalanced
 
     report = {

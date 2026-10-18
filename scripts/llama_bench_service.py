@@ -12,6 +12,7 @@ import http.client
 import json
 import shutil
 import time
+from typing import Any, cast
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -33,7 +34,7 @@ def machine(directory: Path) -> dict:
 
     value = Memory()
     value.length = ctypes.sizeof(value)
-    if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(value)):
+    if not cast(Any, ctypes).windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(value)):
         raise OSError("Memory telemetry unavailable")
     return {
         "at": time.time(),
