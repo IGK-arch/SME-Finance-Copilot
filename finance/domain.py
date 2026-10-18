@@ -141,7 +141,7 @@ class Config:
             "Only synthetic sandbox execution is implemented",
         )
         require(
-            result.model_provider in {"mock", "ollama", "strata", "disabled"},
+            result.model_provider in {"mock", "ollama", "strata", "llamacpp", "disabled"},
             "UNSUPPORTED_MODEL_PROVIDER",
             "Supported modes: mock, disabled, explicitly enabled Ollama or Strata",
         )

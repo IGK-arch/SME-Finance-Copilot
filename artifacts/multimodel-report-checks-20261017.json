@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-17T22:16:46.924330+03:00",
+  "checks": [
+    {
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "unittest",
+        "tests.test_multimodel_report"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.984s\n\nOK\n"
+    },
+    {
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "analysis/multimodel_report.py",
+        "tests/test_multimodel_report.py",
+        "--select",
+        "E9,F63,F7,F82,F401,F841"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": "All checks passed!\n"
+    },
+    {
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "analysis/multimodel_report.py",
+        "tests/test_multimodel_report.py"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": "2 files already formatted\n"
+    },
+    {
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "analysis/multimodel_report.py",
+        "--check-untyped-defs"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": "Success: no issues found in 1 source file\n"
+    }
+  ],
+  "earlier_type_check": "FAILED: recorded list needed explicit annotation; corrected before this run",
+  "scope": "Synthetic report tests and reporting module checks only; no LIVE case or full product regression rerun"
+}

@@ -638,7 +638,7 @@ class WorkflowEngine:
         # Authenticate before probing any model endpoint, including on resume.
         with self.store.connect() as db:
             self.store.authorize(db, ctx, {"OWNER", "ACCOUNTANT"})
-        if self.gateway.config.provider in {"ollama", "strata"}:
+        if self.gateway.config.provider in {"ollama", "strata", "llamacpp"}:
             self.gateway.local_model = self.gateway.describe()
         identity = {
             "provider": self.gateway.config.provider,
@@ -746,7 +746,7 @@ class WorkflowEngine:
             return update
 
         def model(state: State) -> State:
-            live = self.gateway.config.provider in {"ollama", "strata"}
+            live = self.gateway.config.provider in {"ollama", "strata", "llamacpp"}
             usage = state.get("usage", {})
             missing = answer_quality.missing_reads(read_contract, state.get("outputs", []))
             turn_tools = available_tools(state.get("outputs", []))

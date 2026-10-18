@@ -1,0 +1,19 @@
+{
+  "status": "PASSED",
+  "count": 12,
+  "checks": [
+    "Known synthetic marker with intact financial boundaries accepted for next independent case",
+    "Stop preserved: financial_records_unchanged",
+    "Stop preserved: policy_unchanged",
+    "Stop preserved: facts_unchanged",
+    "Stop preserved: world_unchanged_during_agent",
+    "Stop preserved: no_secrets",
+    "Stop preserved: only_allowlisted_calls",
+    "Unknown marker cannot auto-resume",
+    "Unknown fixture profile cannot auto-resume",
+    "Duplicate primary attempts rejected",
+    "Recorded sentinel stop classified without changing grade",
+    "Original agent/evaluator/scenario source freeze unchanged"
+  ],
+  "scope": "Operational resume only; no model answer analysis"
+}

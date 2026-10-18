@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-17T21:54:31.934145+03:00",
+  "host": "195.208.16.1",
+  "port": 40390,
+  "stage": "SSH_HANDSHAKE",
+  "new_queue_started": false,
+  "status": "FAILED",
+  "error": "SSHException: Error reading SSH protocol banner",
+  "elapsed_seconds": 20.05
+}

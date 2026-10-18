@@ -29,7 +29,7 @@ Answer the owner in Russian. Code, UI copy and docs are English unless a doc is 
 | Owner read models | `finance/cases.py` | home, case events (OPENED/PROBLEM_CHANGED/OPTIONS_COMPUTED/OPTION_SELECTED/CLOSED), options, review, timeline, activity, alerts, what-if, user context |
 | Approve reviewed payload | `finance/digest_check.py` | browser sends only payload hash; server recompiles and compares |
 | Copilot glue | `finance/copilot.py` | background runs, scoped plan/action/obligation context, result cards; case_id is only a generic hint |
-| Agent graph/tools | `finance/workflows.py`, `finance/agents.py`, `finance/agent_data.py`, `finance/gateway.py`, `finance/strata.py` | `ChatGateway` providers: mock / disabled / ollama / strata (explicit server opt-in) |
+| Agent graph/tools | `finance/workflows.py`, `finance/agents.py`, `finance/agent_data.py`, `finance/gateway.py`, `finance/strata.py` | `ChatGateway` providers: mock / disabled / ollama / strata / llamacpp (explicit server opt-in) |
 | HTTP | `finance/asgi.py` (FastAPI, `/session` cookie auth, `/assets/*`, `/legacy`), `finance/api.py` (`dispatch` + `v03_route`) | |
 | UI | `web/index.html`, `ui.js` (h(), api(), chart, formatting), `pages.js` (pages + Dialog), `copilot.js`, `app.js` (router/session), `style.css` (tokens on `:root`) | |
 | Sandbox | `sandbox/world.py`, `sandbox/server.py` | separate process + `private/world.db` |
@@ -90,6 +90,49 @@ unusable (empty, garbled or contradicting its exit code).
   after UI edits it becomes stale (T094 drops to NOT_RUN) until re-recorded.
 
 ## Current state (update this block when it changes)
+
+<!-- MULTIMODEL-100-START -->
+Owner decision after comparison: retain the existing large Qwen on Strata
+(`qwen3.8-flash-next-iq3_xxs`) as the selected LIVE model. Do not switch the
+cabinet to a benchmark alternative. This decision does not change reasoning mode.
+
+17 Oct final: COMPLETED / FINISHED, 500/500 unique primary outcomes, 100 per model.
+Original Strata qwen3.8-flash-next-iq3_xxs restored; separate SSH45815 service check
+at22:45:46MSK confirmed loaded=true, engine0.1.43.1. Queue/evaluator exited.
+Strict PASS: Gemma62, Qwen3.6-35B54, GLM42. Occamy/Qwen3.8-27B each0, but each
+has99 MODEL_UNAVAILABLE and1 pre-model POLICY_DENIED; their answer quality and
+generation speed are NOT_MEASURED. All failures retained, no substituted retries.
+Successful-case p50 seconds: Gemma12.144, Qwen3.6 20.872, GLM13.615.
+42 matched both-PASS pairs: median Gemma/Qwen latency0.805 (19.5% lower).
+Durable coverage: Gemma18/18tools,29/29datasets; Qwen17/18,29/29; GLM17/18,23/29.
+Manual risk sample30 pairs (9 automatic PASS), not all500 or independent review.
+Errors: semantic field/entity confusion, UNKNOWN/resend advice, pagination,
+citation types, failed ID/tool recovery and validation fallback. Automatic PASS
+does not prove prose. Qwen injection marker was in input tool text; not confirmed
+attack execution. Frozen68 sources, case definitions, budgets/weight SHA unchanged.
+10 reporting tests PASS; reporting lint/format/mypy PASS; generator + final audit PASS.
+No fresh full product/PG/UI regression. Financial/tenant/approval guards unchanged.
+See docs/MULTIMODEL_100_RESULTS_RU.md, MEASURED_RU/ANSWERS_RU of same prefix;
+artifacts/multimodel-500-summary-20261017.json, narrative-review and final-audit.
+No new model queue needed. Historical launch/recovery: docs/MULTIMODEL_100_RUN_RU.md.
+Heartbeat sme-500 is PAUSED after completed comparison/documentation; app update and local configuration verified.
+<!-- MULTIMODEL-100-END -->
+
+<!-- REASONING-100-START -->
+17 Oct: Qwen/Strata fixed-budget none/medium comparison COMPLETED: original 74 +
+26 preregistered EN/ZH scenarios, 200 primary outcomes (198 reached model; two
+AUDITOR POLICY_DENIED before model). Strict PASS none 87/100, medium 92/100;
+manual clean text 77/80, joint strict+clean 76/75. Aggregate p50 30.946/28.236s,
+p95 71.902/53.618s; 84 both-PASS pairs median medium/none ratio 1.090.
+Two separate ACCOUNTANT diagnostics reached model; both safely refused escalation
+but omitted company.role (strict FAIL, narrative PARTIAL). No substituted retries.
+18/18 tools, 29/29 datasets; recorded safety checks pass. Regression 240 PASS /
+4 PG SKIP; T001-100 96 PASS / 4 NOT_RUN; report tests 4 PASS; static checks 9 PASS.
+See docs/REASONING_100_RESULTS_RU.md and REASONING_100_ANSWERS_RU.md; compact data
+artifacts/reasoning-100-summary-20261017.json and reasoning-100-final-audit-20261017.json.
+Adaptive routing NOT_IMPLEMENTED/NOT_EVALUATED; low/high NOT_RUN. Guards unchanged;
+no cabinet restart/default switch. Medium74 had one typing-only cast delta, documented.
+<!-- REASONING-100-END -->
 
 <!-- QUALITY-V5-START -->
 Latest checkpoint, 16 Oct: all remaining 51 EN/ZH scenarios executed.

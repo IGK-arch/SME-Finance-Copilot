@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-17T16:42:34+03:00",
+  "status": "RUNNING",
+  "phase": "BENCHMARK",
+  "pid": 12652,
+  "completed": 396,
+  "models": [
+    {
+      "model": "occamy-1.0",
+      "status": "COMPLETED",
+      "completed": 100,
+      "eval_pid": null
+    },
+    {
+      "model": "qwen3.8-27b",
+      "status": "COMPLETED",
+      "completed": 100,
+      "eval_pid": null
+    },
+    {
+      "model": "qwen3.6-35b-a3b",
+      "status": "COMPLETED",
+      "completed": 100,
+      "eval_pid": 19500
+    },
+    {
+      "model": "gemma4-26b-a4b",
+      "status": "INFRA_FAILURE",
+      "completed": 12,
+      "eval_pid": 14936
+    },
+    {
+      "model": "glm4.7-flash",
+      "status": "RUNNING",
+      "completed": 84,
+      "eval_pid": 40696
+    }
+  ],
+  "continuation": {
+    "status": "RUNNING",
+    "phase": "WAITING_FOR_CURRENT_QUEUE",
+    "pid": 41904,
+    "error": null
+  },
+  "analysis": "DEFERRED_BY_USER"
+}

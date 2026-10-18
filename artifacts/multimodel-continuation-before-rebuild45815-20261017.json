@@ -1,0 +1,14 @@
+{
+  "status": "RUNNING",
+  "phase": "WAITING_FOR_CONTINUATION",
+  "pid": 41904,
+  "started": 1792244518.6912384,
+  "analysis": "DEFERRED_BY_USER",
+  "updated": 1792257222.0166974,
+  "queue_status": "RUNNING",
+  "queue_phase": "RECONNECTING_SSH",
+  "completed": 412,
+  "remaining": 88,
+  "cycle": 1,
+  "queue_launcher_pid": 40124
+}

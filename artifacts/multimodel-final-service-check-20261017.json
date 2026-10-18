@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-10-17T22:45:46.230988+03:00",
+  "status": "RESTORE_VERIFIED_AGAIN",
+  "ssh_port": 45815,
+  "service": {
+    "service": "strata",
+    "loaded": true,
+    "model": "qwen3.8-flash-next-iq3_xxs",
+    "engine": "0.1.43.1",
+    "started": 1792266150
+  }
+}

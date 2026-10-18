@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "status": "COMPLETED",
+  "pid": 18112,
+  "started": 1792264153.2041845,
+  "planned_models": 5,
+  "planned_cases_per_model": 100,
+  "planned_attempts": 500,
+  "analysis_status": "DEFERRED_BY_USER",
+  "models": [
+    {
+      "index": 1,
+      "model": "occamy-1.0",
+      "planned": 100,
+      "completed": 100,
+      "status": "COMPLETED",
+      "reports": [
+        "artifacts\\multimodel-occamy-1.0-100-20261017.json"
+      ],
+      "output": "artifacts\\multimodel-occamy-1.0-100-20261017.json",
+      "previous_identity": null
+    },
+    {
+      "index": 2,
+      "model": "qwen3.8-27b",
+      "planned": 100,
+      "completed": 100,
+      "status": "COMPLETED",
+      "reports": [
+        "artifacts\\multimodel-qwen3.8-27b-100-20261017.json"
+      ],
+      "output": "artifacts\\multimodel-qwen3.8-27b-100-20261017.json",
+      "previous_identity": null
+    },
+    {
+      "index": 3,
+      "model": "qwen3.6-35b-a3b",
+      "planned": 100,
+      "completed": 100,
+      "status": "COMPLETED",
+      "reports": [
+        "artifacts\\multimodel-qwen3.6-35b-a3b-100-20261017.json",
+        "artifacts\\multimodel-qwen3.6-35b-a3b-segment-02-20261017.json",
+        "artifacts\\multimodel-qwen3.6-35b-a3b-segment-03-20261017.json",
+        "artifacts\\multimodel-qwen3.6-35b-a3b-segment-04-20261017.json",
+        "artifacts\\multimodel-qwen3.6-35b-a3b-segment-05-20261017.json",
+        "artifacts\\multimodel-qwen3.6-35b-a3b-segment-06-20261017.json"
+      ],
+      "output": "artifacts\\multimodel-qwen3.6-35b-a3b-combined-100-20261017-reconnect1.json",
+      "previous_identity": {
+        "model": "sme-bench-3-qwen3.6-35b-a3b",
+        "engine_version": "b11669 / version: 0.7.0-dev (build 11669, commit 620d2225c)\nbuilt with Clang 20.1.8 for Windows x86_64",
+        "server_started": 1792232960,
+        "context_tokens": 16384,
+        "weight_digest": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
+        "digest": "38e105acce1451c79dadef939bfe4a3f7f73399ef07fa222b0dfcc5670f3c5da",
+        "identity_scope": "LLAMACPP_INSTANCE_AND_VERIFIED_GGUF_SHA256",
+        "capabilities": [
+          "chat_completions"
+        ],
+        "license": "apache-2.0"
+      }
+    },
+    {
+      "index": 4,
+      "model": "gemma4-26b-a4b",
+      "planned": 100,
+      "completed": 100,
+      "status": "COMPLETED",
+      "reports": [
+        "artifacts\\multimodel-gemma4-26b-a4b-segment-01-20261017.json",
+        "artifacts\\multimodel-gemma4-26b-a4b-segment-02-20261017.json",
+        "artifacts\\multimodel-gemma4-26b-a4b-segment-03-20261017.json",
+        "artifacts\\multimodel-gemma4-26b-a4b-segment-04-20261017.json"
+      ],
+      "output": "artifacts\\multimodel-gemma4-26b-a4b-combined-100-20261017-rebuild45815.json",
+      "previous_identity": {
+        "model": "sme-bench-4-gemma4-26b-a4b",
+        "engine_version": "b11669 / version: 0.7.0-dev (build 11669, commit 620d2225c)\nbuilt with Clang 20.1.8 for Windows x86_64",
+        "server_started": 1792246245,
+        "context_tokens": 16384,
+        "weight_digest": "f2c28b3dc4776931ac6f879e11f203dec637ea0f14267a86ec8f6165f63f293f",
+        "digest": "b7285c52ab46728926a22ef7b5feb1730f9bf9fa3eb01d0d9ed9095f881b36b0",
+        "identity_scope": "LLAMACPP_INSTANCE_AND_VERIFIED_GGUF_SHA256",
+        "capabilities": [
+          "chat_completions"
+        ],
+        "license": "apache-2.0"
+      },
+      "started": 1792264836.7541614,
+      "active": {
+        "model": "sme-bench-4-gemma4-26b-a4b",
+        "model_path": "C:\\SME-model-bench-20261017\\models\\4\\gemma-4-26B-A4B-it-UD-Q4_K_M.gguf",
+        "native_pid": 6760,
+        "native_exe": "C:\\SME-model-bench-20261017\\runtime\\llama-server.exe",
+        "started": 1792264883,
+        "engine": "b11669 / version: 0.7.0-dev (build 11669, commit 620d2225c)\nbuilt with Clang 20.1.8 for Windows x86_64",
+        "weight_sha256": "f2c28b3dc4776931ac6f879e11f203dec637ea0f14267a86ec8f6165f63f293f",
+        "license": "apache-2.0",
+        "reasoning_mode": "none",
+        "job": "model-4-1792264882",
+        "argv": [
+          "C:\\SME-model-bench-20261017\\runtime\\llama-server.exe",
+          "-m",
+          "C:\\SME-model-bench-20261017\\models\\4\\gemma-4-26B-A4B-it-UD-Q4_K_M.gguf",
+          "--alias",
+          "sme-bench-4-gemma4-26b-a4b",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "8081",
+          "-c",
+          "16384",
+          "-np",
+          "1",
+          "-b",
+          "256",
+          "-ub",
+          "128",
+          "-t",
+          "10",
+          "-tb",
+          "10",
+          "-ngl",
+          "auto",
+          "--fit",
+          "on",
+          "--fit-target",
+          "2048",
+          "-fa",
+          "on",
+          "--jinja",
+          "--reasoning-format",
+          "deepseek",
+          "--reasoning-budget",
+          "0",
+          "--no-webui",
+          "--timeout",
+          "240"
+        ]
+      },
+      "identity": {
+        "model": "sme-bench-4-gemma4-26b-a4b",
+        "engine_version": "b11669 / version: 0.7.0-dev (build 11669, commit 620d2225c)\nbuilt with Clang 20.1.8 for Windows x86_64",
+        "server_started": 1792264883,
+        "context_tokens": 16384,
+        "weight_digest": "f2c28b3dc4776931ac6f879e11f203dec637ea0f14267a86ec8f6165f63f293f",
+        "digest": "e784670926c91ca5a6b349b1899fa6a1ff0dfe01d891bdcc123d04bfd8bd0b8a",
+        "identity_scope": "LLAMACPP_INSTANCE_AND_VERIFIED_GGUF_SHA256",
+        "capabilities": [
+          "chat_completions"
+        ],
+        "license": "apache-2.0"
+      },
+      "eval_pid": 18756,
+      "exit_code": 0,
+      "finished": 1792266020.0785267
+    },
+    {
+      "index": 5,
+      "model": "glm4.7-flash",
+      "planned": 100,
+      "completed": 100,
+      "status": "COMPLETED",
+      "reports": [
+        "artifacts\\multimodel-glm4.7-flash-segment-01-20261017.json",
+        "artifacts\\multimodel-glm4.7-flash-segment-02-20261017.json",
+        "artifacts\\multimodel-glm4.7-flash-segment-03-20261017.json"
+      ],
+      "output": "artifacts\\multimodel-glm4.7-flash-combined-100-20261017-reconnect1.json",
+      "previous_identity": {
+        "model": "sme-bench-5-glm4.7-flash",
+        "engine_version": "b11669 / version: 0.7.0-dev (build 11669, commit 620d2225c)\nbuilt with Clang 20.1.8 for Windows x86_64",
+        "server_started": 1792243069,
+        "context_tokens": 16384,
+        "weight_digest": "29837ed2c0fc5f51981adf8ac8083fcf80743c598381f13e9f06cbad0498b174",
+        "digest": "0e8a55e48b3e1451480902edc8d87481fba2ff67f00dae51c99e323f1fac57ec",
+        "identity_scope": "LLAMACPP_INSTANCE_AND_VERIFIED_GGUF_SHA256",
+        "capabilities": [
+          "chat_completions"
+        ],
+        "license": "mit"
+      }
+    }
+  ],
+  "phase": "FINISHED",
+  "restore": "VERIFIED",
+  "resumed_from": "artifacts\\multimodel-queue-before-rebuild45815-20261017.json",
+  "completed_attempts": 500,
+  "updated": 1792266161.9596162,
+  "download": {
+    "status": "COMPLETED",
+    "current": "models/4/gemma-4-26B-A4B-it-UD-Q4_K_M.gguf",
+    "bytes": 16584278016,
+    "expected_bytes": 16947541728,
+    "files": [
+      {
+        "path": "downloads/cudart-llama-bin-win-cuda-12.4-x64.zip",
+        "status": "VERIFIED",
+        "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6"
+      },
+      {
+        "path": "downloads/llama-b11669-bin-win-cuda-12.4-x64.zip",
+        "status": "VERIFIED",
+        "sha256": "c2da1f73ed176ae093ac5aceb978a7b167a16113f6d74c6789eeaee2135cb8dc"
+      },
+      {
+        "path": "models/4/gemma-4-26B-A4B-it-UD-Q4_K_M.gguf",
+        "status": "VERIFIED",
+        "sha256": "f2c28b3dc4776931ac6f879e11f203dec637ea0f14267a86ec8f6165f63f293f"
+      }
+    ],
+    "error": null
+  },
+  "bridge_pid": 29476,
+  "sidecar_pid": 10136,
+  "original_before": {
+    "service": "strata",
+    "loaded": true,
+    "model": "qwen3.8-flash-next-iq3_xxs",
+    "started": 1792263957
+  },
+  "original_stop": {
+    "stopped": [
+      9912,
+      9928,
+      10040
+    ]
+  },
+  "restore_command": {
+    "restored": "STARTED",
+    "pid": 9860
+  },
+  "restored_identity": {
+    "service": "strata",
+    "loaded": true,
+    "model": "qwen3.8-flash-next-iq3_xxs",
+    "started": 1792266150
+  },
+  "sidecar_stop": {
+    "sidecar_stopped": true
+  },
+  "finished": 1792266161.9596162
+}

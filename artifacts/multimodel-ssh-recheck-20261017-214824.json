@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-17T21:48:14.403307+03:00",
+  "host": "195.208.16.1",
+  "port": 40390,
+  "authenticated_ssh_attempts": {
+    "maximum_attempts": 5,
+    "elapsed_seconds": 175.4,
+    "result": "FAILED",
+    "last_error": "SSHException: No existing session"
+  },
+  "completed_primary_cases": 429,
+  "remaining_gemma_cases": 71,
+  "new_queue_started": false,
+  "remote_model_restore": "UNVERIFIED",
+  "tcp_connect_seconds": 0.02,
+  "probe_status": "FAILED",
+  "failed_stage": "SSH_BANNER",
+  "error": "TimeoutError: timed out",
+  "probe_elapsed_seconds": 10.02
+}

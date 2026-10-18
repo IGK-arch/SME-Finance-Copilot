@@ -51,6 +51,46 @@ class StrataTests(unittest.TestCase):
     def gateway(self):
         return ChatGateway(GatewayConfig(provider="strata", model=MODEL, enabled=True))
 
+    def test_reasoning_levels_are_explicit_and_private_text_never_persists(self):
+        for effort in ("none", "low", "medium", "high"):
+            gateway = ChatGateway(replace(self.gateway().config, strata_reasoning_effort=effort))
+            body = response()
+            body["usage"]["completion_tokens_details"] = {"reasoning_tokens": 3}
+            with patch.object(
+                gateway, "_request", side_effect=[STATUS, {"data": [{"id": MODEL}]}, body]
+            ) as request:
+                output = gateway.chat([{"role": "user", "content": "Cash?"}], [], {})
+            sent = request.call_args_list[-1].args[1]
+            self.assertEqual(sent["reasoning_effort"], effort)
+            self.assertEqual(sent["max_tokens"], gateway.config.output_tokens)
+            self.assertEqual(sent["tool_choice"], "none")
+            self.assertEqual(output["usage"]["tokens"], 25)
+            self.assertEqual(gateway.last_attempt["metrics"]["reasoning_tokens"], 3)
+            self.assertTrue(gateway.last_attempt["metrics"]["reasoning_observed"])
+            self.assertNotIn("DO_NOT_PERSIST", json.dumps([output, gateway.last_attempt]))
+        with self.assertRaises(FinanceError):
+            replace(self.gateway().config, strata_reasoning_effort="unbounded")
+
+    def test_reasoning_usage_cannot_exceed_total_completion_or_be_invented(self):
+        for count in (-1, 6, True, "3"):
+            gateway = self.gateway()
+            body = response()
+            body["usage"]["completion_tokens_details"] = {"reasoning_tokens": count}
+            with (
+                patch.object(
+                    gateway, "_request", side_effect=[STATUS, {"data": [{"id": MODEL}]}, body]
+                ),
+                self.assertRaises(FinanceError) as error,
+            ):
+                gateway.chat([], [], {})
+            self.assertEqual(error.exception.code, "MODEL_USAGE_MISSING")
+        gateway = self.gateway()
+        with patch.object(
+            gateway, "_request", side_effect=[STATUS, {"data": [{"id": MODEL}]}, response()]
+        ):
+            gateway.chat([], [], {})
+        self.assertIsNone(gateway.last_attempt["metrics"]["reasoning_tokens"])
+
     def test_native_calls_usage_and_ordered_result_ids(self):
         calls = [
             {

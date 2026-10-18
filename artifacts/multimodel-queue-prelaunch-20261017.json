@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "FAILED",
+  "pid": 43972,
+  "started": 1792196208.507626,
+  "planned_models": 5,
+  "planned_cases_per_model": 100,
+  "planned_attempts": 500,
+  "analysis_status": "DEFERRED_BY_USER",
+  "models": [],
+  "phase": "FINISHED",
+  "restore": "NOT_NEEDED_YET",
+  "updated": 1792196330.194869,
+  "download": {
+    "status": "RUNNING",
+    "current": "models/1/occamy-1.0-Q4_K_M.gguf",
+    "bytes": 9378463744,
+    "expected_bytes": 21166757696,
+    "files": [
+      {
+        "path": "downloads/cudart-llama-bin-win-cuda-12.4-x64.zip",
+        "status": "VERIFIED",
+        "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6"
+      },
+      {
+        "path": "downloads/llama-b11669-bin-win-cuda-12.4-x64.zip",
+        "status": "VERIFIED",
+        "sha256": "c2da1f73ed176ae093ac5aceb978a7b167a16113f6d74c6789eeaee2135cb8dc"
+      }
+    ],
+    "error": null
+  },
+  "error": "RuntimeError: Operator STOP marker",
+  "finished": 1792196330.194869
+}

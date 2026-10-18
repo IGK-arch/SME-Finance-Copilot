@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from typing import TYPE_CHECKING, Callable
+from typing import TYPE_CHECKING, Callable, cast
 
 from finance.domain import FinanceError, Json, canonical, digest, require
 
@@ -110,9 +110,10 @@ def completion(
         "stream": False,
         "temperature": 0,
         "max_tokens": config.output_tokens,
-        "reasoning_effort": "high" if config.think else "none",
+        "reasoning_effort": config.strata_reasoning_effort or ("high" if config.think else "none"),
     }
     attempt["request_hash"] = digest(body)
+    attempt["reasoning_effort_requested"] = body["reasoning_effort"]
     output = request("/v1/chat/completions", body, timeout=timeout)
     require(output.get("model") == config.model, "MODEL_CHANGED", "Unexpected response model")
     choices = output.get("choices")
@@ -141,8 +142,26 @@ def completion(
             k: usage[k] for k in ("prompt_tokens", "completion_tokens", "total_tokens")
         },
         "done_reason": choice.get("finish_reason"),
-        "measurement_source": "STRATA_RESPONSE_USAGE",
+        "measurement_source": "LLAMACPP_RESPONSE_USAGE"
+        if config.provider == "llamacpp"
+        else "STRATA_RESPONSE_USAGE",
     }
+    raw_message = choice.get("message")
+    # Presence only, never store the private reasoning text or derive token counts from it.
+    measured["reasoning_observed"] = isinstance(raw_message, dict) and bool(
+        raw_message.get("reasoning_content") or "<think>" in str(raw_message.get("content") or "")
+    )
+    details = usage.get("completion_tokens_details")
+    if isinstance(details, dict) and "reasoning_tokens" in details:
+        reasoning_tokens = details["reasoning_tokens"]
+        require(
+            type(reasoning_tokens) is int and 0 <= reasoning_tokens <= cast(int, counts[1]),
+            "MODEL_USAGE_MISSING",
+            "Reasoning token count must be a subset of completion tokens",
+        )
+        measured["reasoning_tokens"] = reasoning_tokens
+    else:
+        measured["reasoning_tokens"] = None
     attempt.update(status="RECEIVED", metrics=measured)
     require(
         choice.get("finish_reason") != "length",

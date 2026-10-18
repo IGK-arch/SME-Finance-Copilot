@@ -1,0 +1,5 @@
+{
+  "runtime_version": "version: 0.7.0-dev (build 11669, commit 620d2225c)\nbuilt with Clang 20.1.8 for Windows x86_64",
+  "app_local_msvc_files_verified": 8,
+  "earlier_verification": "NOT_CONFIRMED: empty output from multiline SSH command; repeated with single-line encoded Python"
+}

@@ -35,7 +35,7 @@ CHAT_FIELDS = {
 }
 
 
-def make_handler(transport, token: str):
+def make_handler(transport, token: str, remote_port: int = 8080):
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *args):
             pass
@@ -88,7 +88,7 @@ def make_handler(transport, token: str):
                         self.reply(400, b'{"error":"BRIDGE_TEXT_ONLY_NONSTREAM_REQUIRED"}')
                         return
                 channel = transport.open_channel(
-                    "direct-tcpip", ("127.0.0.1", 8080), ("127.0.0.1", 0), timeout=15
+                    "direct-tcpip", ("127.0.0.1", remote_port), ("127.0.0.1", 0), timeout=15
                 )
                 channel.settimeout(240)
                 response = http.client.HTTPResponse(channel)
@@ -97,7 +97,7 @@ def make_handler(transport, token: str):
                     # file object. Paramiko channels do not preserve that file's
                     # lifetime, so own the channel until the response is consumed.
                     header = (
-                        f"{self.command} {self.path} HTTP/1.0\r\nHost: 127.0.0.1:8080\r\n"
+                        f"{self.command} {self.path} HTTP/1.0\r\nHost: 127.0.0.1:{remote_port}\r\n"
                         "Content-Type: application/json; charset=utf-8\r\nConnection: close\r\n"
                         f"Content-Length: {len(body or b'')}\r\n\r\n"
                     )
@@ -155,7 +155,12 @@ def main() -> None:
     )
     transport = client.get_transport()
     transport.set_keepalive(20)
-    server = ThreadingHTTPServer(("127.0.0.1", cfg["local_port"]), make_handler(transport, token))
+    remote_port = cfg.get("remote_port", 8080)
+    if type(remote_port) is not int or not 1024 <= remote_port <= 65535:
+        raise ValueError("Remote loopback port must be an unprivileged TCP port")
+    server = ThreadingHTTPServer(
+        ("127.0.0.1", cfg["local_port"]), make_handler(transport, token, remote_port)
+    )
     server.daemon_threads = True
 
     def watch_connection():

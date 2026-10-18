@@ -64,6 +64,9 @@ def main() -> None:
     )
     parser.add_argument("--cases", nargs="*")
     parser.add_argument("--language-profile", choices=["source", "en-zh"], default="source")
+    parser.add_argument(
+        "--reasoning-effort", choices=["none", "low", "medium", "high"], default="none"
+    )
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
     path = Path(args.output)
@@ -83,6 +86,8 @@ def main() -> None:
         max_elapsed_seconds=240,
         max_steps=12,
         max_tokens=128000,
+        think=args.reasoning_effort != "none",
+        strata_reasoning_effort=args.reasoning_effort,
     )
     suites = {
         "baseline": CASES,

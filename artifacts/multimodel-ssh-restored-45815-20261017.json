@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-10-17T22:06:05.105894+03:00",
+  "port": 45815,
+  "ssh": "AUTHENTICATED",
+  "host_key": "MATCHES_PREVIOUS_PIN",
+  "inventory": {
+    "drives": [
+      {
+        "Name": "C",
+        "Root": "C:\\",
+        "Used": 140931813376,
+        "Free": 259154452480
+      }
+    ],
+    "root_dirs": [
+      "inetpub",
+      "PerfLogs",
+      "Program Files",
+      "Program Files (x86)",
+      "Strata-data",
+      "Strata-main",
+      "Users",
+      "Windows"
+    ],
+    "bench_exists": false,
+    "strata_exists": true,
+    "processes": [
+      {
+        "ProcessId": 9832,
+        "Name": "python.exe",
+        "ExecutablePath": "C:\\Strata-main\\.venv\\Scripts\\python.exe"
+      },
+      {
+        "ProcessId": 9856,
+        "Name": "python.exe",
+        "ExecutablePath": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+      },
+      {
+        "ProcessId": 9912,
+        "Name": "python.exe",
+        "ExecutablePath": "C:\\Strata-main\\.venv\\Scripts\\python.exe"
+      },
+      {
+        "ProcessId": 9928,
+        "Name": "python.exe",
+        "ExecutablePath": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+      },
+      {
+        "ProcessId": 9952,
+        "Name": "strata-vision.exe",
+        "ExecutablePath": "C:\\Strata-main\\engine\\strata-vision.exe"
+      },
+      {
+        "ProcessId": 10040,
+        "Name": "strata.exe",
+        "ExecutablePath": "C:\\Strata-main\\engine\\strata.exe"
+      }
+    ],
+    "boot": "/Date(1792262746818)/"
+  }
+}

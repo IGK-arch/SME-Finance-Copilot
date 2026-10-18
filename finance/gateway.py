@@ -48,8 +48,15 @@ class GatewayConfig:
     context_tokens: int = 8192
     output_tokens: int = 1024
     think: bool = False
+    strata_reasoning_effort: str | None = None
 
     def __post_init__(self) -> None:
+        require(
+            self.strata_reasoning_effort in {None, "none", "low", "medium", "high"}
+            and (self.strata_reasoning_effort is None or self.provider == "strata"),
+            "INVALID_MODEL_CONFIG",
+            "Explicit Strata reasoning effort must be none, low, medium or high",
+        )
         require(
             1 <= self.timeout_seconds <= 240
             and 1 <= self.max_elapsed_seconds <= 600
@@ -68,7 +75,7 @@ class GatewayConfig:
             base_url=os.getenv("MODEL_BASE_URL", "http://127.0.0.1:11434"),
             enabled=os.getenv(
                 "ALLOW_SERVER_MODEL_INFERENCE"
-                if provider == "strata"
+                if provider in {"strata", "llamacpp"}
                 else "ALLOW_LOCAL_MODEL_INFERENCE",
                 "false",
             )
@@ -86,7 +93,7 @@ class GatewayConfig:
             "mode": "MOCK"
             if self.provider == "mock"
             else "LIVE"
-            if self.provider in {"ollama", "strata"} and self.enabled and self.model
+            if self.provider in {"ollama", "strata", "llamacpp"} and self.enabled and self.model
             else "DISABLED",
             "configured": self.provider == "mock" or bool(self.enabled and self.model),
             "max_steps": self.max_steps,
@@ -97,9 +104,12 @@ class GatewayConfig:
             "context_tokens": self.context_tokens,
             "output_tokens": self.output_tokens,
             "think": self.think,
-            "execution_device": "self_hosted_server" if self.provider == "strata" else "cpu",
-            "batch_tokens": None if self.provider == "strata" else 128,
-            "memory_mapped_weights": None if self.provider == "strata" else True,
+            "strata_reasoning_effort": self.strata_reasoning_effort,
+            "execution_device": "self_hosted_server"
+            if self.provider in {"strata", "llamacpp"}
+            else "cpu",
+            "batch_tokens": None if self.provider in {"strata", "llamacpp"} else 128,
+            "memory_mapped_weights": None if self.provider in {"strata", "llamacpp"} else True,
         }
 
 
@@ -114,6 +124,10 @@ class ChatGateway:
 
     def describe(self) -> Json:
         """Check provider identity (weight digest or Strata instance); never pull weights."""
+        if self.config.provider == "llamacpp":
+            from finance.llamacpp import describe
+
+            return describe(self.config, self._request)
         if self.config.provider == "strata":
             from finance.strata import describe
 
@@ -171,9 +185,9 @@ class ChatGateway:
         )
         headers = {"Content-Type": "application/json"}
         require(
-            config.provider != "strata" or bool(os.getenv(config.secret_env)),
+            config.provider not in {"strata", "llamacpp"} or bool(os.getenv(config.secret_env)),
             "MODEL_DISABLED",
-            "Strata requires the authenticated SSH bridge token",
+            "Server inference requires the authenticated SSH bridge token",
         )
         if secret := os.getenv(config.secret_env):
             headers["Authorization"] = "Bearer " + secret
@@ -204,7 +218,7 @@ class ChatGateway:
         cfg = self.config
         require(
             cfg.max_billed_cost_minor == 0
-            and cfg.provider in {"mock", "ollama", "strata", "disabled"},
+            and cfg.provider in {"mock", "ollama", "strata", "llamacpp", "disabled"},
             "MODEL_COST_POLICY_DENIED",
             "Only offline fixtures or a local endpoint with no billed API are permitted",
         )
@@ -264,14 +278,14 @@ class ChatGateway:
                     }
                 )
             tokens = 0
-        elif cfg.provider == "strata":
+        elif cfg.provider in {"strata", "llamacpp"}:
             from finance.strata import completion
 
             identity = self.describe()
             require(
                 self.local_model is None or identity["digest"] == self.local_model["digest"],
                 "MODEL_CHANGED",
-                "Strata service instance changed; start a new workflow",
+                "Model service instance changed; start a new workflow",
             )
             self.local_model = identity
             remaining_time -= time.monotonic() - start
@@ -424,7 +438,7 @@ class ChatGateway:
                 "elapsed_seconds": usage.get("elapsed_seconds", 0) + time.monotonic() - start,
                 "cost": None,
                 "billing": "SELF_HOSTED_SERVER_NO_BILLED_MODEL_API"
-                if cfg.provider == "strata"
+                if cfg.provider in {"strata", "llamacpp"}
                 else "LOCAL_ENDPOINT_NO_BILLED_API",
                 "live_metrics_status": "NOT_RUN"
                 if cfg.provider == "mock"
