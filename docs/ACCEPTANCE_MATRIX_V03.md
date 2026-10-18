@@ -1,6 +1,6 @@
 # Acceptance matrix v0.3 — V03-01…V03-25
 
-Generated from `artifacts/v03/regression-v03.json` (started 2026-10-18T14:50:31.254959+00:00, 278 tests: {'PASSED': 274, 'SKIPPED': 4}).
+Generated from `artifacts/v03/regression-v03.json` (started 2026-10-18T15:12:24.152568+00:00, 278 tests: {'PASSED': 274, 'SKIPPED': 4}).
 IDs and wording come from the v0.3 audit package; T001–T100 remain in ACCEPTANCE_MATRIX.md (current counts {'PASSED': 96, 'NOT_RUN': 4}).
 DEFERRED (target model) items are model-dependent and are not counted as passed from MOCK runs.
 
@@ -36,7 +36,7 @@ Counts: {'EVIDENCE_RECORDED': 2, 'PASSED': 9, 'DEFERRED_MODEL': 6, 'NOT_RUN': 3,
 
 ## Product-path E2E (`python -m scripts.e2e_v03`)
 
-Scope: Real HTTP server + queue worker + independent sandbox via cookie session; MOCK runtime; no LIVE model decisions. Passed: **True**. Workspace `.runtime\v03-e2e\20261018-170345`.
+Scope: Real HTTP server + queue worker + independent sandbox via cookie session; MOCK runtime; no LIVE model decisions. Passed: **True**. Workspace `.runtime\v03-e2e\20261018-181548`.
 
 | Check | Result |
 |---|---|

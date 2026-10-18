@@ -202,7 +202,7 @@ Earlier checkpoints follow.
   Latest evidence: `artifacts/strata-final4-20261015.json`,
   `artifacts/regression-strata-final4-20261015.json`. Intermediate attempts retained:
   first 15/20; second interrupted after 19 + separate last case; third 19/20.
-  SSH restored at **195.208.16.1:45161**, original pinned key; no weights downloaded
+  SSH restored at the owner-supplied endpoint (host kept out of the repo), original pinned key; no weights downloaded
   or remote model restart. Local bridge 18443 and existing synthetic cabinet
   `.runtime/strata-demo` on 8092 resumed and HTTP-verified after final tests.
   Verify processes on each new session; saved PIDs are not proof of availability.
