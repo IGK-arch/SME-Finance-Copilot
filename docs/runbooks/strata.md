@@ -40,7 +40,7 @@ the running server just to reconnect Copilot.
 
 ## Connection and credentials
 
-On 15 Oct the owner supplied a new public SSH endpoint: `user@195.208.16.1:45161`.
+On 15 Oct the owner supplied a new public SSH endpoint (host and port are kept out of the repository).
 Port 40769 is obsolete. The existing pinned server key also verified the new port;
 no accept-any-host-key policy was used. The local bridge port remains 18443.
 

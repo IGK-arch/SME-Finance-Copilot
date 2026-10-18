@@ -1,6 +1,6 @@
 {
   "checked_at": "2026-10-17T21:48:14.403307+03:00",
-  "host": "195.208.16.1",
+  "host": "<ssh-host>",
   "port": 40390,
   "authenticated_ssh_attempts": {
     "maximum_attempts": 5,
