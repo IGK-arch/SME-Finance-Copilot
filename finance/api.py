@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Callable, cast
@@ -275,6 +276,7 @@ def dispatch(
             },
             "simulator": simulator,
             "model": GatewayConfig.environment().public(),
+            "legacy_cabinet": os.getenv("SME_ENABLE_LEGACY") == "1",
         }
     elif method == "GET" and path == "/v1/audit/verify":
         result = service.store.verify_audit(ctx)
@@ -428,6 +430,10 @@ def dispatch(
         assert item is not None
         result = financing(item, value["amount_minor"])
     elif method == "POST" and path == "/v1/documents":
+        # Authorize BEFORE spawning the PDF parser: a read-only role must not be able to
+        # occupy a 20-second parser subprocess per request (add_document re-checks).
+        with service.store.connect() as db:
+            service.store.authorize(db, ctx, {"OWNER", "ACCOUNTANT"})
         text = (
             workspace.extract_pdf(value["content_base64"])
             if value.get("format") == "pdf"

@@ -177,11 +177,16 @@ def read_xlsx(raw: bytes) -> list[list[str]]:
         for c in row.findall("m:c", ns):
             ref = c.get("r", "")
             col = 0
-            for ch in re.match(r"[A-Z]*", ref).group(0):  # type: ignore[union-attr]
+            letters = re.match(r"[A-Z]{0,3}", ref).group(0)  # type: ignore[union-attr]
+            for ch in letters:
                 col = col * 26 + ord(ch) - 64
+            require(col <= 16384, "INVALID_FILE", "Cell reference outside the worksheet")
             kind, v = c.get("t"), c.find("m:v", ns)
             if kind == "s" and v is not None:
-                text = shared[int(v.text or 0)]
+                try:
+                    text = shared[int(v.text or 0)]
+                except (ValueError, IndexError) as exc:
+                    raise FinanceError("INVALID_FILE", "Broken shared-string reference") from exc
             elif kind == "inlineStr":
                 text = "".join(t.text or "" for t in c.iter("{%s}t" % ns["m"]))
             else:

@@ -350,6 +350,34 @@ class Store:
                 count += 1
         return {"valid": True, "checked": count, "head_hash": previous}
 
+    def audit_events(
+        self,
+        ctx: AuthContext,
+        event_types: set[str],
+        contains: list[str] | None = None,
+        limit: int = 2000,
+    ) -> list[Json]:
+        types = sorted(event_types)
+        require(0 < len(types) <= 64 and 0 < limit <= 10000, "INVALID_ARGUMENTS", "Bad filter")
+        where = "tenant_id=? AND event_type IN (" + ",".join("?" * len(types)) + ")"
+        params: list[object] = [ctx.tenant_id, *types]
+        if contains:
+            require(len(contains) <= 8, "INVALID_ARGUMENTS", "Bad filter")
+            where += " AND (" + " OR ".join("payload LIKE ?" for _ in contains) + ")"
+            params += ["%" + c.replace("%", "") + "%" for c in contains]
+        with self.connect() as db:
+            self.authorize(db, ctx)
+            rows = [
+                dict(row)
+                for row in db.execute(
+                    "SELECT * FROM audit WHERE " + where + " ORDER BY audit_id DESC LIMIT ?",
+                    (*params, limit),
+                )
+            ]
+        if contains:
+            rows = [r for r in rows if any(c in r["payload"] for c in contains)]
+        return rows[::-1]
+
     def audit_log(self, ctx: AuthContext) -> list[Json]:
         with self.connect() as db:
             self.authorize(db, ctx)

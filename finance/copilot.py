@@ -23,8 +23,13 @@ from finance.ingestion import snapshot
 
 CONTEXT_KEYS = {"case_id", "plan_id", "obligation_id", "action_id", "route"}
 COPILOT_ROLES = {"OWNER", "ACCOUNTANT"}
-MAX_BACKGROUND_RUNS = 2
-_slots = threading.BoundedSemaphore(MAX_BACKGROUND_RUNS)
+
+
+def _slots():
+    """The same model-run gate as synchronous runs (finance.workflows.MODEL_SLOTS)."""
+    from finance.workflows import MODEL_SLOTS
+
+    return MODEL_SLOTS
 
 
 def compose_task(
@@ -68,25 +73,25 @@ def compose_task(
 
 def _run(engine, ctx: AuthContext, kwargs: Json) -> None:
     try:
-        engine.run(ctx, **kwargs)
+        engine.run(ctx, **kwargs, slot_held=True)
     except FinanceError:
         pass  # recorded as FAILED with an error event by the engine itself
     except Exception:  # pragma: no cover - recorded by engine; keep thread silent
         logging.exception("Background workflow failure")
     finally:
-        _slots.release()
+        _slots().release()
 
 
 def _start(engine, ctx: AuthContext, kwargs: Json) -> None:
     require(
-        _slots.acquire(blocking=False),
+        _slots().acquire(blocking=False),
         "WORKFLOW_BUSY",
         "Copilot is busy with other requests; try again in a minute",
     )
     try:
         threading.Thread(target=_run, args=(engine, ctx, kwargs), daemon=True).start()
     except BaseException:
-        _slots.release()
+        _slots().release()
         raise
 
 

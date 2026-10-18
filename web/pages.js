@@ -268,7 +268,7 @@ const Pages = (() => {
         r.approvable ? h('label', {class: 'check', for: 'confirm-exact'}, confirm, `I approve exactly this ${r.kind === 'DRAW_LOAN' ? 'loan draw' : r.kind === 'REPAY_LOAN' ? 'loan repayment' : 'payment'} of ${r.amount.display} to ${r.recipient.name}.`) : null,
         r.approvable ? h('label', {for: 'approve-reauth'}, 'Confirm it is you: re-enter your owner access token', reauth) : null,
         r.command ? h('details', {}, h('summary', {class: 'small'}, 'Command, versions and hash'), h('p', {class: 'small muted'}, 'payload SHA-256 ' + r.payload_hash), h('pre', {}, JSON.stringify(r.command, null, 2))) : null,
-        r.approvable ? h('details', {}, h('summary', {class: 'small'}, 'Sandbox test controls'), h('label', {class: 'check', for: 'lost'}, lost, 'Simulate a lost sandbox response for this send (tests UNKNOWN recovery; no double payment).')) : null),
+        r.approvable && new URLSearchParams(location.search).get('demo') === '1' ? h('details', {}, h('summary', {class: 'small'}, 'Sandbox test controls'), h('label', {class: 'check', for: 'lost'}, lost, 'Simulate a lost sandbox response for this send (tests UNKNOWN recovery; no double payment).')) : null),
       h('div', {class: 'foot'}, h('button', {class: 'btn', type: 'button', onclick: () => Dialog.dismiss()}, r.approvable ? 'Not now' : 'Close'), r.approvable ? approve : null));
   }
 
@@ -485,13 +485,21 @@ const Pages = (() => {
       })}, 'Search')), out,
       h('details', {style: {marginTop: '12px'}}, h('summary', {}, 'Add a text document'), h('div', {class: 'stack', style: {marginTop: '8px'}}, h('label', {for: 'doc-title'}, 'Title', title), h('label', {for: 'doc-text'}, 'Text', text),
         h('button', {class: 'btn', type: 'button', onclick: guard(async () => { const r = await api('/v1/documents', {title: title.value, text: text.value, format: 'text'}); toast('Document stored: ' + r.status, 'good'); })}, 'Store document'))),
-      h('p', {class: 'small muted', style: {marginTop: '10px'}}, 'Advanced tools (manual payment allocation, raw synthetic CSV import) remain in the ', h('a', {href: '/legacy'}, 'previous cabinet'), '.'));
+      App.state.legacy ? h('p', {class: 'small muted', style: {marginTop: '10px'}}, 'Advanced tools (manual payment allocation, raw synthetic CSV import) remain in the ', h('a', {href: '/legacy'}, 'previous cabinet'), '.') : null);
   }
 
   /* ---------------------------------------------------------------- Settings */
   const up = v => h('span', {class: 'badge ' + (['CONNECTED', 'RUNNING', 'OK'].includes(v) ? 'good' : 'warn')}, v);
   async function settings(main) {
-    const [st, health] = await Promise.all([api('/v1/settings'), api('/v1/health')]);
+    const [st, health, chain] = await Promise.all([api('/v1/settings'), api('/v1/health'), api('/v1/audit/verify').catch(() => null)]);
+    const device = st.model.mode === 'MOCK' ? 'Offline fixture · no model receives your data'
+      : st.model.execution_device === 'self_hosted_server' ? 'Self-hosted server · prompts with your data leave this computer over SSH'
+      : st.model.mode === 'LIVE' ? 'Local model on this computer' : 'Model disabled · nothing is sent';
+    const integrity = h('section', {class: 'card'}, h('h2', {}, 'Data & integrity'), h('dl', {class: 'kv', style: {marginTop: '10px'}},
+      h('dt', {}, 'Model data flow'), h('dd', {}, device),
+      h('dt', {}, 'Audit chain'), h('dd', {}, chain ? h('span', {class: 'badge ' + (chain.valid ? 'good' : 'bad')}, chain.valid ? `Intact · ${chain.checked} events` : `Broken at event ${chain.first_bad_audit_id}`) : 'Not available'),
+      chain && chain.valid ? h('dt', {}, 'Chain head') : null, chain && chain.valid ? h('dd', {class: 'small'}, chain.head_hash.slice(0, 16) + '…') : null),
+      h('p', {class: 'small muted', style: {marginTop: '10px'}}, 'Every approval, stop, policy change and sign-in is hash-chained with its actor and role. Note the chain head to detect later truncation.'));
     const home = App.state.home || await App.refreshHome();
     const reserve = h('input', {id: 'set-reserve', inputmode: 'decimal', value: UI.minorText(st.policy.reserve_minor).replace('CNY ', '')});
     const prot = h('input', {id: 'set-prot', value: st.policy.protected.join(', ')});
@@ -515,7 +523,7 @@ const Pages = (() => {
           h('dt', {}, 'Model mode'), h('dd', {}, st.model.mode + (st.model.model ? ' · ' + st.model.model : '')), h('dt', {}, 'Model limits'), h('dd', {}, st.model.max_steps + ' steps · ' + st.model.max_elapsed_seconds + ' s')),
           h('p', {class: 'small muted', style: {marginTop: '10px'}}, st.model.mode === 'MOCK' ? 'MOCK is a deterministic offline fixture for integration tests; it does not understand arbitrary language.' : 'Live model output is narrative only; numbers come from tools.')),
         h('section', {class: 'card'}, h('h2', {}, 'Account'), h('dl', {class: 'kv', style: {marginTop: '10px'}}, h('dt', {}, 'Role'), h('dd', {}, App.state.role), h('dt', {}, 'Members'), h('dd', {}, st.memberships.map(m => m.user_id + ' (' + m.role + (m.active ? '' : ', inactive') + ')').join(', '))),
-          h('div', {class: 'row', style: {marginTop: '12px'}}, h('button', {class: 'btn', type: 'button', onclick: guard(() => App.signOut())}, 'Sign out'), h('a', {class: 'btn link', href: '/legacy'}, 'Previous cabinet')))));
+          h('div', {class: 'row', style: {marginTop: '12px'}}, h('button', {class: 'btn', type: 'button', onclick: guard(() => App.signOut())}, 'Sign out'), App.state.legacy ? h('a', {class: 'btn link', href: '/legacy'}, 'Previous cabinet') : null)), integrity));
   }
 
   return {home, casePage, review, moneyPage, activity, documents, settings, evidence};

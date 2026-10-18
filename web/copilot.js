@@ -33,10 +33,13 @@ const Copilot = (() => {
   function render(prefill) {
     const p = panel();
     const mode = (App.state.model || {}).mode || '—';
+    const where = () => (App.state.model || {}).execution_device === 'self_hosted_server'
+      ? 'Self-hosted server model · prompts with your data leave this computer (SSH) · results come from tools'
+      : 'Local model on this computer · results come from tools';
     const task = h('textarea', {id: 'cp-task', rows: 3, 'aria-label': 'Your question or task', placeholder: 'Ask about cash, the gap, options or an operation'}, prefill || '');
     const form = h('form', {onsubmit: ev => { ev.preventDefault(); start(task.value); }},
       h('div', {class: 'suggest'}, (SUGGEST[routeName()] || SUGGEST.home).map(s => h('button', {type: 'button', onclick: () => { task.value = s; }}, s))),
-      task, h('div', {class: 'row between'}, h('span', {class: 'small muted'}, mode === 'MOCK' ? 'MOCK: deterministic fixture, not language understanding' : mode === 'LIVE' ? 'Local model · results come from tools' : 'Model disabled'),
+      task, h('div', {class: 'row between'}, h('span', {class: 'small muted'}, mode === 'MOCK' ? 'MOCK: deterministic fixture, not language understanding' : mode === 'LIVE' ? where() : 'Model disabled'),
         h('button', {class: 'btn primary small', type: 'submit', disabled: !['OWNER', 'ACCOUNTANT'].includes(App.state.role)}, 'Ask')));
     p.replaceChildren(
       h('header', {}, h('div', {}, h('h2', {}, 'Copilot'), h('span', {class: 'badge ' + (mode === 'LIVE' ? 'blue' : 'warn')}, 'MODEL ' + mode)), h('button', {class: 'btn link', type: 'button', 'aria-label': 'Close Copilot', onclick: close}, '✕')),

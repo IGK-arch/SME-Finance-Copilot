@@ -8,12 +8,34 @@ ExecutionService.approve/prepare checks (OWNER, freshness, reserve, idempotency)
 
 from __future__ import annotations
 
+import json
+from datetime import datetime, timedelta, timezone
+
 from finance.domain import AuthContext, FinanceError, Json, digest, require
 from finance.execution import ExecutionService
 from finance.worker import enqueue
 
+STEP_UP_MAX_FAILURES = 5
+STEP_UP_WINDOW = timedelta(minutes=15)
+
+
+def _recent_step_up_failures(service: ExecutionService, ctx: AuthContext) -> int:
+    since = (datetime.now(timezone.utc) - STEP_UP_WINDOW).isoformat(timespec="microseconds")
+    with service.store.connect() as db:
+        rows = db.execute(
+            "SELECT payload FROM audit WHERE tenant_id=? AND event_type='approval.step_up_failed' "
+            "AND occurred_at>=?",
+            (ctx.tenant_id, since),
+        ).fetchall()
+    return sum(1 for r in rows if json.loads(r[0]).get("actor") == ctx.user_id)
+
 
 def step_up(service: ExecutionService, ctx: AuthContext, secret: object) -> None:
+    require(
+        _recent_step_up_failures(service, ctx) < STEP_UP_MAX_FAILURES,
+        "STEP_UP_LOCKED",
+        "Too many wrong confirmations; approvals are locked for 15 minutes",
+    )
     ok = False
     if isinstance(secret, str) and 0 < len(secret) <= 200:
         try:

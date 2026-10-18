@@ -1359,11 +1359,11 @@ def timeline(service: ExecutionService, ctx: AuthContext, action_id: str) -> Jso
     require(ID.match(action_id or "") is not None, "INVALID_ARGUMENTS", "Action ID required")
     action = service.action(ctx, action_id)
     command = action["payload"]
-    log = [
-        e
-        for e in service.store.audit_log(ctx)
-        if action_id in e["payload"] or command["required_approval_id"] in e["payload"]
-    ]
+    log = service.store.audit_events(
+        ctx,
+        {event for _, _, events in TIMELINE for event in events},
+        contains=[action_id, command["required_approval_id"]],
+    )
     steps = []
     for code, label, events in TIMELINE:
         hit = next((e for e in log if e["event_type"] in events), None)
@@ -1573,6 +1573,8 @@ def load_context(service: ExecutionService, ctx: AuthContext) -> Json:
 EVENT_LABELS = {
     "audit.anchored": "Audit trail anchored on a public testnet",
     "approval.created": "Approved",
+    "action.settlement_amount_mismatch": "Bank amount differs from the approved amount · sends stopped",
+    "approval.step_up_failed": "Wrong confirmation token at approval",
     "approval.revoked": "Approval revoked",
     "action.reserved": "Funds reserved",
     "action.submitted": "Sent to sandbox",
@@ -1586,6 +1588,7 @@ EVENT_LABELS = {
     "control.stop": "Send control changed",
     "reconciliation.mismatch": "Reconciliation mismatch",
     "extension.requested": "Extension requested",
+    "extension.needs_review": "Counterparty decision needs review · no fact changed",
     "case.opened": "Financial task opened",
     "case.problem_changed": "Data changed the problem",
     "case.options_computed": "Options compared",
@@ -1606,7 +1609,7 @@ def activity(service: ExecutionService, ctx: AuthContext) -> Json:
         stopped = db.execute(
             "SELECT stopped FROM companies WHERE tenant_id=?", (ctx.tenant_id,)
         ).fetchone()[0]
-    raw = [e for e in service.store.audit_log(ctx) if e["event_type"] in EVENT_LABELS]
+    raw = service.store.audit_events(ctx, set(EVENT_LABELS))
     # The worker re-records an unchanged status on every poll; collapse identical repeats.
     events: list[Json] = []
     for e in raw:

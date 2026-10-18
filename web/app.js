@@ -2,15 +2,15 @@
 /* Shell: session, routing, top bar, saved user context. */
 const App = (() => {
   const {h, api, toast} = UI;
-  const state = {role: null, home: null, caseData: null, model: null};
-  let pollTimer = null, contextTimer = null, booted = false;
+  const state = {role: null, home: null, caseData: null, model: null, legacy: false};
+  let pollTimer = null, contextTimer = null, booted = false, renderSeq = 0;
   const main = () => document.getElementById('main');
 
   async function boot() {
     try {
       await refreshHome();
       const health = await api('/v1/health');
-      state.model = health.model;
+      state.model = health.model; state.legacy = health.legacy_cabinet === true;
       document.getElementById('model-badge').textContent = 'MODEL ' + health.model.mode;
       document.getElementById('model-badge').className = 'badge ' + (health.model.mode === 'LIVE' ? 'blue' : 'warn');
       document.getElementById('boot').hidden = true; document.getElementById('login').hidden = true; document.getElementById('app').hidden = false;
@@ -58,9 +58,11 @@ const App = (() => {
     const [route, a, b] = (location.hash || '#home').slice(1).split('/');
     const nav = route === 'review' ? 'case' : route;
     document.querySelectorAll('nav.main a').forEach(x => x.setAttribute('aria-current', x.dataset.nav === nav ? 'page' : 'false'));
-    const m = main();
-    m.setAttribute('aria-busy', 'true');
-    if (!m.firstChild) m.replaceChildren(h('div', {class: 'loading', role: 'status'}, h('span', {class: 'spinner', 'aria-hidden': 'true'}), 'Loading from the server…'));
+    const el = main();
+    el.setAttribute('aria-busy', 'true');
+    if (!el.firstChild) el.replaceChildren(h('div', {class: 'loading', role: 'status'}, h('span', {class: 'spinner', 'aria-hidden': 'true'}), 'Loading from the server…'));
+    const mine = ++renderSeq;
+    const m = {replaceChildren: (...nodes) => { if (mine === renderSeq) el.replaceChildren(...nodes); }};
     try {
       if (route === 'home' || !route) await Pages.home(m);
       else if (route === 'money') await Pages.moneyPage(m);
@@ -74,7 +76,7 @@ const App = (() => {
     } catch (e) {
       if (e.status === 401) return;
       m.replaceChildren(failure('Could not load this page', e, render));
-    } finally { m.setAttribute('aria-busy', 'false'); }
+    } finally { if (mine === renderSeq) el.setAttribute('aria-busy', 'false'); }
     saveContext(route === 'review' ? '#case' : location.hash);
   }
   function saveContext(route) {

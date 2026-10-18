@@ -53,7 +53,15 @@ const UI = (() => {
   class ApiError extends Error { constructor(code, message, status) { super(message); this.code = code; this.status = status; } }
   async function api(path, value, method) {
     const m = method || (value === undefined ? 'GET' : 'POST');
-    const r = await fetch(path, {method: m, credentials: 'same-origin', headers: m === 'GET' ? {} : {'Content-Type': 'application/json', 'X-SME-Request': '1'}, body: m === 'GET' ? undefined : JSON.stringify(value || {})});
+    let r;
+    try {
+      r = await fetch(path, {method: m, credentials: 'same-origin', signal: AbortSignal.timeout(m === 'GET' ? 30000 : 60000), headers: m === 'GET' ? {} : {'Content-Type': 'application/json', 'X-SME-Request': '1'}, body: m === 'GET' ? undefined : JSON.stringify(value || {})});
+    } catch (err) {
+      const timedOut = err && (err.name === 'TimeoutError' || err.name === 'AbortError');
+      throw new ApiError(timedOut ? 'TIMEOUT' : 'NETWORK', timedOut
+        ? (m === 'GET' ? 'The server did not answer in time. Try again.' : 'The server did not answer in time. The result is unknown: check Activity before repeating.')
+        : 'Cannot reach the local server.', 0);
+    }
     let data = null;
     try { data = await r.json(); } catch (_) { throw new ApiError('INVALID_RESPONSE', 'Server returned an unreadable response', r.status); }
     if (!r.ok) {
@@ -69,6 +77,8 @@ const UI = (() => {
     STALE_OPTIONS: 'Data changed since the options were computed. Recompute before selecting.',
     INSUFFICIENT_FUNDS: 'Available cash cannot keep the hard reserve after this payment.',
     RECONCILIATION_REQUIRED: 'Cash does not reconcile with the bank sandbox. Resolve the difference before resuming sends.',
+    STEP_UP_LOCKED: 'Too many wrong confirmations. Approvals are locked for 15 minutes.',
+    RATE_LIMITED: 'Too many failed attempts. Wait a few minutes and try again.',
     STEP_UP_REQUIRED: 'The access token does not match your account. Nothing was approved.',
     STALE_CASE: 'This case was closed or replaced meanwhile. Reload to see the current one.',
     STALE_SNAPSHOT: 'Data changed after this command was compiled. Review the refreshed command and approve again.',

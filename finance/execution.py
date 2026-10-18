@@ -737,7 +737,20 @@ class ExecutionService:
                 db.execute(
                     "INSERT INTO inbox VALUES(?,'sandbox',?)", (ctx.tenant_id, movement["ref"])
                 )
-                if action:
+                if action and command and movement["delta"] != command["cash_delta_minor"]:
+                    db.execute("UPDATE companies SET stopped=1 WHERE tenant_id=?", (ctx.tenant_id,))
+                    self.store.audit(
+                        db,
+                        ctx,
+                        "action.settlement_amount_mismatch",
+                        {
+                            "action_id": action["action_id"],
+                            "transaction_id": tx_id,
+                            "approved_delta_minor": command["cash_delta_minor"],
+                            "observed_delta_minor": movement["delta"],
+                        },
+                    )
+                elif action:
                     db.execute(
                         "UPDATE actions SET status='SETTLED',provider_ref=?,state_version=state_version+1 WHERE tenant_id=? AND action_id=?",
                         (movement["ref"], ctx.tenant_id, action["action_id"]),
@@ -827,6 +840,17 @@ class ExecutionService:
             reconciliation_id = recon["reconciliation_id"]
         with self.store.transaction() as db:
             self.store.authorize(db, ctx, roles)
+            if reconciliation_id is not None:
+                latest = db.execute(
+                    "SELECT object_id FROM objects WHERE tenant_id=? AND kind='reconciliation' "
+                    "ORDER BY created_at DESC LIMIT 1",
+                    (ctx.tenant_id,),
+                ).fetchone()
+                require(
+                    latest is not None and latest[0] == reconciliation_id,
+                    "RECONCILIATION_REQUIRED",
+                    "A newer bank observation arrived while resuming; reconcile again",
+                )
             db.execute(
                 "UPDATE companies SET stopped=? WHERE tenant_id=?", (int(enabled), ctx.tenant_id)
             )

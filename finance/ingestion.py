@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import io
 import json
+import re
 import sqlite3
 
 from finance.domain import AuthContext, FinanceError, Json, canonical, minor, require, uid, utc
@@ -43,7 +44,8 @@ def parse_row(row: dict[str, str], received: str) -> Json:
     )
     try:
         require(
-            row["amount_minor"].lstrip("-").isdigit() and row["version"].isdigit(),
+            re.fullmatch(r"-?[0-9]{1,18}", row["amount_minor"]) is not None
+            and re.fullmatch(r"[0-9]{1,9}", row["version"]) is not None,
             "INVALID_ROW",
             "Amounts/versions must be integers",
         )

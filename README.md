@@ -75,6 +75,25 @@ py -3.11 -m venv .venv
 .venv\Scripts\python.exe -m scripts.serve --port 8080
 ```
 
+If pip reports `No matching distribution found for numpy==2.4.6 (from versions: none)`,
+pip is reading a mirror (`pip.ini`/`PIP_INDEX_URL`) without the pinned wheels; the
+`--index-url https://pypi.org/simple` above overrides it (`pip config list -v` shows the
+source). Do not run `seed-demo` until the install finished without errors.
+
+Security controls you will meet in the cabinet:
+
+- Sign in at `http://localhost:8080` with the `OWNER` value from
+  `.runtime/workspace/local-login.secret.json`. Approving a payment asks for that token
+  again (step-up); 5 wrong confirmations in 15 minutes lock approvals for that user.
+- Only OWNER can resume sends after a stop, and only when cash reconciles.
+- Settings → *Data & integrity* shows where model prompts go and the audit-chain status.
+  Read-only check: `.venv\Scripts\python.exe -m scripts.verify_audit`.
+- The pre-v0.3 cabinet (`/legacy`) is off; `SME_ENABLE_LEGACY=1` re-enables it for
+  development only (it approves without step-up).
+- `?demo=1` in the URL shows sandbox fault-injection controls in the approval dialog.
+- For a submission copy without infrastructure details (GPU host IP, SSH ports):
+  `.venv\Scripts\python.exe -m scripts.submission_copy --out ..\SME-Finance-Copilot-submission`.
+
 The default `.runtime/workspace` uses SQLite for an easy local start. Reuse the
 same directory to preserve data. Startup refuses to silently reseed an incomplete
 workspace. Ctrl+C stops API, worker and simulator; files remain. No reset/delete

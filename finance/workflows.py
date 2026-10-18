@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import threading
 import time
 from pathlib import Path
 from typing import Any, Literal, TypedDict, cast
@@ -562,6 +563,10 @@ def model_result(envelope: Json) -> Json:
     }
 
 
+MAX_CONCURRENT_RUNS = 2
+MODEL_SLOTS = threading.BoundedSemaphore(MAX_CONCURRENT_RUNS)
+
+
 class WorkflowEngine:
     def __init__(self, service: ExecutionService, gateway: ChatGateway | None = None) -> None:
         self.service, self.store = service, service.store
@@ -657,6 +662,27 @@ class WorkflowEngine:
         run_id: str | None = None,
         answer: Json | None = None,
         new_run_id: str | None = None,
+        slot_held: bool = False,
+    ) -> Json:
+        if slot_held:
+            return self._run(ctx, task, run_id, answer, new_run_id)
+        require(
+            MODEL_SLOTS.acquire(blocking=False),
+            "WORKFLOW_BUSY",
+            "Copilot is busy with other requests; try again in a minute",
+        )
+        try:
+            return self._run(ctx, task, run_id, answer, new_run_id)
+        finally:
+            MODEL_SLOTS.release()
+
+    def _run(
+        self,
+        ctx: AuthContext,
+        task: str | None,
+        run_id: str | None,
+        answer: Json | None,
+        new_run_id: str | None,
     ) -> Json:
         fresh = run_id is None
         # Authenticate before probing any model endpoint, including on resume.

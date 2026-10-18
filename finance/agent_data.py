@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from typing import Any
 
 from finance.domain import AuthContext, FinanceError, Json, canonical, digest, require
@@ -293,14 +294,11 @@ def read_record(
         except FinanceError as exc:
             diagnostic.update({"status": "REJECTED", "code": exc.code, "message": str(exc)})
             if exc.safe_message == "Amounts/versions must be integers":
+                patterns = {"amount_minor": r"-?[0-9]{1,18}", "version": r"[0-9]{1,9}"}
                 diagnostic["invalid_integer_fields"] = [
                     field
-                    for field in ("amount_minor", "version")
-                    if not (
-                        value["raw"][field].lstrip("-")
-                        if field == "amount_minor"
-                        else value["raw"][field]
-                    ).isdigit()
+                    for field, pattern in patterns.items()
+                    if re.fullmatch(pattern, value["raw"][field]) is None
                 ]
                 diagnostic["field_scope"] = (
                     "Only these fields failed the parser's integer check; do not attribute this error to the other fields."

@@ -23,7 +23,7 @@ def receive(
         "Configured bounded webhook required",
     )
     require(
-        timestamp.isdigit() and abs(time.time() - int(timestamp)) <= 300,
+        timestamp.isascii() and timestamp.isdigit() and abs(time.time() - int(timestamp)) <= 300,
         "WEBHOOK_AUTH_FAILED",
         "Webhook timestamp invalid",
     )

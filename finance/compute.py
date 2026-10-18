@@ -169,7 +169,10 @@ def trajectory(cash: int, flows: list[Json], reserve: int, *, as_of: str | None 
     balance = minimum = minor(cash)
     points: list[Json] = []
     first_gap = utc(as_of) if as_of is not None and balance < reserve else None
-    for f in sorted(flows, key=lambda f: (f["at"], f["amount_minor"] >= 0, f["reference"])):
+    for f in sorted(
+        flows,
+        key=lambda f: (datetime.fromisoformat(f["at"]), f["amount_minor"] >= 0, f["reference"]),
+    ):
         balance = minor(balance + f["amount_minor"])
         minimum = min(minimum, balance)
         if balance < reserve and first_gap is None:
