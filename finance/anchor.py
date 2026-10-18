@@ -73,7 +73,9 @@ def http_rpc(url: str, timeout: float = 30.0) -> Rpc:
     def call(method: str, params: list) -> object:
         state["id"] += 1
         body = json.dumps({"jsonrpc": "2.0", "id": state["id"], "method": method, "params": params})
-        request = Request(url, body.encode(), {"Content-Type": "application/json"})
+        # Public RPC gateways reject urllib's default User-Agent with 403.
+        headers = {"Content-Type": "application/json", "User-Agent": "sme-finance-copilot/0.3"}
+        request = Request(url, body.encode(), headers)
         try:
             with urlopen(request, timeout=timeout) as response:
                 reply = json.loads(response.read())

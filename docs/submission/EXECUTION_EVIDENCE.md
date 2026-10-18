@@ -95,5 +95,9 @@ Not covered: Pixel rendering (see browser evidence); LIVE agent from a free-form
 
 ## 3. On-chain anchors
 
-No anchor recorded yet. Run `python -m scripts.anchor_audit send`, then
-`verify --tx <hash>`; results are appended to `artifacts/onchain-anchors.json`.
+Source: `artifacts/onchain-anchors.json` (`python -m scripts.anchor_audit`).
+
+| When | Command | Network | Transaction | Records covered | Chain head | Result |
+|---|---|---|---|---|---|---|
+| 2026-10-18T13:46:15 | send | Ethereum Sepolia | [0x7ac42f1fccf4…](https://sepolia.etherscan.io/tx/0x7ac42f1fccf4aa2ceb9554544a4e1493a256cc7c1f19de4bb1eb311d42e9d1ba) | 72 | `cb50d8226473a02c…` | CONFIRMED |
+| 2026-10-18T13:48:54 | verify | Ethereum Sepolia | [0x7ac42f1fccf4…](https://sepolia.etherscan.io/tx/0x7ac42f1fccf4aa2ceb9554544a4e1493a256cc7c1f19de4bb1eb311d42e9d1ba) | 72 | `cb50d8226473a02c…` | VALID |

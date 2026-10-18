@@ -60,7 +60,8 @@ def record_evidence(command: str, result: dict) -> None:
     entry["audit_count"] = result.get("audit_count", result.get("anchored_count"))
     entry["head_hash"] = result.get("head_hash", result.get("anchored_head"))
     entry["at"] = result.get("anchored_at") or anchor.now()
-    EVIDENCE.write_text(json.dumps(entries + [entry], indent=2) + "\n", encoding="utf-8")
+    text = json.dumps(entries + [entry], indent=2) + "\n"
+    EVIDENCE.write_text(text, encoding="utf-8", newline="\n")
 
 
 def main() -> int:

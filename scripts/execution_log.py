@@ -128,7 +128,7 @@ def main() -> int:
         *e2e_section(e2e),
         *anchor_section(ROOT / "artifacts/onchain-anchors.json"),
     ]
-    (ROOT / args.output).write_text("\n".join(lines), encoding="utf-8")
+    (ROOT / args.output).write_text("\n".join(lines), encoding="utf-8", newline="\n")
     print(args.output)
     return 0
 
