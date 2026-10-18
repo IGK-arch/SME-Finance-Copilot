@@ -11,8 +11,8 @@
     "V03-24"
   ],
   "status": "PASSED",
-  "at": "2026-10-14T13:58:00Z",
-  "scope": "Built-in browser pane on the user's Windows host, real backend (FastAPI + SQLite v03-dev workspace + queue worker + independent sandbox), MOCK model. Interactions were real clicks/typing except the file chooser, filled via DataTransfer on the same input change handler. Screenshots: two captured before the pane was hidden; other routes recorded as page text. No real money; synthetic sandbox only. Not a Playwright runner. 14 Oct: warm editorial theme re-rendered and re-measured on Home, Plans and Sign-in.",
+  "at": "2026-10-18T14:30:00Z",
+  "scope": "18 Oct re-recording after the submission PR (#2) changed web/pages.js, copilot.js, ui.js and style.css. Built-in browser pane on the owner's Windows host against a fresh throwaway workspace (.runtime/browser-check-20261018, port 8091, MOCK model, independent sandbox, queue worker) on merged main 0b1720f. Real clicks and typing; the CSV was attached via DataTransfer on the same input change handler. The pane was hidden, so evidence is page text and DOM measurements, no new screenshots; 'previous_screenshots' are from 2026-10-14T13:58:00Z and show the earlier UI. No real money; synthetic sandbox only. Not a Playwright runner.",
   "checks": {
     "home_names_gap_date_amount_and_cta": true,
     "chinese_names_and_cny_amounts_rendered": true,
@@ -26,7 +26,8 @@
     "no_horizontal_overflow_390_768_1366_1440": true,
     "all_form_fields_labelled": true,
     "contrast_pairs_at_least_4_5": true,
-    "no_unexpected_console_errors": true
+    "no_unexpected_console_errors": true,
+    "money_business_health_card_rendered": true
   },
   "contrast": {
     "muted on bg": 6.26,
@@ -36,17 +37,33 @@
     "warn badge": 6.31,
     "good badge": 6.44,
     "bad badge": 5.87,
-    "nav active": 17.5
+    "nav active": 17.5,
+    "muted on surface-3": 5.27
   },
   "webHashes": {
     "app.js": "88573a13a97df66156d3b0c68db49329864f9ba21a08b0f391a1244565151b6b",
-    "copilot.js": "0458bad397400fc93d5347cb85d13b1320ce83a13e4ce094eee0931beb3c1aac",
+    "copilot.js": "2914795868b5a096222040b8b9f2cf8fb4dd7dc295a7a70adc3be19c81e25fcb",
     "index.html": "5a5084a4f9101dd552f62a98f3ed59231ab0649e8083b7fbe90bfb3f1d487fb3",
-    "pages.js": "7c2d7707ba4fa5c7484b12b5174f2b9eb378c7ab865f1e514669245b9af4c6f1",
-    "style.css": "6efcba357389d6784c4dd7bfd3e16de8f5e5395827e16957b70acd3b46e5f9d7",
-    "ui.js": "9cf811def391597cd05b0ddd5df29fba3b38e3a1ae4e9923cacff1f075dc8f14"
+    "pages.js": "94867ea24b8e80c873cd4b7f0ad4da5174e493a20c1edf57302fd65b3140c36f",
+    "style.css": "b682f693609fb287e28c06b95cfd9535f6abef4f96d1770a2e76ef4577620cb0",
+    "ui.js": "eb93db8e1614d472914c452e0e32f6070ce7a434f26b655749956f50b9da39ab"
   },
-  "screenshots": [
+  "screenshots": [],
+  "baseline_screenshots": [
+    "v03/baseline/overview-607.jpg",
+    "v03/baseline/overview-1366.png"
+  ],
+  "limitations": [
+    "No participant usability study",
+    "No new screenshots: the browser pane was hidden during the 18 Oct re-recording",
+    "Activity 'On-chain proof' card not rendered in the throwaway workspace (no anchor there); covered by tests/test_anchor.py and the Sepolia anchor of .runtime/v03-dev",
+    "No automated Playwright trace (registries blocked on this host)"
+  ],
+  "console_note": "One expected 401 on /v1/home before sign-in (session probe); no other console errors observed",
+  "theme_rechecked_at": "2026-10-14T11:42:02Z",
+  "ux_pass_at": "2026-10-14T13:58:00Z",
+  "ux_pass": "14 Oct UX pass on a fresh throwaway workspace (port 8091, MOCK, synthetic sandbox): every route (Home, Money, Plans, review dialog, Documents wizard, Activity + operation timeline, Settings, Copilot panel, sign-in, page-not-found) opened in the built-in browser pane. Measured document scrollWidth == clientWidth and no element past the viewport edge (tables and charts scroll inside their own wrappers) at 390, 768, 1366 and 1440 px; Copilot scroll area has no horizontal overflow at 390/768/1440. Real clicks through JS: options computed, plan selected, sandbox clock advanced, two exact approvals (one with simulated lost response), import wizard with an ambiguous date flagged. Wrong-token sign-in shows the inline error. No console errors besides the expected 401 session probe.",
+  "previous_screenshots": [
     "v03/browser/copilot-390.jpg",
     "v03/browser/home-390-bottom-nav.jpg",
     "v03/browser/home-gap-1366-crop.png",
@@ -59,17 +76,5 @@
     "v03/browser/plans-warm-theme.jpg",
     "v03/browser/review-approval-1366.jpg"
   ],
-  "baseline_screenshots": [
-    "v03/baseline/overview-607.jpg",
-    "v03/baseline/overview-1366.png"
-  ],
-  "limitations": [
-    "No participant usability study",
-    "Screenshots limited while the browser pane was hidden",
-    "No automated Playwright trace (registries blocked on this host)"
-  ],
-  "console_note": "One expected 401 on /v1/home before sign-in (session probe); no other console errors observed",
-  "theme_rechecked_at": "2026-10-14T11:42:02Z",
-  "ux_pass_at": "2026-10-14T13:58:00Z",
-  "ux_pass": "14 Oct UX pass on a fresh throwaway workspace (port 8091, MOCK, synthetic sandbox): every route (Home, Money, Plans, review dialog, Documents wizard, Activity + operation timeline, Settings, Copilot panel, sign-in, page-not-found) opened in the built-in browser pane. Measured document scrollWidth == clientWidth and no element past the viewport edge (tables and charts scroll inside their own wrappers) at 390, 768, 1366 and 1440 px; Copilot scroll area has no horizontal overflow at 390/768/1440. Real clicks through JS: options computed, plan selected, sandbox clock advanced, two exact approvals (one with simulated lost response), import wizard with an ambiguous date flagged. Wrong-token sign-in shows the inline error. No console errors besides the expected 401 session probe."
+  "rerun_18_oct": "Signed in as OWNER; Home gap CNY 90,000.00 by Thu 8 Oct with Chinese payee names; Plans: 2 executable of 4 options, none labelled recommended; review dialog blocked the loan draw before Fri 2 Oct with a reason; after advancing the sandbox clock, exact checkbox + owner step-up token approved Draw loan CNY 91,000.00 (settled & reconciled) and Pay Payroll CNY 80,000.00 with a simulated lost response (journal: 'Response lost - checking status', 1 send attempt, settled & reconciled); reconciliation RECONCILED with CNY 0.00 difference. Session survived page reloads and a server restart. Copilot (MOCK) showed tool cards separately from 'Model explanation - not financial evidence'; panel scrollWidth == clientWidth. Import wizard flagged an ambiguous date and an ambiguous decimal. Money page Business health card rendered (days to gap 7, liquidity buffer, 30-day coverage 63.1%, net working position, ageing, concentration). document scrollWidth == clientWidth and no element past the viewport on Home, Money, Plans, Documents, Activity and Settings at 390, 768, 1366 and 1440 px; 0 unlabelled form fields; only console error is the expected 401 session probe. Observed: the case history shows the same 'problem changed' event twice at one timestamp after a clock advance (journal shows x2)."
 }

@@ -1,6 +1,6 @@
 # Acceptance matrix v0.3 — V03-01…V03-25
 
-Generated from `artifacts/v03/regression-v03.json` (started 2026-10-14T14:43:20.246823+00:00, 181 tests: {'PASSED': 177, 'SKIPPED': 4}).
+Generated from `artifacts/v03/regression-v03.json` (started 2026-10-18T14:50:31.254959+00:00, 278 tests: {'PASSED': 274, 'SKIPPED': 4}).
 IDs and wording come from the v0.3 audit package; T001–T100 remain in ACCEPTANCE_MATRIX.md (current counts {'PASSED': 96, 'NOT_RUN': 4}).
 DEFERRED (target model) items are model-dependent and are not counted as passed from MOCK runs.
 
@@ -36,7 +36,7 @@ Counts: {'EVIDENCE_RECORDED': 2, 'PASSED': 9, 'DEFERRED_MODEL': 6, 'NOT_RUN': 3,
 
 ## Product-path E2E (`python -m scripts.e2e_v03`)
 
-Scope: Real HTTP server + queue worker + independent sandbox via cookie session; MOCK runtime; no LIVE model decisions. Passed: **True**. Workspace `.runtime\v03-e2e\20261014-170129`.
+Scope: Real HTTP server + queue worker + independent sandbox via cookie session; MOCK runtime; no LIVE model decisions. Passed: **True**. Workspace `.runtime\v03-e2e\20261018-170345`.
 
 | Check | Result |
 |---|---|
@@ -45,6 +45,8 @@ Scope: Real HTTP server + queue worker + independent sandbox via cookie session;
 | same_gap_not_reported_as_change | PASS |
 | change_recorded_in_case | PASS |
 | options_differ | PASS |
+| approval_requires_step_up | PASS |
+| browser_session_cannot_use_legacy_money_route | PASS |
 | tampered_hash_refused | PASS |
 | action_1_settled | PASS |
 | action_2_settled | PASS |
@@ -55,7 +57,7 @@ Scope: Real HTTP server + queue worker + independent sandbox via cookie session;
 | action_5_settled | PASS |
 | plan_completed | PASS |
 | reconciled_zero_difference | PASS |
-| final_cash_28000 | PASS |
+| final_cash_29000 | PASS |
 | case_resolved_only_after_reconciliation | PASS |
 | world_one_operation_per_key | PASS |
 | world_movements_6 | PASS |
@@ -66,7 +68,7 @@ Not covered: Pixel rendering (see browser evidence); LIVE agent from a free-form
 
 ## Browser walkthrough (built-in browser pane, real backend)
 
-Scope: Built-in browser pane on the user's Windows host, real backend (FastAPI + SQLite v03-dev workspace + queue worker + independent sandbox), MOCK model. Interactions were real clicks/typing except the file chooser, filled via DataTransfer on the same input change handler. Screenshots: two captured before the pane was hidden; other routes recorded as page text. No real money; synthetic sandbox only. Not a Playwright runner. 14 Oct: warm editorial theme re-rendered and re-measured on Home, Plans and Sign-in.
+Scope: 18 Oct re-recording after the submission PR (#2) changed web/pages.js, copilot.js, ui.js and style.css. Built-in browser pane on the owner's Windows host against a fresh throwaway workspace (.runtime/browser-check-20261018, port 8091, MOCK model, independent sandbox, queue worker) on merged main 0b1720f. Real clicks and typing; the CSV was attached via DataTransfer on the same input change handler. The pane was hidden, so evidence is page text and DOM measurements, no new screenshots; 'previous_screenshots' are from 2026-10-14T13:58:00Z and show the earlier UI. No real money; synthetic sandbox only. Not a Playwright runner.
 
 - home_names_gap_date_amount_and_cta: PASS
 - chinese_names_and_cny_amounts_rendered: PASS
@@ -81,5 +83,6 @@ Scope: Built-in browser pane on the user's Windows host, real backend (FastAPI +
 - all_form_fields_labelled: PASS
 - contrast_pairs_at_least_4_5: PASS
 - no_unexpected_console_errors: PASS
+- money_business_health_card_rendered: PASS
 
-Screenshots: v03/browser/copilot-390.jpg, v03/browser/home-390-bottom-nav.jpg, v03/browser/home-gap-1366-crop.png, v03/browser/home-gap-684.jpg, v03/browser/home-warm-theme.jpg, v03/browser/login-warm-theme.jpg, v03/browser/money-chart-1366.jpg, v03/browser/operation-timeline-1366.jpg, v03/browser/plans-options-1366.jpg, v03/browser/plans-warm-theme.jpg, v03/browser/review-approval-1366.jpg
+Screenshots: 

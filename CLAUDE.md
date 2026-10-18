@@ -91,6 +91,17 @@ unusable (empty, garbled or contradicting its exit code).
 
 ## Current state (update this block when it changes)
 
+18 Oct: PR #2 merged (0b1720f): English reviewer docs in `docs/submission/`, Business
+health card on Money, on-chain audit anchor (`finance/anchor.py`, `scripts.anchor_audit`,
+optional `requirements-onchain.txt`, installed in `.venv`). First anchor on Ethereum Sepolia:
+tx 0x7ac42f1f…d9d1ba, 72 audit records of `.runtime/v03-dev`, block 11941459, verify 5/5;
+evidence `artifacts/onchain-anchors.json`. Testnet wallet key lives only in
+`.runtime/v03-dev/anchor-wallet.secret.json` (never print). RPC needs a User-Agent (403 otherwise).
+On merged main: regression 274 PASS / 4 PG SKIP; T001–T100 96 PASS / 4 NOT_RUN; e2e PASSED;
+check all PASSED. Browser evidence re-recorded on throwaway 8091 workspace (text/DOM only, pane
+hidden, no new screenshots); Activity anchor card not rendered there. Observed: case history
+shows a duplicate 'problem changed' event after a clock advance (not fixed).
+
 <!-- MULTIMODEL-100-START -->
 Owner decision after comparison: retain the existing large Qwen on Strata
 (`qwen3.8-flash-next-iq3_xxs`) as the selected LIVE model. Do not switch the
