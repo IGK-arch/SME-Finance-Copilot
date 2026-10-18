@@ -1,6 +1,5 @@
 """Make a clean copy of the repository for submission, without infrastructure details."""
 
-
 from __future__ import annotations
 
 import argparse
