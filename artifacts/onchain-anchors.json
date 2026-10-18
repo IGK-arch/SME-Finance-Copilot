@@ -1,0 +1,31 @@
+[
+  {
+    "command": "send",
+    "tx_hash": "0x7ac42f1fccf4aa2ceb9554544a4e1493a256cc7c1f19de4bb1eb311d42e9d1ba",
+    "network": "Ethereum Sepolia",
+    "chain_id": 11155111,
+    "explorer_url": "https://sepolia.etherscan.io/tx/0x7ac42f1fccf4aa2ceb9554544a4e1493a256cc7c1f19de4bb1eb311d42e9d1ba",
+    "status": "CONFIRMED",
+    "audit_count": 72,
+    "head_hash": "cb50d8226473a02c09d2e56e9e72c70fc4a4038e041530a63795dc84b3fdd3f8",
+    "at": "2026-10-18T13:46:15.952869+00:00"
+  },
+  {
+    "command": "verify",
+    "tx_hash": "0x7ac42f1fccf4aa2ceb9554544a4e1493a256cc7c1f19de4bb1eb311d42e9d1ba",
+    "network": "Ethereum Sepolia",
+    "chain_id": 11155111,
+    "explorer_url": "https://sepolia.etherscan.io/tx/0x7ac42f1fccf4aa2ceb9554544a4e1493a256cc7c1f19de4bb1eb311d42e9d1ba",
+    "valid": true,
+    "checks": {
+      "same_tenant": true,
+      "local_chain_valid": true,
+      "enough_local_records": true,
+      "head_matches": true,
+      "mined": true
+    },
+    "audit_count": 72,
+    "head_hash": "cb50d8226473a02c09d2e56e9e72c70fc4a4038e041530a63795dc84b3fdd3f8",
+    "at": "2026-10-18T13:48:54.799248+00:00"
+  }
+]

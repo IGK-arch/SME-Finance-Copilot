@@ -1,5 +1,14 @@
 # SME Finance Copilot · Topic E
 
+> **Reviewers start here:** [submission index](docs/submission/README.md) maps every
+> submission-checklist item and scoring criterion to documents, code and evidence:
+> [technical documentation](docs/submission/TECHNICAL_DOCUMENTATION.md),
+> [security self-assessment](docs/submission/SECURITY_SELF_ASSESSMENT.md),
+> [sandbox operation logs](docs/submission/EXECUTION_EVIDENCE.md).
+>
+> **On-chain proof:** the audit trail's chain head is anchored on a public testnet;
+> see `python -m scripts.anchor_audit` and [the submission index](docs/submission/README.md#challenge-bonus-on-chain-exploration-05).
+
 A persistent local financial workspace: source import and review → observed facts
 and allocations → F0/F1 forecasts → OR-Tools plan → independent validation → exact
 owner approval → separate execution worker → independent sandbox → reconciliation.
@@ -87,6 +96,15 @@ switch but cannot approve payments. The new cabinet exchanges the token for an
 valid session and logout revokes it. Bearer authentication remains for scripts and
 the legacy cabinet. Never publish `.runtime`, DSNs, tokens or private world files.
 
+On Linux or macOS the same steps are:
+
+```bash
+python3.11 -m venv .venv && . .venv/bin/activate
+pip install -r requirements.lock
+python -m scripts.task setup && python -m scripts.task migrate && python -m scripts.task seed-demo
+python -m scripts.serve --port 8080
+```
+
 ## Use the workflow
 
 Import the documented CSV schema; correct quarantined rows with a review reason.
@@ -99,8 +117,9 @@ and recovers using the original key. A material change requires a refreshed comm
 and a new approval. A supplier extension changes facts only after its separate
 sandbox counterparty confirmation. No real counterparty is contacted.
 
-The original golden fixture computes 91,000 CNY gross / 90,000 net financing,
-92,000 repayment, 28,000 final cash and a 20,000 minimum. The independent evaluator
+The original golden fixture computes 91,000 CNY gross / 90,000 net financing
+(1,000 upfront fee, no repayment fee since the 18 Oct cost-cap fix), 91,000 repayment,
+29,000 final cash and a 20,000 minimum. The independent evaluator
 also checks remaining debt/payables and missed deadlines. These are synthetic
 fixture outcomes, not real lender terms or business/model-quality metrics.
 

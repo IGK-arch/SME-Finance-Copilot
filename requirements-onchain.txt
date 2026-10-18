@@ -1,0 +1,19 @@
+# Optional: only for scripts.anchor_audit (testnet anchoring of the audit chain).
+bitarray==3.12.2
+ckzg==2.1.8
+cytoolz==1.2.0
+eth-abi==6.0.0
+eth-account==0.14.0
+eth-hash==0.8.0
+eth-keyfile==0.10.0
+eth-keys==0.8.0
+eth-rlp==3.0.0
+eth-typing==6.0.0
+eth-utils==6.0.0
+hexbytes==2.0.0
+parsimonious==0.10.0
+py-ecc==8.0.0
+pycryptodome==3.24.1
+regex==2026.9.29
+rlp==5.0.0
+toolz==1.2.0
