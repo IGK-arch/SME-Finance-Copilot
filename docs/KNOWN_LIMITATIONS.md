@@ -35,7 +35,7 @@ Offline: 230 PASS / 1 sandbox-port setup FAIL / 4 PG SKIP; isolated failed test 
 Targeted tests: 29 PASS; quality: nine PASS. Never replace the recorded full failure.
 85 frozen files verified unchanged; approval/execution/validation and original graders unchanged.
 T001–T100: 96 PASS / 4 NOT_RUN; V03 unchanged. No production-quality claim.
-SSH 195.208.16.1:45161 failed before authentication (missing protocol banner),
+SSH <ssh-host>:45161 failed before authentication (missing protocol banner),
 both bridge startup and independent read-only check. Remote model health UNKNOWN.
 Local listeners 18443 and 8092 were absent. No remote restart or fallback.
 After access is restored, continue the 51 remaining case IDs from

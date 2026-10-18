@@ -190,7 +190,7 @@
     "PARTIAL": 5
   },
   "connectivity_check": {
-    "ssh_host": "195.208.16.1",
+    "ssh_host": "<ssh-host>",
     "ssh_port": 45161,
     "attempts": [
       "Existing bridge configuration startup failed before SSH authentication",

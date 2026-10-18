@@ -5,7 +5,7 @@
   "planned": 20,
   "completed": 0,
   "owner_update": "Server switched on; address unchanged",
-  "host": "195.208.16.1",
+  "host": "<ssh-host>",
   "port": 40769,
   "attempts": [
     {

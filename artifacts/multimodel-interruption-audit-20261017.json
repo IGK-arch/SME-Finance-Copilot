@@ -216,7 +216,7 @@
     "windows_last_boot": "2026-10-17T21:26:09.500000+03:00"
   },
   "ssh_observation": {
-    "host": "195.208.16.1",
+    "host": "<ssh-host>",
     "port": 40390,
     "tcp_connect_timeout_seconds": 12,
     "failed_probes": 2,

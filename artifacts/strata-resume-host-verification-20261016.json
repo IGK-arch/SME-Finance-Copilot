@@ -1,5 +1,5 @@
 {
-  "ssh_host": "195.208.16.1",
+  "ssh_host": "<ssh-host>",
   "previous_port": 45161,
   "new_port": 40390,
   "same_pinned_host_key": true,
