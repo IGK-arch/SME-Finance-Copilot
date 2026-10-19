@@ -149,6 +149,30 @@ def read_table(value: Json) -> tuple[list[str], list[list[str]], bytes, str]:
     return headers, body, raw, delimiter
 
 
+XML_DECLARATION = re.compile(rb"^<\?xml[^>]*?\?>")
+XML_ENCODING = re.compile(rb"encoding\s*=\s*[\"']([A-Za-z0-9._-]+)[\"']")
+
+
+def safe_xml(data: bytes) -> ElementTree.Element:
+    """Parse one workbook part, refusing DTDs and entities (XXE / entity expansion).
+
+    Spreadsheet parts are UTF-8 without a DTD. Other encodings are refused first, so the
+    byte search for DOCTYPE/ENTITY below cannot be bypassed by re-encoding the markup.
+    """
+    body = data.removeprefix(b"\xef\xbb\xbf")
+    declaration = XML_DECLARATION.match(body)
+    encoding = XML_ENCODING.search(declaration.group(0)) if declaration else None
+    require(
+        not body.startswith((b"\xfe\xff", b"\xff\xfe", b"\x00", b"\x4c\x6f\xa7\x94"))
+        and (encoding is None or encoding.group(1).lower() in {b"utf-8", b"utf8"})
+        and b"<!doctype" not in body.lower()
+        and b"<!entity" not in body.lower(),
+        "INVALID_FILE",
+        "Workbook XML must be plain UTF-8 without DTD or entity declarations",
+    )
+    return ElementTree.fromstring(body)
+
+
 def read_xlsx(raw: bytes) -> list[list[str]]:
     """First worksheet only, values only (no formulas evaluated, no macros, bounded size)."""
     try:
@@ -160,15 +184,13 @@ def read_xlsx(raw: bytes) -> list[list[str]]:
             ns = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
             shared: list[str] = []
             if "xl/sharedStrings.xml" in z.namelist():
-                for si in ElementTree.fromstring(z.read("xl/sharedStrings.xml")).findall(
-                    "m:si", ns
-                ):
+                for si in safe_xml(z.read("xl/sharedStrings.xml")).findall("m:si", ns):
                     shared.append("".join(t.text or "" for t in si.iter("{%s}t" % ns["m"])))
             sheets = sorted(
                 n for n in z.namelist() if re.match(r"^xl/worksheets/sheet\d+\.xml$", n)
             )
             require(bool(sheets), "INVALID_FILE", "No worksheet found")
-            root = ElementTree.fromstring(z.read(sheets[0]))
+            root = safe_xml(z.read(sheets[0]))
     except (zipfile.BadZipFile, ElementTree.ParseError, KeyError) as exc:
         raise FinanceError("INVALID_FILE", "Not a readable XLSX workbook") from exc
     rows: list[list[str]] = []

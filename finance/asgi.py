@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import os
 import re
 import secrets
 import time
 from pathlib import Path
-from typing import Callable
+from typing import Any, Callable
 from urllib.parse import urlparse
 
 from fastapi import FastAPI, Request
@@ -18,8 +19,13 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from starlette.concurrency import run_in_threadpool
 
 from finance.api import dispatch
-from finance.domain import AuthContext, FinanceError, Json, require, uid
+from finance.domain import AuthContext, FinanceError, Json, canonical, require, uid
 from finance.execution import ExecutionService
+
+# Security events (failed sign-ins, denied origins/hosts, lockouts) go to this logger.
+# Records carry the event name, method, path and client address only: never headers,
+# cookies, tokens or bodies. Values are JSON-escaped so they cannot forge log lines.
+SECURITY_LOG = logging.getLogger("sme.security")
 
 
 class TaskRequest(BaseModel):
@@ -37,6 +43,7 @@ LEGACY_MONEY_ROUTE = re.compile(r"^(approvals|actions/[^/]+/dispatch)$")
 
 
 class FailureLimiter:
+    """Failed attempts per client address within a sliding window."""
 
     MAX_CLIENTS = 10000
 
@@ -74,7 +81,7 @@ def public_origin() -> str | None:
         and not parsed.query
         and not parsed.username,
         "UNSAFE_CONFIGURATION",
-        "SME_PUBLIC_ORIGIN must be an https origin without path"
+        "SME_PUBLIC_ORIGIN must be an https origin without path",
     )
     return f"{parsed.scheme}://{parsed.netloc}"
 
@@ -83,18 +90,85 @@ def legacy_enabled() -> bool:
     return os.getenv("SME_ENABLE_LEGACY") == "1"
 
 
+def allowed_hosts(include_public: bool = True) -> set[str]:
+    """Loopback names, hosts listed in SME_ALLOWED_HOSTS (comma-separated) and, for the
+    Host check, the hostname of SME_PUBLIC_ORIGIN. Origins on the public host must match
+    the exact https origin instead (see check_origin), so it is excluded there."""
+    extra = os.getenv("SME_ALLOWED_HOSTS", "")
+    hosts = LOOPBACK_HOSTS | {h.strip().lower() for h in extra.split(",") if h.strip()}
+    public = public_origin() if include_public else None
+    if public:
+        hosts.add(str(urlparse(public).hostname))
+    return hosts
+
+
+def client_address(request: Request) -> str:
+    """Peer address for per-client limits (behind Caddy: the forwarded client address)."""
+    return request.client.host if request.client else "unknown"
+
+
+def host_allowed(host: str) -> bool:
+    """Reject DNS-rebinding requests: the Host header must name this server."""
+    try:
+        return bool(host) and urlparse("//" + host).hostname in allowed_hosts()
+    except ValueError:
+        return False
+
+
+def security_event(event: str, request: Request, **fields: Any) -> None:
+    client = request.client.host if request.client else None
+    SECURITY_LOG.warning(
+        "security_event %s",
+        canonical(
+            {
+                "event": event,
+                "method": request.method,
+                "path": request.url.path[:200],
+                "client": client,
+            }
+            | fields
+        ),
+    )
+
+
+JSON_STRING = re.compile(rb'"(?:[^"\\]|\\.)*"', re.DOTALL)
+JSON_BRACKET = re.compile(rb"[\[\]{}]")
+MAX_JSON_DEPTH = 64
+
+
+def parse_body(body: bytes | bytearray) -> Any:
+    """Strict JSON: NaN/Infinity are refused and deep nesting is a shape error.
+
+    Depth is bounded before decoding: the C decoder recurses per level, and in a worker
+    thread a hostile body could exhaust the native stack before Python's recursion limit.
+    """
+    depth = 0
+    for bracket in JSON_BRACKET.finditer(JSON_STRING.sub(b"", bytes(body))):
+        depth += 1 if bracket.group() in (b"[", b"{") else -1
+        if depth > MAX_JSON_DEPTH:
+            raise ValueError("JSON nesting too deep")
+
+    def non_finite(name: str) -> None:
+        raise ValueError("Non-finite number " + name)
+
+    return json.loads(body, parse_constant=non_finite)
+
+
 def check_origin(request: Request) -> None:
     origin = request.headers.get("Origin")
     if origin:
         parsed = urlparse(origin)
-        loopback = parsed.scheme in ("http", "https") and parsed.hostname in LOOPBACK_HOSTS
         public = public_origin()
-        deployed = public is not None and f"{parsed.scheme}://{parsed.netloc}" == public
-        require(
-            (loopback or deployed) and parsed.netloc == request.headers.get("host"),
-            "POLICY_DENIED",
-            "Cross-origin request denied",
-        )
+        try:
+            hosts = allowed_hosts(include_public=False)
+            local = parsed.scheme in ("http", "https") and parsed.hostname in hosts
+            deployed = public is not None and f"{parsed.scheme}://{parsed.netloc}" == public
+            ok = (local or deployed) and parsed.netloc == request.headers.get("host")
+        except ValueError:
+            ok = False
+        if not ok:
+            security_event("origin_denied", request, origin=origin[:200])
+        require(ok, "POLICY_DENIED", "Cross-origin request denied")
 
 
 def _session_key(value: str) -> str:
@@ -139,6 +213,8 @@ def make_app(
 ) -> FastAPI:
     app = FastAPI(title="SME Finance Copilot", version="0.3.0")
     sign_in_failures = FailureLimiter(limit=20, window_seconds=300)
+    # API bearer tokens get their own budget so guessing them cannot lock out browser sign-in.
+    bearer_failures = FailureLimiter(limit=20, window_seconds=300)
     root = Path(__file__).resolve().parent.parent / "web"
 
     @app.post("/hooks/sandbox")
@@ -173,15 +249,37 @@ def make_app(
 
     @app.middleware("http")
     async def headers(request: Request, call_next):
-        response = await call_next(request)
+        if host_allowed(request.headers.get("host", "")):
+            response = await call_next(request)
+        else:
+            security_event("host_denied", request, host=request.headers.get("host", "")[:200])
+            response = JSONResponse(
+                {
+                    "error": {
+                        "code": "POLICY_DENIED",
+                        "safe_message": "Unexpected Host header",
+                        "retryable": False,
+                    }
+                },
+                status_code=400,
+            )
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["Referrer-Policy"] = "no-referrer"
         if public_origin():
             response.headers["Strict-Transport-Security"] = "max-age=31536000"
         response.headers["Content-Security-Policy"] = (
-            "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'"
+            "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; "
+            "object-src 'none'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
         )
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["Cross-Origin-Opener-Policy"] = "same-origin"
+        response.headers["Cross-Origin-Resource-Policy"] = "same-origin"
+        response.headers["Permissions-Policy"] = (
+            "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+        )
+        if request.url.scheme == "https":
+            response.headers["Strict-Transport-Security"] = "max-age=31536000"
         return response
 
     @app.get("/")
@@ -217,13 +315,15 @@ def make_app(
     async def create_session(request: Request):
         try:
             check_origin(request)
-            client = request.client.host if request.client else "unknown"
+            client = client_address(request)
+            if sign_in_failures.blocked(client):
+                security_event("sign_in_rate_limited", request)
             require(
                 not sign_in_failures.blocked(client),
                 "RATE_LIMITED",
                 "Too many failed sign-ins; wait five minutes",
             )
-            body = await request.json()
+            body = parse_body(await request.body())
             require(
                 isinstance(body, dict)
                 and set(body) == {"token"}
@@ -235,6 +335,7 @@ def make_app(
                 ctx = await run_in_threadpool(service.store.authenticate, body["token"])
             except FinanceError:
                 sign_in_failures.fail(client)
+                security_event("sign_in_failed", request)
                 raise
             raw = secrets.token_urlsafe(32)
             expires = time.time() + SESSION_SECONDS
@@ -317,16 +418,35 @@ def make_app(
             bearer = request.headers.get("Authorization", "").removeprefix("Bearer ")
             cookie = request.cookies.get(SESSION_COOKIE)
             if bearer:
-                ctx = service.store.authenticate(bearer)
+                client = client_address(request)
+                if bearer_failures.blocked(client):
+                    security_event("bearer_rate_limited", request)
+                require(
+                    not bearer_failures.blocked(client),
+                    "RATE_LIMITED",
+                    "Too many failed token attempts; wait five minutes",
+                )
+                try:
+                    ctx = service.store.authenticate(bearer)
+                except FinanceError:
+                    bearer_failures.fail(client)
+                    security_event("bearer_auth_failed", request)
+                    raise
             else:
                 require(bool(cookie), "UNAUTHORIZED", "Sign in required")
                 # Cookie sessions need a header a cross-site form cannot send (CSRF).
+                if request.method != "GET" and request.headers.get("X-SME-Request") != "1":
+                    security_event("csrf_header_missing", request)
                 require(
                     request.method == "GET" or request.headers.get("X-SME-Request") == "1",
                     "POLICY_DENIED",
                     "Missing request header",
                 )
-                ctx = await run_in_threadpool(session_context, service, cookie or "")
+                try:
+                    ctx = await run_in_threadpool(session_context, service, cookie or "")
+                except FinanceError:
+                    security_event("session_rejected", request)
+                    raise
                 require(
                     not (request.method == "POST" and LEGACY_MONEY_ROUTE.match(resource)),
                     "POLICY_DENIED",
@@ -336,7 +456,7 @@ def make_app(
             async for chunk in request.stream():
                 body.extend(chunk)
                 require(len(body) <= 1_000_000, "INVALID_ARGUMENTS", "Request body too large")
-            value = json.loads(body) if body else {}
+            value = parse_body(body) if body else {}
             require(isinstance(value, dict), "INVALID_ARGUMENTS", "JSON object required")
             require(
                 "tenant" not in value and "tenant_id" not in value,
@@ -396,6 +516,7 @@ def make_app(
                 "UNAUTHORIZED": 401,
                 "STEP_UP_REQUIRED": 403,
                 "STEP_UP_LOCKED": 429,
+                "RATE_LIMITED": 429,
                 "POLICY_DENIED": 403,
                 "NOT_FOUND": 404,
             }.get(exc.code, 409)
@@ -415,8 +536,6 @@ def make_app(
                 status_code=400,
             )
         except Exception:
-            import logging
-
             logging.exception("API failure %s", request_id)
             return JSONResponse(
                 {

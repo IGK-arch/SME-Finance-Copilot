@@ -77,6 +77,8 @@ class ToolRegistry:
         "propose_supplier_extension": {"fact_id", "due_at"},
     }
     OPTIONAL_ARGUMENTS = {"search_documents": {"offset"}}
+    # T2 tools: they create a plan, a pending request or an unapproved command; none executes.
+    PROPOSE_TOOLS = {"optimize_plan", "prepare_action", "propose_supplier_extension"}
 
     def __init__(self, service: ExecutionService, ctx: AuthContext) -> None:
         self.service, self.ctx = service, ctx
@@ -260,6 +262,24 @@ class ToolRegistry:
                             "arguments": arguments,
                             "result": result,
                             "contract_version": agent_data.VERSION,
+                        },
+                    )
+            if name in self.PROPOSE_TOOLS:
+                # Model-initiated proposals enter the hash-chained audit as agent actions,
+                # so a reviewer can tell them apart from the human's own clicks.
+                with store.transaction() as db:
+                    store.authorize(db, self.ctx)
+                    store.audit(
+                        db,
+                        self.ctx,
+                        "agent.tool_call",
+                        {
+                            "tool": name,
+                            "tier": "T2_PROPOSE",
+                            "arguments": arguments,
+                            "result_id": envelope["result_id"],
+                            "result_digest": digest(result),
+                            "executed": False,
                         },
                     )
             if cacheable:

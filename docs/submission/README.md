@@ -12,7 +12,7 @@ owner approval, sandbox execution and reconciliation.
 | 2 | Presentation deck (≤ 10 min) | Submitted separately; storyline in [demo-script.md](demo-script.md) |
 | 3 | Demo video (≤ 5 min, optional) | Submitted separately; script in [demo-script.md](demo-script.md) |
 | 4 | Source code with README, deployment instructions and test cases | [README](../../README.md) (Windows, Linux, macOS setup) · `tests/` (278 tests) · CI in `.github/workflows/ci.yml` |
-| 5 | Security self-assessment (permission tiers, known risks) | [SECURITY_SELF_ASSESSMENT.md](SECURITY_SELF_ASSESSMENT.md) |
+| 5 | Security self-assessment (permission tiers, known risks) | [SECURITY_SELF_ASSESSMENT.md](SECURITY_SELF_ASSESSMENT.md), audit findings and fixes in [SECURITY_AUDIT.md](SECURITY_AUDIT.md) |
 | 6 | Execution evidence (sandbox operation logs + demo video) | [EXECUTION_EVIDENCE.md](EXECUTION_EVIDENCE.md) · raw `artifacts/golden-latest.json`, `artifacts/v03/e2e-latest.json` |
 
 ## Scoring criteria (rules §3)
