@@ -1,0 +1,33 @@
+[Unit]
+Description=SME Copilot authenticated loopback bridge to the Strata model server (SSH)
+After=network-online.target
+Wants=network-online.target
+Before=sme-copilot.service
+
+[Service]
+Type=simple
+# A separate user: the web app cannot read the SSH key; it only knows the bridge token.
+User=sme-bridge
+Group=sme-bridge
+WorkingDirectory=/opt/sme-copilot/app
+Environment=PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+ExecStart=/opt/sme-copilot/venv/bin/python -m scripts.strata_bridge --config /etc/sme-copilot/strata/bridge.secret.json --client-lib /opt/sme-copilot/strata-lib
+Restart=on-failure
+RestartSec=10
+
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+CapabilityBoundingSet=
+
+[Install]
+WantedBy=multi-user.target

@@ -37,17 +37,46 @@ LEGACY_MONEY_ROUTE = re.compile(r"^(approvals|actions/[^/]+/dispatch)$")
 
 
 class FailureLimiter:
+
+    MAX_CLIENTS = 10000
+
     def __init__(self, limit: int, window_seconds: float) -> None:
         self.limit, self.window = limit, window_seconds
-        self.events: list[float] = []
+        self.events: dict[str, list[float]] = {}
 
-    def blocked(self) -> bool:
+    def _recent(self, client: str) -> list[float]:
         cutoff = time.monotonic() - self.window
-        self.events = [t for t in self.events if t > cutoff]
-        return len(self.events) >= self.limit
+        recent = [t for t in self.events.get(client, []) if t > cutoff]
+        if recent:
+            self.events[client] = recent
+        else:
+            self.events.pop(client, None)
+        return recent
 
-    def fail(self) -> None:
-        self.events.append(time.monotonic())
+    def blocked(self, client: str) -> bool:
+        return len(self._recent(client)) >= self.limit
+
+    def fail(self, client: str) -> None:
+        if client not in self.events and len(self.events) >= self.MAX_CLIENTS:
+            self.events.pop(next(iter(self.events)))
+        self.events.setdefault(client, []).append(time.monotonic())
+
+
+def public_origin() -> str | None:
+    value = os.getenv("SME_PUBLIC_ORIGIN", "").rstrip("/")
+    if not value:
+        return None
+    parsed = urlparse(value)
+    require(
+        parsed.scheme == "https"
+        and bool(parsed.hostname)
+        and parsed.path in ("", "/")
+        and not parsed.query
+        and not parsed.username,
+        "UNSAFE_CONFIGURATION",
+        "SME_PUBLIC_ORIGIN must be an https origin without path"
+    )
+    return f"{parsed.scheme}://{parsed.netloc}"
 
 
 def legacy_enabled() -> bool:
@@ -58,10 +87,11 @@ def check_origin(request: Request) -> None:
     origin = request.headers.get("Origin")
     if origin:
         parsed = urlparse(origin)
+        loopback = parsed.scheme in ("http", "https") and parsed.hostname in LOOPBACK_HOSTS
+        public = public_origin()
+        deployed = public is not None and f"{parsed.scheme}://{parsed.netloc}" == public
         require(
-            parsed.scheme in ("http", "https")
-            and parsed.hostname in LOOPBACK_HOSTS
-            and parsed.netloc == request.headers.get("host"),
+            (loopback or deployed) and parsed.netloc == request.headers.get("host"),
             "POLICY_DENIED",
             "Cross-origin request denied",
         )
@@ -147,6 +177,8 @@ def make_app(
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["Referrer-Policy"] = "no-referrer"
+        if public_origin():
+            response.headers["Strict-Transport-Security"] = "max-age=31536000"
         response.headers["Content-Security-Policy"] = (
             "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'"
         )
@@ -185,8 +217,9 @@ def make_app(
     async def create_session(request: Request):
         try:
             check_origin(request)
+            client = request.client.host if request.client else "unknown"
             require(
-                not sign_in_failures.blocked(),
+                not sign_in_failures.blocked(client),
                 "RATE_LIMITED",
                 "Too many failed sign-ins; wait five minutes",
             )
@@ -201,7 +234,7 @@ def make_app(
             try:
                 ctx = await run_in_threadpool(service.store.authenticate, body["token"])
             except FinanceError:
-                sign_in_failures.fail()
+                sign_in_failures.fail(client)
                 raise
             raw = secrets.token_urlsafe(32)
             expires = time.time() + SESSION_SECONDS
@@ -234,7 +267,7 @@ def make_app(
                 max_age=SESSION_SECONDS,
                 httponly=True,
                 samesite="strict",
-                secure=request.url.scheme == "https",
+                secure=request.url.scheme == "https" or public_origin() is not None,
                 path="/",
             )
             return response
