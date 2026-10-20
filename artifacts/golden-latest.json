@@ -49,9 +49,9 @@
         "reference": "",
         "status": "CONFIRMED",
         "version": 1,
-        "fact_id": "fact_c04c6d9282994baab760d2a5f92d8e12",
+        "fact_id": "fact_cb61df101e50453db91d6c9a18276229",
         "provider": "synthetic_csv",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "outstanding_minor": 8000000
       },
       {
@@ -68,9 +68,9 @@
         "reference": "",
         "status": "CONFIRMED",
         "version": 1,
-        "fact_id": "fact_40f04b217dbc4b79b0130cf5128fd7b4",
+        "fact_id": "fact_3a4dfb90215e45ea9a3c624614cdb9bc",
         "provider": "synthetic_csv",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "outstanding_minor": 2000000
       },
       {
@@ -87,9 +87,9 @@
         "reference": "",
         "status": "CONFIRMED",
         "version": 1,
-        "fact_id": "fact_d1fa3a2aec7a45b8b8fc1a4ae8241f5d",
+        "fact_id": "fact_7db9b96318de4a8988d0713f8ff33d83",
         "provider": "synthetic_csv",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "outstanding_minor": 9000000
       },
       {
@@ -106,50 +106,23 @@
         "reference": "",
         "status": "CONFIRMED",
         "version": 1,
-        "fact_id": "fact_a47638ab68ca4af189ffdb640136eb77",
+        "fact_id": "fact_ed4ee25a15884ad98696cdea8f631d12",
         "provider": "synthetic_csv",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "outstanding_minor": 10000000
       }
     ],
     "facts": [
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_1846a8440d9647699b3656d858211c18",
-        "kind": "INVOICE",
-        "provider": "synthetic_csv",
-        "external_id": "invoice_customer",
-        "version": 1,
-        "effective_at": "2026-10-01T00:00:00.000000+00:00",
-        "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
-        "supersedes_id": null,
-        "value": {
-          "amount_minor": 10000000,
-          "beneficiary_version": "",
-          "counterparty": "customer",
-          "currency": "CNY",
-          "due_at": "2026-10-11T00:00:00.000000+00:00",
-          "event_time": "2026-10-01T00:00:00.000000+00:00",
-          "external_id": "invoice_customer",
-          "kind": "INVOICE",
-          "observed_time": "2026-10-01T00:00:00.000000+00:00",
-          "protected": false,
-          "reference": "",
-          "status": "CONFIRMED",
-          "version": 1
-        }
-      },
-      {
-        "tenant_id": "demo_company",
-        "fact_id": "fact_40f04b217dbc4b79b0130cf5128fd7b4",
+        "fact_id": "fact_3a4dfb90215e45ea9a3c624614cdb9bc",
         "kind": "PAYABLE",
         "provider": "synthetic_csv",
         "external_id": "rent",
         "version": 1,
         "effective_at": "2026-10-01T00:00:00.000000+00:00",
         "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "supersedes_id": null,
         "value": {
           "amount_minor": 2000000,
@@ -169,14 +142,14 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_a47638ab68ca4af189ffdb640136eb77",
-        "kind": "RECEIVABLE",
+        "fact_id": "fact_67488306cafe47e392ef28262e23f1f6",
+        "kind": "INVOICE",
         "provider": "synthetic_csv",
-        "external_id": "customer_invoice",
+        "external_id": "invoice_customer",
         "version": 1,
         "effective_at": "2026-10-01T00:00:00.000000+00:00",
         "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "supersedes_id": null,
         "value": {
           "amount_minor": 10000000,
@@ -185,8 +158,8 @@
           "currency": "CNY",
           "due_at": "2026-10-11T00:00:00.000000+00:00",
           "event_time": "2026-10-01T00:00:00.000000+00:00",
-          "external_id": "customer_invoice",
-          "kind": "RECEIVABLE",
+          "external_id": "invoice_customer",
+          "kind": "INVOICE",
           "observed_time": "2026-10-01T00:00:00.000000+00:00",
           "protected": false,
           "reference": "",
@@ -196,14 +169,41 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_a8e5cdf745d348a8827d9f9d8afd1ef8",
+        "fact_id": "fact_7db9b96318de4a8988d0713f8ff33d83",
+        "kind": "PAYABLE",
+        "provider": "synthetic_csv",
+        "external_id": "supplier",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 9000000,
+          "beneficiary_version": "supplier_v1",
+          "counterparty": "supplier",
+          "currency": "CNY",
+          "due_at": "2026-10-08T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "supplier",
+          "kind": "PAYABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_882eade6db394077aa04b765e549f4ad",
         "kind": "BALANCE",
         "provider": "synthetic_csv",
         "external_id": "opening",
         "version": 1,
         "effective_at": "2026-10-01T00:00:00.000000+00:00",
         "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "supersedes_id": null,
         "value": {
           "amount_minor": 12000000,
@@ -223,14 +223,14 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_c04c6d9282994baab760d2a5f92d8e12",
+        "fact_id": "fact_cb61df101e50453db91d6c9a18276229",
         "kind": "PAYABLE",
         "provider": "synthetic_csv",
         "external_id": "salary",
         "version": 1,
         "effective_at": "2026-10-01T00:00:00.000000+00:00",
         "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "supersedes_id": null,
         "value": {
           "amount_minor": 8000000,
@@ -250,24 +250,24 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_d1fa3a2aec7a45b8b8fc1a4ae8241f5d",
-        "kind": "PAYABLE",
+        "fact_id": "fact_ed4ee25a15884ad98696cdea8f631d12",
+        "kind": "RECEIVABLE",
         "provider": "synthetic_csv",
-        "external_id": "supplier",
+        "external_id": "customer_invoice",
         "version": 1,
         "effective_at": "2026-10-01T00:00:00.000000+00:00",
         "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "supersedes_id": null,
         "value": {
-          "amount_minor": 9000000,
-          "beneficiary_version": "supplier_v1",
-          "counterparty": "supplier",
+          "amount_minor": 10000000,
+          "beneficiary_version": "",
+          "counterparty": "customer",
           "currency": "CNY",
-          "due_at": "2026-10-08T00:00:00.000000+00:00",
+          "due_at": "2026-10-11T00:00:00.000000+00:00",
           "event_time": "2026-10-01T00:00:00.000000+00:00",
-          "external_id": "supplier",
-          "kind": "PAYABLE",
+          "external_id": "customer_invoice",
+          "kind": "RECEIVABLE",
           "observed_time": "2026-10-01T00:00:00.000000+00:00",
           "protected": false,
           "reference": "",
@@ -279,7 +279,7 @@
     "quality_flags": [],
     "calculation_version": "snapshot-v1",
     "evidence_refs": [
-      "source_2ee41a0396404078ba7a4f87de9b119b"
+      "source_e673f673fe3244b18837769e1382ce66"
     ],
     "financing_products": [
       {
@@ -335,16 +335,16 @@
         "upfront_fee_minor": 0
       }
     ],
-    "content_hash": "6feb61b9038063bb377cef72c70ca827a2735809b409c133f012c5ab63e82c97",
-    "snapshot_id": "snap_6feb61b9038063bb377cef72c70ca827"
+    "content_hash": "4fb391e11420a856e76e664f4237ea788731d76d6c36effaa1bda158ed225aee",
+    "snapshot_id": "snap_4fb391e11420a856e76e664f4237ea78"
   },
   "solver": {
     "solver_status": "OPTIMAL",
     "plan": {
       "schema_version": 1,
-      "plan_id": "plan_44725ac974aa14427bcdd0cf",
+      "plan_id": "plan_23795b9f9eba9cef596c8df5",
       "plan_version": 1,
-      "snapshot_id": "snap_6feb61b9038063bb377cef72c70ca827",
+      "snapshot_id": "snap_4fb391e11420a856e76e664f4237ea78",
       "policy_version": "policy_demo_07",
       "objective": "MIN_COST",
       "status": "VALIDATED",
@@ -396,7 +396,7 @@
       },
       "actions": [
         {
-          "action_id": "plan_44725ac974aa14427bcdd0cf_fund",
+          "action_id": "plan_23795b9f9eba9cef596c8df5_fund",
           "kind": "DRAW_LOAN",
           "at": "2026-10-02T00:00:00.000000+00:00",
           "amount_minor": 9100000,
@@ -452,7 +452,7 @@
           "completion_predicate": "SETTLED_AND_RECONCILED"
         },
         {
-          "action_id": "plan_44725ac974aa14427bcdd0cf_b31f526e191d",
+          "action_id": "plan_23795b9f9eba9cef596c8df5_b31f526e191d",
           "kind": "PAY_OBLIGATION",
           "at": "2026-10-05T00:00:00.000000+00:00",
           "amount_minor": 8000000,
@@ -461,12 +461,12 @@
           "obligation_provider": "synthetic_csv",
           "beneficiary_version_id": "salary_v1",
           "dependencies": [
-            "plan_44725ac974aa14427bcdd0cf_fund"
+            "plan_23795b9f9eba9cef596c8df5_fund"
           ],
           "completion_predicate": "SETTLED_AND_RECONCILED"
         },
         {
-          "action_id": "plan_44725ac974aa14427bcdd0cf_e633aa88f47c",
+          "action_id": "plan_23795b9f9eba9cef596c8df5_e633aa88f47c",
           "kind": "PAY_OBLIGATION",
           "at": "2026-10-06T00:00:00.000000+00:00",
           "amount_minor": 2000000,
@@ -475,12 +475,12 @@
           "obligation_provider": "synthetic_csv",
           "beneficiary_version_id": "rent_v1",
           "dependencies": [
-            "plan_44725ac974aa14427bcdd0cf_fund"
+            "plan_23795b9f9eba9cef596c8df5_fund"
           ],
           "completion_predicate": "SETTLED_AND_RECONCILED"
         },
         {
-          "action_id": "plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05",
+          "action_id": "plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05",
           "kind": "PAY_OBLIGATION",
           "at": "2026-10-08T00:00:00.000000+00:00",
           "amount_minor": 9000000,
@@ -489,18 +489,18 @@
           "obligation_provider": "synthetic_csv",
           "beneficiary_version_id": "supplier_v1",
           "dependencies": [
-            "plan_44725ac974aa14427bcdd0cf_fund"
+            "plan_23795b9f9eba9cef596c8df5_fund"
           ],
           "completion_predicate": "SETTLED_AND_RECONCILED"
         },
         {
-          "action_id": "plan_44725ac974aa14427bcdd0cf_repay",
+          "action_id": "plan_23795b9f9eba9cef596c8df5_repay",
           "kind": "REPAY_LOAN",
           "at": "2026-10-31T00:00:00.000000+00:00",
           "amount_minor": 9100000,
           "cash_delta_minor": -9100000,
           "beneficiary_version_id": "lender_v1",
-          "obligation_id": "plan_44725ac974aa14427bcdd0cf_fund_debt",
+          "obligation_id": "plan_23795b9f9eba9cef596c8df5_fund_debt",
           "quote": {
             "quote_id": "quote_8390693cd5ebf79dbbe13abe",
             "product_version": "demo_bridge_v1",
@@ -547,7 +547,7 @@
             }
           },
           "dependencies": [
-            "plan_44725ac974aa14427bcdd0cf_fund"
+            "plan_23795b9f9eba9cef596c8df5_fund"
           ],
           "completion_predicate": "SETTLED_AND_RECONCILED"
         }
@@ -555,9 +555,9 @@
       "total_cost_minor": 100000,
       "data_mode": "synthetic",
       "expires_at": "2026-10-04T00:00:00.000000+00:00",
-      "constraints_digest": "37356b4b03727f61bef5c05f628e38c416d32fd11d089dc140bc8106c636fbdd",
+      "constraints_digest": "c223ed799433e6248dd6b2463f6bc080d810677693a56f356fadd4fa65951aa5",
       "evidence_refs": [
-        "source_2ee41a0396404078ba7a4f87de9b119b"
+        "source_e673f673fe3244b18837769e1382ce66"
       ],
       "validation": {
         "valid": true,
@@ -566,8 +566,8 @@
           2000000
         ],
         "validator_version": "independent-prefix-oracle-v1",
-        "plan_digest": "a9695611a501cbf4475ee478f99d8521b1d04ed6ad7ccf792517fe487b4b0798",
-        "snapshot_id": "snap_6feb61b9038063bb377cef72c70ca827"
+        "plan_digest": "ea2aaf661f97dc724da820e68f3a417347c91dc965ae5e1ba439beb460819cbf",
+        "snapshot_id": "snap_4fb391e11420a856e76e664f4237ea78"
       },
       "paths": [
         {
@@ -579,25 +579,25 @@
             {
               "at": "2026-10-02T00:00:00.000000+00:00",
               "amount_minor": 9000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_fund",
+              "reference": "plan_23795b9f9eba9cef596c8df5_fund",
               "balance_minor": 21000000
             },
             {
               "at": "2026-10-05T00:00:00.000000+00:00",
               "amount_minor": -8000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_b31f526e191d",
+              "reference": "plan_23795b9f9eba9cef596c8df5_b31f526e191d",
               "balance_minor": 13000000
             },
             {
               "at": "2026-10-06T00:00:00.000000+00:00",
               "amount_minor": -2000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_e633aa88f47c",
+              "reference": "plan_23795b9f9eba9cef596c8df5_e633aa88f47c",
               "balance_minor": 11000000
             },
             {
               "at": "2026-10-08T00:00:00.000000+00:00",
               "amount_minor": -9000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05",
+              "reference": "plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05",
               "balance_minor": 2000000
             },
             {
@@ -606,13 +606,13 @@
               "reference": "customer_invoice",
               "counterparty": "customer",
               "kind": "EXPECTED_RECEIPT",
-              "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+              "source_id": "source_e673f673fe3244b18837769e1382ce66",
               "balance_minor": 12000000
             },
             {
               "at": "2026-10-31T00:00:00.000000+00:00",
               "amount_minor": -9100000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_repay",
+              "reference": "plan_23795b9f9eba9cef596c8df5_repay",
               "balance_minor": 2900000
             }
           ],
@@ -632,25 +632,25 @@
             {
               "at": "2026-10-02T00:00:00.000000+00:00",
               "amount_minor": 9000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_fund",
+              "reference": "plan_23795b9f9eba9cef596c8df5_fund",
               "balance_minor": 21000000
             },
             {
               "at": "2026-10-05T00:00:00.000000+00:00",
               "amount_minor": -8000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_b31f526e191d",
+              "reference": "plan_23795b9f9eba9cef596c8df5_b31f526e191d",
               "balance_minor": 13000000
             },
             {
               "at": "2026-10-06T00:00:00.000000+00:00",
               "amount_minor": -2000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_e633aa88f47c",
+              "reference": "plan_23795b9f9eba9cef596c8df5_e633aa88f47c",
               "balance_minor": 11000000
             },
             {
               "at": "2026-10-08T00:00:00.000000+00:00",
               "amount_minor": -9000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05",
+              "reference": "plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05",
               "balance_minor": 2000000
             },
             {
@@ -659,13 +659,13 @@
               "reference": "customer_invoice",
               "counterparty": "customer",
               "kind": "EXPECTED_RECEIPT",
-              "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+              "source_id": "source_e673f673fe3244b18837769e1382ce66",
               "balance_minor": 12000000
             },
             {
               "at": "2026-10-31T00:00:00.000000+00:00",
               "amount_minor": -9100000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_repay",
+              "reference": "plan_23795b9f9eba9cef596c8df5_repay",
               "balance_minor": 2900000
             }
           ],
@@ -683,25 +683,25 @@
             {
               "at": "2026-10-02T00:00:00.000000+00:00",
               "amount_minor": 9000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_fund",
+              "reference": "plan_23795b9f9eba9cef596c8df5_fund",
               "balance_minor": 21000000
             },
             {
               "at": "2026-10-05T00:00:00.000000+00:00",
               "amount_minor": -8000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_b31f526e191d",
+              "reference": "plan_23795b9f9eba9cef596c8df5_b31f526e191d",
               "balance_minor": 13000000
             },
             {
               "at": "2026-10-06T00:00:00.000000+00:00",
               "amount_minor": -2000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_e633aa88f47c",
+              "reference": "plan_23795b9f9eba9cef596c8df5_e633aa88f47c",
               "balance_minor": 11000000
             },
             {
               "at": "2026-10-08T00:00:00.000000+00:00",
               "amount_minor": -9000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05",
+              "reference": "plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05",
               "balance_minor": 2000000
             },
             {
@@ -710,13 +710,13 @@
               "reference": "customer_invoice",
               "counterparty": "customer",
               "kind": "EXPECTED_RECEIPT",
-              "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+              "source_id": "source_e673f673fe3244b18837769e1382ce66",
               "balance_minor": 12000000
             },
             {
               "at": "2026-10-31T00:00:00.000000+00:00",
               "amount_minor": -9100000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_repay",
+              "reference": "plan_23795b9f9eba9cef596c8df5_repay",
               "balance_minor": 2900000
             }
           ],
@@ -734,31 +734,31 @@
             {
               "at": "2026-10-02T00:00:00.000000+00:00",
               "amount_minor": 9000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_fund",
+              "reference": "plan_23795b9f9eba9cef596c8df5_fund",
               "balance_minor": 21000000
             },
             {
               "at": "2026-10-05T00:00:00.000000+00:00",
               "amount_minor": -8000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_b31f526e191d",
+              "reference": "plan_23795b9f9eba9cef596c8df5_b31f526e191d",
               "balance_minor": 13000000
             },
             {
               "at": "2026-10-06T00:00:00.000000+00:00",
               "amount_minor": -2000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_e633aa88f47c",
+              "reference": "plan_23795b9f9eba9cef596c8df5_e633aa88f47c",
               "balance_minor": 11000000
             },
             {
               "at": "2026-10-08T00:00:00.000000+00:00",
               "amount_minor": -9000000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05",
+              "reference": "plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05",
               "balance_minor": 2000000
             },
             {
               "at": "2026-10-31T00:00:00.000000+00:00",
               "amount_minor": -9100000,
-              "reference": "plan_44725ac974aa14427bcdd0cf_repay",
+              "reference": "plan_23795b9f9eba9cef596c8df5_repay",
               "balance_minor": -7100000
             },
             {
@@ -767,7 +767,7 @@
               "reference": "customer_invoice",
               "counterparty": "customer",
               "kind": "EXPECTED_RECEIPT",
-              "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+              "source_id": "source_e673f673fe3244b18837769e1382ce66",
               "balance_minor": 2900000
             }
           ],
@@ -876,19 +876,19 @@
     {
       "command": {
         "schema_version": 1,
-        "action_id": "plan_44725ac974aa14427bcdd0cf_fund",
-        "plan_id": "plan_44725ac974aa14427bcdd0cf",
+        "action_id": "plan_23795b9f9eba9cef596c8df5_fund",
+        "plan_id": "plan_23795b9f9eba9cef596c8df5",
         "plan_version": 1,
-        "snapshot_id": "snap_d3957e91f791f18a0fee7ddb9d79a6a9",
+        "snapshot_id": "snap_6a7f01619668a6406ef8d0923cdd6a68",
         "kind": "DRAW_LOAN",
         "obligation_id": null,
         "account_id": "operating",
         "beneficiary_version_id": "lender_v1",
         "amount_minor": 9100000,
         "currency": "CNY",
-        "required_approval_id": "approval_6c9f527aa6e741dead54353392be6de8",
+        "required_approval_id": "approval_2ceb8d94d2c05a22683b1392a4fbe344",
         "policy_version": "policy_demo_07",
-        "idempotency_key": "demo_company_plan_44725ac974aa14427bcdd0cf_fund",
+        "idempotency_key": "demo_company_plan_23795b9f9eba9cef596c8df5_fund",
         "precondition_refs": [
           "current_membership",
           "exact_approval",
@@ -947,8 +947,8 @@
         "counterparty": "lender"
       },
       "approval": {
-        "approval_id": "approval_6c9f527aa6e741dead54353392be6de8",
-        "payload_hash": "3b4239226dafd34f544350f36be67868c5ea9bc89d5887921dbe91f6f189ad75",
+        "approval_id": "approval_2ceb8d94d2c05a22683b1392a4fbe344",
+        "payload_hash": "74e8902e642b4b32ae3576f95a20ec6cfee647039ffb67fb2c31cfeb18010d68",
         "expires_at": "2026-10-03T00:00:00.000000+00:00"
       },
       "after_send": "SUBMITTED"
@@ -956,19 +956,19 @@
     {
       "command": {
         "schema_version": 1,
-        "action_id": "plan_44725ac974aa14427bcdd0cf_b31f526e191d",
-        "plan_id": "plan_44725ac974aa14427bcdd0cf",
+        "action_id": "plan_23795b9f9eba9cef596c8df5_b31f526e191d",
+        "plan_id": "plan_23795b9f9eba9cef596c8df5",
         "plan_version": 1,
-        "snapshot_id": "snap_96f46c6bb559576ef2400a9bb48ab520",
+        "snapshot_id": "snap_12c56393506032c2fdc157020c452525",
         "kind": "PAY_OBLIGATION",
         "obligation_id": "salary",
         "account_id": "operating",
         "beneficiary_version_id": "salary_v1",
         "amount_minor": 8000000,
         "currency": "CNY",
-        "required_approval_id": "approval_460964058693c72381852e39095e5cc6",
+        "required_approval_id": "approval_ff76e582e9cac3c05d60dab22f15c44d",
         "policy_version": "policy_demo_07",
-        "idempotency_key": "demo_company_plan_44725ac974aa14427bcdd0cf_b31f526e191d",
+        "idempotency_key": "demo_company_plan_23795b9f9eba9cef596c8df5_b31f526e191d",
         "precondition_refs": [
           "current_membership",
           "exact_approval",
@@ -978,15 +978,15 @@
         "at": "2026-10-05T00:00:00.000000+00:00",
         "cash_delta_minor": -8000000,
         "dependencies": [
-          "plan_44725ac974aa14427bcdd0cf_fund"
+          "plan_23795b9f9eba9cef596c8df5_fund"
         ],
         "completion_predicate": "SETTLED_AND_RECONCILED",
         "obligation_provider": "synthetic_csv",
         "counterparty": "salary"
       },
       "approval": {
-        "approval_id": "approval_460964058693c72381852e39095e5cc6",
-        "payload_hash": "e2fdeb4fabd44514593f8260a7b6065aaf10a3234f0a6089c1db2bf106e8e9f4",
+        "approval_id": "approval_ff76e582e9cac3c05d60dab22f15c44d",
+        "payload_hash": "8f831f9e3ab7bbd74c6428187d15ec8aed5632570d9aa91459a0b21e4590e43e",
         "expires_at": "2026-10-06T00:00:00.000000+00:00"
       },
       "after_send": "UNKNOWN"
@@ -994,19 +994,19 @@
     {
       "command": {
         "schema_version": 1,
-        "action_id": "plan_44725ac974aa14427bcdd0cf_e633aa88f47c",
-        "plan_id": "plan_44725ac974aa14427bcdd0cf",
+        "action_id": "plan_23795b9f9eba9cef596c8df5_e633aa88f47c",
+        "plan_id": "plan_23795b9f9eba9cef596c8df5",
         "plan_version": 1,
-        "snapshot_id": "snap_c3f546b911ffbe44e29f2945a544f1c6",
+        "snapshot_id": "snap_f6a573f3632cca1f5e061d7906724edd",
         "kind": "PAY_OBLIGATION",
         "obligation_id": "rent",
         "account_id": "operating",
         "beneficiary_version_id": "rent_v1",
         "amount_minor": 2000000,
         "currency": "CNY",
-        "required_approval_id": "approval_6faefa48a50b58161d502dde49fcb216",
+        "required_approval_id": "approval_01ca228d24461b334a77c210165da032",
         "policy_version": "policy_demo_07",
-        "idempotency_key": "demo_company_plan_44725ac974aa14427bcdd0cf_e633aa88f47c",
+        "idempotency_key": "demo_company_plan_23795b9f9eba9cef596c8df5_e633aa88f47c",
         "precondition_refs": [
           "current_membership",
           "exact_approval",
@@ -1016,15 +1016,15 @@
         "at": "2026-10-06T00:00:00.000000+00:00",
         "cash_delta_minor": -2000000,
         "dependencies": [
-          "plan_44725ac974aa14427bcdd0cf_fund"
+          "plan_23795b9f9eba9cef596c8df5_fund"
         ],
         "completion_predicate": "SETTLED_AND_RECONCILED",
         "obligation_provider": "synthetic_csv",
         "counterparty": "rent"
       },
       "approval": {
-        "approval_id": "approval_6faefa48a50b58161d502dde49fcb216",
-        "payload_hash": "f3b0112f321b100ecdf4ef6742cc5924ad992e81459746bf32c1b6bfcf8114fb",
+        "approval_id": "approval_01ca228d24461b334a77c210165da032",
+        "payload_hash": "ef3e1a6bd29f7a634e03d762cc6c9f79bdf6ac7968a5aff21daf7a71ae52a641",
         "expires_at": "2026-10-07T00:00:00.000000+00:00"
       },
       "after_send": "UNKNOWN"
@@ -1032,19 +1032,19 @@
     {
       "command": {
         "schema_version": 1,
-        "action_id": "plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05",
-        "plan_id": "plan_44725ac974aa14427bcdd0cf",
+        "action_id": "plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05",
+        "plan_id": "plan_23795b9f9eba9cef596c8df5",
         "plan_version": 1,
-        "snapshot_id": "snap_9f1831847c67b4ce0bed7f187efa8bda",
+        "snapshot_id": "snap_7f1b06169995d8d896208abca1084f14",
         "kind": "PAY_OBLIGATION",
         "obligation_id": "supplier",
         "account_id": "operating",
         "beneficiary_version_id": "supplier_v1",
         "amount_minor": 9000000,
         "currency": "CNY",
-        "required_approval_id": "approval_29ad95fb998b192f572b92cabd6adcf8",
+        "required_approval_id": "approval_01b7e968d7f2ba71c0c90ee03e74438f",
         "policy_version": "policy_demo_07",
-        "idempotency_key": "demo_company_plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05",
+        "idempotency_key": "demo_company_plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05",
         "precondition_refs": [
           "current_membership",
           "exact_approval",
@@ -1054,15 +1054,15 @@
         "at": "2026-10-08T00:00:00.000000+00:00",
         "cash_delta_minor": -9000000,
         "dependencies": [
-          "plan_44725ac974aa14427bcdd0cf_fund"
+          "plan_23795b9f9eba9cef596c8df5_fund"
         ],
         "completion_predicate": "SETTLED_AND_RECONCILED",
         "obligation_provider": "synthetic_csv",
         "counterparty": "supplier"
       },
       "approval": {
-        "approval_id": "approval_29ad95fb998b192f572b92cabd6adcf8",
-        "payload_hash": "91d1224847119e4c2739e04922f78eaa69d03d805b90bb33916474a043608302",
+        "approval_id": "approval_01b7e968d7f2ba71c0c90ee03e74438f",
+        "payload_hash": "5fc36f9337cc55ee2f66a38d599ce1f9a60f49198265e12f35e1f6ed06aa0260",
         "expires_at": "2026-10-09T00:00:00.000000+00:00"
       },
       "after_send": "UNKNOWN"
@@ -1070,19 +1070,19 @@
     {
       "command": {
         "schema_version": 1,
-        "action_id": "plan_44725ac974aa14427bcdd0cf_repay",
-        "plan_id": "plan_44725ac974aa14427bcdd0cf",
+        "action_id": "plan_23795b9f9eba9cef596c8df5_repay",
+        "plan_id": "plan_23795b9f9eba9cef596c8df5",
         "plan_version": 1,
-        "snapshot_id": "snap_c6fe0d6897b8eb3411a43fe5f82dd83c",
+        "snapshot_id": "snap_a583bb612b9cd218659b428084bd146d",
         "kind": "REPAY_LOAN",
-        "obligation_id": "plan_44725ac974aa14427bcdd0cf_fund_debt",
+        "obligation_id": "plan_23795b9f9eba9cef596c8df5_fund_debt",
         "account_id": "operating",
         "beneficiary_version_id": "lender_v1",
         "amount_minor": 9100000,
         "currency": "CNY",
-        "required_approval_id": "approval_1e1988c1b8b77e0467c7c12fefc1966a",
+        "required_approval_id": "approval_14167a041104f095faac2ccdfbb05132",
         "policy_version": "policy_demo_07",
-        "idempotency_key": "demo_company_plan_44725ac974aa14427bcdd0cf_repay",
+        "idempotency_key": "demo_company_plan_23795b9f9eba9cef596c8df5_repay",
         "precondition_refs": [
           "current_membership",
           "exact_approval",
@@ -1092,7 +1092,7 @@
         "at": "2026-10-31T00:00:00.000000+00:00",
         "cash_delta_minor": -9100000,
         "dependencies": [
-          "plan_44725ac974aa14427bcdd0cf_fund"
+          "plan_23795b9f9eba9cef596c8df5_fund"
         ],
         "completion_predicate": "SETTLED_AND_RECONCILED",
         "quote": {
@@ -1143,8 +1143,8 @@
         "counterparty": "lender"
       },
       "approval": {
-        "approval_id": "approval_1e1988c1b8b77e0467c7c12fefc1966a",
-        "payload_hash": "55f270d962bbd7da328e16f1a464a0f3b5768024d13a46aafd5c4077a967076b",
+        "approval_id": "approval_14167a041104f095faac2ccdfbb05132",
+        "payload_hash": "0aa4d436bea7a676e889444790a9d6e956dc177fdf5e8d54399306fd0f8b1841",
         "expires_at": "2026-11-01T00:00:00.000000+00:00"
       },
       "after_send": "SUBMITTED"
@@ -1197,9 +1197,9 @@
         "reference": "",
         "status": "CONFIRMED",
         "version": 1,
-        "fact_id": "fact_c04c6d9282994baab760d2a5f92d8e12",
+        "fact_id": "fact_cb61df101e50453db91d6c9a18276229",
         "provider": "synthetic_csv",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "outstanding_minor": 0
       },
       {
@@ -1216,9 +1216,9 @@
         "reference": "",
         "status": "CONFIRMED",
         "version": 1,
-        "fact_id": "fact_40f04b217dbc4b79b0130cf5128fd7b4",
+        "fact_id": "fact_3a4dfb90215e45ea9a3c624614cdb9bc",
         "provider": "synthetic_csv",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "outstanding_minor": 0
       },
       {
@@ -1235,9 +1235,9 @@
         "reference": "",
         "status": "CONFIRMED",
         "version": 1,
-        "fact_id": "fact_d1fa3a2aec7a45b8b8fc1a4ae8241f5d",
+        "fact_id": "fact_7db9b96318de4a8988d0713f8ff33d83",
         "provider": "synthetic_csv",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "outstanding_minor": 0
       },
       {
@@ -1254,9 +1254,9 @@
         "reference": "",
         "status": "CONFIRMED",
         "version": 1,
-        "fact_id": "fact_a47638ab68ca4af189ffdb640136eb77",
+        "fact_id": "fact_ed4ee25a15884ad98696cdea8f631d12",
         "provider": "synthetic_csv",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "outstanding_minor": 0
       },
       {
@@ -1266,7 +1266,7 @@
         "currency": "CNY",
         "due_at": "2026-10-31T00:00:00.000000+00:00",
         "event_time": "2026-10-02T00:00:00.000000+00:00",
-        "external_id": "plan_44725ac974aa14427bcdd0cf_fund_debt",
+        "external_id": "plan_23795b9f9eba9cef596c8df5_fund_debt",
         "kind": "PAYABLE",
         "loan_quote": {
           "annualized_cost_bps": 1399,
@@ -1318,50 +1318,23 @@
         "reference": "loan",
         "status": "CONFIRMED",
         "version": 1,
-        "fact_id": "fact_957e9ce933ad424283a3bbae1f8d29b7",
+        "fact_id": "fact_9d77983a82ee4d5d9f0b4c46e3e80edd",
         "provider": "sandbox",
-        "source_id": "source_93c0b09635a6447b8a8a0fd84c364a17",
+        "source_id": "source_fb7f1b8cc6ef418cbd471bdca88fc8ad",
         "outstanding_minor": 0
       }
     ],
     "facts": [
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_1846a8440d9647699b3656d858211c18",
-        "kind": "INVOICE",
-        "provider": "synthetic_csv",
-        "external_id": "invoice_customer",
-        "version": 1,
-        "effective_at": "2026-10-01T00:00:00.000000+00:00",
-        "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
-        "supersedes_id": null,
-        "value": {
-          "amount_minor": 10000000,
-          "beneficiary_version": "",
-          "counterparty": "customer",
-          "currency": "CNY",
-          "due_at": "2026-10-11T00:00:00.000000+00:00",
-          "event_time": "2026-10-01T00:00:00.000000+00:00",
-          "external_id": "invoice_customer",
-          "kind": "INVOICE",
-          "observed_time": "2026-10-01T00:00:00.000000+00:00",
-          "protected": false,
-          "reference": "",
-          "status": "CONFIRMED",
-          "version": 1
-        }
-      },
-      {
-        "tenant_id": "demo_company",
-        "fact_id": "fact_40f04b217dbc4b79b0130cf5128fd7b4",
+        "fact_id": "fact_3a4dfb90215e45ea9a3c624614cdb9bc",
         "kind": "PAYABLE",
         "provider": "synthetic_csv",
         "external_id": "rent",
         "version": 1,
         "effective_at": "2026-10-01T00:00:00.000000+00:00",
         "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "supersedes_id": null,
         "value": {
           "amount_minor": 2000000,
@@ -1381,14 +1354,14 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_a47638ab68ca4af189ffdb640136eb77",
-        "kind": "RECEIVABLE",
+        "fact_id": "fact_67488306cafe47e392ef28262e23f1f6",
+        "kind": "INVOICE",
         "provider": "synthetic_csv",
-        "external_id": "customer_invoice",
+        "external_id": "invoice_customer",
         "version": 1,
         "effective_at": "2026-10-01T00:00:00.000000+00:00",
         "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "supersedes_id": null,
         "value": {
           "amount_minor": 10000000,
@@ -1397,8 +1370,8 @@
           "currency": "CNY",
           "due_at": "2026-10-11T00:00:00.000000+00:00",
           "event_time": "2026-10-01T00:00:00.000000+00:00",
-          "external_id": "customer_invoice",
-          "kind": "RECEIVABLE",
+          "external_id": "invoice_customer",
+          "kind": "INVOICE",
           "observed_time": "2026-10-01T00:00:00.000000+00:00",
           "protected": false,
           "reference": "",
@@ -1408,68 +1381,14 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_a8e5cdf745d348a8827d9f9d8afd1ef8",
-        "kind": "BALANCE",
-        "provider": "synthetic_csv",
-        "external_id": "opening",
-        "version": 1,
-        "effective_at": "2026-10-01T00:00:00.000000+00:00",
-        "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
-        "supersedes_id": null,
-        "value": {
-          "amount_minor": 12000000,
-          "beneficiary_version": "",
-          "counterparty": "",
-          "currency": "CNY",
-          "due_at": null,
-          "event_time": "2026-10-01T00:00:00.000000+00:00",
-          "external_id": "opening",
-          "kind": "BALANCE",
-          "observed_time": "2026-10-01T00:00:00.000000+00:00",
-          "protected": false,
-          "reference": "",
-          "status": "CONFIRMED",
-          "version": 1
-        }
-      },
-      {
-        "tenant_id": "demo_company",
-        "fact_id": "fact_c04c6d9282994baab760d2a5f92d8e12",
-        "kind": "PAYABLE",
-        "provider": "synthetic_csv",
-        "external_id": "salary",
-        "version": 1,
-        "effective_at": "2026-10-01T00:00:00.000000+00:00",
-        "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
-        "supersedes_id": null,
-        "value": {
-          "amount_minor": 8000000,
-          "beneficiary_version": "salary_v1",
-          "counterparty": "salary",
-          "currency": "CNY",
-          "due_at": "2026-10-05T00:00:00.000000+00:00",
-          "event_time": "2026-10-01T00:00:00.000000+00:00",
-          "external_id": "salary",
-          "kind": "PAYABLE",
-          "observed_time": "2026-10-01T00:00:00.000000+00:00",
-          "protected": true,
-          "reference": "",
-          "status": "CONFIRMED",
-          "version": 1
-        }
-      },
-      {
-        "tenant_id": "demo_company",
-        "fact_id": "fact_d1fa3a2aec7a45b8b8fc1a4ae8241f5d",
+        "fact_id": "fact_7db9b96318de4a8988d0713f8ff33d83",
         "kind": "PAYABLE",
         "provider": "synthetic_csv",
         "external_id": "supplier",
         "version": 1,
         "effective_at": "2026-10-01T00:00:00.000000+00:00",
         "observed_at": "2026-10-01T00:00:00.000000+00:00",
-        "source_id": "source_2ee41a0396404078ba7a4f87de9b119b",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
         "supersedes_id": null,
         "value": {
           "amount_minor": 9000000,
@@ -1489,14 +1408,122 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_957e9ce933ad424283a3bbae1f8d29b7",
+        "fact_id": "fact_882eade6db394077aa04b765e549f4ad",
+        "kind": "BALANCE",
+        "provider": "synthetic_csv",
+        "external_id": "opening",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 12000000,
+          "beneficiary_version": "",
+          "counterparty": "",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "opening",
+          "kind": "BALANCE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_cb61df101e50453db91d6c9a18276229",
         "kind": "PAYABLE",
+        "provider": "synthetic_csv",
+        "external_id": "salary",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 8000000,
+          "beneficiary_version": "salary_v1",
+          "counterparty": "salary",
+          "currency": "CNY",
+          "due_at": "2026-10-05T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "salary",
+          "kind": "PAYABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": true,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_ed4ee25a15884ad98696cdea8f631d12",
+        "kind": "RECEIVABLE",
+        "provider": "synthetic_csv",
+        "external_id": "customer_invoice",
+        "version": 1,
+        "effective_at": "2026-10-01T00:00:00.000000+00:00",
+        "observed_at": "2026-10-01T00:00:00.000000+00:00",
+        "source_id": "source_e673f673fe3244b18837769e1382ce66",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 10000000,
+          "beneficiary_version": "",
+          "counterparty": "customer",
+          "currency": "CNY",
+          "due_at": "2026-10-11T00:00:00.000000+00:00",
+          "event_time": "2026-10-01T00:00:00.000000+00:00",
+          "external_id": "customer_invoice",
+          "kind": "RECEIVABLE",
+          "observed_time": "2026-10-01T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "",
+          "status": "CONFIRMED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_009a2bfac9d747f889fb6aef0cf75a41",
+        "kind": "TRANSACTION",
         "provider": "sandbox",
-        "external_id": "plan_44725ac974aa14427bcdd0cf_fund_debt",
+        "external_id": "sim_2e719f6944654c0e83a775b087a4aa44",
         "version": 1,
         "effective_at": "2026-10-02T00:00:00.000000+00:00",
         "observed_at": "2026-10-02T00:00:00.000000+00:00",
-        "source_id": "source_93c0b09635a6447b8a8a0fd84c364a17",
+        "source_id": "source_fb7f1b8cc6ef418cbd471bdca88fc8ad",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": 9000000,
+          "beneficiary_version": "",
+          "counterparty": "lender",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-02T00:00:00.000000+00:00",
+          "external_id": "sim_2e719f6944654c0e83a775b087a4aa44",
+          "kind": "TRANSACTION",
+          "observed_time": "2026-10-02T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "loan",
+          "status": "SETTLED",
+          "version": 1
+        }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_9d77983a82ee4d5d9f0b4c46e3e80edd",
+        "kind": "PAYABLE",
+        "provider": "sandbox",
+        "external_id": "plan_23795b9f9eba9cef596c8df5_fund_debt",
+        "version": 1,
+        "effective_at": "2026-10-02T00:00:00.000000+00:00",
+        "observed_at": "2026-10-02T00:00:00.000000+00:00",
+        "source_id": "source_fb7f1b8cc6ef418cbd471bdca88fc8ad",
         "supersedes_id": null,
         "value": {
           "amount_minor": 9100000,
@@ -1505,7 +1532,7 @@
           "currency": "CNY",
           "due_at": "2026-10-31T00:00:00.000000+00:00",
           "event_time": "2026-10-02T00:00:00.000000+00:00",
-          "external_id": "plan_44725ac974aa14427bcdd0cf_fund_debt",
+          "external_id": "plan_23795b9f9eba9cef596c8df5_fund_debt",
           "kind": "PAYABLE",
           "loan_quote": {
             "annualized_cost_bps": 1399,
@@ -1561,41 +1588,14 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_e3a8ae2457344658b8b6dca6b647d26f",
+        "fact_id": "fact_d3677265e9c14279a3ec413adf1dff84",
         "kind": "TRANSACTION",
         "provider": "sandbox",
-        "external_id": "sim_8836410c02674fdea4758a4972959547",
-        "version": 1,
-        "effective_at": "2026-10-02T00:00:00.000000+00:00",
-        "observed_at": "2026-10-02T00:00:00.000000+00:00",
-        "source_id": "source_93c0b09635a6447b8a8a0fd84c364a17",
-        "supersedes_id": null,
-        "value": {
-          "amount_minor": 9000000,
-          "beneficiary_version": "",
-          "counterparty": "lender",
-          "currency": "CNY",
-          "due_at": null,
-          "event_time": "2026-10-02T00:00:00.000000+00:00",
-          "external_id": "sim_8836410c02674fdea4758a4972959547",
-          "kind": "TRANSACTION",
-          "observed_time": "2026-10-02T00:00:00.000000+00:00",
-          "protected": false,
-          "reference": "loan",
-          "status": "SETTLED",
-          "version": 1
-        }
-      },
-      {
-        "tenant_id": "demo_company",
-        "fact_id": "fact_e74ee9cb74bc4dc4b169f0faba1b7733",
-        "kind": "TRANSACTION",
-        "provider": "sandbox",
-        "external_id": "sim_7ac34843012943669e09cd63a114055a",
+        "external_id": "sim_5229aa0c09ff4e3d8d41afde79fb9828",
         "version": 1,
         "effective_at": "2026-10-05T00:00:00.000000+00:00",
         "observed_at": "2026-10-05T00:00:00.000000+00:00",
-        "source_id": "source_837effa1ba77461ebca44fa436593763",
+        "source_id": "source_4b5b5ee9c3394d48bc176b86bd0a1513",
         "supersedes_id": null,
         "value": {
           "amount_minor": -8000000,
@@ -1604,7 +1604,7 @@
           "currency": "CNY",
           "due_at": null,
           "event_time": "2026-10-05T00:00:00.000000+00:00",
-          "external_id": "sim_7ac34843012943669e09cd63a114055a",
+          "external_id": "sim_5229aa0c09ff4e3d8d41afde79fb9828",
           "kind": "TRANSACTION",
           "observed_time": "2026-10-05T00:00:00.000000+00:00",
           "protected": false,
@@ -1615,14 +1615,14 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_6dda80d786804aa2b6487d6b9cc79277",
+        "fact_id": "fact_26d46e74437b4eca8346caccad2a61b7",
         "kind": "TRANSACTION",
         "provider": "sandbox",
-        "external_id": "sim_47682ed43893465bb90c9dc421d08417",
+        "external_id": "sim_293da7c1c8c947d583158bdb77a4de74",
         "version": 1,
         "effective_at": "2026-10-06T00:00:00.000000+00:00",
         "observed_at": "2026-10-06T00:00:00.000000+00:00",
-        "source_id": "source_703bc1bdf93c4c9da87777bbe48a2b7a",
+        "source_id": "source_d648724ca587469599fe7400b49ab324",
         "supersedes_id": null,
         "value": {
           "amount_minor": -2000000,
@@ -1631,7 +1631,7 @@
           "currency": "CNY",
           "due_at": null,
           "event_time": "2026-10-06T00:00:00.000000+00:00",
-          "external_id": "sim_47682ed43893465bb90c9dc421d08417",
+          "external_id": "sim_293da7c1c8c947d583158bdb77a4de74",
           "kind": "TRANSACTION",
           "observed_time": "2026-10-06T00:00:00.000000+00:00",
           "protected": false,
@@ -1642,14 +1642,14 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_3fa08012454344028bb3849995575444",
+        "fact_id": "fact_e88e3da3fcf447968ed307579cc16055",
         "kind": "TRANSACTION",
         "provider": "sandbox",
-        "external_id": "sim_dfb64cedc2cb40f99d9933b883b1992c",
+        "external_id": "sim_0ceb84fc6de847efa520b6f9905a168e",
         "version": 1,
         "effective_at": "2026-10-08T00:00:00.000000+00:00",
         "observed_at": "2026-10-08T00:00:00.000000+00:00",
-        "source_id": "source_4d91597bd354406d9664a07e5c454bb3",
+        "source_id": "source_66274a7cf0d343e08e7dd3ec55b6c941",
         "supersedes_id": null,
         "value": {
           "amount_minor": -9000000,
@@ -1658,7 +1658,7 @@
           "currency": "CNY",
           "due_at": null,
           "event_time": "2026-10-08T00:00:00.000000+00:00",
-          "external_id": "sim_dfb64cedc2cb40f99d9933b883b1992c",
+          "external_id": "sim_0ceb84fc6de847efa520b6f9905a168e",
           "kind": "TRANSACTION",
           "observed_time": "2026-10-08T00:00:00.000000+00:00",
           "protected": false,
@@ -1669,41 +1669,14 @@
       },
       {
         "tenant_id": "demo_company",
-        "fact_id": "fact_4137f9affe064e6589c51dac970a55cd",
-        "kind": "TRANSACTION",
-        "provider": "sandbox",
-        "external_id": "sim_4e9a41a788a54f97a034a88e8f635163",
-        "version": 1,
-        "effective_at": "2026-10-31T00:00:00.000000+00:00",
-        "observed_at": "2026-10-31T00:00:00.000000+00:00",
-        "source_id": "source_56beaeb19d9d4b20a7e3764e90c17886",
-        "supersedes_id": null,
-        "value": {
-          "amount_minor": -9100000,
-          "beneficiary_version": "",
-          "counterparty": "lender",
-          "currency": "CNY",
-          "due_at": null,
-          "event_time": "2026-10-31T00:00:00.000000+00:00",
-          "external_id": "sim_4e9a41a788a54f97a034a88e8f635163",
-          "kind": "TRANSACTION",
-          "observed_time": "2026-10-31T00:00:00.000000+00:00",
-          "protected": false,
-          "reference": "plan_44725ac974aa14427bcdd0cf_fund_debt",
-          "status": "SETTLED",
-          "version": 1
-        }
-      },
-      {
-        "tenant_id": "demo_company",
-        "fact_id": "fact_ff1abda4bf6c4f6fa51f2c43f9abf60c",
+        "fact_id": "fact_0bd7db074d934d51b30816cd39ceeacf",
         "kind": "TRANSACTION",
         "provider": "sandbox",
         "external_id": "receipt_1",
         "version": 1,
         "effective_at": "2026-10-11T00:00:00.000000+00:00",
         "observed_at": "2026-10-31T00:00:00.000000+00:00",
-        "source_id": "source_d591cee8fb0444a98e4547329f0f594e",
+        "source_id": "source_a587c33be30247fda70e8ff55c671041",
         "supersedes_id": null,
         "value": {
           "amount_minor": 10000000,
@@ -1720,18 +1693,45 @@
           "status": "SETTLED",
           "version": 1
         }
+      },
+      {
+        "tenant_id": "demo_company",
+        "fact_id": "fact_8d337c1642ab4a19bf9765add4c88ae0",
+        "kind": "TRANSACTION",
+        "provider": "sandbox",
+        "external_id": "sim_cd0022d9ce9142c99da338461bb460fd",
+        "version": 1,
+        "effective_at": "2026-10-31T00:00:00.000000+00:00",
+        "observed_at": "2026-10-31T00:00:00.000000+00:00",
+        "source_id": "source_e9292b450c5b4a9988be06a9838fd514",
+        "supersedes_id": null,
+        "value": {
+          "amount_minor": -9100000,
+          "beneficiary_version": "",
+          "counterparty": "lender",
+          "currency": "CNY",
+          "due_at": null,
+          "event_time": "2026-10-31T00:00:00.000000+00:00",
+          "external_id": "sim_cd0022d9ce9142c99da338461bb460fd",
+          "kind": "TRANSACTION",
+          "observed_time": "2026-10-31T00:00:00.000000+00:00",
+          "protected": false,
+          "reference": "plan_23795b9f9eba9cef596c8df5_fund_debt",
+          "status": "SETTLED",
+          "version": 1
+        }
       }
     ],
     "quality_flags": [],
     "calculation_version": "snapshot-v1",
     "evidence_refs": [
-      "source_2ee41a0396404078ba7a4f87de9b119b",
-      "source_4d91597bd354406d9664a07e5c454bb3",
-      "source_56beaeb19d9d4b20a7e3764e90c17886",
-      "source_703bc1bdf93c4c9da87777bbe48a2b7a",
-      "source_837effa1ba77461ebca44fa436593763",
-      "source_93c0b09635a6447b8a8a0fd84c364a17",
-      "source_d591cee8fb0444a98e4547329f0f594e"
+      "source_4b5b5ee9c3394d48bc176b86bd0a1513",
+      "source_66274a7cf0d343e08e7dd3ec55b6c941",
+      "source_a587c33be30247fda70e8ff55c671041",
+      "source_d648724ca587469599fe7400b49ab324",
+      "source_e673f673fe3244b18837769e1382ce66",
+      "source_e9292b450c5b4a9988be06a9838fd514",
+      "source_fb7f1b8cc6ef418cbd471bdca88fc8ad"
     ],
     "financing_products": [
       {
@@ -1787,8 +1787,8 @@
         "upfront_fee_minor": 0
       }
     ],
-    "content_hash": "7dc5758abeb838c607278e673a1100b9e078e6e26a919944661a2a29904651ce",
-    "snapshot_id": "snap_7dc5758abeb838c607278e673a1100b9"
+    "content_hash": "ee9b71b9f955d1e4d172be21efde8911884de812b1df09b08b9785cc01c5cc93",
+    "snapshot_id": "snap_ee9b71b9f955d1e4d172be21efde8911"
   },
   "plan_status": {
     "status": "COMPLETED",
@@ -1803,10 +1803,13 @@
     ]
   },
   "reconciliation": {
-    "reconciliation_id": "reconciliation_4f4cfa7f09ec4b6e91306c8bd148a355",
+    "schema_version": 2,
+    "reconciliation_id": "reconciliation_4547e1b324c64d6ea9fd9fdc2e6f880f",
     "at": "2026-10-31T00:00:00.000000+00:00",
     "local_cash_minor": 2900000,
     "provider_cash_minor": 2900000,
+    "cash_matched": true,
+    "settlement_issues": [],
     "matched": true,
     "discrepancy_minor": 0,
     "status": "RECONCILED"
@@ -1827,209 +1830,209 @@
     {
       "tenant_id": "demo_company",
       "audit_id": 1,
-      "occurred_at": "2026-10-18T11:08:43.547630+00:00",
+      "occurred_at": "2026-10-20T05:44:14.209540+00:00",
       "event_type": "company.created",
       "payload": "{\"data_mode\":\"synthetic\"}",
       "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
-      "event_hash": "8fcf375d17027b099caca269684913f4a39faea2ffe2f714722c867acf2ac21c"
+      "event_hash": "79256d17272c9218bf6fb6340822b82c57a786a1400059877e573d72cf6eaeeb"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 2,
-      "occurred_at": "2026-10-18T11:08:43.653952+00:00",
+      "occurred_at": "2026-10-20T05:44:14.778741+00:00",
       "event_type": "source.imported",
-      "payload": "{\"accepted\":6,\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"import_id\":\"import_e3812f99a21b4957b50ecf9a40c809c3\",\"rejected\":0,\"source_id\":\"source_2ee41a0396404078ba7a4f87de9b119b\"}",
-      "previous_hash": "8fcf375d17027b099caca269684913f4a39faea2ffe2f714722c867acf2ac21c",
-      "event_hash": "90fd17889ce75cade9edc95482d5078fd03d148c513723f252c79efede7b7486"
+      "payload": "{\"accepted\":6,\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"import_id\":\"import_0f699d445c9540529209abf2fdc0ec27\",\"rejected\":0,\"source_id\":\"source_e673f673fe3244b18837769e1382ce66\"}",
+      "previous_hash": "79256d17272c9218bf6fb6340822b82c57a786a1400059877e573d72cf6eaeeb",
+      "event_hash": "80e3c4f1cf0da707384a8ba8bb8aa7dadec124029605039e8e421968eade91de"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 3,
-      "occurred_at": "2026-10-18T11:08:44.028510+00:00",
+      "occurred_at": "2026-10-20T05:44:15.949362+00:00",
       "event_type": "plan.validated",
-      "payload": "{\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"plan_id\":\"plan_44725ac974aa14427bcdd0cf\",\"snapshot_id\":\"snap_6feb61b9038063bb377cef72c70ca827\"}",
-      "previous_hash": "90fd17889ce75cade9edc95482d5078fd03d148c513723f252c79efede7b7486",
-      "event_hash": "459232e7e2ec997d977f47171a899ab7bdc891951bcb585ced3cbd4879298875"
+      "payload": "{\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"plan_id\":\"plan_23795b9f9eba9cef596c8df5\",\"snapshot_id\":\"snap_4fb391e11420a856e76e664f4237ea78\"}",
+      "previous_hash": "80e3c4f1cf0da707384a8ba8bb8aa7dadec124029605039e8e421968eade91de",
+      "event_hash": "2ed747dfd0234f45adbffbcdf7827105a2db5ee318e71f561ba2d126fe578b8e"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 4,
-      "occurred_at": "2026-10-18T11:08:44.049235+00:00",
+      "occurred_at": "2026-10-20T05:44:16.029470+00:00",
       "event_type": "approval.created",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_fund\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"approval_id\":\"approval_6c9f527aa6e741dead54353392be6de8\",\"payload_hash\":\"3b4239226dafd34f544350f36be67868c5ea9bc89d5887921dbe91f6f189ad75\"}",
-      "previous_hash": "459232e7e2ec997d977f47171a899ab7bdc891951bcb585ced3cbd4879298875",
-      "event_hash": "37b0d6376d8eaff0918ab1dd8840cf86b3c8412f528b4bfe183c8c62e1fae6d2"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_fund\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"approval_id\":\"approval_2ceb8d94d2c05a22683b1392a4fbe344\",\"payload_hash\":\"74e8902e642b4b32ae3576f95a20ec6cfee647039ffb67fb2c31cfeb18010d68\"}",
+      "previous_hash": "2ed747dfd0234f45adbffbcdf7827105a2db5ee318e71f561ba2d126fe578b8e",
+      "event_hash": "22214bdb71dd4c571428801ec4dcea4a1a91ccd1b4a4e19d9aefde0f18b9deaf"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 5,
-      "occurred_at": "2026-10-18T11:08:44.057462+00:00",
+      "occurred_at": "2026-10-20T05:44:16.063636+00:00",
       "event_type": "action.reserved",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_fund\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"amount_minor\":0}",
-      "previous_hash": "37b0d6376d8eaff0918ab1dd8840cf86b3c8412f528b4bfe183c8c62e1fae6d2",
-      "event_hash": "205acb60e22dfb50a8c959d9fe2811d49ebea55a9bbca936a4ac0b35d15925fb"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_fund\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"amount_minor\":0}",
+      "previous_hash": "22214bdb71dd4c571428801ec4dcea4a1a91ccd1b4a4e19d9aefde0f18b9deaf",
+      "event_hash": "e0f1721799cb9f5066352e91109029ea2daac3f272a4d0f6ca2f320cb7992929"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 6,
-      "occurred_at": "2026-10-18T11:08:44.072628+00:00",
+      "occurred_at": "2026-10-20T05:44:16.148875+00:00",
       "event_type": "action.submitted",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_fund\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"provider_ref\":\"sim_8836410c02674fdea4758a4972959547\"}",
-      "previous_hash": "205acb60e22dfb50a8c959d9fe2811d49ebea55a9bbca936a4ac0b35d15925fb",
-      "event_hash": "4603065cab8bc493da57897a6607a91831d84683c717fc42f073da19234d1466"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_fund\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"provider_ref\":\"sim_2e719f6944654c0e83a775b087a4aa44\"}",
+      "previous_hash": "e0f1721799cb9f5066352e91109029ea2daac3f272a4d0f6ca2f320cb7992929",
+      "event_hash": "341bccfb3ebaa67e1e3394afc8264aabb7d5ac2d03dc59c5bfc8bb66191cf003"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 7,
-      "occurred_at": "2026-10-18T11:08:44.083832+00:00",
+      "occurred_at": "2026-10-20T05:44:16.212445+00:00",
       "event_type": "action.settled_reconciled",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_fund\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"transaction_id\":\"fact_e3a8ae2457344658b8b6dca6b647d26f\"}",
-      "previous_hash": "4603065cab8bc493da57897a6607a91831d84683c717fc42f073da19234d1466",
-      "event_hash": "efc74a1dae386ed2fc4543d9b908d9df7ba7f844ab676efb72bac4828e5860cc"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_fund\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"transaction_id\":\"fact_009a2bfac9d747f889fb6aef0cf75a41\"}",
+      "previous_hash": "341bccfb3ebaa67e1e3394afc8264aabb7d5ac2d03dc59c5bfc8bb66191cf003",
+      "event_hash": "4690ab7b9d95c03e541aca6f1642241d42a00f3512d998cf900e0e7c623d7f4d"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 8,
-      "occurred_at": "2026-10-18T11:08:44.106457+00:00",
+      "occurred_at": "2026-10-20T05:44:16.297419+00:00",
       "event_type": "approval.created",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_b31f526e191d\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"approval_id\":\"approval_460964058693c72381852e39095e5cc6\",\"payload_hash\":\"e2fdeb4fabd44514593f8260a7b6065aaf10a3234f0a6089c1db2bf106e8e9f4\"}",
-      "previous_hash": "efc74a1dae386ed2fc4543d9b908d9df7ba7f844ab676efb72bac4828e5860cc",
-      "event_hash": "c77ba9d1be025f6832855c8ec8d2645f58c6c28287c69f96a89b66c7cd703745"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_b31f526e191d\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"approval_id\":\"approval_ff76e582e9cac3c05d60dab22f15c44d\",\"payload_hash\":\"8f831f9e3ab7bbd74c6428187d15ec8aed5632570d9aa91459a0b21e4590e43e\"}",
+      "previous_hash": "4690ab7b9d95c03e541aca6f1642241d42a00f3512d998cf900e0e7c623d7f4d",
+      "event_hash": "a39dd57386425e37a55611d44df84fbb7e780ed838e552407f44e5aff148f130"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 9,
-      "occurred_at": "2026-10-18T11:08:44.115087+00:00",
+      "occurred_at": "2026-10-20T05:44:16.334366+00:00",
       "event_type": "action.reserved",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_b31f526e191d\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"amount_minor\":8000000}",
-      "previous_hash": "c77ba9d1be025f6832855c8ec8d2645f58c6c28287c69f96a89b66c7cd703745",
-      "event_hash": "f535681134a4ecc97d233a7045f8c9fc22116aad2ca9dc7c1a74e1b306cbccf2"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_b31f526e191d\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"amount_minor\":8000000}",
+      "previous_hash": "a39dd57386425e37a55611d44df84fbb7e780ed838e552407f44e5aff148f130",
+      "event_hash": "1aa4e7be252d64f0cc5548425ce4406f61f083ee711d56d27d08852ec335dcd6"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 10,
-      "occurred_at": "2026-10-18T11:08:44.130417+00:00",
+      "occurred_at": "2026-10-20T05:44:16.414789+00:00",
       "event_type": "action.unknown",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_b31f526e191d\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"provider_ref\":null}",
-      "previous_hash": "f535681134a4ecc97d233a7045f8c9fc22116aad2ca9dc7c1a74e1b306cbccf2",
-      "event_hash": "5beaeecdbcf90f1192539876b179f4f72a64c300b84185cc978b9f01d9d6ee52"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_b31f526e191d\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"provider_ref\":null}",
+      "previous_hash": "1aa4e7be252d64f0cc5548425ce4406f61f083ee711d56d27d08852ec335dcd6",
+      "event_hash": "25d9a855a070f51b760d9957ae5868424c80421f6669e5b52242b7cb33335765"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 11,
-      "occurred_at": "2026-10-18T11:08:44.139977+00:00",
+      "occurred_at": "2026-10-20T05:44:16.483980+00:00",
       "event_type": "action.settled_reconciled",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_b31f526e191d\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"transaction_id\":\"fact_e74ee9cb74bc4dc4b169f0faba1b7733\"}",
-      "previous_hash": "5beaeecdbcf90f1192539876b179f4f72a64c300b84185cc978b9f01d9d6ee52",
-      "event_hash": "d40d7f620423e31f53525ea73058f5884097490cd8eb3621f33ea488a881948d"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_b31f526e191d\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"transaction_id\":\"fact_d3677265e9c14279a3ec413adf1dff84\"}",
+      "previous_hash": "25d9a855a070f51b760d9957ae5868424c80421f6669e5b52242b7cb33335765",
+      "event_hash": "413e8a690645d89eed8ac798e1c9e780c8cabccc82d59486f0c0dcfaf47413bf"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 12,
-      "occurred_at": "2026-10-18T11:08:44.161300+00:00",
+      "occurred_at": "2026-10-20T05:44:16.567604+00:00",
       "event_type": "approval.created",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_e633aa88f47c\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"approval_id\":\"approval_6faefa48a50b58161d502dde49fcb216\",\"payload_hash\":\"f3b0112f321b100ecdf4ef6742cc5924ad992e81459746bf32c1b6bfcf8114fb\"}",
-      "previous_hash": "d40d7f620423e31f53525ea73058f5884097490cd8eb3621f33ea488a881948d",
-      "event_hash": "9d21dff5dc87ddc548696682f0d9e38e0bbacf51fe4e38120c9e1323a8c214d6"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_e633aa88f47c\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"approval_id\":\"approval_01ca228d24461b334a77c210165da032\",\"payload_hash\":\"ef3e1a6bd29f7a634e03d762cc6c9f79bdf6ac7968a5aff21daf7a71ae52a641\"}",
+      "previous_hash": "413e8a690645d89eed8ac798e1c9e780c8cabccc82d59486f0c0dcfaf47413bf",
+      "event_hash": "d82b52f817260f956dd21ddb537d724905dc6cb9a5916c875fbf49c8a467bf73"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 13,
-      "occurred_at": "2026-10-18T11:08:44.171004+00:00",
+      "occurred_at": "2026-10-20T05:44:16.598178+00:00",
       "event_type": "action.reserved",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_e633aa88f47c\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"amount_minor\":2000000}",
-      "previous_hash": "9d21dff5dc87ddc548696682f0d9e38e0bbacf51fe4e38120c9e1323a8c214d6",
-      "event_hash": "e97f121e5ab38dfb1b3627524373173afccb9ddef617cc8e4f740795a9aab4ec"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_e633aa88f47c\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"amount_minor\":2000000}",
+      "previous_hash": "d82b52f817260f956dd21ddb537d724905dc6cb9a5916c875fbf49c8a467bf73",
+      "event_hash": "099f13b2045a9cba35fc47017eb0699131cd18de6f8d154b87b39c4182d830e1"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 14,
-      "occurred_at": "2026-10-18T11:08:44.186018+00:00",
+      "occurred_at": "2026-10-20T05:44:16.660321+00:00",
       "event_type": "action.unknown",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_e633aa88f47c\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"provider_ref\":null}",
-      "previous_hash": "e97f121e5ab38dfb1b3627524373173afccb9ddef617cc8e4f740795a9aab4ec",
-      "event_hash": "4b61607b717adbb172cce6071ea3f437325407d2840f01d55767ee818c331fde"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_e633aa88f47c\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"provider_ref\":null}",
+      "previous_hash": "099f13b2045a9cba35fc47017eb0699131cd18de6f8d154b87b39c4182d830e1",
+      "event_hash": "f8cfb3d2ae396b35b22b23e71578d352dc8c680fce7a5110913f70035765907a"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 15,
-      "occurred_at": "2026-10-18T11:08:44.196682+00:00",
+      "occurred_at": "2026-10-20T05:44:16.705517+00:00",
       "event_type": "action.settled_reconciled",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_e633aa88f47c\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"transaction_id\":\"fact_6dda80d786804aa2b6487d6b9cc79277\"}",
-      "previous_hash": "4b61607b717adbb172cce6071ea3f437325407d2840f01d55767ee818c331fde",
-      "event_hash": "962fe96c7a59cbeae6fd2eb58028dd204d45d7592917843f26a6649804ff0854"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_e633aa88f47c\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"transaction_id\":\"fact_26d46e74437b4eca8346caccad2a61b7\"}",
+      "previous_hash": "f8cfb3d2ae396b35b22b23e71578d352dc8c680fce7a5110913f70035765907a",
+      "event_hash": "6fc202d60fd51266df0c33d08aaa9c3d5d7094446e2083e2621ca516e8196bba"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 16,
-      "occurred_at": "2026-10-18T11:08:44.218287+00:00",
+      "occurred_at": "2026-10-20T05:44:16.782911+00:00",
       "event_type": "approval.created",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"approval_id\":\"approval_29ad95fb998b192f572b92cabd6adcf8\",\"payload_hash\":\"91d1224847119e4c2739e04922f78eaa69d03d805b90bb33916474a043608302\"}",
-      "previous_hash": "962fe96c7a59cbeae6fd2eb58028dd204d45d7592917843f26a6649804ff0854",
-      "event_hash": "458f4b18d69bb72303edaa33000eddd0af54b027ab4258a6c55d6388d15e037a"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"approval_id\":\"approval_01b7e968d7f2ba71c0c90ee03e74438f\",\"payload_hash\":\"5fc36f9337cc55ee2f66a38d599ce1f9a60f49198265e12f35e1f6ed06aa0260\"}",
+      "previous_hash": "6fc202d60fd51266df0c33d08aaa9c3d5d7094446e2083e2621ca516e8196bba",
+      "event_hash": "6a85006e3fcde371f90d9062957661c3df068c903cfe86b46799f6b31b709f86"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 17,
-      "occurred_at": "2026-10-18T11:08:44.227143+00:00",
+      "occurred_at": "2026-10-20T05:44:16.813285+00:00",
       "event_type": "action.reserved",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"amount_minor\":9000000}",
-      "previous_hash": "458f4b18d69bb72303edaa33000eddd0af54b027ab4258a6c55d6388d15e037a",
-      "event_hash": "2884c233eb998737500f6e5e756be28ad8b3a8cd31a692194890d8a82ad33631"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"amount_minor\":9000000}",
+      "previous_hash": "6a85006e3fcde371f90d9062957661c3df068c903cfe86b46799f6b31b709f86",
+      "event_hash": "31e37f48a503ec21a3c34ea1b598ebc92227d002aa118d4bc8a9e1adb672d84c"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 18,
-      "occurred_at": "2026-10-18T11:08:44.241345+00:00",
+      "occurred_at": "2026-10-20T05:44:16.886073+00:00",
       "event_type": "action.unknown",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"provider_ref\":null}",
-      "previous_hash": "2884c233eb998737500f6e5e756be28ad8b3a8cd31a692194890d8a82ad33631",
-      "event_hash": "4c8f5e8d419914c736a8fd8437a9622e5e1449bf86d1511b02af2b35f2be9ec1"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"provider_ref\":null}",
+      "previous_hash": "31e37f48a503ec21a3c34ea1b598ebc92227d002aa118d4bc8a9e1adb672d84c",
+      "event_hash": "617e35a608396fddbddc0975245ff112ec54b45b9a367ae8b30c2ac7e15115b2"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 19,
-      "occurred_at": "2026-10-18T11:08:44.251126+00:00",
+      "occurred_at": "2026-10-20T05:44:16.948394+00:00",
       "event_type": "action.settled_reconciled",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_9ff3df0a6b05\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"transaction_id\":\"fact_3fa08012454344028bb3849995575444\"}",
-      "previous_hash": "4c8f5e8d419914c736a8fd8437a9622e5e1449bf86d1511b02af2b35f2be9ec1",
-      "event_hash": "e21f859aa0de324e04ebdc19a53960d40b2b77155bb6666e0ca32f01966d36d9"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_9ff3df0a6b05\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"transaction_id\":\"fact_e88e3da3fcf447968ed307579cc16055\"}",
+      "previous_hash": "617e35a608396fddbddc0975245ff112ec54b45b9a367ae8b30c2ac7e15115b2",
+      "event_hash": "7746e751038f1607083e5bc3b783b25bb7ac01410ab485a1c2532faf670fa5ad"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 20,
-      "occurred_at": "2026-10-18T11:08:44.273869+00:00",
+      "occurred_at": "2026-10-20T05:44:17.046702+00:00",
       "event_type": "approval.created",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_repay\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"approval_id\":\"approval_1e1988c1b8b77e0467c7c12fefc1966a\",\"payload_hash\":\"55f270d962bbd7da328e16f1a464a0f3b5768024d13a46aafd5c4077a967076b\"}",
-      "previous_hash": "e21f859aa0de324e04ebdc19a53960d40b2b77155bb6666e0ca32f01966d36d9",
-      "event_hash": "e53c7fabcf9581b0e3a2407766cb1b76233160b20e217e5416f15043ce59d95f"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_repay\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"approval_id\":\"approval_14167a041104f095faac2ccdfbb05132\",\"payload_hash\":\"0aa4d436bea7a676e889444790a9d6e956dc177fdf5e8d54399306fd0f8b1841\"}",
+      "previous_hash": "7746e751038f1607083e5bc3b783b25bb7ac01410ab485a1c2532faf670fa5ad",
+      "event_hash": "f6eca43f75f58409e83e4a9f1c6192c6ae74054006845be3cbbff5532dccbdf4"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 21,
-      "occurred_at": "2026-10-18T11:08:44.283015+00:00",
+      "occurred_at": "2026-10-20T05:44:17.092476+00:00",
       "event_type": "action.reserved",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_repay\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"amount_minor\":9100000}",
-      "previous_hash": "e53c7fabcf9581b0e3a2407766cb1b76233160b20e217e5416f15043ce59d95f",
-      "event_hash": "4c254565971c470d19d3739e350102f40732b77b7ceb7d00fd994c09928f243d"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_repay\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"amount_minor\":9100000}",
+      "previous_hash": "f6eca43f75f58409e83e4a9f1c6192c6ae74054006845be3cbbff5532dccbdf4",
+      "event_hash": "f2b3daabdd6bfc25bf3137bf5b1e01ab9f147ce48be2f5d38b5f0fb4e9c27ce4"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 22,
-      "occurred_at": "2026-10-18T11:08:44.299275+00:00",
+      "occurred_at": "2026-10-20T05:44:17.149088+00:00",
       "event_type": "action.submitted",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_repay\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"provider_ref\":\"sim_4e9a41a788a54f97a034a88e8f635163\"}",
-      "previous_hash": "4c254565971c470d19d3739e350102f40732b77b7ceb7d00fd994c09928f243d",
-      "event_hash": "8ae3108e58d330403ac05c92abff3d084c77f1f532c745da170e5a9d1b532805"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_repay\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"provider_ref\":\"sim_cd0022d9ce9142c99da338461bb460fd\"}",
+      "previous_hash": "f2b3daabdd6bfc25bf3137bf5b1e01ab9f147ce48be2f5d38b5f0fb4e9c27ce4",
+      "event_hash": "2a8b52a79e9e088883e7d154d8fc1f11f679d2c0ba5afc87d9e5f5fb6d824665"
     },
     {
       "tenant_id": "demo_company",
       "audit_id": 23,
-      "occurred_at": "2026-10-18T11:08:44.309029+00:00",
+      "occurred_at": "2026-10-20T05:44:17.213588+00:00",
       "event_type": "action.settled_reconciled",
-      "payload": "{\"action_id\":\"plan_44725ac974aa14427bcdd0cf_repay\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"transaction_id\":\"fact_4137f9affe064e6589c51dac970a55cd\"}",
-      "previous_hash": "8ae3108e58d330403ac05c92abff3d084c77f1f532c745da170e5a9d1b532805",
-      "event_hash": "0124358e953f1ea6281dd30bc4c7896cf1157fc6d1cb165107ab4f8fabfbce18"
+      "payload": "{\"action_id\":\"plan_23795b9f9eba9cef596c8df5_repay\",\"actor\":\"owner\",\"actor_role\":\"OWNER\",\"transaction_id\":\"fact_8d337c1642ab4a19bf9765add4c88ae0\"}",
+      "previous_hash": "2a8b52a79e9e088883e7d154d8fc1f11f679d2c0ba5afc87d9e5f5fb6d824665",
+      "event_hash": "b73b146bfaf4ad7422b03d46b70781f339592f8406cdf1eb29272293b5971440"
     }
   ],
   "live_model_evaluation": {

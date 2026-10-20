@@ -4,6 +4,9 @@ SME Finance Copilot: an AI finance copilot for small-business owners that finds 
 coming cash gap, matches financing, and carries the chosen plan through exact
 owner approval, sandbox execution and reconciliation.
 
+Repository: <https://github.com/IGK-arch/SME-Finance-Copilot> · license MIT ·
+data synthetic, bank sandbox, model MOCK by default.
+
 ## Submission checklist (rules §5)
 
 | # | Required item | Where |
@@ -11,9 +14,9 @@ owner approval, sandbox execution and reconciliation.
 | 1 | Technical documentation (architecture, core algorithms, security design) | [TECHNICAL_DOCUMENTATION.md](TECHNICAL_DOCUMENTATION.md) · [architecture notes](../architecture/README.md) · [ADRs](../adr/) |
 | 2 | Presentation deck (≤ 10 min) | Submitted separately; storyline in [demo-script.md](demo-script.md) |
 | 3 | Demo video (≤ 5 min, optional) | Submitted separately; script in [demo-script.md](demo-script.md) |
-| 4 | Source code with README, deployment instructions and test cases | [README](../../README.md) (Windows, Linux, macOS setup) · `tests/` (latest full run: 366 PASS / 4 PostgreSQL SKIP) · CI in `.github/workflows/ci.yml` |
+| 4 | Source code with README, deployment instructions and test cases | [GitHub repository](https://github.com/IGK-arch/SME-Finance-Copilot) · [README](../../README.md) (Windows, Linux, macOS setup; [VPS deployment](../runbooks/deploy.md)) · `tests/` (latest full run, 20 Oct 2026: 377 PASS / 4 PostgreSQL SKIP / 0 FAIL) · CI in `.github/workflows/ci.yml` |
 | 5 | Security self-assessment (permission tiers, known risks) | [SECURITY_SELF_ASSESSMENT.md](SECURITY_SELF_ASSESSMENT.md), audit findings and fixes in [SECURITY_AUDIT.md](SECURITY_AUDIT.md) |
-| 6 | Execution evidence (sandbox operation logs + demo video) | [EXECUTION_EVIDENCE.md](EXECUTION_EVIDENCE.md) · raw `artifacts/golden-latest.json`, `artifacts/v03/e2e-latest.json` |
+| 6 | Execution evidence (sandbox operation logs + demo video) | [EXECUTION_EVIDENCE.md](EXECUTION_EVIDENCE.md) (sandbox logs, Sepolia transaction hash) · raw `artifacts/golden-latest.json`, `artifacts/v03/e2e-latest.json` · demo video submitted separately |
 
 ## Scoring criteria (rules §3)
 
@@ -34,7 +37,7 @@ owner approval, sandbox execution and reconciliation.
   execute are human/worker only) and four human roles with separation of duties.
 - Exact payload-hash approval with step-up, freshness checks, reservations,
   idempotency, kill switch, row-level security, hash-chained audit.
-- Known-risk list K01–K15 with open, partly mitigated or accepted risks
+- Known-risk list K01–K16 with open, partly mitigated or accepted risks
   ([security self-assessment](SECURITY_SELF_ASSESSMENT.md)).
 
 ### Innovation & interaction (30%)

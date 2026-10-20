@@ -1,6 +1,7 @@
 # Technical documentation
 
-SME Finance Copilot · International Track, Topic E · version 0.3.0.
+SME Finance Copilot · International Track, Topic E · version 0.3.0 · updated 20 Oct 2026.
+Repository: <https://github.com/IGK-arch/SME-Finance-Copilot>.
 
 A finance copilot for a small-business owner. It finds the coming cash gap,
 explains why it happens, compares ways to cover it (including financing), lets
@@ -180,7 +181,7 @@ in a what-if; observed cash, ageing and concentration stay observed facts.
 Capabilities describe this coverage, saved calculations retain source/snapshot
 lineage and are readable through the existing paginated record tools. The
 Copilot renders a server-formatted Business health card. Calculation contracts
-are now `compute-v3` / `agent-tools-v5`; old saved results are not rewritten.
+are `compute-v3` / `agent-tools-v5`; older saved results are not rewritten.
 
 Money uses integer CNY minor units, percentages use integer basis points, and
 zero-denominator coverage or an absent forecast gap use explicit null statuses.
@@ -193,19 +194,16 @@ See [ADR 0007](../adr/0007-agent-business-health.md), the
 [contract](../../contracts/business-health.schema.json) and the dated
 [implementation and EN/ZH evaluation report](../BUSINESS_HEALTH_AGENT_20261019_RU.md).
 
-For bounded EN/ZH health reports, `health-answer-v1` now asks the model to select
+For bounded EN/ZH health reports, `health-answer-v1` asks the model to select
 report sections and observed result/source IDs using strict JSON. The server
-renders field-bound labels and values through the unchanged reference guard.
-Current/saved snapshots, null versus zero, P&L versus coverage and forecast scope
-cannot be relabelled by model prose. Missing reads and invalid selections still
-fail closed; no new tool authority or approval path exists. This is explicitly
-marked server-rendered presentation, not an evaluation of free-form financial
-writing. The same selected-Qwen development suite completed **20/20 strict PASS**,
-with all twenty delivered answers reviewed; p50 full-case latency was **24.135 s**.
-Regression: **344 PASS / 4 PostgreSQL SKIP**; HTTP E2E **23/23 MOCK**. Independent
-holdout, broader language routing and LIVE payment lifecycle were not rerun.
-See [ADR 0008](../adr/0008-typed-health-answers.md) and the
-[measured correction report](../BUSINESS_HEALTH_FIX_20261019_RU.md).
+renders field-bound labels and values through the reference guard, so
+current versus saved snapshots, null versus zero, P&L versus coverage and forecast
+scope cannot be relabelled by model prose. Missing reads and invalid selections
+fail closed; no new tool authority or approval path exists. This is
+server-rendered presentation, not free-form financial writing. Measured results
+are in §6. See [ADR 0008](../adr/0008-typed-health-answers.md),
+[ADR 0009](../adr/0009-mixed-health-completion.md) and the
+[measured report](../BUSINESS_HEALTH_MIXED_FIX_20261019_RU.md).
 
 ### 3.9 On-chain proof of the audit trail
 
@@ -268,32 +266,58 @@ Full details and the known-risk list: [SECURITY_SELF_ASSESSMENT.md](SECURITY_SEL
 | Strata | Opt-in self-hosted model through an authenticated SSH bridge that exposes chat only |
 
 A failing live model is recorded as a failed run; there is no silent fallback to
-MOCK. Measured multi-model and reasoning evaluations (100 EN/ZH scenarios per
-model) are in `docs/MULTIMODEL_100_RESULTS_RU.md` and
-`docs/REASONING_100_RESULTS_RU.md` (Russian working reports; raw data in
-`artifacts/`).
+MOCK. The demo and all regression tests use MOCK, so their results do not depend on
+a model.
+
+The selected live model is `qwen3.8-flash-next-iq3_xxs` served on Strata (context
+16,384 tokens, at most 12 agent steps, 240 s per scenario). It was kept after
+four alternative self-hosted models were run on the same 100 English/Chinese agent
+scenarios (67 EN, 33 ZH); the best alternative, Gemma 4 26B-A4B, reached 62/100. Latest measurements on the submission code (19–20 Oct, reasoning
+`medium`, one attempt per case, no retries substituted):
+
+| Suite | Strict automatic PASS | Latency p50 / p95 |
+|---|---|---|
+| 100 agent scenarios (EN 61/67, ZH 28/33) | **89/100** | 32.8 s / 56.6 s |
+| 20 harder mixed requests (several sections in one question) | **7/20** | 46.8 s / 77.5 s |
+| 20 business-health reports with server-rendered answers | **19/20** | — |
+
+A strict PASS means the required tools were called, the cited amounts, dates and
+IDs match server results and every safety assertion held; it is not a guarantee
+that every sentence is correct. The weakest area is long multi-part requests,
+where the model omits a requested section; this is listed as risk K06.
+Sources: [medium 120-case report](../QWEN_MEDIUM_120_20261020_RU.md),
+[health report](../BUSINESS_HEALTH_MIXED_FIX_20261019_RU.md),
+[model comparison](../MULTIMODEL_100_RESULTS_RU.md) (Russian working reports;
+raw data in `artifacts/`).
 
 ## 7. Testing and evidence
 
 | Check | Command | Latest result |
 |---|---|---|
-| Unit + integration regression | `python -m scripts.test` | 19 Oct, Windows: 370 run, 366 PASS, 4 PostgreSQL SKIP, 0 FAIL |
+| Unit + integration regression | `python -m scripts.test` | 20 Oct 2026, Windows: 381 run, 377 PASS, 4 PostgreSQL SKIP, 0 FAIL |
 | Static checks | compileall, ruff, mypy, JS syntax, pip check | 9/9 PASS (`scripts.check`) |
 | Product path E2E (server + worker + sandbox) | `python -m scripts.e2e_v03` | 23/23 checks PASSED; MOCK decisions |
 | Golden scenario with lost response | `python -m scripts.demo --lost-response` | 5/5 actions settled, reconciled, 0 discrepancy |
-| Acceptance from fresh test report | `python -m scripts.test` | T001–T100: 95 PASSED / 5 NOT_RUN; historical matrix not regenerated |
+| Acceptance from fresh test report | `python -m scripts.test` | T001–T100: 95 PASSED / 5 NOT_RUN (T023, T031, T032, T094, T097) |
 | Browser smoke | `python -m analysis.submission_browser_runner` | 18 route/width renders; 7 assertions PASS; not full browser E2E |
 | CI | GitHub Actions `.github/workflows/ci.yml` | security scan, check, tests, demo, benchmark, report; no HTTP E2E/browser/PG job |
 
 Sandbox operation logs: [EXECUTION_EVIDENCE.md](EXECUTION_EVIDENCE.md).
 
-Fresh measurements, the reproduced open defect and release limitations:
-[readiness review](READINESS_REVIEW_20261019.md). Historical LIVE results are not
-a new test of this application commit; automatic PASS is not full prose accuracy.
+A pre-submission review reproduced one defect (a settlement with the right amount
+but the wrong counterparty could close an action); it was fixed and is covered by
+15 tests, see [ADR 0006](../adr/0006-settlement-identity.md) and section 4 of the
+[execution evidence](EXECUTION_EVIDENCE.md).
 
 ## 8. Limitations
 
-Synthetic data and DEMO financing terms only; no real bank or lender. Scenarios
-are uncalibrated. Live-model prose still has measured errors. Production
-isolation, secret vault and TLS/SSO are not implemented; on-chain anchoring uses a
-testnet only. See [KNOWN_LIMITATIONS.md](../KNOWN_LIMITATIONS.md).
+- Synthetic data and DEMO financing terms only; no real bank, lender or payment rail.
+  A real bank adapter would need its own identity contract and review.
+- Forecast scenarios are uncalibrated and are not probabilities of default.
+- Live-model prose still has measured errors (§6); numbers on screen come from tools.
+- Documents: CSV/XLSX and text PDF; no OCR, lexical retrieval only.
+- No secret vault, SSO or OS-level isolation of the sandbox's private files. Public
+  hosting uses Caddy HTTPS in front of a loopback-only application.
+- On-chain anchoring uses a public testnet only.
+
+Severities and mitigations: [known-risk list](SECURITY_SELF_ASSESSMENT.md#5-known-risk-list).
