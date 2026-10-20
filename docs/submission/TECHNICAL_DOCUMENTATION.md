@@ -8,8 +8,12 @@ explains why it happens, compares ways to cover it (including financing), lets
 the owner approve exact actions, executes them against a simulated bank and
 proves the result through reconciliation.
 
-**Mode of this submission:** synthetic data, sandbox bank, deterministic MOCK model
-by default; an optional self-hosted LLM can be switched on (see §6).
+**Mode of this submission.** Company records, financing products and the bank are
+synthetic; the bank is a separate sandbox process. The design draws on real public
+sources: Chinese SME lending regulation (PBoC), the LPR as a reference rate and
+public dataset surveys (see [sources](../../sources/README.md)). No real company, customer, lender or bank data is used, and
+no external dataset is loaded at runtime. The model is a deterministic MOCK by
+default; an optional self-hosted LLM can be switched on (see §6).
 
 ## 1. Problem and scope
 

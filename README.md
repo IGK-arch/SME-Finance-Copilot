@@ -9,8 +9,8 @@ International Track · Topic E (SME finance) · version 0.3.0 · MIT license
 
 Repository: <https://github.com/IGK-arch/SME-Finance-Copilot>
 
-> **Data: synthetic · Execution: sandbox bank · Model: deterministic MOCK by default.**
-> No real money, bank, lender or customer data is connected.
+> **Data.** Company records, financing products and the bank are synthetic; the model runs MOCK by default.
+> The design draws on real public sources: Chinese SME lending regulation (PBoC), the LPR reference rate and public dataset surveys (see [sources](sources/README.md)). No real company, customer or bank data is used, and no real money moves.
 
 ## For reviewers
 
