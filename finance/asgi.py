@@ -86,6 +86,24 @@ def public_origin() -> str | None:
     return f"{parsed.scheme}://{parsed.netloc}"
 
 
+DEMO_LOGIN_ROLES = ("OWNER", "ACCOUNTANT", "AUDITOR")
+
+
+def demo_login_role() -> str | None:
+    """Role whose token the public sign-in page shows (SME_DEMO_LOGIN_ROLE), or None.
+
+    Opt-in for a reviewer demo on synthetic data. ADMIN is never published."""
+    value = os.getenv("SME_DEMO_LOGIN_ROLE", "").strip()
+    if not value:
+        return None
+    require(
+        value in DEMO_LOGIN_ROLES,
+        "UNSAFE_CONFIGURATION",
+        "SME_DEMO_LOGIN_ROLE must be OWNER, ACCOUNTANT or AUDITOR",
+    )
+    return value
+
+
 def legacy_enabled() -> bool:
     return os.getenv("SME_ENABLE_LEGACY") == "1"
 
@@ -210,6 +228,7 @@ def make_app(
     demo_advance: Callable[[], Json] | None = None,
     demo_decision: Callable[[Json], Json] | None = None,
     webhook: tuple[AuthContext, str] | None = None,
+    login_file: Path | None = None,
 ) -> FastAPI:
     app = FastAPI(title="SME Finance Copilot", version="0.3.0")
     sign_in_failures = FailureLimiter(limit=20, window_seconds=300)
@@ -388,6 +407,20 @@ def make_app(
                 },
                 status_code=400,
             )
+
+    @app.get("/session/demo")
+    async def demo_login():
+        """Reviewer demo key, only when SME_DEMO_LOGIN_ROLE is set (read at request time)."""
+        try:
+            role = demo_login_role()
+            require(role is not None and login_file is not None, "NOT_FOUND", "Not enabled")
+            assert login_file is not None
+            tokens = json.loads(login_file.read_text(encoding="utf-8"))
+            token = tokens.get(role)
+            require(isinstance(token, str) and bool(token), "NOT_FOUND", "Not enabled")
+            return {"result": {"role": role, "token": token}}
+        except (FinanceError, OSError, ValueError):
+            return JSONResponse({"error": {"code": "NOT_FOUND"}}, status_code=404)
 
     @app.post("/session/logout")
     async def logout(request: Request):

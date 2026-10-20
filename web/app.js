@@ -83,6 +83,21 @@ const App = (() => {
     clearTimeout(contextTimer);
     contextTimer = setTimeout(() => { if (state.role) api('/v1/context', {route}).catch(() => {}); }, 800);
   }
+  /* Reviewer demo key: shown only when the server opts in (SME_DEMO_LOGIN_ROLE); never auto-signs in. */
+  async function showDemoKey() {
+    let demo;
+    try { demo = await api('/session/demo'); } catch (_) { return; }
+    if (!demo || typeof demo.token !== 'string') return;
+    const box = document.getElementById('demo-login');
+    const key = h('input', {id: 'demo-token', class: 'mono', type: 'text', readonly: true, value: demo.token, spellcheck: 'false', 'aria-label': 'Demo key'});
+    key.addEventListener('focus', () => key.select());
+    box.replaceChildren(
+      h('h2', {id: 'demo-title'}, 'Demo access for reviewers'),
+      h('p', {class: 'small'}, 'Role ' + demo.role + ' · synthetic data, sandbox bank. Payments still need the exact review and step-up.'),
+      key,
+      h('div', {class: 'row'}, h('button', {class: 'btn', type: 'button', onclick: () => { const f = document.getElementById('token'); f.value = demo.token; f.focus(); }}, 'Use demo key')));
+    box.hidden = false;
+  }
   let lastRoute = null;
   window.addEventListener('hashchange', () => {
     const route = (location.hash || '').slice(1).split('/')[0];
@@ -103,6 +118,7 @@ const App = (() => {
       } catch (e) { field.value = ''; err.textContent = e.status === 401 ? 'This token is not valid for this workspace.' : e.message; err.hidden = false; field.focus(); }
       finally { submit.disabled = false; submit.textContent = 'Sign in'; }
     });
+    showDemoKey();
     document.getElementById('open-copilot').addEventListener('click', () => {
       const p = document.getElementById('copilot');
       if (!p.hidden) return Copilot.close();

@@ -37,9 +37,10 @@ def main() -> None:
             flush=True,
         )
     Config.from_environment()
-    from finance.asgi import public_origin
+    from finance.asgi import demo_login_role, public_origin
 
     origin = public_origin()
+    demo_role = demo_login_role()
     directory = Path(args.directory)
     with Runtime(directory, resume=True) as runtime:
         credentials_path = directory / "local-login.secret.json"
@@ -74,11 +75,14 @@ def main() -> None:
             (runtime.ctx, os.environ["SME_WEBHOOK_SECRET"])
             if os.getenv("SME_WEBHOOK_SECRET")
             else None,
+            credentials_path,
         )
         print(f"SME Finance Copilot: http://127.0.0.1:{args.port}", flush=True)
         if origin:
             print(f"Public origin (via reverse proxy): {origin}", flush=True)
         print(f"Local login tokens (keep private): {credentials_path.resolve()}", flush=True)
+        if demo_role:
+            print(f"Demo key: the sign-in page shows the {demo_role} token publicly", flush=True)
         print(
             f"SYNTHETIC / SANDBOX / {GatewayConfig.environment().public()['mode']}. Press Ctrl+C to stop.",
             flush=True,
