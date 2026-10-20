@@ -10,7 +10,7 @@ from finance.domain import AuthContext, FinanceError, Json, canonical, digest, r
 from finance.execution import ExecutionService
 from finance.ingestion import snapshot
 
-VERSION = "agent-tools-v4"
+VERSION = "agent-tools-v5"
 PAGE_SIZE = 5
 TEXT_PAGE = 3000
 # Table/column names are server constants. Caller input is never SQL syntax.
@@ -415,6 +415,27 @@ def capabilities() -> Json:
         "contract_version": VERSION,
         "datasets": list(DATASETS),
         "automatic": "Scoped reads, metrics, forecasts, financing calculations, planning, what-if and proposal preparation.",
+        "business_health": {
+            "contract_version": "business-health-v1",
+            "tool": "calculate_business_metrics",
+            "requires": "Observed snapshot_id from get_financial_snapshot",
+            "forecast_tools": ["forecast_cashflow", "what_if_cashflow"],
+            "metrics": [
+                "net_working_position",
+                "liquidity_buffer",
+                "days_to_gap",
+                "payables_due_30d",
+                "cash_coverage",
+                "receivables_aging",
+                "payables_aging",
+                "customer_concentration",
+                "supplier_concentration",
+                "settled_inflow",
+                "settled_outflow",
+            ],
+            "details": "Saved calculations are readable via list_business_records/read_business_record, dataset calculations; follow next_offset.",
+            "limits": "Observed CNY facts only. Descriptive ratios, not credit score, bankruptcy probability or P&L. Scenario forecasts do not change facts or approvals.",
+        },
         "human_controls": [
             {
                 "operation": "Import CSV or documents; correct/discard quarantined rows; allocate settlements",

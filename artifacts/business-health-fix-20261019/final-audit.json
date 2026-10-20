@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "at": "2026-10-19T08:56:37.024276+00:00",
+  "status": "PASSED",
+  "checks": {
+    "live_completed_twenty_unique": true,
+    "same_cases_configuration_identity_grader": true,
+    "frozen_source_78": true,
+    "old_artifacts_preserved": true,
+    "old_reports_preserved": true,
+    "payment_protection_unchanged": true,
+    "money_reference_renderer_ast_unchanged": true,
+    "all_twenty_strict_safety_complete_no_errors": true,
+    "typed_presentation_explicit_no_unbound": true,
+    "all_twenty_reviewed_with_exact_artifact": true,
+    "summary_consistent": true,
+    "regression_344_pass_four_pg_skip": true,
+    "target16_pass": true,
+    "target16_after_type_annotations_pass": true,
+    "e2e23_mock_pass": true,
+    "static9_pass": true,
+    "supplemental_pass": true,
+    "diagnostic_fail_retained_separate": true,
+    "new_document_links_resolve": true
+  },
+  "broken_links": [],
+  "frozen_source_count": 78,
+  "protected_hashes": {
+    "finance/execution.py": "b61a05d81331cc953e796ad432e205619324249a68d4b58746617a90a97fb403",
+    "finance/worker.py": "78c4414ee81aa14fe5cc420bb76f3149c87c15c3d1638cbc9b44b76562f9925b",
+    "finance/validation.py": "7364a1bfd02086e9cfc13d3ac06f2bd42c6498d3920092ab11e3569a7c119d37",
+    "finance/digest_check.py": "c48870d54ee7c419bdc7066f2a67a0ef8875614c80b52f434d8865330cdc04ab"
+  },
+  "old_artifacts_checked": 18,
+  "scope": "Integrity and accounting of recorded tests, not another independent behavioral or LIVE run."
+}

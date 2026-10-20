@@ -1,0 +1,143 @@
+{
+  "scope": "Fresh Edge smoke, synthetic MOCK, no payment approvals",
+  "browser": "155.0.4283.45",
+  "pages": [
+    {
+      "width": 1440,
+      "route": "home",
+      "title": "Home",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 1440,
+      "route": "money",
+      "title": "Money",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 1440,
+      "route": "case",
+      "title": "Plans",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 1440,
+      "route": "documents",
+      "title": "Documents",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 1440,
+      "route": "activity",
+      "title": "Activity",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 1440,
+      "route": "settings",
+      "title": "Settings",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 768,
+      "route": "home",
+      "title": "Home",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 768,
+      "route": "money",
+      "title": "Money",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 768,
+      "route": "case",
+      "title": "Plans",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 768,
+      "route": "documents",
+      "title": "Documents",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 768,
+      "route": "activity",
+      "title": "Activity",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 768,
+      "route": "settings",
+      "title": "Settings",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 390,
+      "route": "home",
+      "title": "Home",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 390,
+      "route": "money",
+      "title": "Money",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 390,
+      "route": "case",
+      "title": "Plans",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 390,
+      "route": "documents",
+      "title": "Documents",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 390,
+      "route": "activity",
+      "title": "Activity",
+      "overflow": false,
+      "failed": false
+    },
+    {
+      "width": 390,
+      "route": "settings",
+      "title": "Settings",
+      "overflow": false,
+      "failed": false
+    }
+  ],
+  "errors": [],
+  "checks": {
+    "chinese_company_visible": true,
+    "model_mock_label": true,
+    "no_browser_token_storage": true,
+    "session_survives_reload": true,
+    "no_page_errors": true,
+    "no_page_overflow": true,
+    "routes_render": true
+  },
+  "passed": true
+}

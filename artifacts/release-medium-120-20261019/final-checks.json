@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-19T21:45:20.821072+00:00",
+  "checks": [
+    {
+      "name": "final_report",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "analysis.release_medium_report",
+        "--final"
+      ],
+      "exit_code": 0,
+      "output": "{\"status\": \"COMPLETED\", \"unique_primary\": 120, \"regression100\": {\"model_reached\": 99, \"pre_model_policy_denials\": 1, \"run_errors\": {\"POLICY_DENIED\": 1}, \"counts\": {\"PASSED\": 89, \"FAILED\": 11}, \"all_latency\": {\"n\": 100, \"p50_seconds\": 32.787, \"p95_seconds\": 56.647, \"total_seconds\": 3279.109, \"model_calls\": 299}, \"pass_latency\": {\"n\": 89, \"p50_seconds\": 31.416, \"p95_seconds\": 54.388, \"total_seconds\": 2816.731, \"model_calls\": 260}, \"fail_latency\": {\"n\": 11, \"p50_seconds\": 42.069, \"p95_seconds\": 65.907, \"total_seconds\": 462.378, \"model_calls\": 39}, \"by_language\": {\"en\": {\"PASSED\": 61, \"FAILED\": 6}, \"zh\": {\"PASSED\": 28, \"FAILED\": 5}}, \"latency_by_language\": {\"en\": {\"n\": 67, \"p50_seconds\": 33.334, \"p95_seconds\": 56.429, \"total_seconds\": 2255.714, \"model_calls\": 205}, \"zh\": {\"n\": 33, \"p50_seconds\": 31.593, \"p95_seconds\": 56.71, \"total_seconds\": 1023.395, \"model_calls\": 94}}, \"workflow_phases\": {\"COMPLETE\": 89, \"PAUSED\": 7, \"PARTIAL\": 3, \"NO_WORKFLOW\": 1}}, \"new20\": {\"model_reached\": 20, \"pre_model_policy_denials\": 0, \"run_errors\": {\"MODEL_OUTPUT_TRUNCATED\": 4}, \"counts\": {\"FAILED\": 13, \"PASSED\": 7}, \"all_latency\": {\"n\": 20, \"p50_seconds\": 46.804, \"p95_seconds\": 77.503, \"total_seconds\": 1045.766, \"model_calls\": 80}, \"pass_latency\": {\"n\": 7, \"p50_seconds\": 42.742, \"p95_seconds\": 57.169, \"total_seconds\": 292.44, \"model_calls\": 24}, \"fail_latency\": {\"n\": 13, \"p50_seconds\": 51.351, \"p95_seconds\": 159.518, \"total_seconds\": 753.327, \"model_calls\": 56}, \"by_language\": {\"en\": {\"FAILED\": 6, \"PASSED\": 4}, \"zh\": {\"FAILED\": 7, \"PASSED\": 3}}, \"latency_by_language\": {\"en\": {\"n\": 10, \"p50_seconds\": 52.945, \"p95_seconds\": 77.503, \"total_seconds\": 494.82, \"model_calls\": 39}, \"zh\": {\"n\": 10, \"p50_seconds\": 44.161, \"p95_seconds\": 159.518, \"total_seconds\": 550.946, \"model_calls\": 41}}, \"workflow_phases\": {\"FAILED\": 4, \"COMPLETE\": 14, \"PARTIAL\": 2}}, \"reviewed\": 120, \"safety_failures\": {}}\n"
+    },
+    {
+      "name": "scoped_diff",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "CLAUDE.md",
+        "docs/TECHNICAL_REPORT_RU.md",
+        "docs/CURRENT_STATE_RU.md",
+        "docs/OPEN_REGISTER.md",
+        "docs/QWEN_RELEASE_120_20261019_RU.md",
+        "scripts/release_eval.py",
+        "tests/test_release_eval.py",
+        "analysis/release_medium_report.py"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "name": "global_diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 2,
+      "output": "finance/agents.py:8: trailing whitespace.\n+    business_health,\nfinance/agents.py:169: trailing whitespace.\n+                fc = forecast(snap, scenario_set=scenario_set)\nfinance/agents.py:172: trailing whitespace.\n+                    \"forecast\": fc | {\"business_health\": business_health(snap, fc)},\nfinance/agents.py:200: trailing whitespace.\n+                result[\"business_health\"] = business_health(snap, result)\n"
+    }
+  ],
+  "prior_checks": [
+    "preflight-checks.json",
+    "offline-checks.json"
+  ],
+  "documentation_line_endings": "Edited docs normalized to LF after scoped diff found CRLF; initial failure retained in final-checks-before-lf.json",
+  "not_run": [
+    "full_unit_regression",
+    "HTTP_E2E",
+    "PostgreSQL",
+    "pixel_UI",
+    "LIVE_approval_execution_lifecycle"
+  ]
+}

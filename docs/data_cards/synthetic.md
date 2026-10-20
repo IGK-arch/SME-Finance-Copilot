@@ -12,12 +12,17 @@ context. Rights for public redistribution of those documents are UNKNOWN; exclud
 them from a public release until the owner reviews rights. Historical statuses,
 claims and links retain the source author's status and were not reverified.
 
-The local runtime has no third-party Python/JavaScript package, pretrained weights
-or external fonts. Python, its bundled SQLite and OS components retain their own
-upstream licenses. The project code has no newly assigned open-source license;
-the owner must select a license before public publication. Do not infer licenses
-for linked datasets from this project's code license.
+The current runtime includes third-party Python packages (including LangGraph,
+OR-Tools and FastAPI); pinned requirements and installed metadata are inventoried
+separately. Project code is covered by the root MIT LICENSE. Dependency, source
+document, dataset and model-weight rights are separate. No external fonts are
+required by the cabinet. Python, SQLite and OS components retain upstream terms.
 
 External data loaders are unsupported. UNKNOWN data licenses disable training and
 redistribution; consumer-loan Tianchi is excluded from SME recommendations.
-Faker/SDV/PaddleOCR/Docling/LLM weights are not dependencies of this milestone.
+Faker/SDV/PaddleOCR/Docling are not part of the current core pipeline. Default
+MOCK needs no model weights; optional local/self-hosted LIVE providers have been
+used in measured evaluations. The exact served Qwen weight identity and licence
+must be verified independently of its runtime alias before redistribution or a
+public licence claim. The early dependency inventory's no-weights status is
+historical, not proof about all later LIVE use.

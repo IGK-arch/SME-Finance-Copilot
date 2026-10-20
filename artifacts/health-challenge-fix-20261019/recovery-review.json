@@ -1,0 +1,8 @@
+{
+  "status": "COMPLETE",
+  "at": "2026-10-19T10:40:35.001987+00:00",
+  "case_id": "healthx_two_shocks_zh",
+  "live_sha256": "186efa7a25b53fcf48e868f4a0aa0acc5f400bbbea505c042d561ea8f3616903",
+  "scope": "Separate recovery, all delivered Chinese text and actual tool trace read by coding assistant. Original FAILED remains primary.",
+  "note": "После восстановления прежнего SSH-моста выполнены snapshot, текущиеmetrics и обе гипотезы с точными3/7500 и9/2500. Полностью прочитан доставленный китайский текст: baselinebuffer10000/null, A−15000/gap7, B−90000/gap7, cash120000/NWP30000 неизменны. ОбаresultID и горизонта переданы правильно, plan/approval/settlement не заявлены. Все записанные safety assertions прошли. Это отдельный успешный повтор; первичный MODEL_UNAVAILABLE не заменён."
+}

@@ -1,0 +1,122 @@
+{
+  "at": "2026-10-19T00:43:58.762338+03:00",
+  "checks": [
+    {
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "compileall",
+        "-q",
+        "finance",
+        "sandbox",
+        "scripts",
+        "tests",
+        "analysis"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "finance",
+        "sandbox",
+        "scripts",
+        "tests",
+        "analysis",
+        "--select",
+        "E9,F63,F7,F82,F401,F841"
+      ],
+      "exit_code": 0,
+      "output": "All checks passed!\n"
+    },
+    {
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "finance",
+        "sandbox",
+        "scripts",
+        "analysis",
+        "--check-untyped-defs"
+      ],
+      "exit_code": 0,
+      "output": "Success: no issues found in 75 source files\n"
+    },
+    {
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "finance",
+        "sandbox",
+        "scripts",
+        "tests",
+        "analysis"
+      ],
+      "exit_code": 0,
+      "output": "111 files already formatted\n"
+    },
+    {
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "output": "No broken requirements found.\n"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "web\\app.js"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "web\\copilot.js"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "web\\legacy\\app.js"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "web\\pages.js"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "web\\ui.js"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ]
+}

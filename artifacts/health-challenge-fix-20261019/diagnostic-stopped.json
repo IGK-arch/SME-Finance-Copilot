@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-19T10:04:53.093870+00:00",
+  "raw_path": "artifacts\\health-challenge-fix-20261019\\health-challenge-fix-20261019-final.json",
+  "raw_sha256": "47e0d286716435fca51f2c41ac0053dc20ee8a3e358d9e1689b52484a15bd470",
+  "recorded_cases": 10,
+  "status": "STOPPED_BY_AGENT_FOR_HARDENING",
+  "reason": "Two latent selection/routing edge cases discovered in code review. Original raw retained unchanged; RUNNING marker is stale. Process absence verified. Not used as final full-suite result."
+}

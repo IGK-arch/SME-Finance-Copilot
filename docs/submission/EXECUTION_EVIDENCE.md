@@ -1,5 +1,11 @@
 # Execution evidence: sandbox operation logs
 
+> **19 Oct post-fix update:** golden 5/5 with zero cash difference and 23/23 HTTP
+> E2E reconfirm the synthetic lifecycle. K15 identity checks passed 15/15;
+> [fix, primary evidence and limits](../SETTLEMENT_FIX_20261019_RU.md).
+> The historical detailed logs below remain intact. Normal-path success alone
+> is not proof for every provider failure.
+
 Topic E is a non-on-chain topic, so execution evidence is simulated-account
 operation logs; section 3 lists the on-chain anchors made for the challenge bonus. All data is synthetic; the bank is an independent sandbox process
 with its own database. Regenerate this page with `python -m scripts.execution_log`

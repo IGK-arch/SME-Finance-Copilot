@@ -1,0 +1,16 @@
+{
+  "status": "FAILED_SCOPE_REVIEW",
+  "checks": [
+    {
+      "task": "Business health: prepare a MIN_RISK plan.",
+      "parsed_objective": "MIN_RISK",
+      "supported_by_planner": false
+    },
+    {
+      "task": "Business health: prepare a MAX_LIQUIDITY plan.",
+      "parsed_objective": "MAX_LIQUIDITY",
+      "supported_by_planner": false
+    }
+  ],
+  "impact": "Unsupported names are rejected by existing tool schemas; no execution authority granted. Parser will be narrowed before final verification."
+}

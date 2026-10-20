@@ -1,0 +1,105 @@
+{
+  "at": "2026-10-19T19:59:37.668217+00:00",
+  "checks": [
+    {
+      "name": "static",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "scripts.check"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": "{\n  \"python_syntax\": \"PASSED\",\n  \"javascript_syntax:web/app.js\": \"PASSED\",\n  \"javascript_syntax:web/copilot.js\": \"PASSED\",\n  \"javascript_syntax:web/legacy/app.js\": \"PASSED\",\n  \"javascript_syntax:web/pages.js\": \"PASSED\",\n  \"javascript_syntax:web/ui.js\": \"PASSED\",\n  \"ruff\": \"PASSED\",\n  \"mypy\": \"PASSED\",\n  \"format\": \"PASSED\"\n}\n"
+    },
+    {
+      "name": "report_lint",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "analysis/release_report.py",
+        "--select",
+        "E9,F63,F7,F82,F401,F841"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": "All checks passed!\n"
+    },
+    {
+      "name": "report_format",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "analysis/release_report.py"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": "1 file already formatted\n"
+    },
+    {
+      "name": "report_types",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "analysis/release_report.py",
+        "--check-untyped-defs"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": "Success: no issues found in 1 source file\n"
+    }
+  ],
+  "post_identity_note_checks": [
+    {
+      "name": "report_lint",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "analysis/release_report.py",
+        "--select",
+        "E9,F63,F7,F82,F401,F841"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": "All checks passed!\n"
+    },
+    {
+      "name": "report_format",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "analysis/release_report.py"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": "1 file already formatted\n"
+    },
+    {
+      "name": "report_types",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "analysis/release_report.py",
+        "--check-untyped-defs"
+      ],
+      "exit_code": 0,
+      "status": "PASSED",
+      "output": "Success: no issues found in 1 source file\n"
+    }
+  ],
+  "updated_at": "2026-10-19T20:12:54.815762+00:00"
+}

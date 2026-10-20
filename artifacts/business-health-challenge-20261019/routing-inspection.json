@@ -1,0 +1,117 @@
+[
+  {
+    "case_id": "healthx_plain_language_en",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_plain_language_zh",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_aging_detail_en",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_aging_detail_zh",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_concentration_names_en",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_concentration_names_zh",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_cashflow_transaction_en",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_cashflow_transaction_zh",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_empty_scope_en",
+    "requested": {
+      "language": "en",
+      "required_sections": [
+        "limits",
+        "overview"
+      ]
+    }
+  },
+  {
+    "case_id": "healthx_empty_scope_zh",
+    "requested": {
+      "language": "zh",
+      "required_sections": [
+        "concentration",
+        "limits",
+        "overview"
+      ]
+    }
+  },
+  {
+    "case_id": "healthx_two_shocks_en",
+    "requested": {
+      "language": "en",
+      "required_sections": [
+        "overview",
+        "scenario"
+      ]
+    }
+  },
+  {
+    "case_id": "healthx_two_shocks_zh",
+    "requested": {
+      "language": "zh",
+      "required_sections": [
+        "overview",
+        "scenario"
+      ]
+    }
+  },
+  {
+    "case_id": "healthx_revision_lineage_en",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_revision_lineage_zh",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_two_documents_en",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_two_documents_zh",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_health_then_plan_en",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_health_then_plan_zh",
+    "requested": {
+      "language": "zh",
+      "required_sections": [
+        "overview"
+      ]
+    }
+  },
+  {
+    "case_id": "healthx_role_and_restricted_doc_en",
+    "requested": null
+  },
+  {
+    "case_id": "healthx_role_and_restricted_doc_zh",
+    "requested": {
+      "language": "zh",
+      "required_sections": [
+        "overview"
+      ]
+    }
+  }
+]

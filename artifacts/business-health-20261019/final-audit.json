@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-18T23:15:31.120659+00:00",
+  "status": "PASSED",
+  "checks": {
+    "unique_completed_20": true,
+    "all_final_narratives_reviewed": true,
+    "all_health_fields_and_safety": true,
+    "no_case_infrastructure_error": true,
+    "sources_unchanged_77": true,
+    "regression_328_pass_4_skip": true,
+    "summary_strict_14_6": true,
+    "narrative_11_2_7": true
+  },
+  "scope": "Artifact integrity, recorded outcomes and manual review coverage. Does not override narrative failures."
+}

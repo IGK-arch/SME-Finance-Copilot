@@ -31,6 +31,30 @@ APPROVAL_REAL_TTL_SECONDS = 24 * 3600
 OBSERVE_ROLES = {"OWNER", "ACCOUNTANT", "ADMIN"}
 
 
+def settlement_mismatches(action: Json, movement: Json) -> list[str]:
+    """Sandbox v1: stable operation key, optional known ref and approved economics.
+
+    The observation protocol is CNY-only; a real adapter must provide its own
+    explicit currency/beneficiary contract rather than infer it from these fields.
+    A bank balance match is not evidence that this particular command settled.
+    """
+    command = json.loads(action["payload"])
+    errors = []
+    if movement.get("stable_key") != command["idempotency_key"]:
+        errors.append("stable_key")
+    if action["provider_ref"] is not None and action["provider_ref"] != movement["ref"]:
+        errors.append("provider_ref")
+    if movement["counterparty"] != command["counterparty"]:
+        errors.append("counterparty")
+    if movement["reference"] != (command["obligation_id"] or "loan"):
+        errors.append("reference")
+    if movement["delta"] != command["cash_delta_minor"]:
+        errors.append("amount")
+    if action["status"] in {"SETTLED", "FAILED"}:
+        errors.append("terminal_action")
+    return errors
+
+
 class ExecutionService:
     def __init__(self, store: Store, adapter: SandboxAdapter) -> None:
         self.store, self.adapter = store, adapter
@@ -83,7 +107,58 @@ class ExecutionService:
                     (ctx.tenant_id, action_id),
                 )
             ]
+            issue = self._settlement_issue(db, ctx.tenant_id, action_id)
+            if issue:
+                value["settlement_issue"] = issue
             return value
+
+    @staticmethod
+    def _settlement_issue(db, tenant: str, action_id: str) -> Json | None:
+        row = db.execute(
+            "SELECT payload FROM objects WHERE tenant_id=? AND kind='settlement_issue' AND object_id=?",
+            (tenant, action_id),
+        ).fetchone()
+        return json.loads(row[0]) if row else None
+
+    def _record_settlement_issue(
+        self, db, ctx: AuthContext, action: Json, movement: Json, tx_id: str, fields: list[str]
+    ) -> None:
+        """Durable quarantine; replay/status lookup cannot acknowledge a disputed movement."""
+        if self._settlement_issue(db, ctx.tenant_id, action["action_id"]):
+            return
+        command = json.loads(action["payload"])
+        issue = {
+            "schema_version": 1,
+            "action_id": action["action_id"],
+            "plan_id": command["plan_id"],
+            "transaction_id": tx_id,
+            "provider_ref": movement["ref"],
+            "approved_payload_hash": action["payload_hash"],
+            "observation_hash": digest(movement),
+            "mismatch_fields": fields,
+            "approved_delta_minor": command["cash_delta_minor"],
+            "observed_delta_minor": movement["delta"],
+            "status": "REVIEW_REQUIRED",
+        }
+        self.store.put_object(db, ctx.tenant_id, "settlement_issue", action["action_id"], issue)
+        db.execute("UPDATE companies SET stopped=1 WHERE tenant_id=?", (ctx.tenant_id,))
+        # A completed historical operation is not erased by a later conflicting event.
+        db.execute(
+            "UPDATE actions SET status='UNKNOWN',state_version=state_version+1 WHERE tenant_id=? AND action_id=? AND status NOT IN ('SETTLED','FAILED')",
+            (ctx.tenant_id, action["action_id"]),
+        )
+        db.execute(
+            "UPDATE reservations SET included_in_provider_available=0 WHERE tenant_id=? AND action_id=? AND status='ACTIVE'",
+            (ctx.tenant_id, action["action_id"]),
+        )
+        self.store.audit(
+            db,
+            ctx,
+            "action.settlement_amount_mismatch"
+            if fields == ["amount"]
+            else "action.settlement_identity_mismatch",
+            issue,
+        )
 
     def command(self, ctx: AuthContext, plan_id: str, action_id: str) -> Json:
         plan = self.store.get_object(ctx, "plan", plan_id)
@@ -530,6 +605,11 @@ class ExecutionService:
     ) -> Json:
         action = self.action(ctx, action_id)
         command = action["payload"]
+        require(
+            not action.get("settlement_issue"),
+            "RECONCILIATION_REQUIRED",
+            "Observed settlement differs from the approved operation; review is required, not another send",
+        )
         if action["status"] in ("SETTLED", "FAILED"):
             return action
         with self.store.connect() as db:
@@ -598,6 +678,8 @@ class ExecutionService:
         local = "SUBMITTED" if status == "SETTLED" else status
         with self.store.transaction() as db:
             self.store.authorize(db, ctx, OBSERVE_ROLES)
+            if self._settlement_issue(db, ctx.tenant_id, action_id):
+                return  # A later provider status cannot release a disputed reservation.
             row = db.execute(
                 "SELECT status FROM actions WHERE tenant_id=? AND action_id=?",
                 (ctx.tenant_id, action_id),
@@ -605,7 +687,7 @@ class ExecutionService:
             if row[0] == "SETTLED":
                 return
             db.execute(
-                "UPDATE actions SET status=?,provider_ref=COALESCE(?,provider_ref),state_version=state_version+1 WHERE tenant_id=? AND action_id=?",
+                "UPDATE actions SET status=?,provider_ref=COALESCE(provider_ref,?),state_version=state_version+1 WHERE tenant_id=? AND action_id=?",
                 (local, result.get("ref"), ctx.tenant_id, action_id),
             )
             db.execute(
@@ -675,10 +757,26 @@ class ExecutionService:
                     "SELECT fact_id FROM facts WHERE tenant_id=? AND kind='TRANSACTION' AND provider='sandbox' AND external_id=?",
                     (ctx.tenant_id, movement["ref"]),
                 ).fetchone()[0]
-                action = db.execute(
-                    "SELECT * FROM actions WHERE tenant_id=? AND (provider_ref=? OR idempotency_key=?)",
-                    (ctx.tenant_id, movement["ref"], movement.get("stable_key", "")),
-                ).fetchone()
+                candidates = [
+                    dict(row)
+                    for row in db.execute(
+                        "SELECT * FROM actions WHERE tenant_id=? AND (provider_ref=? OR idempotency_key=?)",
+                        (ctx.tenant_id, movement["ref"], movement.get("stable_key", "")),
+                    )
+                ]
+                disputed = False
+                for candidate in candidates:
+                    fields = settlement_mismatches(candidate, movement)
+                    if len(candidates) > 1:
+                        fields.append("ambiguous_operation")
+                    if fields:
+                        self._record_settlement_issue(db, ctx, candidate, movement, tx_id, fields)
+                    disputed = (
+                        disputed
+                        or bool(fields)
+                        or bool(self._settlement_issue(db, ctx.tenant_id, candidate["action_id"]))
+                    )
+                action = candidates[0] if len(candidates) == 1 and not disputed else None
                 command = json.loads(action["payload"]) if action else None
                 if command and command["kind"] == "DRAW_LOAN":
                     quote = command["quote"]
@@ -694,7 +792,9 @@ class ExecutionService:
                     }
                     debt["loan_quote"] = quote
                     self.store.add_fact(db, ctx.tenant_id, "sandbox", source_id, debt)
-                else:
+                elif not disputed and (action or not movement.get("stable_key")):
+                    # An inconsistent operation remains unmatched cash. Never use it
+                    # to close either the approved obligation or another matching bill.
                     target_provider = (
                         command.get("obligation_provider", "sandbox") if command else None
                     )
@@ -737,20 +837,7 @@ class ExecutionService:
                 db.execute(
                     "INSERT INTO inbox VALUES(?,'sandbox',?)", (ctx.tenant_id, movement["ref"])
                 )
-                if action and command and movement["delta"] != command["cash_delta_minor"]:
-                    db.execute("UPDATE companies SET stopped=1 WHERE tenant_id=?", (ctx.tenant_id,))
-                    self.store.audit(
-                        db,
-                        ctx,
-                        "action.settlement_amount_mismatch",
-                        {
-                            "action_id": action["action_id"],
-                            "transaction_id": tx_id,
-                            "approved_delta_minor": command["cash_delta_minor"],
-                            "observed_delta_minor": movement["delta"],
-                        },
-                    )
-                elif action:
+                if action:
                     db.execute(
                         "UPDATE actions SET status='SETTLED',provider_ref=?,state_version=state_version+1 WHERE tenant_id=? AND action_id=?",
                         (movement["ref"], ctx.tenant_id, action["action_id"]),
@@ -776,13 +863,14 @@ class ExecutionService:
             # All accepted pending holds are reflected in this same fresh available observation.
             for accepted in observation.get("pending_operations", []):
                 db.execute(
-                    "UPDATE actions SET provider_ref=? WHERE tenant_id=? AND idempotency_key=? AND status IN ('SUBMITTED','UNKNOWN')",
-                    (accepted["ref"], ctx.tenant_id, accepted["stable_key"]),
+                    "UPDATE actions SET provider_ref=? WHERE tenant_id=? AND idempotency_key=? AND status IN ('SUBMITTED','UNKNOWN') AND (provider_ref IS NULL OR provider_ref=?)",
+                    (accepted["ref"], ctx.tenant_id, accepted["stable_key"], accepted["ref"]),
                 )
             db.execute(
                 "UPDATE reservations SET included_in_provider_available=1 WHERE tenant_id=? AND action_id IN "
-                "(SELECT action_id FROM actions WHERE tenant_id=? AND status IN ('SUBMITTED','UNKNOWN') AND provider_ref IS NOT NULL)",
-                (ctx.tenant_id, ctx.tenant_id),
+                "(SELECT action_id FROM actions WHERE tenant_id=? AND status IN ('SUBMITTED','UNKNOWN') AND provider_ref IS NOT NULL) "
+                "AND action_id NOT IN (SELECT object_id FROM objects WHERE tenant_id=? AND kind='settlement_issue')",
+                (ctx.tenant_id, ctx.tenant_id, ctx.tenant_id),
             )
             facts = self.store.facts(db, ctx.tenant_id, clock, clock)
             local_cash = sum(
@@ -791,16 +879,25 @@ class ExecutionService:
                 if f["kind"] == "BALANCE"
                 or (f["kind"] == "TRANSACTION" and f["value"]["status"] == "SETTLED")
             )
+            issues = [
+                json.loads(row[0])
+                for row in db.execute(
+                    "SELECT payload FROM objects WHERE tenant_id=? AND kind='settlement_issue' ORDER BY object_id",
+                    (ctx.tenant_id,),
+                )
+            ]
+            matched = local_cash == observation["cash_minor"] and not issues
             result = {
+                "schema_version": 2,
                 "reconciliation_id": uid("reconciliation"),
                 "at": clock,
                 "local_cash_minor": local_cash,
                 "provider_cash_minor": observation["cash_minor"],
-                "matched": local_cash == observation["cash_minor"],
+                "cash_matched": local_cash == observation["cash_minor"],
+                "settlement_issues": issues,
+                "matched": matched,
                 "discrepancy_minor": local_cash - observation["cash_minor"],
-                "status": "RECONCILED"
-                if local_cash == observation["cash_minor"]
-                else "NEEDS_RECONCILIATION",
+                "status": "RECONCILED" if matched else "NEEDS_RECONCILIATION",
             }
             self.store.put_object(
                 db, ctx.tenant_id, "reconciliation", result["reconciliation_id"], result
@@ -835,7 +932,7 @@ class ExecutionService:
             require(
                 recon["matched"],
                 "RECONCILIATION_REQUIRED",
-                "Cash does not reconcile with the sandbox; resolve the difference before resuming",
+                "Cash or settlement identity does not reconcile; resolve the discrepancy before resuming",
             )
             reconciliation_id = recon["reconciliation_id"]
         with self.store.transaction() as db:

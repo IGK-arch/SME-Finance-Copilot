@@ -11,7 +11,7 @@ owner approval, sandbox execution and reconciliation.
 | 1 | Technical documentation (architecture, core algorithms, security design) | [TECHNICAL_DOCUMENTATION.md](TECHNICAL_DOCUMENTATION.md) · [architecture notes](../architecture/README.md) · [ADRs](../adr/) |
 | 2 | Presentation deck (≤ 10 min) | Submitted separately; storyline in [demo-script.md](demo-script.md) |
 | 3 | Demo video (≤ 5 min, optional) | Submitted separately; script in [demo-script.md](demo-script.md) |
-| 4 | Source code with README, deployment instructions and test cases | [README](../../README.md) (Windows, Linux, macOS setup) · `tests/` (278 tests) · CI in `.github/workflows/ci.yml` |
+| 4 | Source code with README, deployment instructions and test cases | [README](../../README.md) (Windows, Linux, macOS setup) · `tests/` (latest full run: 366 PASS / 4 PostgreSQL SKIP) · CI in `.github/workflows/ci.yml` |
 | 5 | Security self-assessment (permission tiers, known risks) | [SECURITY_SELF_ASSESSMENT.md](SECURITY_SELF_ASSESSMENT.md), audit findings and fixes in [SECURITY_AUDIT.md](SECURITY_AUDIT.md) |
 | 6 | Execution evidence (sandbox operation logs + demo video) | [EXECUTION_EVIDENCE.md](EXECUTION_EVIDENCE.md) · raw `artifacts/golden-latest.json`, `artifacts/v03/e2e-latest.json` |
 
@@ -34,7 +34,7 @@ owner approval, sandbox execution and reconciliation.
   execute are human/worker only) and four human roles with separation of duties.
 - Exact payload-hash approval with step-up, freshness checks, reservations,
   idempotency, kill switch, row-level security, hash-chained audit.
-- Known-risk list with twelve open, partly mitigated or accepted risks
+- Known-risk list K01–K15 with open, partly mitigated or accepted risks
   ([security self-assessment](SECURITY_SELF_ASSESSMENT.md)).
 
 ### Innovation & interaction (30%)
@@ -54,7 +54,10 @@ On-chain proof of the audit trail ([technical documentation §3.9](TECHNICAL_DOC
 The head of the hash-chained audit log is published as a zero-value transaction on
 a public testnet (Ethereum Sepolia by default). Anyone can later check that the
 local records still produce the anchored hash, so even an administrator who
-rewrites history and recomputes every hash is caught. Only hashes go on-chain.
+rewrites the anchored records and recomputes every hash can be detected against
+a trusted saved transaction hash. Local records are needed for verification.
+The payload contains a deterministic pseudonymous tenant tag, record count and
+chain-head commitment; no business amounts or document text.
 
 ```bash
 pip install -r requirements-onchain.txt

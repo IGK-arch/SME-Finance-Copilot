@@ -1,6 +1,12 @@
 # Security self-assessment report
 
-Topic E · SME Finance Copilot · version 0.3.0 · 18 Oct 2026.
+Topic E · SME Finance Copilot · version 0.3.0 · updated 19 Oct 2026 (Moscow).
+
+**19 Oct follow-up:** K15 settlement identity is fixed and retested for the
+synthetic adapter; [fix and evidence](../SETTLEMENT_FIX_20261019_RU.md).
+The [readiness review](READINESS_REVIEW_20261019.md) preserves the original failure
+reproduction and the pre-submission findings. Dispute resolution and historical
+repair are unsupported; passing regression is not full security acceptance.
 Scope: the code in this repository running locally on synthetic data with a
 simulated bank (sandbox). No real money, real bank, real customer data or paid
 service is connected. Every statement below points to code or a test that can be
@@ -113,14 +119,15 @@ synthetic setup the impact is limited to demo data.
 | K04 | Credentials live in ignored local files, not a secret vault | Medium | `.gitignore`, no secrets in outputs/URLs/localStorage | Open (by design for local demo) |
 | K05 | HTTP binds to 127.0.0.1 without TLS/SSO | Medium for hosting, Low locally | Loopback only | Open |
 | K06 | Live model prose can still contain semantic errors even when tool calls pass | Medium | Result cards come from tool results, not prose; exact money references are validated; failures recorded in evaluation reports | Open, measured |
-| K07 | Prompt injection through imported documents against a live model | Medium | No dangerous tools exist; documents labelled untrusted; mock tests only, not proof of real-model robustness | Partly mitigated |
+| K07 | Prompt injection through imported documents against a live model | Medium | No dangerous tools exist; documents labelled untrusted; historical EN/ZH LIVE attack scenarios and failures are recorded, but no independent robustness guarantee | Partly mitigated |
 | K08 | Document parser has time/size bounds but no OS memory sandbox | Low | Subprocess with resource limits | Open |
 | K09 | No compensating payments or external cancellation; UNKNOWN reserves cannot be force-released | Low (safety over liquidity) | Status lookup by stable key | Accepted |
 | K10 | Business analysis is descriptive; P&L is not computed from bank data | Low | Labelled `INSUFFICIENT_DATA` | Accepted |
 | K11 | Alerts have no acknowledgement/debounce workflow | Low | Alerts are idempotent per rule/subject | Open |
 | K12 | Testnet wallet key is stored in the ignored workspace folder | Low (testnet coins only) | Separate from business credentials; mainnet refused by chain-id check | Accepted |
-| K13 | The model server's public IP address remains in old commits (removed from current files; no key or password was ever committed, confirmed by `python -m scripts.security_scan --history`) | Low | Server reached only through an SSH key that is not in the repository; repository is private; the owner is moving hosting to another server, which retires the address | Accepted (owner decision 18 Oct: history not rewritten) |
+| K13 | The model server's public IP address remains in old commits; current tracked-file scan found no matching secrets, while history reports public-IP findings | Low | Authenticated SSH with pinned host identity and ignored credential files; private repository. Scanner coverage does not prove the absence of every possible secret | Accepted (owner decision 18 Oct: history not rewritten) |
 | K14 | Sign-in and token lockouts are global per process, so repeated bad attempts can delay legitimate sign-in for five minutes | Low locally | Loopback binding; separate budgets for browser sign-in and API tokens | Accepted |
+| K15 | Incorrect settlement identity previously allowed false SETTLED and early reserve release | High for real integration; synthetic-only impact here | Exact identity check before allocation/completion; durable tenant-scoped issue, reserve retention and send/resume block; 15 targeted tests and full regression/E2E passed. No automatic dispute clearing or historical repair | Fixed for the synthetic adapter, 19 Oct; real adapters require a separate contract/review |
 
 ## 6. How to verify
 
@@ -131,6 +138,10 @@ python -m scripts.e2e_v03     # product path through server + worker + sandbox
 python -m scripts.verify_audit --directory .runtime/workspace   # audit chain
 ```
 
-Latest run on Linux (CPython 3.13, 18 Oct 2026): 278 tests, 0 failures,
-7 skipped (PostgreSQL and Windows-only resource guard); `scripts.check` all
-PASSED; product E2E 21/21 checks PASSED.
+Fresh post-fix 19 Oct Moscow run on Windows / CPython 3.11.9: **315 tests,
+311 PASSED, 4 PostgreSQL SKIPPED, zero failures**. Targeted identity tests: 15/15.
+HTTP product E2E: 23/23 PASSED (MOCK). Golden: 5/5 actions, zero cash difference.
+`scripts.check`: 9/9 PASS. [Artifacts and source hashes](../../artifacts/settlement-fix-20261019/manifest.json).
+The earlier audit's current-file secret scan and OSV checks passed; its
+`--history` returned failure on accepted K13 address history. Those scans were
+not rerun by the settlement fix. No current LIVE or PostgreSQL pass is claimed.

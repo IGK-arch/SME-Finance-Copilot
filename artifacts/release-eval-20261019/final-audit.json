@@ -1,0 +1,142 @@
+{
+  "at": "2026-10-19T20:14:49.686202+00:00",
+  "status": "VERIFIED",
+  "unique_primary": 120,
+  "segment_counts": [
+    2,
+    65,
+    53
+  ],
+  "all_registered_sources_match": true,
+  "production_files_unchanged_since_initial_registration": 44,
+  "production_hashes": {
+    "finance/__init__.py": "be57b94e7bf3847a01d0330f92598456063186986c65356f6d6ea5352d1b3761",
+    "finance/adapter.py": "f0579a69ab7daedf338abc975cd65cb07e13b786a523162cedb20fdb52372af2",
+    "finance/agent_data.py": "af2738bec3aed5410f271816b6fc8454f63dd5595aa756273c37e5c2bdacb8e8",
+    "finance/agents.py": "bf9e36dd250607d1221633cbda0ac4be5675fa2207141614b2169771dc84a735",
+    "finance/anchor.py": "78b2a25f527aa0726a8d708ed6506d75120a817f9b652892e113b4314f864b9e",
+    "finance/answer_quality.py": "518605eca256292b6546fbe58af46ff5a72a3ab912de8a44fe528ba0eafda640",
+    "finance/answers.py": "cd6d533c54a3e73ad28a77dbcc41ce9f89366aa2212a9a611aadbbd2d967bfbf",
+    "finance/api.py": "3a0476187aa930f3075e01dd5efae6e3f23375d1a2c214c7b06705752deb9766",
+    "finance/asgi.py": "fa8bba7a09da0d46cc623351f7a847e4b43acd15d13e997260903dac7ed8b1a8",
+    "finance/cases.py": "793baa1db2ebd40588f063f4f6b8f2ba174fbb7d4f87e21a89a68cf19978940f",
+    "finance/compute.py": "00f66d1e5bb7cb6b8ece7c555134dac73de263f7dbb17eace0887a587df30ff5",
+    "finance/contingency.py": "879676ac4b732fbc942ddd8263a096504187a6ee3c642698c9eea9bf677233c3",
+    "finance/contracts.py": "f4922a225c5ac998ddafda1b7688a2616309fff7cf5de151c2044dd79fbd06e8",
+    "finance/copilot.py": "e9002a85cac923e02f1a059b52957b0fd3cb52c55bc6f106cfd31f59a05e7b12",
+    "finance/digest_check.py": "c48870d54ee7c419bdc7066f2a67a0ef8875614c80b52f434d8865330cdc04ab",
+    "finance/domain.py": "8442abf7e12b908383527716937dc7a9c04770c1048160644ddd5e6127e6fb4c",
+    "finance/execution.py": "b61a05d81331cc953e796ad432e205619324249a68d4b58746617a90a97fb403",
+    "finance/gateway.py": "a8ce17739bd16b0459a0cedc10f64e839c31363b5a583326716546ac2c93a8c9",
+    "finance/health_answers.py": "98e49f4aec1688ac1a2982a2a2230d11e74698fefed4005a75a76281897e4207",
+    "finance/health_tasks.py": "e85c9cd9bc15d1316c08932c6997077d0112ac29e7f1c61d69d021fad1b89249",
+    "finance/hooks.py": "63919c71ea3acc90fb38091ef199a9fb484d088ede5a3517a8d4b4c17792f84e",
+    "finance/ingestion.py": "3e87b3e99fee2fe8ed4e2e3f57fa77f3d1c418ebf340fe308cf2ecbeddc13460",
+    "finance/llamacpp.py": "86e647ba8f7e5a855583f977664333858b247f51e8726aeb8fde8ca7b13f48de",
+    "finance/mapping.py": "d5ce1f147ffe2dc444bacd94e11e53653be17bca6a88fb2860be71d23699df98",
+    "finance/parser.py": "c01010d6ef2ab6607b13ce45aac73b35747404c3e0ad9c72836e696f758f5306",
+    "finance/planner.py": "266091e51475a1544545a0f98414d07d8cae262df2292af5405d3b67dafe9854",
+    "finance/postgres.py": "921b84ae711f561a57cc142c78f2ecf584d5932e1f4ebf9b5884e42592b509a2",
+    "finance/store.py": "7796a56086843a9d69d1efa4ac57607977eb5d223c3a128ca4f79522461081a1",
+    "finance/strata.py": "58dca09b05767bbdc4269de1c34a880abd6cfd17cb30eb24ead094703f5bf7f5",
+    "finance/validation.py": "7364a1bfd02086e9cfc13d3ac06f2bd42c6498d3920092ab11e3569a7c119d37",
+    "finance/worker.py": "78c4414ee81aa14fe5cc420bb76f3149c87c15c3d1638cbc9b44b76562f9925b",
+    "finance/workflows.py": "c5dcd7b15ea789da1f4926d718df157b9dca8d94a6d8fd8775889ce80197635a",
+    "finance/workspace.py": "dc9c4a411cc9ec6875f97ab890d99ba3193c72ea698b207260c3f53bc04c4256",
+    "sandbox/__init__.py": "52a40f81f4089bf7b4ad7090a849bbfb4f59970c38d17ec6a79f627472971d12",
+    "sandbox/server.py": "714e55c2ff8073b8a201fde38999c0bc379ec4041a8489306999474f1f3fab84",
+    "sandbox/world.py": "a843bda35e3cfc761bf7918cd8c8c31ebb04434bab65d217f3eb2aa5016577c4",
+    "contracts/agent-tools-v2.json": "2a25d7a05bf088f596eec70c39275cdce40b51f6281e0c21c904838542dd9712",
+    "contracts/business-health.schema.json": "d83ae46e469cb7800f1a527ff992a90c2f5ea600283c4d0151584e0cdae74043",
+    "contracts/domain-event.schema.json": "84f92ae2f2925c659506b417200e1bd5d1217332fb7ae1c4c3826e7968a31b16",
+    "contracts/execution-command.schema.json": "d31350896d80244f1c86eddc4682eea98b438629cdd37ffe9ed8009c3cfd0d82",
+    "contracts/payment-command.example.json": "ae4c04ab889bb178ac54d40d85bc226a62bb739f39b29937027530d4a4706d6b",
+    "contracts/payment-command.schema.json": "804281a9ba912097b8713ee931f716c95b7cec35ab965fdee865cbfecc8da753",
+    "contracts/plan-envelope.schema.json": "e636117adf6e30587a6f330f214589e855e5055040c4ade8d51342415319629c",
+    "contracts/tool-result.schema.json": "cab79006c3ff302b78d96ff63895f824afd1d97128106beed6322912ebb3cfb8"
+  },
+  "case_order_matches_registration": true,
+  "primary_outcomes_replaced": false,
+  "all120_review_hashes_match": true,
+  "evaluator_exit_code": 0,
+  "local_process_check": {
+    "checked_at": "2026-10-19T20:13:19.9461439Z",
+    "evaluator_processes": [],
+    "scope": "Read-only local Python process inventory; command lines and secrets omitted"
+  },
+  "postflight_same_digest": true,
+  "model_reached": 119,
+  "model_calls": 629,
+  "safety_failures": {},
+  "tools": 18,
+  "datasets": 29,
+  "git_diff_check": {
+    "exit_code": 2,
+    "output": "finance/agents.py:8: trailing whitespace.\n+    business_health,\nfinance/agents.py:169: trailing whitespace.\n+                fc = forecast(snap, scenario_set=scenario_set)\nfinance/agents.py:172: trailing whitespace.\n+                    \"forecast\": fc | {\"business_health\": business_health(snap, fc)},\nfinance/agents.py:200: trailing whitespace.\n+                result[\"business_health\"] = business_health(snap, result)\n",
+    "scope": "Global dirty tree retains pre-existing finance/agents.py whitespace; hash unchanged"
+  },
+  "iteration_tracked_diff_check": {
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "CLAUDE.md",
+      "docs/TECHNICAL_REPORT_RU.md",
+      "docs/CURRENT_STATE_RU.md",
+      "docs/OPEN_REGISTER.md",
+      "artifacts/quality-results.json"
+    ],
+    "exit_code": 0,
+    "output": ""
+  },
+  "changed_files": [
+    "scripts/release_challenge_scenarios.py",
+    "scripts/release_eval.py",
+    "tests/test_release_eval.py",
+    "analysis/release_report.py",
+    "docs/QWEN_RELEASE_120_20261019_RU.md",
+    "docs/QWEN_RELEASE_120_ANSWERS_20261019_RU.md",
+    "docs/TECHNICAL_REPORT_RU.md",
+    "docs/CURRENT_STATE_RU.md",
+    "docs/OPEN_REGISTER.md",
+    "CLAUDE.md",
+    "artifacts/quality-results.json"
+  ],
+  "checks": {
+    "target_tests": "5 PASS; captured in checkpoint-fix-checks.json",
+    "static": "9 PASS",
+    "report": "PASS",
+    "full_product_regression": "NOT_RUN this iteration",
+    "e2e": "NOT_RUN this iteration",
+    "postgresql": "NOT_RUN",
+    "pixel_ui": "NOT_RUN",
+    "live_approval_execution_lifecycle": "NOT_RUN"
+  },
+  "baseline_artifacts": [
+    {
+      "path": "artifacts\\strata-reasoning-none-74-20261017.json",
+      "sha256": "2b236695d0a1f7c3ffc083495fb98189db82e60ea814a8b052a17c631d019c08"
+    },
+    {
+      "path": "artifacts\\strata-reasoning-edge-paired-26-20261017.json",
+      "sha256": "97ec66d4d86bb81793063dad73e71a1323796a9f80efc3bd63dabde5d34b0e79"
+    }
+  ],
+  "limitations": [
+    "Automatic PASS is not prose correctness; semantic coverage is explicitly counted",
+    "Author-created new20 is not independent external holdout",
+    "Historical same-budget comparison is not concurrent randomized speed experiment",
+    "Historical alias/engine match, service instance digest differs after restart; exact weight equality unproved",
+    "Service metadata digest is not weight/license proof",
+    "No real payments; no LIVE owner-approval lifecycle or UI/PG test in this evaluation"
+  ],
+  "documentation_baseline_clarification": {
+    "at": "2026-10-19T20:18:18.939739+00:00",
+    "artifact": "artifacts\\release-eval-20261019\\baseline-clarification.json",
+    "historical_medium_pass": 92,
+    "current_none_pass": 88,
+    "current_medium": "NOT_RUN",
+    "primary_results_changed": false
+  }
+}

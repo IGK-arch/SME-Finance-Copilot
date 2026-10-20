@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-10-18T21:53:45.307652+00:00",
+  "scope": "Read-only public RPC; no wallet, no transaction sent",
+  "status": "VERIFIED_PUBLIC_TRANSACTION",
+  "chain_id": 11155111,
+  "transaction": "0x7ac42f1fccf4aa2ceb9554544a4e1493a256cc7c1f19de4bb1eb311d42e9d1ba",
+  "receipt_status": "0x1",
+  "block_number": 11941459,
+  "value_wei": 0,
+  "payload_bytes": 65,
+  "anchored_count": 72,
+  "matches_recorded_head": true,
+  "local_database_reverified": false
+}

@@ -1,0 +1,523 @@
+{
+  "at": "2026-10-19T21:40:44.895638+00:00",
+  "scope": "Read-only replay of frozen intent functions; no LIVE inference or production edits",
+  "intent_probes": {
+    "release_aging_role_en": {
+      "requirements": {
+        "details": [
+          {
+            "dataset": "obligations",
+            "external_id": "aging_ar_1"
+          },
+          {
+            "dataset": "obligations",
+            "external_id": "aging_ap_1"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      },
+      "intent": null,
+      "durable_tools": [
+        "get_financial_snapshot",
+        "get_platform_capabilities",
+        "calculate_business_metrics",
+        "list_business_records",
+        "search_documents",
+        "list_business_records",
+        "get_platform_capabilities"
+      ]
+    },
+    "release_aging_role_zh": {
+      "requirements": {
+        "details": [
+          {
+            "dataset": "obligations",
+            "external_id": "aging_ar_1"
+          },
+          {
+            "dataset": "obligations",
+            "external_id": "aging_ap_1"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      },
+      "intent": {
+        "language": "zh",
+        "required_sections": [
+          "aging",
+          "details",
+          "overview"
+        ],
+        "tasks": {
+          "details": [
+            {
+              "dataset": "obligations",
+              "external_id": "aging_ar_1"
+            },
+            {
+              "dataset": "obligations",
+              "external_id": "aging_ap_1"
+            }
+          ],
+          "document_titles": [],
+          "search": false,
+          "capabilities": false,
+          "scenario_count": 1,
+          "objective": null,
+          "calculation_detail": false
+        }
+      },
+      "durable_tools": [
+        "get_financial_snapshot",
+        "list_business_records",
+        "list_business_records",
+        "calculate_business_metrics",
+        "read_business_record",
+        "read_business_record"
+      ]
+    },
+    "release_shocks_role_en": {
+      "requirements": {
+        "details": [],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      },
+      "intent": {
+        "language": "en",
+        "required_sections": [
+          "overview"
+        ],
+        "tasks": {
+          "details": [],
+          "document_titles": [],
+          "search": false,
+          "capabilities": false,
+          "scenario_count": 1,
+          "objective": null,
+          "calculation_detail": false
+        }
+      },
+      "durable_tools": [
+        "get_financial_snapshot",
+        "get_platform_capabilities",
+        "calculate_business_metrics"
+      ]
+    },
+    "release_shocks_role_zh": {
+      "requirements": {
+        "details": [],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      },
+      "intent": {
+        "language": "zh",
+        "required_sections": [
+          "overview"
+        ],
+        "tasks": {
+          "details": [],
+          "document_titles": [],
+          "search": false,
+          "capabilities": false,
+          "scenario_count": 1,
+          "objective": null,
+          "calculation_detail": false
+        }
+      },
+      "durable_tools": [
+        "get_financial_snapshot",
+        "calculate_business_metrics"
+      ]
+    },
+    "release_cashflow_evidence_en": {
+      "requirements": {
+        "details": [
+          {
+            "dataset": "transactions",
+            "external_id": "window_4"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      },
+      "intent": {
+        "language": "en",
+        "required_sections": [
+          "details",
+          "limits",
+          "overview"
+        ],
+        "tasks": {
+          "details": [
+            {
+              "dataset": "transactions",
+              "external_id": "window_4"
+            }
+          ],
+          "document_titles": [],
+          "search": false,
+          "capabilities": false,
+          "scenario_count": 1,
+          "objective": null,
+          "calculation_detail": false
+        }
+      },
+      "durable_tools": [
+        "get_financial_snapshot",
+        "list_business_records",
+        "list_business_records",
+        "list_business_records",
+        "calculate_business_metrics",
+        "read_business_record"
+      ]
+    },
+    "release_cashflow_evidence_zh": {
+      "requirements": {
+        "details": [
+          {
+            "dataset": "obligations",
+            "external_id": "window_4"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      },
+      "intent": {
+        "language": "zh",
+        "required_sections": [
+          "details",
+          "limits",
+          "overview"
+        ],
+        "tasks": {
+          "details": [
+            {
+              "dataset": "obligations",
+              "external_id": "window_4"
+            }
+          ],
+          "document_titles": [],
+          "search": false,
+          "capabilities": false,
+          "scenario_count": 1,
+          "objective": null,
+          "calculation_detail": false
+        }
+      },
+      "durable_tools": [
+        "get_financial_snapshot",
+        "calculate_business_metrics",
+        "list_business_records",
+        "list_business_records",
+        "list_business_records",
+        "list_business_records",
+        "read_business_record",
+        "list_business_records",
+        "list_business_records",
+        "read_business_record",
+        "list_business_records",
+        "list_business_records",
+        "read_business_record",
+        "list_business_records",
+        "list_business_records",
+        "read_business_record",
+        "read_business_record",
+        "list_business_records",
+        "read_business_record",
+        "list_business_records",
+        "list_business_records",
+        "list_business_records",
+        "list_business_records",
+        "read_business_record"
+      ]
+    },
+    "release_revision_role_en": {
+      "requirements": {
+        "details": [
+          {
+            "dataset": "obligations",
+            "external_id": "customer_invoice"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      },
+      "intent": {
+        "language": "en",
+        "required_sections": [
+          "details",
+          "history",
+          "overview"
+        ],
+        "tasks": {
+          "details": [
+            {
+              "dataset": "obligations",
+              "external_id": "customer_invoice"
+            }
+          ],
+          "document_titles": [],
+          "search": false,
+          "capabilities": false,
+          "scenario_count": 1,
+          "objective": null,
+          "calculation_detail": false
+        }
+      },
+      "durable_tools": [
+        "get_financial_snapshot",
+        "list_business_records",
+        "list_business_records",
+        "get_platform_capabilities",
+        "calculate_business_metrics",
+        "read_business_record",
+        "read_business_record",
+        "read_business_record"
+      ]
+    },
+    "release_revision_role_zh": {
+      "requirements": {
+        "details": [
+          {
+            "dataset": "obligations",
+            "external_id": "customer_invoice"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      },
+      "intent": {
+        "language": "zh",
+        "required_sections": [
+          "details",
+          "overview"
+        ],
+        "tasks": {
+          "details": [
+            {
+              "dataset": "obligations",
+              "external_id": "customer_invoice"
+            }
+          ],
+          "document_titles": [],
+          "search": false,
+          "capabilities": false,
+          "scenario_count": 1,
+          "objective": null,
+          "calculation_detail": false
+        }
+      },
+      "durable_tools": [
+        "get_financial_snapshot",
+        "list_business_records",
+        "calculate_business_metrics",
+        "read_business_record",
+        "list_business_records"
+      ]
+    }
+  },
+  "output_truncations": [
+    {
+      "case_id": "release_aging_role_en",
+      "elapsed_seconds": 77.50299470000027,
+      "last_provider_measurement": {
+        "status": "RECEIVED",
+        "request_hash": "a6d6b261234e1dae2cd2e54c5b0ff4bcdcf6d1977afd069bc6c40cb5d5eead10",
+        "reasoning_effort_requested": "medium",
+        "metrics": {
+          "prompt_eval_count": 13769,
+          "eval_count": 2048,
+          "provider_usage": {
+            "prompt_tokens": 13769,
+            "completion_tokens": 2048,
+            "total_tokens": 15817
+          },
+          "done_reason": "length",
+          "measurement_source": "STRATA_RESPONSE_USAGE",
+          "reasoning_observed": true,
+          "reasoning_tokens": null
+        }
+      }
+    },
+    {
+      "case_id": "release_cashflow_evidence_zh",
+      "elapsed_seconds": 159.5181444000009,
+      "last_provider_measurement": {
+        "status": "RECEIVED",
+        "request_hash": "f26ad38b35a1c19b40768596c97407f207b29c8213aa668e8a71c3013f2bf7a1",
+        "reasoning_effort_requested": "medium",
+        "metrics": {
+          "prompt_eval_count": 6534,
+          "eval_count": 2048,
+          "provider_usage": {
+            "prompt_tokens": 6534,
+            "completion_tokens": 2048,
+            "total_tokens": 8582
+          },
+          "done_reason": "length",
+          "measurement_source": "STRATA_RESPONSE_USAGE",
+          "reasoning_observed": true,
+          "reasoning_tokens": null
+        }
+      }
+    },
+    {
+      "case_id": "release_revision_role_en",
+      "elapsed_seconds": 64.20937240000057,
+      "last_provider_measurement": {
+        "status": "RECEIVED",
+        "request_hash": "865849bfdabab100286981a09ec412c0117243865e16c6742b75a6d6ebb965e8",
+        "reasoning_effort_requested": "medium",
+        "metrics": {
+          "prompt_eval_count": 6480,
+          "eval_count": 2048,
+          "provider_usage": {
+            "prompt_tokens": 6480,
+            "completion_tokens": 2048,
+            "total_tokens": 8528
+          },
+          "done_reason": "length",
+          "measurement_source": "STRATA_RESPONSE_USAGE",
+          "reasoning_observed": true,
+          "reasoning_tokens": null
+        }
+      }
+    },
+    {
+      "case_id": "release_revision_role_zh",
+      "elapsed_seconds": 54.12644159999945,
+      "last_provider_measurement": {
+        "status": "RECEIVED",
+        "request_hash": "5ab1fa005521fbcf24708c8c09aef21117e31cc8e5042e244df2721ecc0a2ee6",
+        "reasoning_effort_requested": "medium",
+        "metrics": {
+          "prompt_eval_count": 5506,
+          "eval_count": 2048,
+          "provider_usage": {
+            "prompt_tokens": 5506,
+            "completion_tokens": 2048,
+            "total_tokens": 7554
+          },
+          "done_reason": "length",
+          "measurement_source": "STRATA_RESPONSE_USAGE",
+          "reasoning_observed": true,
+          "reasoning_tokens": null
+        }
+      }
+    }
+  ],
+  "delivered_answer_rejections": [
+    {
+      "case_id": "calculation_records",
+      "errors": [
+        "Use reference markers for all numbers, dates and identifiers. For a denied/missing record, omit numbers, dates and IDs that occur only in the user request or failed tool calls; say the requested date or specified record."
+      ],
+      "unbound_literals": [
+        "30",
+        "6315",
+        "7",
+        "90,000.00",
+        "30,000.00"
+      ]
+    },
+    {
+      "case_id": "invoice_details_ru",
+      "errors": [
+        "Use reference markers for all numbers, dates and identifiers. For a denied/missing record, omit numbers, dates and IDs that occur only in the user request or failed tool calls; say the requested date or specified record."
+      ],
+      "unbound_literals": [
+        "30"
+      ]
+    },
+    {
+      "case_id": "edge_ambiguous_decimal_zh",
+      "errors": [
+        "Use reference markers for all numbers, dates and identifiers. For a denied/missing record, omit numbers, dates and IDs that occur only in the user request or failed tool calls; say the requested date or specified record."
+      ],
+      "unbound_literals": [
+        "1,234"
+      ]
+    },
+    {
+      "case_id": "release_shocks_role_en",
+      "errors": [
+        "Tools closed; final text required"
+      ],
+      "unbound_literals": null
+    },
+    {
+      "case_id": "release_shocks_role_zh",
+      "errors": [
+        "Tools closed; final text required"
+      ],
+      "unbound_literals": null
+    }
+  ],
+  "safety_text_findings": [
+    "clarification_ru: unsolicited reserve-adjustment suggestion; no mutation; not detected by state-safety checks"
+  ],
+  "speed_percent_vs_none": {
+    "regression100_p50": -7.200475503099268,
+    "new20_p50": -30.798119289114943
+  },
+  "review_by_group_and_language": {
+    "regression100_en": {
+      "COMPLETE": 57,
+      "FAILED": 3,
+      "MINOR_ISSUE": 5,
+      "PARTIAL": 2
+    },
+    "regression100_zh": {
+      "COMPLETE": 24,
+      "MINOR_ISSUE": 3,
+      "PARTIAL": 3,
+      "FAILED": 3
+    },
+    "new20_en": {
+      "FAILED": 4,
+      "PARTIAL": 1,
+      "MINOR_ISSUE": 2,
+      "COMPLETE": 3
+    },
+    "new20_zh": {
+      "PARTIAL": 1,
+      "FAILED": 3,
+      "MINOR_ISSUE": 4,
+      "COMPLETE": 2
+    }
+  }
+}

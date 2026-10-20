@@ -1,0 +1,371 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Business health v1",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "analysis_version",
+    "snapshot_id",
+    "as_of",
+    "currency",
+    "net_working_position_minor",
+    "liquidity_buffer_minor",
+    "days_to_gap",
+    "payables_due_30d_minor",
+    "coverage_30d_bps",
+    "receivables_aging",
+    "payables_aging",
+    "customer_concentration",
+    "supplier_concentration",
+    "settled_window_days",
+    "settled_transaction_count",
+    "settled_inflow_minor",
+    "settled_outflow_minor",
+    "evidence_refs",
+    "pnl",
+    "label",
+    "coverage_30d_status",
+    "days_to_gap_status",
+    "forecast_scope",
+    "quality_flags",
+    "metric_definitions"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "business-health-v1"
+    },
+    "analysis_version": {
+      "const": "analysis-v2"
+    },
+    "snapshot_id": {
+      "type": "string"
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "currency": {
+      "const": "CNY"
+    },
+    "net_working_position_minor": {
+      "type": "integer"
+    },
+    "liquidity_buffer_minor": {
+      "type": "integer"
+    },
+    "days_to_gap": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "payables_due_30d_minor": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "coverage_30d_bps": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "receivables_aging": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "bucket",
+          "outstanding_minor"
+        ],
+        "properties": {
+          "bucket": {
+            "enum": [
+              "overdue",
+              "d0_30",
+              "d31_60",
+              "d61_90",
+              "d90_plus"
+            ]
+          },
+          "outstanding_minor": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "payables_aging": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "bucket",
+          "outstanding_minor"
+        ],
+        "properties": {
+          "bucket": {
+            "enum": [
+              "overdue",
+              "d0_30",
+              "d31_60",
+              "d61_90",
+              "d90_plus"
+            ]
+          },
+          "outstanding_minor": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "customer_concentration": {
+      "type": "object",
+      "required": [
+        "total_minor",
+        "parties",
+        "top3_amount_minor",
+        "top3_share_bps",
+        "top"
+      ],
+      "properties": {
+        "total_minor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "parties": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "top3_amount_minor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "top3_share_bps": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "top": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "counterparty",
+              "amount_minor",
+              "share_bps"
+            ],
+            "properties": {
+              "counterparty": {
+                "type": "string"
+              },
+              "amount_minor": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "share_bps": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "supplier_concentration": {
+      "type": "object",
+      "required": [
+        "total_minor",
+        "parties",
+        "top3_amount_minor",
+        "top3_share_bps",
+        "top"
+      ],
+      "properties": {
+        "total_minor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "parties": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "top3_amount_minor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "top3_share_bps": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "top": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "counterparty",
+              "amount_minor",
+              "share_bps"
+            ],
+            "properties": {
+              "counterparty": {
+                "type": "string"
+              },
+              "amount_minor": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "share_bps": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "settled_window_days": {
+      "const": 30
+    },
+    "settled_transaction_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "settled_inflow_minor": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "settled_outflow_minor": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pnl": {
+      "type": "object",
+      "required": [
+        "status",
+        "reason"
+      ],
+      "properties": {
+        "status": {
+          "const": "INSUFFICIENT_DATA"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "label": {
+      "type": "string"
+    },
+    "coverage_30d_status": {
+      "enum": [
+        "DEFINED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "days_to_gap_status": {
+      "enum": [
+        "PROJECTED_GAP",
+        "NO_GAP_IN_FORECAST"
+      ]
+    },
+    "forecast_scope": {
+      "type": "object",
+      "required": [
+        "scenario_id",
+        "delay_days",
+        "receipt_bps",
+        "computed_through",
+        "label"
+      ],
+      "properties": {
+        "scenario_id": {
+          "type": "string"
+        },
+        "delay_days": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receipt_bps": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "computed_through": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "quality_flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metric_definitions": {
+      "type": "object",
+      "required": [
+        "net_working_position_minor",
+        "liquidity_buffer_minor",
+        "coverage_30d_bps",
+        "aging",
+        "concentration",
+        "settled_window",
+        "days_to_gap"
+      ],
+      "properties": {
+        "net_working_position_minor": {
+          "type": "string"
+        },
+        "liquidity_buffer_minor": {
+          "type": "string"
+        },
+        "coverage_30d_bps": {
+          "type": "string"
+        },
+        "aging": {
+          "type": "string"
+        },
+        "concentration": {
+          "type": "string"
+        },
+        "settled_window": {
+          "type": "string"
+        },
+        "days_to_gap": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

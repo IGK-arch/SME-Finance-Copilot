@@ -16,10 +16,12 @@ owner approval → separate execution worker → independent sandbox → reconci
 
 Version **0.3.0** has six English sections: Home, Money, Plans, Documents, Activity
 and Settings, with Copilot as a context panel. The previous ten-section cabinet
-remains at `/legacy`. Chinese text and CNY are supported. Financial values come
+is available at `/legacy` only with explicit development opt-in (disabled by default).
+Chinese text and CNY are supported. Financial values come
 from backend calculations, not frontend fixtures or localStorage.
 
-Read [CLAUDE.md](CLAUDE.md) first for navigation and machine-specific instructions.
+Reviewers can skip [CLAUDE.md](CLAUDE.md) and [AGENTS.md](AGENTS.md): they hold navigation
+and machine-specific notes for coding assistants on the owner's development machine.
 The [current Russian overview](docs/CURRENT_STATE_RU.md) records the v0.3 changes,
 verification scope and remaining work.
 
@@ -47,7 +49,7 @@ an **exact-approval dialog** per action, **Activity** (observed operation timeli
 (scenarios and a what-if for one receivable), **Documents** (CSV/XLSX import with column mapping,
 preview and review) and **Settings**. Copilot is a context panel over the real workflow graph.
 Sign-in creates a server session cookie, so a reload keeps you signed in. The previous cabinet
-remains at `/legacy`. See [the v0.3 plan](docs/V03_PLAN.md),
+is disabled by default; see the explicit opt-in below. See [the v0.3 plan](docs/V03_PLAN.md),
 [V03 acceptance](docs/ACCEPTANCE_MATRIX_V03.md) and [ADR 0005](docs/adr/0005-v03-owner-main-path.md).
 Version 0.3.0 (14 Oct 2026) adds a UX pass: loading/error states, a bottom tab bar on phones and
 tablets, charts sized to the screen and the owner's logo; layout checked at 390/768/1366/1440 px.
@@ -60,10 +62,9 @@ tablets, charts sized to the screen and the owner's logo; layout checked at 390/
 ## Start or resume
 
 Use CPython 3.11+ (Windows CPython 3.11.9 was tested; MSYS Python cannot use these
-Windows OR-Tools wheels). The setup commands below are for a **new demo workspace**.
-On this machine the environment already exists: follow CLAUDE.md and resume the
-intended workspace. The owner's `.runtime/pg-workspace` must not be seeded or reset.
-From this project directory:
+Windows OR-Tools wheels). The setup commands below create a **new demo workspace** with synthetic data.
+On the owner's development machine the workspace already exists and must not be
+reseeded (see CLAUDE.md). From the repository root:
 
 ```powershell
 py -3.11 -m venv .venv
@@ -100,7 +101,7 @@ workspace. Ctrl+C stops API, worker and simulator; files remain. No reset/delete
 command is run automatically. Do not run two runtimes on the same workspace.
 
 For the real PostgreSQL backend, follow [the runbook](docs/runbooks/postgres.md).
-The current installed cluster and `.runtime/pg-workspace` are already provisioned:
+Once the cluster and its workspace are provisioned as the runbook describes:
 
 ```powershell
 .venv\Scripts\python.exe -m scripts.postgres status
@@ -163,11 +164,12 @@ are SKIPPED. Tests need loopback networking. Rehearsal uses pinned local wheels 
 cabinet. Recorded browser evidence counts only while its web hashes match.
 `make e2e` checks recorded evidence and does not launch a new browser.
 
-Release full regression: **177 PASSED / 4 SKIPPED** (PostgreSQL unavailable in that
-shell), original acceptance **96 PASSED / 4 NOT_RUN**. The 14 Oct Codex refresh
-reran the product E2E: **21/21 PASSED**. Focused v0.3 tests: **11 PASSED / 1 FAILED**
-(Windows temporary database cleanup); an isolated rerun passed. The failure is
-retained, not declared fixed. See [current status](docs/IMPLEMENTATION_STATUS.md).
+Latest full run (19 Oct 2026, Windows, CPython 3.11.9): regression **366 PASSED / 4 SKIPPED**
+(the four PostgreSQL integration tests; no test database was configured), HTTP product E2E
+**23/23 PASSED** (MOCK model, sandbox), static checks **9/9 PASSED**, original acceptance
+T001–T100 **95 PASSED / 5 NOT_RUN** (T023, T031, T032, T094, T097; reasons in
+[the report](docs/BUSINESS_HEALTH_MIXED_FIX_20261019_RU.md)). Raw results:
+`artifacts/health-challenge-fix-20261019/`. Counters in older documents are historical.
 
 [Actual status](docs/IMPLEMENTATION_STATUS.md) · [I/T/W matrix](docs/ACCEPTANCE_MATRIX.md)
 · [v0.3 release regression](artifacts/v03/regression-v03.json) · [results](docs/RESULTS.md)

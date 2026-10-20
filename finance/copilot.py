@@ -125,6 +125,63 @@ def resume_background(
     return {"workflow_id": run_id, "phase": "RESUMING"}
 
 
+def _health_rows(health: Json) -> list[Json]:
+    def percent(bps: int | None) -> str:
+        if bps is None:
+            return "Not applicable (no observed balance)"
+        return f"{'-' if bps < 0 else ''}{abs(bps) // 100}.{abs(bps) % 100:02d}%"
+
+    rows = [
+        {"name": name, "value": money(health[key])}
+        for name, key in (
+            ("Net working position (not profit)", "net_working_position_minor"),
+            ("Projected liquidity buffer above reserve", "liquidity_buffer_minor"),
+            ("Payables due in thirty-day bucket, including overdue", "payables_due_30d_minor"),
+            ("Observed settled inflow", "settled_inflow_minor"),
+            ("Observed settled outflow", "settled_outflow_minor"),
+        )
+    ]
+    rows.extend(
+        [
+            {
+                "name": "Days to projected reserve breach",
+                "value": {
+                    "display": str(health["days_to_gap"])
+                    if health["days_to_gap"] is not None
+                    else "No gap in this forecast"
+                },
+            },
+            {
+                "name": "Cash coverage of due payables",
+                "value": {"display": percent(health["coverage_30d_bps"])},
+            },
+        ]
+    )
+    for kind in ("receivables", "payables"):
+        for bucket in health[kind + "_aging"]:
+            rows.append(
+                {
+                    "name": kind + " · " + bucket["bucket"],
+                    "value": money(bucket["outstanding_minor"]),
+                }
+            )
+    for kind in ("customer", "supplier"):
+        for entry in health[kind + "_concentration"]["top"]:
+            rows.append(
+                {
+                    "name": ("payee" if kind == "supplier" else kind)
+                    + " · "
+                    + entry["counterparty"],
+                    "value": {
+                        "display": money(entry["amount_minor"])["display"]
+                        + " · "
+                        + percent(entry["share_bps"])
+                    },
+                }
+            )
+    return rows
+
+
 def _card(name: str, args: Json, out: Json) -> Json | None:
     if out.get("status") != "OK":
         error = out.get("error") or {}
@@ -147,15 +204,23 @@ def _card(name: str, args: Json, out: Json) -> Json | None:
             "note": "Opening balance plus settled transactions; invoices and expected receipts excluded.",
         }
     if name == "calculate_business_metrics":
+        health = r.get("business_health")
         return {
             "type": "metrics",
-            "title": "Business metrics",
+            "title": "Business health" if health else "Business metrics",
             "snapshot_id": out["snapshot_id"],
             "evidence": refs,
             "rows": [
                 {"name": k.replace("_minor", "").replace("_", " "), "value": money(v["value"])}
                 for k, v in r["metrics"].items()
-            ],
+            ]
+            + (_health_rows(health) if health else []),
+            "business_health": health,
+            "note": "Observed facts and descriptive ratios; not profit, a credit score or permission to pay. Cashflow window: "
+            + str(health["settled_window_days"])
+            + " days."
+            if health
+            else None,
         }
     if name in {"forecast_cashflow"}:
         return {

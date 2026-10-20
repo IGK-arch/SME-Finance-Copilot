@@ -1,0 +1,93 @@
+{
+  "at": "2026-10-18T21:42:53.673292+00:00",
+  "secrets": {
+    "status": "PASSED",
+    "findings": []
+  },
+  "dependencies": {
+    "status": "PASSED",
+    "checked": 80,
+    "vulnerable": [],
+    "source": "osv.dev"
+  },
+  "history": {
+    "status": "FAILED",
+    "findings": [
+      {
+        "commit": "d7d4930",
+        "file": "artifacts/multimodel-interruption-audit-20261017.json",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d7d4930",
+        "file": "artifacts/multimodel-ssh-handshake-20261017-215451.json",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d7d4930",
+        "file": "artifacts/multimodel-ssh-recheck-20261017-214824.json",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d7d4930",
+        "file": "docs/MULTIMODEL_100_RUN_RU.md",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "7d0eac9",
+        "file": "artifacts/strata-resume-host-verification-20261016.json",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d785b8d",
+        "file": "CLAUDE.md",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d785b8d",
+        "file": "artifacts/quality-v5-enzh-status-20261016.json",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d785b8d",
+        "file": "artifacts/strata-readiness-20261015.json",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d785b8d",
+        "file": "artifacts/strata-resume-readiness-20261015.json",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d785b8d",
+        "file": "docs/CONTINUATION.md",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d785b8d",
+        "file": "docs/KNOWN_LIMITATIONS.md",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d785b8d",
+        "file": "docs/STRATA_FIXES_20261015_RU.md",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d785b8d",
+        "file": "docs/STRATA_QUALITY_V5_STATUS_RU.md",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d785b8d",
+        "file": "docs/TECHNICAL_REPORT_RU.md",
+        "rule": "public_ipv4"
+      },
+      {
+        "commit": "d785b8d",
+        "file": "docs/runbooks/strata.md",
+        "rule": "public_ipv4"
+      }
+    ]
+  }
+}

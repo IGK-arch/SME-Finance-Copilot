@@ -1,5 +1,67 @@
 # SME Finance Copilot текущее состояние версии 0.3.0
 
+<!-- MEDIUM-120-20261020-START -->
+## 20 октября: завершён сопоставимый Qwen medium, 100 + 20 EN/ZH
+
+**Текущий medium: 89/100 + 7/20 strict PASS; последний none: 88/100 + 5/20; исторический medium: 92/100.** На основных100: p50/p95 **32,787/56,647с**, на дополнительных20 **46,804/77,503с**; против none медиана ниже на7,2%/30,8%. 379 вызовов вместо629, но четыре новых `MODEL_OUTPUT_TRUNCATED` с2048 выходными токенами; максимум159,518с. Один ожидаемый AUDITOR `POLICY_DENIED` до модели сохранён как FAIL, сетевых MODEL_UNAVAILABLE нет.
+
+Просмотрены все120 ответов и traces. Основные100: **81 COMPLETE / 8 MINOR / 5 PARTIAL / 6 FAILED**, одновременно strict+COMPLETE **78/100** (none74). Дополнительные20: **5 COMPLETE / 6 MINOR / 2 PARTIAL / 7 FAILED**, одновременно strict+COMPLETE **3/20** (none1). PASS не доказывает смысл всей прозы. Reasoning не устранил пропуски capabilities/двух сценариев/истории, неверный выбор obligations для transaction, полные чтения и выводы из пустого поиска; найдено также текстовое предложение изменить резерв после INFEASIBLE, без фактической модификации политики.
+
+Один COMPLETED сегмент,120 уникальных первичных исходов, все120 review hashes проверены; сохранены ошибки без замены повтором. С последним none совпадают production/cases/system/tools/budgets и service instance; отличается только режим и явный параметр runner. **18/18 tools,29/29 datasets**, все записанные state-safety checks пройдены, код approvals/authorization/tenant isolation/reserves/reconciliation/no-fallback неизменен. Автоматические state checks не покрывают все опасные рекомендации в тексте.
+
+Свежие проверки: **7 targeted PASS; static9/9; report lint/format/types PASS; final report checks PASS; postflight PREFLIGHT_READY той же Strata, evaluator exit0/PID отсутствуют**. Полная регрессия/E2E/PG/UI/LIVE финансовый lifecycle в этой итерации NOT_RUN;366PASS/4PG SKIP и23MOCK E2E — прежние результаты. Рабочий кабинет не перезапускался и его reasoning не переключался. Новые20 — повтор уже известного набора, не внешний holdout. **OPEN-12 и submission HOLD сохраняются.**
+
+[Полный разбор и сравнение с92/100](QWEN_MEDIUM_120_20261020_RU.md), [все120ответов](QWEN_MEDIUM_120_ANSWERS_20261020_RU.md), [данные](../artifacts/release-medium-120-20261019/summary.json), [диагностика](../artifacts/release-medium-120-20261019/diagnostics.json), [финальный аудит](../artifacts/release-medium-120-20261019/final-audit.json). Изменены только runner/tests/report/docs/artifacts; production и пользовательские правки сохранены. Нижеследующие блоки описывают предыдущие этапы.
+<!-- MEDIUM-120-20261020-END -->
+
+<!-- RELEASE-120-20261019-START -->
+**Сопоставление режимов:** прежние **92/100 относятся к reasoning=medium**, прежние 87/100 и текущие 88/100 — к **reasoning=none**. На момент этого предыдущего этапа medium на текущем коде был NOT_RUN; завершённый повтор описан в блоке20октября выше. Сравнение 92→88 не изолирует влияние кода; в последнем этапе сохранён none из Business health серий. См. [сопоставление исходов](../artifacts/release-eval-20261019/baseline-clarification.json).
+
+**Последняя проверка, 19 октября 2026: Qwen, 100 прежних + 20 новых сложных EN/ZH — все 120 исходов получены.** Последний production-код заморожен, выбранная Strata `qwen3.8-flash-next-iq3_xxs`, reasoning none, прежние бюджеты/оценщики. **88/100 strict PASS** на старом наборе (было 87), **5/20** на новых комбинациях; EN60/67 + 3/10, ZH28/33 + 2/10. p50/p95: **35,331/77,573 с** для 100, **67,634/90,032 с** для новых 20. 629 модельных вызовов; 119 задач дошли до модели, одна AUDITOR POLICY_DENIED до модели.
+
+**Все 120 ответов просмотрены по смыслу.** Старые100: 78 COMPLETE / 7 MINOR / 5 PARTIAL / 10 FAILED, одновременно strict PASS + COMPLETE **74/100**. Новые20: 3 COMPLETE / 3 MINOR / 6 PARTIAL / 8 FAILED, одновременно strict PASS + COMPLETE **1/20**. Не приравнивать автоматический PASS или workflow COMPLETE к правильности всей прозы. Новые задачи выявили пропуски capabilities/history/scenarios, ошибочный выбор obligations вместо transactions, ранний HEALTH_EVIDENCE_COMPLETE, путаницу поля/значения и процедур, placeholder уточнения и неподтверждённые выводы из пустого поиска. Некоторые содержательно верные ответы не проходят узкий source-ID критерий; исходные FAIL сохранены.
+
+Охват **18/18 tools, 29/29 datasets**; нарушений записанных safety assertions нет. Exact approvals, tenant isolation, числовая защита, reserves, preconditions, idempotency, reconciliation и no fallback сохранены. Production-код не менялся; добавлены только сценарии/runner/report/tests/docs. **5 целевых PASS, static9/9 и отдельные проверки генератора PASS**. Full regression/E2E/PG/UI и LIVE payment lifecycle в этой итерации NOT_RUN; прошлые 366 PASS / 4 PG SKIP и E2E23 MOCK остаются историческими. Разрывы runner сохранены отдельно; 2+65+53 непересекающихся первичных исхода, финальный сегмент COMPLETED, evaluator exit0; postflight подтвердил ту же выбранную Strata.
+
+[Полный разбор, скорость, методика, ограничения и P0/P1/P2](QWEN_RELEASE_120_20261019_RU.md), [все ответы](QWEN_RELEASE_120_ANSWERS_20261019_RU.md), [данные](../artifacts/release-eval-20261019/summary.json). Новые20 — авторские комбинации, не независимый внешний holdout. Runtime alias/service digest не доказывает идентичность или лицензию весов. **OPEN-12 и submission HOLD остаются.** Блоки ниже — история, включая результаты на знакомых health-наборах.
+<!-- RELEASE-120-20261019-END -->
+
+<!-- HEALTH-MIXED-FIX-20261019-START -->
+**19 октября 2026: исправлены смешанные Business health задачи, повторены те же 20 EN/ZH на выбранной Qwen.** Финальный v3: **19/20 strict PASS**, просмотр всех ответов — **19/20 COMPLETE**, совместный успех **19/20**; исходный challenge 6/20 strict и 5/20 joint сохранён. p50 **38.606 с**, p95 **47.221 с**, **85 model calls**, прежние cases/grader/budget/model digest. Типизированный `health-answer-v2` требует каждую часть задачи: обе гипотезы, полные записи/документы, поиск/права, текущую оценку до MIN_COST-плана. Финансовые поля, сущности и snapshot IDs связаны с источниками; произвольная проза модели не считается доказанной.
+
+Первичный MODEL_UNAVAILABLE при разрыве моста сохранён. Отдельный recovery: **PASSED / COMPLETE**; успешных уникальных случаев с учётом отдельного повтора **20/20**, первичный результат остаётся 19/20. Проверки финального кода: **38 целевых PASS, регрессия 366 PASS / 4 PG SKIP, E2E 23/23 MOCK, static 9/9**, T001–T100: 95 PASS / 5 NOT_RUN. Защиты и точные OWNER approvals сохранены, LIVE финансовые записи/facts/company/world неизменны, утечек в recorded checks нет. Нет нового PG, pixel UI, LIVE100/500 или LIVE-платёжного цикла. Кабинет не перезапускался. Это development suite, не независимый holdout; OPEN-12 остаётся для новых формулировок, общего workflow и произвольной интерпретации документов. Общий submission HOLD по release/access/PDF не снят.
+
+[Подробный разбор, файлы, команды и ограничения](BUSINESS_HEALTH_MIXED_FIX_20261019_RU.md), [все ответы](BUSINESS_HEALTH_MIXED_FIX_ANSWERS_20261019_RU.md). Артефакты `artifacts/health-challenge-fix-20261019/`, финал `health-challenge-fix-20261019-v3-combined.json`, `summary.json`, `narrative-review.json`, `final-audit.json`. Прежние блоки ниже — история, не текущий итог.
+<!-- HEALTH-MIXED-FIX-20261019-END -->
+
+<!-- HEALTH-CHALLENGE-20261019-START -->
+**19 октября 2026: новая проверка сложных Business health запросов завершена.** Та же Qwen, прежний production-код и бюджет; новые 10 EN + 10 ZH: **6 auto PASS / 14 FAIL**, просмотр всех ответов — **5 COMPLETE / 5 PARTIAL / 10 FAILED**. Предыдущие 20/20 не распространяются на эти новые смешанные задачи. [Разбор](BUSINESS_HEALTH_CHALLENGE_20261019_RU.md), [все ответы](BUSINESS_HEALTH_CHALLENGE_ANSWERS_20261019_RU.md).
+
+Не закрыты: шесть numeric-format refusals, ошибка tool ID/arguments, три неверных доставленных объяснения и пять пропусков частей задачи. Typed health может закрыть tools после первого what-if или health-обзора и пропустить второй сценарий, план, поиск или права. Значения/ID существуют, но общий текст всё ещё путает их смысл. OPEN-12 остаётся P0; готовность подачи HOLD. Подтверждения и защита не ослаблены, финансовое состояние/песочница неизменны, утечек в записанных проверках нет.
+
+Проверено заново: offline fixtures/grader **5/5 PASS**, типы/lint/format новых файлов PASS, LIVE20/review20. p50 всех60.707с/p9584.164с, 119 обращений. Production не менялся; полная регрессия/E2E/PG/UI/LIVE100/500 не повторялись. Предыдущие счётчики ниже являются историческими. Исправления новых проблем в рамках этой оценки не вносились.
+<!-- HEALTH-CHALLENGE-20261019-END -->
+
+<!-- HEALTH-ANSWER-FIX-20261019-START -->
+**19 октября 2026: девять выявленных health-исходов исправлены; повтор на нашей Qwen завершён.** Те же 20 EN/ZH: **20 PASS, 20 смысловых COMPLETE** после просмотра всех ответов/traces (прежде 14 PASS / 6 FAIL; 11 COMPLETE / 2 PARTIAL / 7 FAILED). `health-answer-v1` связывает labels, values, IDs, null/status/scope на сервере; модель выбирает инструменты и разделы. Это проверка системы с типизированным ответом, не свободной прозы Qwen. [Отчёт](BUSINESS_HEALTH_FIX_20261019_RU.md), [все ответы](BUSINESS_HEALTH_FIX_ANSWERS_20261019_RU.md).
+
+Проверки: **16 целевых PASS, 344 PASS / 4 PG SKIP регрессии, E2E 23/23 MOCK, static 9/9**. T001–T100 95 PASS / 5 NOT_RUN. p50 полного случая **24.135 с**, p95 **51.928 с**; модельные обращения 74 против прежних 135. Cases/бюджет/grader неизменны, confirmations и защита сверки K15 сохранены. Код — рабочий патч поверх d3764f0.
+
+OPEN-12 остаётся для отдельного holdout, перефразировок и задач вне ограниченного EN/ZH health-рендерера. LIVE100/500, PostgreSQL, pixel UI и LIVE платёжный lifecycle не повторены. Работающий кабинет не перезапускался. Подача остаётся HOLD по release/access/PDF вопросам. Все прежние исходы ниже сохранены как история; текущие числа — в этом блоке.
+<!-- HEALTH-ANSWER-FIX-20261019-END -->
+
+<!-- BUSINESS-HEALTH-20261019-START -->
+**19 октября 2026: интеграция Business health выполнена.** Метрики здоровья доступны через metrics/forecast/what-if, capabilities, сохранённые расчёты и карточку агента. Общий расчёт с кабинетом, точные minor units/bps, явные null и границы сценария. [Полный отчёт](BUSINESS_HEALTH_AGENT_20261019_RU.md).
+
+Проверки: **17/17 целевых, 328 PASS / 4 PG SKIP регрессии, E2E 23/23 MOCK, static 9/9**. T001–T100: 95 PASS / 5 NOT_RUN. На выбранной Qwen завершены 20 EN/ZH: **14 авто PASS / 6 FAIL**; просмотр всех ответов — **11 COMPLETE / 2 PARTIAL / 7 FAILED**. p50 всех 62.361 с, p95 84.247 с. Tool values и safety checks прошли; свободная проза всё ещё ошибается в формате ссылок и смысле полей/версий. [Ответы и ошибки](BUSINESS_HEALTH_ANSWERS_20261019_RU.md).
+
+AUD-05 / OPEN-11 закрыт для tools; OPEN-12 фиксирует качество ответа. Подтверждения и защита сверки K15 сохранены, real data/payments не использованы. Свежий LIVE payment lifecycle, PostgreSQL и pixel UI не проверены. Подача остаётся HOLD; прежние release/access/PDF вопросы сохраняются. Ниже — исторические checkpoints, а не новые результаты текущего этапа.
+<!-- BUSINESS-HEALTH-20261019-END -->
+
+<!-- SUBMISSION-AUDIT-20261019-START -->
+**19 октября 2026 (Москва): K15/AUD-01 исправлен для synthetic sandbox.** Патч поверх d3764f0 проверяет получателя, назначение, сумму и идентификаторы до SETTLED. Расхождение сохраняется после перезапуска, удерживает резерв и блокирует sends/resume даже при Δ0. [Подробности и ограничения](SETTLEMENT_FIX_20261019_RU.md). Свежие проверки: **311 PASS / 4 PostgreSQL SKIP**, 15/15 целевых, E2E 23/23 MOCK, golden 5/5 и Δ0, static 9/9; T001–T100 95 PASS / 5 NOT_RUN. Автоматического разрешения споров и исправления исторических БД нет. Подтверждения и выбранная Qwen сохранены, LIVE не запускался. Общая готовность к подаче остаётся HOLD по другим пунктам [аудита](PRE_SUBMISSION_AUDIT_RU.md): качество health-ответов, release/access, [правки презентации](submission/PITCH_REVIEW_20261019.md). Исторические модельные результаты ниже не переизмерялись.
+<!-- SUBMISSION-AUDIT-20261019-END -->
+
 <!-- MULTIMODEL-100-START -->
 **Решение пользователя после сравнения:** остаёмся на прежней крупной Qwen в Strata,
 runtime ID `qwen3.8-flash-next-iq3_xxs`. Модели бенчмарка её не заменяют.

@@ -1,0 +1,56 @@
+[
+  {
+    "command": [
+      "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+      "-m",
+      "mypy",
+      "scripts/health_challenge_scenarios.py",
+      "scripts/health_challenge_eval.py",
+      "tests/test_health_challenge_eval.py",
+      "analysis/health_challenge_report.py",
+      "--check-untyped-defs"
+    ],
+    "exit_code": 0,
+    "output": "Success: no issues found in 4 source files\n"
+  },
+  {
+    "command": [
+      "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "scripts/health_challenge_scenarios.py",
+      "scripts/health_challenge_eval.py",
+      "tests/test_health_challenge_eval.py",
+      "analysis/health_challenge_report.py"
+    ],
+    "exit_code": 0,
+    "output": "All checks passed!\n"
+  },
+  {
+    "command": [
+      "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "format",
+      "--check",
+      "scripts/health_challenge_scenarios.py",
+      "scripts/health_challenge_eval.py",
+      "tests/test_health_challenge_eval.py",
+      "analysis/health_challenge_report.py"
+    ],
+    "exit_code": 0,
+    "output": "4 files already formatted\n"
+  },
+  {
+    "command": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "output": ""
+  }
+]

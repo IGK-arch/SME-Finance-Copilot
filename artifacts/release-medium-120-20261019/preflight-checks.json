@@ -1,0 +1,60 @@
+{
+  "at": "2026-10-19T20:22:08.598182+00:00",
+  "checks": [
+    {
+      "name": "format",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "scripts/release_eval.py",
+        "tests/test_release_eval.py"
+      ],
+      "exit_code": 0,
+      "output": "2 files left unchanged\n"
+    },
+    {
+      "name": "target_tests",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "tests.test_release_eval",
+        "-v"
+      ],
+      "exit_code": 0,
+      "output": "PREREGISTERED 100 regression + 20 new EN/ZH; no model requests\nPREREGISTERED 100 regression + 20 new EN/ZH; no model requests\ntest_checkpoint_does_not_hide_persistent_storage_failure (tests.test_release_eval.ReleaseEvalTests.test_checkpoint_does_not_hide_persistent_storage_failure) ... ok\ntest_checkpoint_retries_temporary_windows_file_lock (tests.test_release_eval.ReleaseEvalTests.test_checkpoint_retries_temporary_windows_file_lock) ... ok\ntest_empty_answers_fail_even_with_all_safety_true (tests.test_release_eval.ReleaseEvalTests.test_empty_answers_fail_even_with_all_safety_true) ... ok\ntest_fixtures_have_observable_expected_evidence (tests.test_release_eval.ReleaseEvalTests.test_fixtures_have_observable_expected_evidence) ... ok\ntest_new_prompts_balanced_unique_and_separate (tests.test_release_eval.ReleaseEvalTests.test_new_prompts_balanced_unique_and_separate) ... ok\ntest_prepare_medium_changes_only_reasoning_not_budget_or_cases (tests.test_release_eval.ReleaseEvalTests.test_prepare_medium_changes_only_reasoning_not_budget_or_cases) ... ok\ntest_reasoning_must_be_explicit (tests.test_release_eval.ReleaseEvalTests.test_reasoning_must_be_explicit) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 9.217s\n\nOK\n"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "scripts/release_eval.py",
+        "tests/test_release_eval.py",
+        "--select",
+        "E9,F63,F7,F82,F401,F841"
+      ],
+      "exit_code": 0,
+      "output": "All checks passed!\n"
+    },
+    {
+      "name": "types",
+      "command": [
+        "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "scripts/release_eval.py",
+        "tests/test_release_eval.py",
+        "--check-untyped-defs"
+      ],
+      "exit_code": 0,
+      "output": "Success: no issues found in 2 source files\n"
+    }
+  ]
+}

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 
 from finance.compute import (
+    business_health,
     catalog,
     eligibility,
     financing,
@@ -165,9 +166,10 @@ class ToolRegistry:
                         "calibration_status": "UNCALIBRATED",
                     }
                 ]
+                fc = forecast(snap, scenario_set=scenario_set)
                 result = {
                     "label": "SCENARIO ONLY; actual facts unchanged; hypothetical plan is not registered for execution",
-                    "forecast": forecast(snap, scenario_set=scenario_set),
+                    "forecast": fc | {"business_health": business_health(snap, fc)},
                     "hypothetical_plan": solve(snap, "MIN_COST", scenario_set=scenario_set),
                 }
             elif name == "propose_supplier_extension":
@@ -195,6 +197,7 @@ class ToolRegistry:
                 if snap is None:
                     raise FinanceError("INVALID_TOOL_ARGUMENTS", "Snapshot required")
                 result = forecast(snap)
+                result["business_health"] = business_health(snap, result)
             elif name == "screen_financing_products":
                 if snap is None:
                     raise FinanceError("INVALID_TOOL_ARGUMENTS", "Snapshot required")

@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-19T10:18:36.117784+00:00",
+  "status": "PASSED",
+  "unique_cases": 20,
+  "reviewed_cases": 20,
+  "frozen_sources": 81,
+  "unchanged_guard_files": 9,
+  "preserved_prior_artifacts": 55,
+  "same_cases_budget_grader_identity": true,
+  "safety": {
+    "financial_records_unchanged": true,
+    "facts_unchanged": true,
+    "company_controls_unchanged": true,
+    "world_unchanged_during_agent": true,
+    "no_secrets": true,
+    "only_allowlisted_calls": true,
+    "hidden_markers_absent": true
+  }
+}
