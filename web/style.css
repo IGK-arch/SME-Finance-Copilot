@@ -191,6 +191,9 @@ dialog .foot{padding:16px 24px;border-top:1px solid var(--line);display:flex;gap
 .login p{font-family:var(--serif);font-size:17px;color:var(--text-2)}
 .login p.small{font-family:var(--sans);font-size:13px;color:var(--muted)}
 .login p.notice{font-family:var(--sans);font-size:14px;color:var(--red)}
+.login .demo-key{border-top:1px solid var(--line);padding-top:18px;gap:10px}
+.login .demo-key h2{font-size:16px;margin:0}
+.login .demo-key input.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:13px;background:var(--surface-2)}
 .empty{text-align:center;padding:40px 16px;color:var(--muted)}
 .empty h2{color:var(--text)}
 .empty p{margin-top:8px}

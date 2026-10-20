@@ -56,6 +56,23 @@ the same token again. Give judges only the role they need (e.g. `OWNER` for the 
 demo, `AUDITOR` for read-only). Everyone with the same token sees and changes the same
 synthetic company.
 
+### Demo key on the sign-in page (optional)
+
+To let reviewers sign in without sending them a token, add to
+`/etc/sme-copilot/sme-copilot.env`:
+
+```bash
+SME_DEMO_LOGIN_ROLE=OWNER   # or ACCOUNTANT / AUDITOR; ADMIN is refused at startup
+sudo systemctl restart sme-copilot
+curl -s https://<your-domain>/session/demo   # {"result":{"role":"OWNER","token":"…"}}
+```
+
+The sign-in page then shows a *Demo access for reviewers* panel with that role's token
+and a *Use demo key* button (it fills the field; it does not sign in by itself). The
+key is public: anyone who opens the site can use it. Approving a payment still needs
+the exact review and the step-up re-entry of the same token. To turn it off, remove the
+line and restart (`/session/demo` returns 404); reset the demo company to rotate tokens.
+
 ## 4. Enable the LIVE model (optional)
 
 Prompts with the synthetic company's data then go over SSH to the GPU server; the
