@@ -323,7 +323,7 @@ def make_app(
                 require(len(body) <= 10000, "INVALID_WEBHOOK", "Webhook size limit")
             return await run_in_threadpool(
                 receive,
-                service,
+                main.service,
                 webhook[0],
                 webhook[1],
                 bytes(body),
@@ -429,15 +429,15 @@ def make_app(
             def sign_in() -> tuple[AuthContext, str]:
                 try:
                     ctx = main.service.store.authenticate(token)
-                    return ctx, open_session(main, ctx, token, "")
                 except FinanceError:
                     # A personal demo key signs back in to its own demo only.
                     demo_id = demos.find(token) if demos is not None else None
                     ws = demos.get(demo_id) if demos is not None and demo_id else None
-                    if ws is None:
+                    if ws is None or demo_id is None:
                         raise
                     ctx = ws.service.store.authenticate(token)
                     return ctx, open_session(ws, ctx, token, demo_id + ".")
+                return ctx, open_session(main, ctx, token, "")
 
             try:
                 ctx, cookie = await run_in_threadpool(sign_in)
@@ -589,8 +589,9 @@ def make_app(
                     "RATE_LIMITED",
                     "Too many failed token attempts; wait five minutes",
                 )
+                ws = main  # API bearer tokens are for the main workspace only
                 try:
-                    ctx = service.store.authenticate(bearer)
+                    ctx = ws.service.store.authenticate(bearer)
                 except FinanceError:
                     bearer_failures.fail(client)
                     security_event("bearer_auth_failed", request)
@@ -635,13 +636,13 @@ def make_app(
                     return {
                         "schema_version": 1,
                         "request_id": request_id,
-                        "result": await run_in_threadpool(start_background, service, ctx, value),
+                        "result": await run_in_threadpool(start_background, ws.service, ctx, value),
                     }
                 from finance.copilot import compose_task
 
                 value = {
                     "task": await run_in_threadpool(
-                        compose_task, service, ctx, value["task"], value.get("context")
+                        compose_task, ws.service, ctx, value["task"], value.get("context")
                     )
                 }
             parts = resource.split("/")
@@ -658,21 +659,21 @@ def make_app(
                     "schema_version": 1,
                     "request_id": request_id,
                     "result": await run_in_threadpool(
-                        resume_background, service, ctx, parts[1], value
+                        resume_background, ws.service, ctx, parts[1], value
                     ),
                 }
             if request.method == "POST" and resource == "settings":
                 value = PolicyRequest.model_validate(value).model_dump()
             result = await run_in_threadpool(
                 dispatch,
-                service,
+                ws.service,
                 ctx,
                 request.method,
                 "/v1/" + resource,
                 value,
-                demo_advance,
+                ws.advance,
                 True,
-                demo_decision,
+                ws.decision,
             )
             return {"schema_version": 1, "request_id": request_id, "result": result}
         except FinanceError as exc:

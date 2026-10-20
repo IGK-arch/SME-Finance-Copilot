@@ -98,6 +98,36 @@ const App = (() => {
       h('div', {class: 'row'}, h('button', {class: 'btn', type: 'button', onclick: () => { const f = document.getElementById('token'); f.value = demo.token; f.focus(); }}, 'Use demo key')));
     box.hidden = false;
   }
+  /* Personal demo: a fresh synthetic company and OWNER key for this visitor only (SME_DEMO_SELF_SERVICE). */
+  async function showPersonalDemo() {
+    let info;
+    try { info = await api('/session/demo/new'); } catch (_) { return; }
+    const box = document.getElementById('personal-demo');
+    const err = h('p', {class: 'notice bad', role: 'alert', hidden: true});
+    const start = h('button', {class: 'btn primary', type: 'button'}, 'Start a personal demo');
+    start.addEventListener('click', async () => {
+      err.hidden = true; start.disabled = true; start.textContent = 'Creating your company…';
+      try {
+        const demo = await api('/session/demo/new', {});
+        const key = h('input', {class: 'mono', type: 'text', readonly: true, value: demo.token, spellcheck: 'false', 'aria-label': 'Your demo key'});
+        key.addEventListener('focus', () => key.select());
+        box.replaceChildren(
+          h('h2', {id: 'personal-title'}, 'Your demo company is ready'),
+          h('p', {class: 'small'}, 'Save this key to come back: it is shown only once. You will also type it again to approve each payment.'),
+          key,
+          h('div', {class: 'row'}, h('button', {class: 'btn primary', type: 'button', onclick: () => boot()}, 'Continue')));
+        key.focus();
+      } catch (e) {
+        err.textContent = e.message; err.hidden = false;
+        start.disabled = false; start.textContent = 'Start a personal demo';
+      }
+    });
+    box.replaceChildren(
+      h('h2', {id: 'personal-title'}, 'New here? Try it with your own company'),
+      h('p', {class: 'small'}, 'Creates a fresh synthetic company with its own sandbox bank and your own OWNER key, so you can walk the whole path from the cash gap to reconciliation. Removed after ' + info.idle_hours + ' h without activity.'),
+      h('div', {class: 'row'}, start), err);
+    box.hidden = false;
+  }
   let lastRoute = null;
   window.addEventListener('hashchange', () => {
     const route = (location.hash || '').slice(1).split('/')[0];
@@ -118,6 +148,7 @@ const App = (() => {
       } catch (e) { field.value = ''; err.textContent = e.status === 401 ? 'This token is not valid for this workspace.' : e.message; err.hidden = false; field.focus(); }
       finally { submit.disabled = false; submit.textContent = 'Sign in'; }
     });
+    showPersonalDemo();
     showDemoKey();
     document.getElementById('open-copilot').addEventListener('click', () => {
       const p = document.getElementById('copilot');

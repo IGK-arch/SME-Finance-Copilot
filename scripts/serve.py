@@ -8,8 +8,7 @@ from finance.asgi import make_app
 import uvicorn
 from finance.domain import Config
 from finance.gateway import ChatGateway, GatewayConfig
-from finance.compute import shift
-from finance.ingestion import snapshot
+from scripts.demo_pool import DemoLimits, DemoPool, controls, self_service_enabled
 from scripts.runtime import Runtime
 from scripts.local_llm import ROOT, require_guard
 
@@ -42,40 +41,25 @@ def main() -> None:
     origin = public_origin()
     demo_role = demo_login_role()
     directory = Path(args.directory)
+    # Personal demos live next to the workspace, never inside it.
+    pool = (
+        DemoPool(directory.parent / (directory.name + "-demos"), DemoLimits.environment())
+        if self_service_enabled()
+        else None
+    )
     with Runtime(directory, resume=True) as runtime:
         credentials_path = directory / "local-login.secret.json"
-
-        def advance() -> dict:
-            company = runtime.store.company(runtime.ctx)
-            # Settles submitted actions at the present tick before moving to the next event.
-            with runtime.store.connect() as db:
-                pending = db.execute(
-                    "SELECT 1 FROM actions WHERE status IN ('RESERVED','SUBMITTED','UNKNOWN') LIMIT 1"
-                ).fetchone()
-            if pending:
-                return runtime.settle()
-            # Use only observed contract/product dates, including approved extensions.
-            # A fixed golden timeline would skip a newly negotiated due date.
-            snap = snapshot(runtime.store, runtime.ctx)
-            dates = [o["due_at"] for o in snap["obligations"] if o["outstanding_minor"]]
-            dates += [
-                p[key] for p in snap["financing_products"] for key in ("disburse_at", "repay_at")
-            ]
-            next_at = min(
-                (d for d in dates if d > company["clock"]), default=shift(company["clock"], 1)
-            )
-            runtime.admin("/admin/advance", {"clock": next_at})
-            return runtime.service.refresh(runtime.ctx)
-
+        advance, decision = controls(runtime)
         runtime.start_worker()
         app = make_app(
             runtime.service,
             advance,
-            lambda value: runtime.admin("/admin/extension", value),
+            decision,
             (runtime.ctx, os.environ["SME_WEBHOOK_SECRET"])
             if os.getenv("SME_WEBHOOK_SECRET")
             else None,
             credentials_path,
+            pool,
         )
         print(f"SME Finance Copilot: http://127.0.0.1:{args.port}", flush=True)
         if origin:
@@ -83,19 +67,32 @@ def main() -> None:
         print(f"Local login tokens (keep private): {credentials_path.resolve()}", flush=True)
         if demo_role:
             print(f"Demo key: the sign-in page shows the {demo_role} token publicly", flush=True)
+        if pool:
+            limits = pool.limits
+            print(
+                f"Personal demos: up to {limits.max_active} at once in {pool.root}, "
+                f"removed after {limits.idle_hours:g} h idle",
+                flush=True,
+            )
+            pool.sweep()
+            pool.start_sweeper()
         print(
             f"SYNTHETIC / SANDBOX / {GatewayConfig.environment().public()['mode']}. Press Ctrl+C to stop.",
             flush=True,
         )
 
-        uvicorn.run(
-            app,
-            host="127.0.0.1",
-            port=args.port,
-            access_log=False,
-            proxy_headers=True,
-            forwarded_allow_ips="127.0.0.1",
-        )
+        try:
+            uvicorn.run(
+                app,
+                host="127.0.0.1",
+                port=args.port,
+                access_log=False,
+                proxy_headers=True,
+                forwarded_allow_ips="127.0.0.1",
+            )
+        finally:
+            if pool:
+                pool.close()
 
 
 if __name__ == "__main__":
