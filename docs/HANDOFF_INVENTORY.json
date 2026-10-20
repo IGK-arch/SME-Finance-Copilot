@@ -1,10 +1,4 @@
 {
-  "AGENTS.md": "0e49df4123497f07e7b74fc93cd65fa88e2bed64ba2bdfbdb1ee86cc3d2b9b01",
-  "CODEX_START_HERE.md": "e5abfa60e2250ea8d0eb4d9be4333be264d6e94ccf09fbadc8d1e09ce27fb641",
-  "MASTER_SPEC.md": "1bb320e2a9bd6de09158581b6182a575cb10b6eabdcaa562f9dfe14b39158abb",
-  "START_PROMPT.txt": "6f2d05b45074b3d3aa0a0117fad29a3508f992e880f38926cfbb0d576df1fc72",
-  "PACKAGE_MANIFEST.json": "69b46f62780de6ad79c26b14ddaf12ee6cc1df73b9d846724f0a6f937dcffed3",
-  "SME_Finance_Copilot_Master_Spec.docx": "03a5754ce40fcf9a2a64adef02b0b29397488552fe6a6d9de8a5168261d749a1",
   "sources/manifest.json": "6433c72ec3c1225f63db123cd1ff750e705370c8db33009f238ffe2ba2a2f975",
   "sources/R1_rules.docx": "e26d8fb969d28bf8a41739417ab510ec73d582a5f096ffcc5ef3156701e8ec2a",
   "sources/R1_rules.md": "cee024b3f8173ee07b9123a809df840501a939ee020465fa330de9f4a20c22bc",
@@ -13,10 +7,6 @@
   "sources/R3_china_research.docx": "569a9eeaf0713fb19a885b880e3da938c89f2354901ee3e75ee268509c529f11",
   "sources/R3_china_research.md": "0dfb67fc2c5d6ece6fd166fc3145b8600f61193aac31534a278c8abf9eca044a",
   "sources/assets/R3_image1.png": "0dc6cdf8a3019c325ec06e0049a03978dc0e69a61d245f772bbe38bf28fd165e",
-  "context/CONTEXT_LEDGER.md": "69e069ec1b83875aa94072db029b0e73d5e94749bd9ea2c246135841f0cafd76",
-  "context/CORE_SPEC.md": "74f518819ed7c475cd712f7c4a167a58df3b7dba7470fc8c9ec2e1331177ecc1",
-  "context/PACKAGE_CONTENTS.txt": "fa13504eaf43ba0cfe5c86e92201b22a0e6e80fda34c9bbebe9e82bb78a1d7a4",
-  "context/REFERENCE_LINKS.md": "462f608d99d86e97319d0feaf9b234cc220a1d0b407d91d6d549b58df1814f88",
   "checklists/acceptance_cases.json": "d658e636455b15917c53ba3b6701d0a2d3414ac851911a519ab570d84a6b1354",
   "checklists/backlog.json": "6a716f01ad7952de04e537a2b1cfb754e72ebfbf99740f81cc0021c1ac39b17d",
   "checklists/invariants.json": "6039e51c768ac243c8e7e0a9c56105f4e09993503d621b7c8653d1211e6df66b",
@@ -26,6 +16,5 @@
   "contracts/payment-command.schema.json": "804281a9ba912097b8713ee931f716c95b7cec35ab965fdee865cbfecc8da753",
   "contracts/plan-envelope.schema.json": "e636117adf6e30587a6f330f214589e855e5055040c4ade8d51342415319629c",
   "contracts/README.md": "45cc96c700b322efc3cce97e1a539ab08bca0ed79f66bbaf44fc74b41d4ce384",
-  "contracts/tool-result.schema.json": "cab79006c3ff302b78d96ff63895f824afd1d97128106beed6322912ebb3cfb8",
-  "docs/HANDOFF_README.original.md": "34da5a650f390a139dc354afd9511234f514f918726c274fd63c39a5544baf91"
+  "contracts/tool-result.schema.json": "cab79006c3ff302b78d96ff63895f824afd1d97128106beed6322912ebb3cfb8"
 }

@@ -1,6 +1,6 @@
 # Business health в инструментах агента — 19 октября 2026
 
-**Статус: интеграция выполнена; все 20 LIVE-сценариев завершены.** AUD-05 / OPEN-11 закрыт в части доступа к Business health через инструменты. На выбранной Qwen: **14/20 автоматических PASS**, но после просмотра всех ответов **11 COMPLETE / 2 PARTIAL / 7 FAILED**. Качество свободной прозы остаётся ограничением OPEN-12. Это дополнение к [техотчёту](TECHNICAL_REPORT_RU.md); исходные неуспехи сохранены.
+**Статус: интеграция выполнена; все 20 LIVE-сценариев завершены.** AUD-05 / OPEN-11 закрыт в части доступа к Business health через инструменты. На выбранной Qwen: **14/20 автоматических PASS**, но после просмотра всех ответов **11 COMPLETE / 2 PARTIAL / 7 FAILED**. Качество свободной прозы остаётся ограничением OPEN-12. Это дополнение к техотчёту; исходные неуспехи сохранены.
 
 ## Реализация
 
@@ -90,7 +90,7 @@
 
 Фактические успешные tool calls: snapshot 20, metrics 21, evidence 8, record read 34, record list 7, capabilities 5, forecast 2, what-if 2, search_documents 2. Это покрытие нужного read/compute пути health; не повторный бенчмарк всех инструментов платформы и не LIVE payment lifecycle.
 
-Семантически просмотрены **все 20 доставленных исходов**, их задания, значения fixtures и tool traces; для отказов просмотрены причины валидации и последние видимые попытки ответа. Reviewer — coding assistant, не независимый эксперт. [Все ответы и комментарии](BUSINESS_HEALTH_ANSWERS_20261019_RU.md), [review JSON](../artifacts/business-health-20261019/narrative-review.json), [сводка](../artifacts/business-health-20261019/summary.json). Авто PASS вместе с COMPLETE — **11/20**.
+Семантически просмотрены **все 20 доставленных исходов**, их задания, значения fixtures и tool traces; для отказов просмотрены причины валидации и последние видимые попытки ответа. Reviewer — coding assistant, не независимый эксперт. Все ответы и комментарии, [review JSON](../artifacts/business-health-20261019/narrative-review.json), [сводка](../artifacts/business-health-20261019/summary.json). Авто PASS вместе с COMPLETE — **11/20**.
 
 ## Реальные ошибки и оставшиеся ограничения
 

@@ -1,8 +1,0 @@
-{
-  "basis": {
-    "file": "TECHNICAL_REPORT_RU.md",
-    "sha256": "b387cc6c59df9226af73b08f6f933c952891092533ec9c61aadfb9eb32095835"
-  },
-  "scope": "Report-based audit and new UX concept. No source-code execution or real-app browser audit.",
-  "generated": "2026-10-13"
-}

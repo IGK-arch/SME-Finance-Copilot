@@ -1,6 +1,0 @@
-{
-  "file": "finance/strata.py",
-  "before": "66e9df825959bdd8e40501e5a3d45113689fe4c0973724151fe04406ac3637f1",
-  "after": "b0f24c9f6bc8152366ff3632f1f10b03172aa2a035dfcfee5145a96336030ac6",
-  "scope": "Only typing.cast annotation; identity at runtime. Medium-74 process imported the before version; frozen copy retained. No guard, request or response behavior change."
-}

@@ -184,12 +184,9 @@ results are in the [technical documentation, §6](docs/submission/TECHNICAL_DOCU
 | `contracts/` | Versioned runtime and data contracts (JSON Schema) |
 | `deploy/` | VPS deployment: install script, Caddy, systemd units |
 | `docs/submission/` | Reviewer documents for the submission |
-| `docs/` | ADRs, runbooks, architecture, model and data cards, working reports (some in Russian) |
-| `artifacts/` | Raw evidence: test reports, sandbox logs, evaluations, on-chain anchors |
-
-`CLAUDE.md` and `AGENTS.md` are working notes for coding assistants on the
-development machine; reviewers can skip them. The earlier, longer developer README
-is kept in [docs/DEVELOPER_NOTES.md](docs/DEVELOPER_NOTES.md).
+| `docs/` | ADRs, runbooks, architecture, model and data cards, acceptance matrices, known limitations, model-evaluation reports (in Russian) |
+| `artifacts/` | Evidence: test reports, sandbox logs, model-evaluation summaries, on-chain anchors |
+| `sources/` | Research inputs used during design (not loaded by the product) |
 
 ## Limitations
 

@@ -20,4 +20,4 @@ No additional tools, authority, mutable financial state or database tables. OWNE
 
 Tests cover the preserved synthetic traces, semantic swaps, null/status/scope confusion, wrong IDs, missing/tampered pages, document injection, literal comparison, mixed-task routing, complete workflow and refusal to manufacture success after invalid model output. The fixed development suite is not a holdout.
 
-See [runtime contract](../../contracts/RUNTIME.md) and [measured follow-up](../BUSINESS_HEALTH_FIX_20261019_RU.md).
+See [runtime contract](../../contracts/RUNTIME.md) and measured follow-up.
