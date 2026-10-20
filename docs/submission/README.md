@@ -5,7 +5,7 @@ coming cash gap, matches financing, and carries the chosen plan through exact
 owner approval, sandbox execution and reconciliation.
 
 Repository: <https://github.com/IGK-arch/SME-Finance-Copilot> · license MIT ·
-data synthetic, bank sandbox, model MOCK by default.
+what data is used: see the [data note](../../README.md#sme-finance-copilot).
 
 ## Submission checklist (rules §5)
 

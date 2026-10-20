@@ -234,3 +234,4 @@ main[aria-busy=true]:before{content:"";position:absolute;left:0;right:0;top:0;he
 }
 @media (max-width:520px){.metric{padding:14px}.metric .value{font-size:19px;white-space:normal}.metric .label,.metric .note{font-size:12px}.issue h2{font-size:21px}.issue p{font-size:16px}.big{font-size:28px}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+.copilot .kv{grid-template-columns:minmax(0,1fr) auto}.copilot .kv dd{text-align:right;overflow-wrap:break-word}
