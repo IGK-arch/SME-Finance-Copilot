@@ -14,6 +14,14 @@ Repository: <https://github.com/IGK-arch/SME-Finance-Copilot>
 > **Data.** Company records, financing products and the bank are synthetic; the model runs MOCK by default.
 > The design draws on real public sources: Chinese SME lending regulation (PBoC), the LPR reference rate and public dataset surveys (see [sources](sources/README.md)). No real company, customer or bank data is used, and no real money moves.
 
+> **Challenge bonus (on-chain exploration): implemented.** The head of the hash-chained
+> audit log is anchored on Ethereum Sepolia in transaction
+> [`0x7ac42f1f…e9d1ba`](https://sepolia.etherscan.io/tx/0x7ac42f1fccf4aa2ceb9554544a4e1493a256cc7c1f19de4bb1eb311d42e9d1ba) (72 audit records, verified VALID on 18 Oct 2026).
+> `python -m scripts.anchor_audit verify --tx <hash>` re-checks the local records against it;
+> a rewritten and re-hashed history fails the check. Only hashes go on-chain.
+> Details: [challenge bonus](docs/submission/README.md#challenge-bonus-on-chain-exploration-05),
+> [transaction table](docs/submission/EXECUTION_EVIDENCE.md#3-on-chain-anchors).
+
 ## For reviewers
 
 | Submission item | Document |
@@ -22,6 +30,7 @@ Repository: <https://github.com/IGK-arch/SME-Finance-Copilot>
 | 4 · Source code, README, deployment instructions, test cases | this README: [Quick start](#quick-start), [Deployment](#deployment), [Tests](#tests) |
 | 5 · Security self-assessment (permission tiers, known-risk list) | [SECURITY_SELF_ASSESSMENT.md](docs/submission/SECURITY_SELF_ASSESSMENT.md) |
 | 6 · Execution evidence (sandbox operation logs, on-chain transaction hashes) | [EXECUTION_EVIDENCE.md](docs/submission/EXECUTION_EVIDENCE.md) |
+| Challenge bonus · on-chain exploration | [Challenge bonus](docs/submission/README.md#challenge-bonus-on-chain-exploration-05) · [Sepolia transaction](https://sepolia.etherscan.io/tx/0x7ac42f1fccf4aa2ceb9554544a4e1493a256cc7c1f19de4bb1eb311d42e9d1ba) |
 | Scoring criteria mapped to code and evidence | [Submission index](docs/submission/README.md) |
 
 ## What it does
