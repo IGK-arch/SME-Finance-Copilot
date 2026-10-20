@@ -100,6 +100,9 @@ same directory to preserve data. Startup refuses to silently reseed an incomplet
 workspace. Ctrl+C stops API, worker and simulator; files remain. No reset/delete
 command is run automatically. Do not run two runtimes on the same workspace.
 
+To publish the cabinet on your own domain (HTTPS, VPS), follow
+[the deploy runbook](docs/runbooks/deploy.md).
+
 For the real PostgreSQL backend, follow [the runbook](docs/runbooks/postgres.md).
 Once the cluster and its workspace are provisioned as the runbook describes:
 

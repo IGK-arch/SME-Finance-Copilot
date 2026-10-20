@@ -1,0 +1,44 @@
+[Unit]
+Description=SME Finance Copilot (synthetic data, sandbox bank)
+Documentation=file:///opt/sme-copilot/app/docs/runbooks/deploy.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sme
+Group=sme
+WorkingDirectory=/opt/sme-copilot/app
+EnvironmentFile=/etc/sme-copilot/sme-copilot.env
+Environment=PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+# Loopback only (127.0.0.1:8080). Caddy terminates TLS and forwards to it.
+ExecStart=/opt/sme-copilot/venv/bin/python -m scripts.serve --port 8080 --directory /var/lib/sme-copilot/workspace
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+KillMode=control-group
+
+# Hardening: the app writes only its workspace; everything else is read-only.
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/sme-copilot
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictSUIDSGID=true
+RestrictNamespaces=true
+RestrictRealtime=true
+LockPersonality=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+CapabilityBoundingSet=
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target

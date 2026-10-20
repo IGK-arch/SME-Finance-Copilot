@@ -37,6 +37,9 @@ def main() -> None:
             flush=True,
         )
     Config.from_environment()
+    from finance.asgi import public_origin
+
+    origin = public_origin()
     directory = Path(args.directory)
     with Runtime(directory, resume=True) as runtime:
         credentials_path = directory / "local-login.secret.json"
@@ -73,12 +76,22 @@ def main() -> None:
             else None,
         )
         print(f"SME Finance Copilot: http://127.0.0.1:{args.port}", flush=True)
+        if origin:
+            print(f"Public origin (via reverse proxy): {origin}", flush=True)
         print(f"Local login tokens (keep private): {credentials_path.resolve()}", flush=True)
         print(
             f"SYNTHETIC / SANDBOX / {GatewayConfig.environment().public()['mode']}. Press Ctrl+C to stop.",
             flush=True,
         )
-        uvicorn.run(app, host="127.0.0.1", port=args.port, access_log=False)
+
+        uvicorn.run(
+            app,
+            host="127.0.0.1",
+            port=args.port,
+            access_log=False,
+            proxy_headers=True,
+            forwarded_allow_ips="127.0.0.1",
+        )
 
 
 if __name__ == "__main__":

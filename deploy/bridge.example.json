@@ -1,0 +1,10 @@
+{
+  "ssh_host": "<gpu-host>",
+  "ssh_port": 22,
+  "ssh_user": "<ssh-user>",
+  "credential_file": "/etc/sme-copilot/strata/ssh_key",
+  "known_hosts": "/etc/sme-copilot/strata/known_hosts",
+  "local_port": 18443,
+  "remote_port": 8080,
+  "bridge_token": "<random, at least 32 characters: openssl rand -hex 32>"
+}
