@@ -52,7 +52,9 @@ chmod -R go-w "$PREFIX"
 
 echo "==> State and configuration (kept on updates)"
 install -d -o sme -g sme -m 0700 "$STATE"
-install -d -o root -g sme -m 0750 "$ETC"
+# 0751: sme-bridge (not in group sme) must traverse to $ETC/strata; it still cannot list
+# $ETC or read sme-copilot.env (0640 root:sme).
+install -d -o root -g sme -m 0751 "$ETC"
 install -d -o sme-bridge -g sme-bridge -m 0700 "$ETC/strata"
 if [[ ! -f "$ETC/sme-copilot.env" ]]; then
   sed "s/__DOMAIN__/$DOMAIN/g" "$SRC/deploy/sme-copilot.env.example" > "$ETC/sme-copilot.env"
