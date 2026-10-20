@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-19T19:25:04.387722+00:00",
+  "provenance": "Actual exec session74730 output captured; no fabricated rerun",
+  "command": ".venv/Scripts/python.exe -u -X utf8 -m unittest tests.test_release_eval -v",
+  "tests": 5,
+  "status": "PASSED",
+  "reported_elapsed_seconds": 8.796,
+  "ruff_check": "PASSED",
+  "mypy_2_files": "PASSED",
+  "source_changes": [
+    "scripts/release_eval.py"
+  ],
+  "case_definitions_and_budgets_unchanged": true,
+  "interrupted_segment_completed": 65,
+  "combined_existing_primary": 67,
+  "next_case_workspace_absent": true,
+  "restricted_shell_attempt": {
+    "tests": 2,
+    "outcome": "1 PASS / 1 ERROR",
+    "reason": "Actual os.replace in restricted-shell temp directory denied; same test passed with authorized full host execution, no assertion removed"
+  },
+  "fix": "Only checkpoint file replace retried up to10times at100ms; persistent PermissionError re-raised. No model/financial-operation retries."
+}

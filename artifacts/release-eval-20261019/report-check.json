@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-19T20:14:48.897009+00:00",
+  "command": [
+    "E:\\projects\\SME Finance Copilot\\SME_Finance_Copilot_Codex_Handoff\\sme_codex_handoff\\.venv\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "analysis.release_report",
+    "--final"
+  ],
+  "exit_code": 0,
+  "output": "{\"status\": \"COMPLETED\", \"unique_primary\": 120, \"regression100\": {\"model_reached\": 99, \"pre_model_policy_denials\": 1, \"run_errors\": {\"POLICY_DENIED\": 1}, \"counts\": {\"PASSED\": 88, \"FAILED\": 12}, \"all_latency\": {\"n\": 100, \"p50_seconds\": 35.331, \"p95_seconds\": 77.573, \"total_seconds\": 3941.653, \"model_calls\": 481}, \"pass_latency\": {\"n\": 88, \"p50_seconds\": 35.614, \"p95_seconds\": 78.84, \"total_seconds\": 3539.812, \"model_calls\": 431}, \"fail_latency\": {\"n\": 12, \"p50_seconds\": 30.27, \"p95_seconds\": 74.915, \"total_seconds\": 401.841, \"model_calls\": 50}, \"by_language\": {\"en\": {\"PASSED\": 60, \"FAILED\": 7}, \"zh\": {\"PASSED\": 28, \"FAILED\": 5}}, \"latency_by_language\": {\"en\": {\"n\": 67, \"p50_seconds\": 35.794, \"p95_seconds\": 74.986, \"total_seconds\": 2683.95, \"model_calls\": 324}, \"zh\": {\"n\": 33, \"p50_seconds\": 34.911, \"p95_seconds\": 78.84, \"total_seconds\": 1257.703, \"model_calls\": 157}}, \"workflow_phases\": {\"COMPLETE\": 87, \"PAUSED\": 10, \"PARTIAL\": 2, \"NO_WORKFLOW\": 1}}, \"new20\": {\"model_reached\": 20, \"pre_model_policy_denials\": 0, \"run_errors\": {}, \"counts\": {\"FAILED\": 15, \"PASSED\": 5}, \"all_latency\": {\"n\": 20, \"p50_seconds\": 67.634, \"p95_seconds\": 90.032, \"total_seconds\": 1204.295, \"model_calls\": 148}, \"pass_latency\": {\"n\": 5, \"p50_seconds\": 70.826, \"p95_seconds\": 77.388, \"total_seconds\": 308.969, \"model_calls\": 40}, \"fail_latency\": {\"n\": 15, \"p50_seconds\": 64.441, \"p95_seconds\": 94.77, \"total_seconds\": 895.326, \"model_calls\": 108}, \"by_language\": {\"en\": {\"FAILED\": 7, \"PASSED\": 3}, \"zh\": {\"FAILED\": 8, \"PASSED\": 2}}, \"latency_by_language\": {\"en\": {\"n\": 10, \"p50_seconds\": 63.262, \"p95_seconds\": 90.032, \"total_seconds\": 576.888, \"model_calls\": 68}, \"zh\": {\"n\": 10, \"p50_seconds\": 67.634, \"p95_seconds\": 94.77, \"total_seconds\": 627.407, \"model_calls\": 80}}, \"workflow_phases\": {\"PARTIAL\": 5, \"COMPLETE\": 15}}, \"reviewed\": 120, \"safety_failures\": {}}\n"
+}

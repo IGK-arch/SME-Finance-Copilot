@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-19T08:50:52.934763+00:00",
+  "complete": 20,
+  "before_strict": {
+    "FAILED": 6,
+    "PASSED": 14
+  },
+  "after_strict": {
+    "PASSED": 20
+  },
+  "before_semantic": {
+    "FAILED": 7,
+    "COMPLETE": 11,
+    "PARTIAL": 2
+  },
+  "after_semantic": {
+    "COMPLETE": 20
+  },
+  "by_language": {
+    "en": {
+      "strict": {
+        "PASSED": 10
+      },
+      "semantic": {
+        "COMPLETE": 10
+      },
+      "latency": {
+        "count": 10,
+        "p50_seconds": 24.370270499995968,
+        "p95_seconds": 55.78928959999757,
+        "total_seconds": 292.8051613999851
+      }
+    },
+    "zh": {
+      "strict": {
+        "PASSED": 10
+      },
+      "semantic": {
+        "COMPLETE": 10
+      },
+      "latency": {
+        "count": 10,
+        "p50_seconds": 23.46314655000606,
+        "p95_seconds": 51.92782949999673,
+        "total_seconds": 285.6517444000201
+      }
+    }
+  },
+  "before_latency": {
+    "count": 20,
+    "p50_seconds": 62.360691199999565,
+    "p95_seconds": 84.24694110000564,
+    "total_seconds": 1207.8048924000177
+  },
+  "after_latency": {
+    "count": 20,
+    "p50_seconds": 24.135094149991346,
+    "p95_seconds": 51.92782949999673,
+    "total_seconds": 578.4569058000052
+  },
+  "before_attempts": 135,
+  "after_attempts": 74,
+  "paired_strict_and_semantic_pass": {
+    "count": 11,
+    "median_after_before_latency_ratio": 0.6036965456175579
+  },
+  "all_recorded_safety_passed": true,
+  "same_cases_budgets_and_grader": true,
+  "same_service_identity": true,
+  "model_identity": {
+    "model": "qwen3.8-flash-next-iq3_xxs",
+    "engine_version": "0.1.43.1",
+    "server_started": 1792266150,
+    "context_tokens": 131072,
+    "digest": "3a0d7f9c787e59fceac674b09003636d6ef4c74b742e384a1440ca4f2aaaeda4",
+    "identity_scope": "STRATA_SERVICE_INSTANCE_METADATA_NOT_WEIGHT_HASH",
+    "weight_digest": null,
+    "license": null,
+    "capabilities": [
+      "chat_completions"
+    ]
+  },
+  "configuration": {
+    "provider": "strata",
+    "model": "qwen3.8-flash-next-iq3_xxs",
+    "mode": "LIVE",
+    "configured": true,
+    "max_steps": 12,
+    "max_tokens": 128000,
+    "timeout_seconds": 120,
+    "max_elapsed_seconds": 240,
+    "max_billed_cost_minor": 0,
+    "context_tokens": 16384,
+    "output_tokens": 2048,
+    "think": false,
+    "strata_reasoning_effort": "none",
+    "execution_device": "self_hosted_server",
+    "batch_tokens": null,
+    "memory_mapped_weights": null
+  },
+  "cases": [
+    {
+      "case_id": "health_overview_en",
+      "before_strict": "FAILED",
+      "after_strict": "PASSED",
+      "before_semantic": "FAILED",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 24.1238408999925,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_overview_zh",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 23.313917500010575,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_aging_en",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 24.14634739999019,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_aging_zh",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 24.18971690000035,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_concentration_en",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 23.708943100005854,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_concentration_zh",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 23.18064050000976,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_settled_window_en",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 24.594193600001745,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_settled_window_zh",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 23.11854339999263,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_pnl_limits_en",
+      "before_strict": "FAILED",
+      "after_strict": "PASSED",
+      "before_semantic": "FAILED",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 22.850201499997638,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_pnl_limits_zh",
+      "before_strict": "FAILED",
+      "after_strict": "PASSED",
+      "before_semantic": "FAILED",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 22.785746599998674,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_empty_obligations_en",
+      "before_strict": "FAILED",
+      "after_strict": "PASSED",
+      "before_semantic": "FAILED",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 24.816447300006985,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_empty_obligations_zh",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "PARTIAL",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 23.612375600001542,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_what_if_en",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 34.113034099995275,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_what_if_zh",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "PARTIAL",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 33.897756699996535,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_document_boundary_en",
+      "before_strict": "FAILED",
+      "after_strict": "PASSED",
+      "before_semantic": "FAILED",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 35.87797679999494,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_document_boundary_zh",
+      "before_strict": "FAILED",
+      "after_strict": "PASSED",
+      "before_semantic": "FAILED",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 36.71219440001005,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_saved_history_en",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "FAILED",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 55.78928959999757,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_saved_history_zh",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 51.92782949999673,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_initial_breach_en",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 22.78488710000238,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    },
+    {
+      "case_id": "health_initial_breach_zh",
+      "before_strict": "PASSED",
+      "after_strict": "PASSED",
+      "before_semantic": "COMPLETE",
+      "after_semantic": "COMPLETE",
+      "elapsed_seconds": 22.91302330000326,
+      "failed_checks": [],
+      "tool_errors": [],
+      "error": null,
+      "presentation_contract": "health-answer-v1"
+    }
+  ],
+  "limitations": [
+    "Changed system presentation and finalization; not a measurement of improved free-form model prose.",
+    "Same development cases used for fixes; not an independent holdout.",
+    "Latency includes tools, setup, transport and bounded repair, not isolated token generation speed.",
+    "Runtime service identity is not proof of weight SHA-256 or licence.",
+    "Typed renderer is bounded EN/ZH aggregate health reporting; broader/mixed tasks retain the general path."
+  ]
+}

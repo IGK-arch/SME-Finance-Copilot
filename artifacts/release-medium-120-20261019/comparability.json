@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-19T20:22:11.664514+00:00",
+  "same_cases": true,
+  "same_system": true,
+  "same_tools": true,
+  "source_delta": [
+    "scripts/release_eval.py"
+  ],
+  "configuration_delta": {
+    "think": {
+      "none": false,
+      "medium": true
+    },
+    "strata_reasoning_effort": {
+      "none": "none",
+      "medium": "medium"
+    }
+  },
+  "production_unchanged": true,
+  "none_registration_sha256": "b0d2405ae5a91ae1a4dfa1c6b740de648e2f712c27a684bf91392f890eafd599"
+}

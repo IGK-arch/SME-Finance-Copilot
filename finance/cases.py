@@ -88,10 +88,16 @@ def party(names: dict[str, str], counterparty: str) -> str:
 def _actions(db, tenant: str) -> list[Json]:
     rows = []
     for r in db.execute(
-        "SELECT action_id,status,provider_ref,payload FROM actions WHERE tenant_id=?", (tenant,)
+        "SELECT a.action_id,a.status,a.provider_ref,a.payload,o.payload AS settlement_issue "
+        "FROM actions a LEFT JOIN objects o ON o.tenant_id=a.tenant_id "
+        "AND o.kind='settlement_issue' AND o.object_id=a.action_id WHERE a.tenant_id=?",
+        (tenant,),
     ):
         item = dict(r)
         item["payload"] = json.loads(item["payload"])
+        item["settlement_issue"] = (
+            json.loads(item["settlement_issue"]) if item["settlement_issue"] else None
+        )
         rows.append(item)
     return rows
 
@@ -304,8 +310,12 @@ def alerts(
                 "UNKNOWN_PAYMENT",
                 a["action_id"],
                 "critical",
-                "Checking payment status — do not send again",
-                f"{a['payload']['kind']} {cny(a['payload']['amount_minor'])}: the response was lost. Funds stay reserved until the original operation is found.",
+                "Review settlement — do not send again"
+                if a.get("settlement_issue")
+                else "Checking payment status — do not send again",
+                "The observed operation differs from what was approved. Funds stay reserved; the discrepancy needs review."
+                if a.get("settlement_issue")
+                else f"{a['payload']['kind']} {cny(a['payload']['amount_minor'])}: the response was lost. Funds stay reserved until the original operation is found.",
                 f"#activity/{a['action_id']}",
             )
         elif a["status"] in {"RESERVED", "SUBMITTED"}:
@@ -331,8 +341,12 @@ def alerts(
             "RECONCILIATION_MISMATCH",
             recon["reconciliation_id"],
             "critical",
-            "Cash does not reconcile",
-            f"Local {cny(recon['local_cash_minor'])} vs sandbox {cny(recon['provider_cash_minor'])}. New sends were stopped.",
+            "Settlement needs review"
+            if recon.get("settlement_issues")
+            else "Cash does not reconcile",
+            "Observed operation details differ from the approved command. Matching cash totals do not resolve this discrepancy. New sends were stopped."
+            if recon.get("settlement_issues")
+            else f"Local {cny(recon['local_cash_minor'])} vs sandbox {cny(recon['provider_cash_minor'])}. New sends were stopped.",
             "#activity",
         )
     if snap["quality_flags"]:
@@ -1376,7 +1390,10 @@ def timeline(service: ExecutionService, ctx: AuthContext, action_id: str) -> Jso
             }
         )
     status = action["status"]
-    if status == "UNKNOWN":
+    issue = action.get("settlement_issue")
+    if issue:
+        message = "The observed settlement differs from the approved operation and needs review. New sends are stopped; unresolved funds stay reserved. Do not send again."
+    elif status == "UNKNOWN":
         message = "The sandbox response was lost. The operation may already exist: we check by its original key and never send a second copy. Funds stay reserved."
     elif status == "SUBMITTED":
         message = "Sent. Waiting for the sandbox to report settlement; it counts as paid only after reconciliation."
@@ -1403,9 +1420,14 @@ def timeline(service: ExecutionService, ctx: AuthContext, action_id: str) -> Jso
         if action["attempts"] and "at" in action["attempts"][0]
         else [{"status": a.get("status")} for a in action["attempts"]],
         "provider_ref": action.get("provider_ref"),
-        "can_check_status": status in {"UNKNOWN", "SUBMITTED", "RESERVED"},
-        "check_status_note": "Looks up the original operation by its stable key before anything else; it never creates a new payment.",
-        "reconciliation": json.loads(recon[0]) if recon and status == "SETTLED" else None,
+        "can_check_status": not issue and status in {"UNKNOWN", "SUBMITTED", "RESERVED"},
+        "check_status_note": "The recorded discrepancy requires review; a status response cannot clear it."
+        if issue
+        else "Looks up the original operation by its stable key before anything else; it never creates a new payment.",
+        "settlement_issue": issue,
+        "reconciliation": json.loads(recon[0])
+        if recon and (status == "SETTLED" or issue)
+        else None,
         "command": command,
     }
 

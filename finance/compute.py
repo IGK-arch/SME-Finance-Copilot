@@ -16,7 +16,7 @@ from finance.domain import (
     utc,
 )
 
-CALCULATION_VERSION = "compute-v2"
+CALCULATION_VERSION = "compute-v3"
 
 
 def shift(timestamp: str, days: int) -> str:
@@ -52,6 +52,7 @@ def metrics(snap: Json) -> Json:
             for name, amount in values.items()
         },
         "pnl": {"status": "INSUFFICIENT_DATA", "reason": "A bank statement is not a P&L"},
+        "business_health": business_health(snap),
     }
 
 
@@ -603,7 +604,7 @@ def optimize(
     return result
 
 
-ANALYSIS_VERSION = "analysis-v1"
+ANALYSIS_VERSION = "analysis-v2"
 AGING_BUCKETS = (
     ("overdue", None, 0),
     ("d0_30", 0, 31),
@@ -643,6 +644,8 @@ def _concentration(snap: Json, kind: str) -> Json:
     return {
         "total_minor": total,
         "parties": len(by_party),
+        "top3_amount_minor": sum(amount for _, amount in top),
+        "top3_share_bps": sum(amount for _, amount in top) * 10000 // total if total else None,
         "top": [
             {"counterparty": party, "amount_minor": amount, "share_bps": amount * 10000 // total}
             for party, amount in top
@@ -660,7 +663,7 @@ def analysis(snap: Json, fc: Json | None = None, window_days: int = 30) -> Json:
     reserve = snap["policy"]["reserve_minor"]
     due_soon = payables["overdue"] + payables["d0_30"]
     since = shift(snap["as_of"], -window_days)
-    inflow = outflow = 0
+    inflow = outflow = count = 0
     for f in snap["facts"]:
         v = f["value"]
         if (
@@ -668,6 +671,7 @@ def analysis(snap: Json, fc: Json | None = None, window_days: int = 30) -> Json:
             and v.get("status") == "SETTLED"
             and since < utc(v["event_time"]) <= snap["as_of"]
         ):
+            count += 1
             if v["amount_minor"] > 0:
                 inflow += v["amount_minor"]
             else:
@@ -690,7 +694,53 @@ def analysis(snap: Json, fc: Json | None = None, window_days: int = 30) -> Json:
         "settled_window_days": window_days,
         "settled_inflow_minor": inflow,
         "settled_outflow_minor": outflow,
+        "settled_transaction_count": count,
         "evidence_refs": snap["evidence_refs"],
         "pnl": {"status": "INSUFFICIENT_DATA", "reason": "A bank statement is not a P&L"},
         "label": "Computed from observed facts; ratios are descriptive, not a credit score",
+    }
+
+
+def business_health(snap: Json, fc: Json | None = None) -> Json:
+    """Typed agent contract over the same calculation used by the owner's cabinet."""
+    fc = fc or forecast(snap)
+    value = analysis(snap, fc)
+    base = fc["scenarios"][0]
+    return {
+        **value,
+        "contract_version": "business-health-v1",
+        "currency": "CNY",
+        "receivables_aging": [
+            {"bucket": key, "outstanding_minor": amount}
+            for key, amount in value["receivables_aging"].items()
+        ],
+        "payables_aging": [
+            {"bucket": key, "outstanding_minor": amount}
+            for key, amount in value["payables_aging"].items()
+        ],
+        "coverage_30d_status": "DEFINED"
+        if value["coverage_30d_bps"] is not None
+        else "NOT_APPLICABLE",
+        "days_to_gap_status": "PROJECTED_GAP"
+        if value["days_to_gap"] is not None
+        else "NO_GAP_IN_FORECAST",
+        "forecast_scope": {
+            "scenario_id": base["scenario_id"],
+            "delay_days": base["delay_days"],
+            "receipt_bps": base.get("receipt_bps", 10000),
+            "computed_through": max(
+                (point["at"] for point in base["points"]), default=snap["as_of"]
+            ),
+            "label": fc["label"],
+        },
+        "quality_flags": snap["quality_flags"],
+        "metric_definitions": {
+            "net_working_position_minor": "Confirmed cash + open receivables - open payables; not profit or a full balance sheet.",
+            "liquidity_buffer_minor": "Minimum projected cash in the named scenario minus mandatory reserve; signed forecast headroom, not current spendable cash.",
+            "coverage_30d_bps": "Confirmed cash / overdue and next thirty-day-bucket payables, rounded down in basis points. A zero denominator is NOT_APPLICABLE, never infinite coverage.",
+            "aging": "Open obligations grouped by full days until contractual due date, not days since invoice issue. Negative is overdue; bucket d90_plus means beyond ninety days.",
+            "concentration": "Shares of outstanding receivables/payables, not sales or expenses. Top shares rounded down in basis points; zero total has no defined share.",
+            "settled_window": "Observed SETTLED transactions in (as_of minus window_days, as_of]; receipts/invoices and pending movements excluded. Cashflow is not revenue, expense or profit.",
+            "days_to_gap": "Full days until first projected reserve breach; zero means already below reserve. Null means no gap in this forecast horizon, not unlimited runway.",
+        },
     }

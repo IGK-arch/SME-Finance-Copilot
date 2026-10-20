@@ -17,8 +17,9 @@
 7. Open Activity: the audit trail's chain head is anchored on Ethereum Sepolia. Open the
    explorer link, then run `python -m scripts.anchor_audit verify --tx <hash>` to show the
    local records still match the public hash (challenge bonus, on-chain exploration).
-8. Close with boundaries: synthetic sandbox, mock agent, no real bank, real-model
-   quality NOT_RUN, incomplete production isolation. Show the actual test report.
+8. Close with boundaries: synthetic sandbox, MOCK agent in this demonstration,
+   no real bank, incomplete production isolation. Historical self-hosted Qwen
+   quality was measured; a fresh complete LIVE lifecycle on the submission
+   commit remains NOT_RUN. Show the dated test report and the fixed K15 finding.
 
-This is a script and captured UI/evidence, not a recorded final contest video.
-Recording/editing the ≤5-minute video and final slide deck remains a submission task.
+This is the script for the demo; the deck and the video are submitted separately.

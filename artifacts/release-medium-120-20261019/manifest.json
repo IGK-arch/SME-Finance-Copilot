@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-19T21:45:20.828939+00:00",
+  "files": {
+    "analysis/release_medium_report.py": "04da675d87835a4612cd14df3276eaa0bafdc77664787cd5fd728bc8c8809b7a",
+    "artifacts/release-medium-120-20261019/answers.md": "dfac6637331e642a95b18afa02d5d952389b19feb36b175b7a22d75c405862c8",
+    "artifacts/release-medium-120-20261019/comparability.json": "fb5e4ea351476efb82a39c5d4280feb574c020b8b6aff91e4fdf3ea50f005d2f",
+    "artifacts/release-medium-120-20261019/diagnostics.json": "ecc4265e8b0fc78f7af0052b9e218be475272d6301f22f8e4f6d04a12a8fd28e",
+    "artifacts/release-medium-120-20261019/final-audit.json": "b9ae1a0b4dcff3051ab448c4ed322de9272c8bcc67abfd2e09287fdd8d8a286b",
+    "artifacts/release-medium-120-20261019/final-checks-before-lf.json": "cd8a31911983b5247d7131da11107f9a2eb89802f9c383d9681c61fab90d9691",
+    "artifacts/release-medium-120-20261019/final-checks.json": "fd160589c062a31526a4be8a23ebaec27f1fb68600ab1608b85250351ddd45ad",
+    "artifacts/release-medium-120-20261019/medium-120-20261019-primary.json": "f56c824a866494d8801bbcce739f20c74f9dcf02c866f2b6142747f24052adf7",
+    "artifacts/release-medium-120-20261019/medium-120-postflight.json": "0962eb9beca86618c9fb2206b1828e128165dbe92757fb285ee36b55630a31e5",
+    "artifacts/release-medium-120-20261019/medium-120-preflight.json": "ba621273cc52d43bdcabcded673d08acfba1a34193aca8333d2e4a6378090651",
+    "artifacts/release-medium-120-20261019/narrative-review.json": "5d03e3a6fb131b7c8952108944bf40e0fed89b36cc4293a7e4f89b9be56fd83e",
+    "artifacts/release-medium-120-20261019/offline-checks.json": "1acf65f0e7a74b52b59e1404255d9d1c842b6c18e69f115809f0099f9d3e0943",
+    "artifacts/release-medium-120-20261019/preflight-checks.json": "e806a69f66e2ebdf0f138222495af0324dc666507b858762c48e0ae8bbbc3cfc",
+    "artifacts/release-medium-120-20261019/preregistration.json": "6f5a5839cff0fca46541b579408ce39f284ee8303fd5b62a6581072f9b47abae",
+    "artifacts/release-medium-120-20261019/static-checks.json": "6ae3ee39298ca5e21c5e47616b859310485d47a67c93afcd5f1e3e8fc4ebcf9b",
+    "artifacts/release-medium-120-20261019/summary.json": "4d550703e4ea06fc42b349493a1d14fe15a4cbde9fa6fdf1f2eca50ac1aa3af0",
+    "CLAUDE.md": "a3b225592b32db10389f6fd208346a8352484f99b26a7ef7e08c508f308c46c8",
+    "docs/CURRENT_STATE_RU.md": "4d715484a11cc0a7a07e9293038f72249a31ac94b24ca76b99d7ca8ff763f2e3",
+    "docs/OPEN_REGISTER.md": "67cb7647fa4f2589dfaaadfa1357c788360dcf008425b5fc95529bc045779b1a",
+    "docs/QWEN_MEDIUM_120_20261020_RU.md": "c99157f2880b00f2ed083ddba1a9b0a4ec529fcd47dfbd7759885845723997b2",
+    "docs/QWEN_MEDIUM_120_ANSWERS_20261020_RU.md": "ef347ec077e36d2877183a8c1aefb0300e88b5a9cc8a63e9a59390d1aa095b81",
+    "docs/QWEN_RELEASE_120_20261019_RU.md": "52008ad6014c833d0ba11015fac8206262d9eca8df2a941ce7120705d19870f5",
+    "docs/TECHNICAL_REPORT_RU.md": "7d412a5cf9921e92125fd6cf777c4f44d0347636a2c143049d14823fd094e5fa",
+    "scripts/release_eval.py": "6ceb8a44afa657e01e60f0777ebd0a6040fe44c1ec08e93ef630b1a1b7bda8e0",
+    "tests/test_release_eval.py": "052410022913eac2cf3ab6c1156bd7b4f4e998ae14b7a11ed892050b9a89bcf1"
+  },
+  "scope": "Current medium artifacts/docs/harness; excludes secret configs and manifest itself. Old none baseline manifests not rewritten."
+}

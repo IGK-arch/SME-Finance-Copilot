@@ -1,6 +1,7 @@
 # Technical documentation
 
-SME Finance Copilot · International Track, Topic E · version 0.3.0.
+SME Finance Copilot · International Track, Topic E · version 0.3.0 · updated 20 Oct 2026.
+Repository: <https://github.com/IGK-arch/SME-Finance-Copilot>.
 
 A finance copilot for a small-business owner. It finds the coming cash gap,
 explains why it happens, compares ways to cover it (including financing), lets
@@ -132,18 +133,35 @@ plan that became unsafe after data changed cannot be executed.
 4. The worker leases the job, re-checks authority and preconditions, looks up
    the status by the stable key before any resend, and only then calls the bank.
 5. A lost response becomes `UNKNOWN`; the reserve stays until the original
-   operation is found. No second payment is possible.
+   operation is found. Injected-loss tests observed one economic operation per
+   stable key; this guarantee depends on the provider's idempotency contract.
 
 State machine: `RESERVED → SUBMITTED → SETTLED | FAILED`, with
 `SUBMITTED ↔ UNKNOWN` on lost responses.
 
 ### 3.7 Reconciliation and case closure
 
-`refresh` observes the sandbox, records each new movement once (inbox
-deduplication), allocates it to the obligation and writes a balanced ledger
-pair. Local cash is compared with bank cash; a discrepancy stops new sends and
-only the OWNER can resume after a matching reconciliation. The financial case is
-marked RESOLVED only when the plan is complete and the reconciliation matches.
+`refresh` observes the sandbox and records each new movement once (inbox
+deduplication), including a balanced ledger pair. Before completing a Copilot
+action or allocating its cash, it requires an unambiguous stable key, the known
+provider reference, signed amount, counterparty and obligation reference to match
+the approved command. External cash remains observable even without an allocation.
+
+An identity mismatch records a durable tenant-scoped `settlement_issue`, stops
+sends and leaves the unresolved action UNKNOWN with its reserve active. It cannot
+close another bill or create the approved loan debt. Replay, provider statuses,
+restart and repeated approval cannot erase the issue. A previously completed
+historical action is not rolled back by a later conflicting movement.
+
+Reconciliation v2 distinguishes `cash_matched` from `matched`; matching balances
+are insufficient while a settlement issue remains. Only the OWNER can resume,
+after a fresh fully matched reconciliation. The case is RESOLVED only when the
+plan is complete and reconciliation matches. No automatic dispute-resolution or
+force-clear endpoint exists. Old accepted inbox records are not retroactively
+revalidated. See [K15 fix and evidence](../SETTLEMENT_FIX_20261019_RU.md),
+[ADR 0006](../adr/0006-settlement-identity.md) and the
+[versioned runtime contract](../../contracts/RUNTIME.md). This symbolic CNY
+sandbox contract does not verify real bank account details.
 
 ### 3.8 Business health analysis
 
@@ -155,14 +173,47 @@ payables, top-3 customer and payee concentration, and settled inflow/outflow ove
 the last 30 days. Profit and loss is explicitly `INSUFFICIENT_DATA` because a
 bank statement is not an income statement.
 
+The Money page and agent use the same calculation (`analysis-v2`). The agent's
+`calculate_business_metrics` returns the typed `business-health-v1` contract;
+`forecast_cashflow` includes baseline health and `what_if_cashflow` includes
+explicitly scoped hypothetical health. Only forecast-derived buffer/gap change
+in a what-if; observed cash, ageing and concentration stay observed facts.
+Capabilities describe this coverage, saved calculations retain source/snapshot
+lineage and are readable through the existing paginated record tools. The
+Copilot renders a server-formatted Business health card. Calculation contracts
+are `compute-v3` / `agent-tools-v5`; older saved results are not rewritten.
+
+Money uses integer CNY minor units, percentages use integer basis points, and
+zero-denominator coverage or an absent forecast gap use explicit null statuses.
+Combined top-three shares are calculated before rounding. The legacy
+`supplier_concentration` field covers all payable counterparties, including
+salary, rent and lenders. Settled cashflow only counts observed SETTLED events
+inside the declared open-left/closed-right window; it is not profit.
+Health cannot approve a payment or bypass observed-ID, role or tenant checks.
+See [ADR 0007](../adr/0007-agent-business-health.md), the
+[contract](../../contracts/business-health.schema.json) and the dated
+[implementation and EN/ZH evaluation report](../BUSINESS_HEALTH_AGENT_20261019_RU.md).
+
+For bounded EN/ZH health reports, `health-answer-v1` asks the model to select
+report sections and observed result/source IDs using strict JSON. The server
+renders field-bound labels and values through the reference guard, so
+current versus saved snapshots, null versus zero, P&L versus coverage and forecast
+scope cannot be relabelled by model prose. Missing reads and invalid selections
+fail closed; no new tool authority or approval path exists. This is
+server-rendered presentation, not free-form financial writing. Measured results
+are in §6. See [ADR 0008](../adr/0008-typed-health-answers.md),
+[ADR 0009](../adr/0009-mixed-health-completion.md) and the
+[measured report](../BUSINESS_HEALTH_MIXED_FIX_20261019_RU.md).
+
 ### 3.9 On-chain proof of the audit trail
 
 Every audit record already stores `previous_hash` and `event_hash`, so changing
 one record breaks the chain. A database administrator, however, could rewrite a
-record and recompute every later hash. `finance/anchor.py` closes that gap:
+record and recompute every later hash. `finance/anchor.py` detects changes to an
+anchored prefix when compared with a trusted saved transaction reference:
 
 1. Recompute the chain locally and refuse to anchor a broken chain.
-2. Build a 65-byte payload: tag `SMEAUDIT1`, a salted 16-byte tenant tag, the
+2. Build a 65-byte payload: tag `SMEAUDIT1`, a deterministic 16-byte tenant tag, the
    number of records covered (uint64) and the 32-byte chain head.
 3. Sign a zero-value EIP-1559 transaction to the wallet's own address with that
    payload as data and send it to a public testnet. The chain id must be
@@ -173,7 +224,10 @@ record and recompute every later hash. `finance/anchor.py` closes that gap:
    local records and checks that the head matches. Records added after the anchor
    do not invalidate it.
 
-No amount, name or identifier is published. Test `tests/test_anchor.py` rewrites
+No business amount or document text is published. The tenant tag is pseudonymous,
+derived using a public constant prefix (not a secret/random salt), and the count
+and transaction metadata are public. Verification requires local records; later
+unanchored records are outside this commitment. Test `tests/test_anchor.py` rewrites
 history with recomputed hashes: the local check passes, the anchor check fails.
 
 ## 4. Agent design
@@ -212,27 +266,58 @@ Full details and the known-risk list: [SECURITY_SELF_ASSESSMENT.md](SECURITY_SEL
 | Strata | Opt-in self-hosted model through an authenticated SSH bridge that exposes chat only |
 
 A failing live model is recorded as a failed run; there is no silent fallback to
-MOCK. Measured multi-model and reasoning evaluations (100 EN/ZH scenarios per
-model) are in `docs/MULTIMODEL_100_RESULTS_RU.md` and
-`docs/REASONING_100_RESULTS_RU.md` (Russian working reports; raw data in
-`artifacts/`).
+MOCK. The demo and all regression tests use MOCK, so their results do not depend on
+a model.
+
+The selected live model is `qwen3.8-flash-next-iq3_xxs` served on Strata (context
+16,384 tokens, at most 12 agent steps, 240 s per scenario). It was kept after
+four alternative self-hosted models were run on the same 100 English/Chinese agent
+scenarios (67 EN, 33 ZH); the best alternative, Gemma 4 26B-A4B, reached 62/100. Latest measurements on the submission code (19–20 Oct, reasoning
+`medium`, one attempt per case, no retries substituted):
+
+| Suite | Strict automatic PASS | Latency p50 / p95 |
+|---|---|---|
+| 100 agent scenarios (EN 61/67, ZH 28/33) | **89/100** | 32.8 s / 56.6 s |
+| 20 harder mixed requests (several sections in one question) | **7/20** | 46.8 s / 77.5 s |
+| 20 business-health reports with server-rendered answers | **19/20** | — |
+
+A strict PASS means the required tools were called, the cited amounts, dates and
+IDs match server results and every safety assertion held; it is not a guarantee
+that every sentence is correct. The weakest area is long multi-part requests,
+where the model omits a requested section; this is listed as risk K06.
+Sources: [medium 120-case report](../QWEN_MEDIUM_120_20261020_RU.md),
+[health report](../BUSINESS_HEALTH_MIXED_FIX_20261019_RU.md),
+[model comparison](../MULTIMODEL_100_RESULTS_RU.md) (Russian working reports;
+raw data in `artifacts/`).
 
 ## 7. Testing and evidence
 
 | Check | Command | Latest result |
 |---|---|---|
-| Unit + integration regression | `python -m scripts.test` | 278 run, 0 failed, 7 skipped (PostgreSQL, Windows-only) on Linux, 18 Oct |
-| Static checks | `python -m scripts.check` | ruff, mypy, format, JS syntax PASSED |
-| Product path E2E (server + worker + sandbox) | `python -m scripts.e2e_v03` | 21/21 checks PASSED |
+| Unit + integration regression | `python -m scripts.test` | 20 Oct 2026, Windows: 381 run, 377 PASS, 4 PostgreSQL SKIP, 0 FAIL |
+| Static checks | compileall, ruff, mypy, JS syntax, pip check | 9/9 PASS (`scripts.check`) |
+| Product path E2E (server + worker + sandbox) | `python -m scripts.e2e_v03` | 23/23 checks PASSED; MOCK decisions |
 | Golden scenario with lost response | `python -m scripts.demo --lost-response` | 5/5 actions settled, reconciled, 0 discrepancy |
-| Acceptance matrix | `python -m scripts.report` | Last recorded: T001–T100 96 PASSED / 4 NOT_RUN |
-| CI | GitHub Actions `.github/workflows/ci.yml` | check, tests, demo, benchmark, report |
+| Acceptance from fresh test report | `python -m scripts.test` | T001–T100: 95 PASSED / 5 NOT_RUN (T023, T031, T032, T094, T097) |
+| Browser smoke | `python -m analysis.submission_browser_runner` | 18 route/width renders; 7 assertions PASS; not full browser E2E |
+| CI | GitHub Actions `.github/workflows/ci.yml` | security scan, check, tests, demo, benchmark, report; no HTTP E2E/browser/PG job |
 
 Sandbox operation logs: [EXECUTION_EVIDENCE.md](EXECUTION_EVIDENCE.md).
 
+A pre-submission review reproduced one defect (a settlement with the right amount
+but the wrong counterparty could close an action); it was fixed and is covered by
+15 tests, see [ADR 0006](../adr/0006-settlement-identity.md) and section 4 of the
+[execution evidence](EXECUTION_EVIDENCE.md).
+
 ## 8. Limitations
 
-Synthetic data and DEMO financing terms only; no real bank or lender. Scenarios
-are uncalibrated. Live-model prose still has measured errors. Production
-isolation, secret vault and TLS/SSO are not implemented; on-chain anchoring uses a
-testnet only. See [KNOWN_LIMITATIONS.md](../KNOWN_LIMITATIONS.md).
+- Synthetic data and DEMO financing terms only; no real bank, lender or payment rail.
+  A real bank adapter would need its own identity contract and review.
+- Forecast scenarios are uncalibrated and are not probabilities of default.
+- Live-model prose still has measured errors (§6); numbers on screen come from tools.
+- Documents: CSV/XLSX and text PDF; no OCR, lexical retrieval only.
+- No secret vault, SSO or OS-level isolation of the sandbox's private files. Public
+  hosting uses Caddy HTTPS in front of a loopback-only application.
+- On-chain anchoring uses a public testnet only.
+
+Severities and mitigations: [known-risk list](SECURITY_SELF_ASSESSMENT.md#5-known-risk-list).

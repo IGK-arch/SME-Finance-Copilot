@@ -1,0 +1,280 @@
+[
+  {
+    "case_id": "release_aging_role_en",
+    "intent": null,
+    "requirements": {
+      "details": [
+        {
+          "dataset": "obligations",
+          "external_id": "aging_ar_1"
+        },
+        {
+          "dataset": "obligations",
+          "external_id": "aging_ap_1"
+        }
+      ],
+      "document_titles": [],
+      "search": false,
+      "capabilities": false,
+      "scenario_count": 1,
+      "objective": null,
+      "calculation_detail": false
+    }
+  },
+  {
+    "case_id": "release_aging_role_zh",
+    "intent": {
+      "language": "zh",
+      "required_sections": [
+        "aging",
+        "details",
+        "overview"
+      ],
+      "tasks": {
+        "details": [
+          {
+            "dataset": "obligations",
+            "external_id": "aging_ar_1"
+          },
+          {
+            "dataset": "obligations",
+            "external_id": "aging_ap_1"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      }
+    },
+    "requirements": {
+      "details": [
+        {
+          "dataset": "obligations",
+          "external_id": "aging_ar_1"
+        },
+        {
+          "dataset": "obligations",
+          "external_id": "aging_ap_1"
+        }
+      ],
+      "document_titles": [],
+      "search": false,
+      "capabilities": false,
+      "scenario_count": 1,
+      "objective": null,
+      "calculation_detail": false
+    }
+  },
+  {
+    "case_id": "release_shocks_role_en",
+    "intent": {
+      "language": "en",
+      "required_sections": [
+        "overview"
+      ],
+      "tasks": {
+        "details": [],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      }
+    },
+    "requirements": {
+      "details": [],
+      "document_titles": [],
+      "search": false,
+      "capabilities": false,
+      "scenario_count": 1,
+      "objective": null,
+      "calculation_detail": false
+    }
+  },
+  {
+    "case_id": "release_shocks_role_zh",
+    "intent": {
+      "language": "zh",
+      "required_sections": [
+        "overview"
+      ],
+      "tasks": {
+        "details": [],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      }
+    },
+    "requirements": {
+      "details": [],
+      "document_titles": [],
+      "search": false,
+      "capabilities": false,
+      "scenario_count": 1,
+      "objective": null,
+      "calculation_detail": false
+    }
+  },
+  {
+    "case_id": "release_cashflow_evidence_en",
+    "intent": {
+      "language": "en",
+      "required_sections": [
+        "details",
+        "limits",
+        "overview"
+      ],
+      "tasks": {
+        "details": [
+          {
+            "dataset": "transactions",
+            "external_id": "window_4"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      }
+    },
+    "requirements": {
+      "details": [
+        {
+          "dataset": "transactions",
+          "external_id": "window_4"
+        }
+      ],
+      "document_titles": [],
+      "search": false,
+      "capabilities": false,
+      "scenario_count": 1,
+      "objective": null,
+      "calculation_detail": false
+    }
+  },
+  {
+    "case_id": "release_cashflow_evidence_zh",
+    "intent": {
+      "language": "zh",
+      "required_sections": [
+        "details",
+        "limits",
+        "overview"
+      ],
+      "tasks": {
+        "details": [
+          {
+            "dataset": "obligations",
+            "external_id": "window_4"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      }
+    },
+    "requirements": {
+      "details": [
+        {
+          "dataset": "obligations",
+          "external_id": "window_4"
+        }
+      ],
+      "document_titles": [],
+      "search": false,
+      "capabilities": false,
+      "scenario_count": 1,
+      "objective": null,
+      "calculation_detail": false
+    }
+  },
+  {
+    "case_id": "release_revision_role_en",
+    "intent": {
+      "language": "en",
+      "required_sections": [
+        "details",
+        "history",
+        "overview"
+      ],
+      "tasks": {
+        "details": [
+          {
+            "dataset": "obligations",
+            "external_id": "customer_invoice"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      }
+    },
+    "requirements": {
+      "details": [
+        {
+          "dataset": "obligations",
+          "external_id": "customer_invoice"
+        }
+      ],
+      "document_titles": [],
+      "search": false,
+      "capabilities": false,
+      "scenario_count": 1,
+      "objective": null,
+      "calculation_detail": false
+    }
+  },
+  {
+    "case_id": "release_revision_role_zh",
+    "intent": {
+      "language": "zh",
+      "required_sections": [
+        "details",
+        "overview"
+      ],
+      "tasks": {
+        "details": [
+          {
+            "dataset": "obligations",
+            "external_id": "customer_invoice"
+          }
+        ],
+        "document_titles": [],
+        "search": false,
+        "capabilities": false,
+        "scenario_count": 1,
+        "objective": null,
+        "calculation_detail": false
+      }
+    },
+    "requirements": {
+      "details": [
+        {
+          "dataset": "obligations",
+          "external_id": "customer_invoice"
+        }
+      ],
+      "document_titles": [],
+      "search": false,
+      "capabilities": false,
+      "scenario_count": 1,
+      "objective": null,
+      "calculation_detail": false
+    }
+  }
+]

@@ -17,7 +17,7 @@ tests; the remaining items are listed in the
 | Audit trail | Append-only (SQLite triggers, PostgreSQL revoked UPDATE/DELETE), hash-chained, verifiable, anchored on a public testnet. |
 | Web client | DOM built from text nodes only, no `innerHTML`, no `eval`, no tokens in storage or URLs, strict CSP. |
 | Dependencies | All 80 pinned packages (runtime, dev, on-chain) checked against OSV on 18 Oct 2026: no known vulnerabilities. |
-| Secrets | No key, token or password in the current tree or in any past commit. |
+| Secrets | No key, token or password in the current tree or in any past commit (a server IP address remains in history, see K13 below). |
 
 ## Gaps found and fixed
 
@@ -41,6 +41,9 @@ tests; the remaining items are listed in the
   the address. `python -m scripts.security_scan --history` lists the affected commits.
 
 ## Verification after the fixes (Windows, CPython 3.11.9, 18 Oct 2026)
+
+These are the counters recorded on 18 Oct; the latest full run is in the
+[README](../../README.md) and [EXECUTION_EVIDENCE.md](EXECUTION_EVIDENCE.md).
 
 - Full regression: 300 tests, 0 failures, 4 skipped (PostgreSQL not configured in
   this shell). Raw report: `artifacts/regression-security-20261018.json`.

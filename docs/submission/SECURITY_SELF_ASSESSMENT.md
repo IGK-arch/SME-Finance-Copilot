@@ -1,8 +1,10 @@
 # Security self-assessment report
 
-Topic E · SME Finance Copilot · version 0.3.0 · 18 Oct 2026.
-Scope: the code in this repository running locally on synthetic data with a
-simulated bank (sandbox). No real money, real bank, real customer data or paid
+Topic E · SME Finance Copilot · version 0.3.0 · updated 20 Oct 2026 ·
+<https://github.com/IGK-arch/SME-Finance-Copilot>
+
+Scope: the code in this repository running on synthetic data with a simulated
+bank (sandbox), either locally or on a single VPS behind HTTPS. No real money, real bank, real customer data or paid
 service is connected. Every statement below points to code or a test that can be
 re-run; nothing here is a legal, regulatory or bank certification.
 
@@ -88,7 +90,7 @@ request field. Tests: `tests/test_audit_fixes.py::test_R4_R5_role_boundaries`,
 ## 4. Compliance considerations
 
 - **Data minimisation and residency.** All data is synthetic and stays on the
-  local machine; no third-party API receives financial data by default. The
+  machine that runs the application; no third-party API receives financial data. The
   optional self-hosted model is reached only through an authenticated SSH bridge
   that exposes chat endpoints and no financial tools.
 - **Human in the loop.** No autonomous money movement: every action has a human
@@ -111,16 +113,18 @@ synthetic setup the impact is limited to demo data.
 | K02 | API and worker share one PostgreSQL tenant role; no worker-only grant set | Medium | RLS still limits both to one tenant | Open |
 | K03 | Simulator and LangGraph SQLite files are not in separately permissioned containers; no OS-level isolation of private simulator truth | Medium | Process separation and tools never expose private world state | Open |
 | K04 | Credentials live in ignored local files, not a secret vault | Medium | `.gitignore`, no secrets in outputs/URLs/localStorage | Open (by design for local demo) |
-| K05 | HTTP binds to 127.0.0.1 without TLS/SSO | Medium for hosting, Low locally | Loopback only | Open |
+| K05 | No SSO or per-user accounts; roles are bearer membership tokens | Medium for hosting, Low locally | The application binds to 127.0.0.1; public hosting goes through Caddy with Let's Encrypt HTTPS, HSTS and a host check (`SME_PUBLIC_ORIGIN`); tokens are exchanged for HttpOnly SameSite=Strict sessions; lockouts and security logging | Partly mitigated |
 | K06 | Live model prose can still contain semantic errors even when tool calls pass | Medium | Result cards come from tool results, not prose; exact money references are validated; failures recorded in evaluation reports | Open, measured |
-| K07 | Prompt injection through imported documents against a live model | Medium | No dangerous tools exist; documents labelled untrusted; mock tests only, not proof of real-model robustness | Partly mitigated |
+| K07 | Prompt injection through imported documents against a live model | Medium | No dangerous tools exist; documents labelled untrusted; historical EN/ZH LIVE attack scenarios and failures are recorded, but no independent robustness guarantee | Partly mitigated |
 | K08 | Document parser has time/size bounds but no OS memory sandbox | Low | Subprocess with resource limits | Open |
 | K09 | No compensating payments or external cancellation; UNKNOWN reserves cannot be force-released | Low (safety over liquidity) | Status lookup by stable key | Accepted |
 | K10 | Business analysis is descriptive; P&L is not computed from bank data | Low | Labelled `INSUFFICIENT_DATA` | Accepted |
 | K11 | Alerts have no acknowledgement/debounce workflow | Low | Alerts are idempotent per rule/subject | Open |
 | K12 | Testnet wallet key is stored in the ignored workspace folder | Low (testnet coins only) | Separate from business credentials; mainnet refused by chain-id check | Accepted |
-| K13 | The model server's public IP address remains in old commits (removed from current files; no key or password was ever committed, confirmed by `python -m scripts.security_scan --history`) | Low | Server reached only through an SSH key that is not in the repository; repository is private; the owner is moving hosting to another server, which retires the address | Accepted (owner decision 18 Oct: history not rewritten) |
+| K13 | The model server's public IP address remains in old commits; current tracked-file scan found no matching secrets, while history reports public-IP findings | Low | The address is not a credential: the model host accepts only key-authenticated SSH with a pinned host key, and keys live in ignored files. Current files contain no address; `scripts.security_scan --history` lists the old commits. Scanner coverage does not prove the absence of every possible secret | Accepted (owner decision 18 Oct: history not rewritten) |
 | K14 | Sign-in and token lockouts are global per process, so repeated bad attempts can delay legitimate sign-in for five minutes | Low locally | Loopback binding; separate budgets for browser sign-in and API tokens | Accepted |
+| K15 | Incorrect settlement identity previously allowed false SETTLED and early reserve release | High for real integration; synthetic-only impact here | Exact identity check before allocation/completion; durable tenant-scoped issue, reserve retention and send/resume block; 15 targeted tests and full regression/E2E passed. No automatic dispute clearing or historical repair | Fixed for the synthetic adapter, 19 Oct; real adapters require a separate contract/review |
+| K16 | On a shared public demo, everyone holding the same role token acts on the same synthetic company | Low (synthetic data, sandbox bank) | Give reviewers the least role they need (AUDITOR for read-only); step-up still required for approvals; a fresh seeded workspace can replace it | Accepted for the demo |
 
 ## 6. How to verify
 
@@ -131,6 +135,9 @@ python -m scripts.e2e_v03     # product path through server + worker + sandbox
 python -m scripts.verify_audit --directory .runtime/workspace   # audit chain
 ```
 
-Latest run on Linux (CPython 3.13, 18 Oct 2026): 278 tests, 0 failures,
-7 skipped (PostgreSQL and Windows-only resource guard); `scripts.check` all
-PASSED; product E2E 21/21 checks PASSED.
+Latest full run (20 Oct 2026, Windows 11, CPython 3.11.9): **381 tests, 377 PASSED,
+4 PostgreSQL SKIPPED, 0 failed**, including 15 settlement-identity and 11
+security-hardening tests. Product E2E: 23/23 PASSED (MOCK model). Golden scenario: 5/5
+actions, zero cash difference. `scripts.check`: 9/9 PASSED. PostgreSQL row-level
+security tests run only with `SME_POSTGRES_TEST_CONFIG` set and were skipped here.
+Raw report: `artifacts/release-20261020/regression.json`.

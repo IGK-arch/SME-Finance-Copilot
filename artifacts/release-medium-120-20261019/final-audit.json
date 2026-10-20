@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-19T21:45:20.803887+00:00",
+  "status": "PASSED",
+  "unique_primary": 120,
+  "single_segment_status": "COMPLETED",
+  "primary_sha256": "f56c824a866494d8801bbcce739f20c74f9dcf02c866f2b6142747f24052adf7",
+  "reviewed": 120,
+  "review_sha256": "5d03e3a6fb131b7c8952108944bf40e0fed89b36cc4293a7e4f89b9be56fd83e",
+  "frozen_source_count": 90,
+  "all_frozen_sources_unchanged": true,
+  "delta_from_latest_none": [
+    "scripts/release_eval.py"
+  ],
+  "cases_system_tools_and_budgets_comparable": true,
+  "configuration_delta": [
+    "think",
+    "strata_reasoning_effort"
+  ],
+  "postflight_status": "PREFLIGHT_READY",
+  "same_service_instance": true,
+  "evaluator_exec_session": 97956,
+  "evaluator_exit_code": 0,
+  "evaluator_pid_check": {
+    "method": "Get-CimInstance Win32_Process, python names and scripts.release_eval command match, output ProcessId/Name only",
+    "observed_matching_processes": 0
+  },
+  "safety_failures": {},
+  "narrative_safety_limitation": "Reserve-adjustment workaround suggestion in clarification_ru; no financial or policy mutation; state checks do not certify prose",
+  "baseline_hashes_verified": [
+    {
+      "path": "artifacts\\release-eval-20261019\\primary.json",
+      "sha256": "78bc7551f3a8b5a5724db0d264adba4051ecdc8e0a46f1552d1e74c9c1586b45"
+    },
+    {
+      "path": "artifacts\\release-eval-20261019\\primary-resume.json",
+      "sha256": "c69874b2fcfc5fec913668821c21e19224adcf06962719edc08d4c6d90040d36"
+    },
+    {
+      "path": "artifacts\\release-eval-20261019\\primary-resume-2.json",
+      "sha256": "5802b298e69f22af84c08e466f156f5aaa429d496c159e0a0debfe4261c0d1a9"
+    },
+    {
+      "path": "artifacts\\strata-reasoning-medium-74-20261017.json",
+      "sha256": "d3509af55b6ed75fd9f80bba0e8a92a751bbeda501e858d6ef14d70c4436b979"
+    },
+    {
+      "path": "artifacts\\strata-reasoning-edge-paired-26-20261017.json",
+      "sha256": "97ec66d4d86bb81793063dad73e71a1323796a9f80efc3bd63dabde5d34b0e79"
+    }
+  ],
+  "production_guards_unchanged": {
+    "finance/agents.py": "bf9e36dd250607d1221633cbda0ac4be5675fa2207141614b2169771dc84a735",
+    "finance/digest_check.py": "c48870d54ee7c419bdc7066f2a67a0ef8875614c80b52f434d8865330cdc04ab",
+    "finance/execution.py": "b61a05d81331cc953e796ad432e205619324249a68d4b58746617a90a97fb403",
+    "finance/gateway.py": "a8ce17739bd16b0459a0cedc10f64e839c31363b5a583326716546ac2c93a8c9",
+    "finance/health_answers.py": "98e49f4aec1688ac1a2982a2a2230d11e74698fefed4005a75a76281897e4207",
+    "finance/health_tasks.py": "e85c9cd9bc15d1316c08932c6997077d0112ac29e7f1c61d69d021fad1b89249",
+    "finance/strata.py": "58dca09b05767bbdc4269de1c34a880abd6cfd17cb30eb24ead094703f5bf7f5",
+    "finance/validation.py": "7364a1bfd02086e9cfc13d3ac06f2bd42c6498d3920092ab11e3569a7c119d37",
+    "finance/worker.py": "78c4414ee81aa14fe5cc420bb76f3149c87c15c3d1638cbc9b44b76562f9925b",
+    "finance/workflows.py": "c5dcd7b15ea789da1f4926d718df157b9dca8d94a6d8fd8775889ce80197635a"
+  },
+  "tests_fresh": {
+    "target_tests": "7 PASS",
+    "static": "9/9 PASS",
+    "report_lint_format_types": "PASS"
+  },
+  "not_run": [
+    "full_unit_regression",
+    "HTTP_E2E",
+    "PostgreSQL",
+    "pixel_UI",
+    "LIVE_approval_execution_lifecycle"
+  ],
+  "limitations": [
+    "Single sequential run per setting; not randomized",
+    "Review by coding assistant, not independent accountant",
+    "20 challenges now-known development set",
+    "Service metadata does not prove weights SHA-256/license",
+    "No production fixes or cabinet model-mode switch"
+  ]
+}

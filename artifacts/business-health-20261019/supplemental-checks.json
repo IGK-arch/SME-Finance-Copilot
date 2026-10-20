@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-10-18T23:01:37.712252+00:00",
+  "scope": "Supplemental checks actually executed in this task; primary logs are also in tool results.",
+  "checks": {
+    "mypy_health_evaluator_tests_report": {
+      "status": "PASSED",
+      "command": "python -m mypy scripts/business_health_eval.py tests/test_business_health_eval.py tests/test_business_health_tools.py analysis/business_health_report.py",
+      "observed_output": "Success: no issues found in 4 source files"
+    },
+    "report_and_test_lint": {
+      "status": "PASSED",
+      "command": "python -m ruff check analysis/business_health_report.py tests/test_business_health_tools.py"
+    },
+    "report_and_test_format": {
+      "status": "PASSED",
+      "command": "python -m ruff format --check analysis/business_health_report.py tests/test_business_health_tools.py"
+    },
+    "diff_whitespace": {
+      "status": "PASSED",
+      "command": "git -c core.whitespace=cr-at-eol diff --check"
+    },
+    "answer_functions_ast_unchanged": {
+      "status": "PASSED",
+      "functions": [
+        "money",
+        "references",
+        "render",
+        "context"
+      ],
+      "scope": "All top-level function/class ASTs equal HEAD; only prompt instruction text changed."
+    }
+  },
+  "unchanged_from_settlement_fix": {
+    "finance/execution.py": true,
+    "finance/worker.py": true,
+    "finance/validation.py": true,
+    "finance/digest_check.py": true
+  },
+  "prior_test_typing_diagnostic": {
+    "status": "FAILED_THEN_FIXED",
+    "errors": 3,
+    "reason": "Optional result card indexed without explicit type narrowing; assert card is not None added in test only. Targeted 17 tests repeated."
+  }
+}

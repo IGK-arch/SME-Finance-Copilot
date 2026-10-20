@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-18T21:53:13.684370+00:00",
+  "repo": "https://github.com/IGK-arch/SME-Finance-Copilot",
+  "private": true,
+  "default_branch": "main",
+  "local_main": "3ef8441",
+  "audited_head": "d3764f0a5155fe0153e3b7d807f0fa37d78640d3",
+  "pull_request": {
+    "number": 4,
+    "state": "OPEN",
+    "head": "security-hardening",
+    "url": "https://github.com/IGK-arch/SME-Finance-Copilot/pull/4"
+  },
+  "ci": {
+    "status": "completed",
+    "conclusion": "success",
+    "headSha": "d3764f0a5155fe0153e3b7d807f0fa37d78640d3",
+    "url": "https://github.com/IGK-arch/SME-Finance-Copilot/actions/runs/39164169351"
+  },
+  "method": "gh repo view; gh pr list --head security-hardening; gh run list --branch security-hardening; git branch -vv"
+}

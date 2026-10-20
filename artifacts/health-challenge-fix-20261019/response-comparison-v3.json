@@ -1,0 +1,129 @@
+{
+  "scope": "Text comparison against manually reviewed v2, only actual random result/snapshot/source/fact/document/plan IDs normalized; not an automatic semantic grade",
+  "cases": [
+    {
+      "case_id": "healthx_plain_language_en",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_plain_language_zh",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_aging_detail_en",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_aging_detail_zh",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_concentration_names_en",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_concentration_names_zh",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_cashflow_transaction_en",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_cashflow_transaction_zh",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_empty_scope_en",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_empty_scope_zh",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_two_shocks_en",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_two_shocks_zh",
+      "strict": "FAILED",
+      "text_equal_after_observed_id_normalization": false,
+      "error": {
+        "code": "MODEL_UNAVAILABLE",
+        "safe_message": "Local model request failed; no fallback used",
+        "retryable": true
+      }
+    },
+    {
+      "case_id": "healthx_revision_lineage_en",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_revision_lineage_zh",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_two_documents_en",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": false,
+      "error": null
+    },
+    {
+      "case_id": "healthx_two_documents_zh",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_health_then_plan_en",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_health_then_plan_zh",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_role_and_restricted_doc_en",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    },
+    {
+      "case_id": "healthx_role_and_restricted_doc_zh",
+      "strict": "PASSED",
+      "text_equal_after_observed_id_normalization": true,
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "kind": "V03_PRODUCT_PATH_E2E",
+  "scope": "Real HTTP server + queue worker + independent sandbox via cookie session; MOCK runtime; no LIVE model decisions",
+  "workspace": ".runtime\\v03-e2e\\20261019-125457",
+  "checks": {
+    "initial_gap_90000": true,
+    "receivable_due_moved": true,
+    "same_gap_not_reported_as_change": true,
+    "change_recorded_in_case": true,
+    "options_differ": true,
+    "approval_requires_step_up": true,
+    "browser_session_cannot_use_legacy_money_route": true,
+    "tampered_hash_refused": true,
+    "action_1_settled": true,
+    "action_2_settled": true,
+    "action_3_settled": true,
+    "session_survives_restart": true,
+    "action_4_settled": true,
+    "lost_response_single_attempt": true,
+    "action_5_settled": true,
+    "plan_completed": true,
+    "reconciled_zero_difference": true,
+    "final_cash_29000": true,
+    "case_resolved_only_after_reconciliation": true,
+    "world_one_operation_per_key": true,
+    "world_movements_6": true,
+    "world_cash_matches": true,
+    "ledger_one_balanced_pair_per_movement": true
+  },
+  "passed": true,
+  "steps": [
+    {
+      "at": 1792403704.753941,
+      "step": "home_initial",
+      "state": "GAP",
+      "need": "CNY 90,000.00",
+      "gap": "2026-10-08T00:00:00.000000+00:00"
+    },
+    {
+      "at": 1792403704.7854369,
+      "step": "import_preview",
+      "ready": 1,
+      "update": {
+        "from_version": 1,
+        "changes": {
+          "due_at": [
+            "2026-10-11T00:00:00.000000+00:00",
+            "2026-10-14T16:00:00.000000+00:00"
+          ]
+        }
+      }
+    },
+    {
+      "at": 1792403704.831077,
+      "step": "import_commit",
+      "status": "IMPORTED",
+      "accepted": 1
+    },
+    {
+      "at": 1792403704.8607717,
+      "step": "home_after_change",
+      "state": "GAP",
+      "history": [
+        "OPENED"
+      ],
+      "receivable_due": "2026-10-14T16:00:00.000000+00:00"
+    },
+    {
+      "at": 1792403704.9154658,
+      "step": "home_after_policy",
+      "need": "CNY 95,000.00",
+      "change": "Data changed: need CNY 90,000.00 → CNY 95,000.00; gap date Thu 8 Oct → Tue 6 Oct"
+    },
+    {
+      "at": 1792403705.3378785,
+      "step": "options",
+      "summary": "1 executable of 4 options",
+      "statuses": {
+        "FINANCE_MIN_COST": "EXECUTABLE",
+        "NO_NEW_DEBT": "INFEASIBLE",
+        "HIGHER_RESERVE": "INFEASIBLE",
+        "STRESS_RESILIENT": "INFEASIBLE"
+      }
+    },
+    {
+      "at": 1792403705.3729239,
+      "step": "selected",
+      "plan_id": "plan_23b8a9bfe38c8445efe4a8eb",
+      "actions": [
+        "Draw loan · CNY 96,000.00",
+        "Pay Payroll · CNY 80,000.00",
+        "Pay Landlord · CNY 20,000.00",
+        "Pay 苏州合成供应商 · CNY 90,000.00",
+        "Repay loan · CNY 96,000.00"
+      ]
+    },
+    {
+      "at": 1792403705.681804,
+      "step": "approved",
+      "n": 1,
+      "title": "Draw loan · CNY 96,000.00",
+      "status": "RESERVED",
+      "lost_response": false
+    },
+    {
+      "at": 1792403707.2643058,
+      "step": "worker_sent",
+      "title": "Draw loan · CNY 96,000.00",
+      "status": "SUBMITTED"
+    },
+    {
+      "at": 1792403707.4282675,
+      "step": "settled",
+      "title": "Draw loan · CNY 96,000.00",
+      "status": "SETTLED",
+      "attempts": 1
+    },
+    {
+      "at": 1792403707.62608,
+      "step": "approved",
+      "n": 2,
+      "title": "Pay Payroll · CNY 80,000.00",
+      "status": "RESERVED",
+      "lost_response": false
+    },
+    {
+      "at": 1792403708.1566393,
+      "step": "worker_sent",
+      "title": "Pay Payroll · CNY 80,000.00",
+      "status": "SUBMITTED"
+    },
+    {
+      "at": 1792403708.2262027,
+      "step": "settled",
+      "title": "Pay Payroll · CNY 80,000.00",
+      "status": "SETTLED",
+      "attempts": 1
+    },
+    {
+      "at": 1792403708.4529958,
+      "step": "approved",
+      "n": 3,
+      "title": "Pay Landlord · CNY 20,000.00",
+      "status": "RESERVED",
+      "lost_response": false
+    },
+    {
+      "at": 1792403709.0299282,
+      "step": "worker_sent",
+      "title": "Pay Landlord · CNY 20,000.00",
+      "status": "SUBMITTED"
+    },
+    {
+      "at": 1792403709.1537347,
+      "step": "settled",
+      "title": "Pay Landlord · CNY 20,000.00",
+      "status": "SETTLED",
+      "attempts": 1
+    },
+    {
+      "at": 1792403709.397744,
+      "step": "approved",
+      "n": 4,
+      "title": "Pay 苏州合成供应商 · CNY 90,000.00",
+      "status": "RESERVED",
+      "lost_response": true
+    },
+    {
+      "at": 1792403709.9267347,
+      "step": "worker_sent",
+      "title": "Pay 苏州合成供应商 · CNY 90,000.00",
+      "status": "UNKNOWN"
+    },
+    {
+      "at": 1792403710.2585778,
+      "step": "server_killed",
+      "while_status": "UNKNOWN"
+    },
+    {
+      "at": 1792403714.907765,
+      "step": "server_restarted",
+      "home_state": "UNKNOWN_PAYMENT"
+    },
+    {
+      "at": 1792403714.987772,
+      "step": "settled",
+      "title": "Pay 苏州合成供应商 · CNY 90,000.00",
+      "status": "SETTLED",
+      "attempts": 1
+    },
+    {
+      "at": 1792403715.3540766,
+      "step": "approved",
+      "n": 5,
+      "title": "Repay loan · CNY 96,000.00",
+      "status": "RESERVED",
+      "lost_response": false
+    },
+    {
+      "at": 1792403716.9468422,
+      "step": "worker_sent",
+      "title": "Repay loan · CNY 96,000.00",
+      "status": "SUBMITTED"
+    },
+    {
+      "at": 1792403717.0398679,
+      "step": "settled",
+      "title": "Repay loan · CNY 96,000.00",
+      "status": "SETTLED",
+      "attempts": 1
+    },
+    {
+      "at": 1792403717.1708808,
+      "step": "final",
+      "plan": "COMPLETED",
+      "reconciliation": "RECONCILED",
+      "cash": "CNY 29,000.00",
+      "state": "NO_GAP"
+    },
+    {
+      "at": 1792403717.2084317,
+      "step": "case_after",
+      "state": "NO_OPEN_CASE",
+      "closed_reason": "RESOLVED_SETTLED_AND_RECONCILED"
+    },
+    {
+      "at": 1792403717.485056,
+      "step": "world",
+      "operations": 5,
+      "movements": 6,
+      "cash": 2900000,
+      "duplicate_keys": 0,
+      "ledger_pairs": 6
+    }
+  ],
+  "not_covered": [
+    "Pixel rendering (see browser evidence)",
+    "LIVE agent from a free-form request (deferred until the target model)"
+  ]
+}

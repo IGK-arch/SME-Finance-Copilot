@@ -1,0 +1,124 @@
+{
+  "scope": "Synthetic provider-fault injection. No financial operation outside the local sandbox.",
+  "probes": [
+    {
+      "probe": "settlement_wrong_counterparty",
+      "input": {
+        "field": "counterparty",
+        "original": "salary",
+        "replacement": "synthetic_wrong_counterparty"
+      },
+      "action_status": "SETTLED",
+      "reservation_status": "RELEASED",
+      "salary_outstanding_minor": 8000000,
+      "stopped": 0,
+      "reconciliation": {
+        "reconciliation_id": "reconciliation_a06c3e1927624181aad7e5804095c7a6",
+        "at": "2026-10-05T00:00:00.000000+00:00",
+        "local_cash_minor": 13000000,
+        "provider_cash_minor": 13000000,
+        "matched": true,
+        "discrepancy_minor": 0,
+        "status": "RECONCILED"
+      },
+      "finding_reproduced": true
+    },
+    {
+      "probe": "settlement_wrong_reference",
+      "input": {
+        "field": "reference",
+        "original": "salary",
+        "replacement": "synthetic_wrong_reference"
+      },
+      "action_status": "SETTLED",
+      "reservation_status": "RELEASED",
+      "salary_outstanding_minor": 8000000,
+      "stopped": 0,
+      "reconciliation": {
+        "reconciliation_id": "reconciliation_3cf9df19b70f4a689551829231e96d7c",
+        "at": "2026-10-05T00:00:00.000000+00:00",
+        "local_cash_minor": 13000000,
+        "provider_cash_minor": 13000000,
+        "matched": true,
+        "discrepancy_minor": 0,
+        "status": "RECONCILED"
+      },
+      "finding_reproduced": true
+    },
+    {
+      "probe": "anchor_tenant_tag_dictionary",
+      "payload_bytes": 65,
+      "known_candidate_recovered": true,
+      "interpretation": "Public deterministic tag is pseudonymous, not anonymous or secretly salted."
+    },
+    {
+      "probe": "business_health_tool_contract",
+      "available_tools": [
+        "calculate_business_metrics",
+        "forecast_cashflow",
+        "get_action_status",
+        "get_evidence",
+        "get_financial_snapshot",
+        "get_plan_details",
+        "get_platform_capabilities",
+        "list_business_records",
+        "optimize_plan",
+        "prepare_action",
+        "propose_supplier_extension",
+        "read_business_record",
+        "screen_financing_products",
+        "search_documents",
+        "simulate_financing",
+        "stress_test_plan",
+        "what_if_cashflow"
+      ],
+      "agent_metric_keys": [
+        "confirmed_cash_minor",
+        "overdue_minor",
+        "payables_minor",
+        "receivables_minor",
+        "reserve_minor"
+      ],
+      "business_health_keys": [
+        "analysis_version",
+        "as_of",
+        "coverage_30d_bps",
+        "customer_concentration",
+        "days_to_gap",
+        "evidence_refs",
+        "label",
+        "liquidity_buffer_minor",
+        "net_working_position_minor",
+        "payables_aging",
+        "payables_due_30d_minor",
+        "pnl",
+        "receivables_aging",
+        "settled_inflow_minor",
+        "settled_outflow_minor",
+        "settled_window_days",
+        "snapshot_id",
+        "supplier_concentration"
+      ],
+      "missing_computed_metrics": [
+        "analysis_version",
+        "as_of",
+        "coverage_30d_bps",
+        "customer_concentration",
+        "days_to_gap",
+        "evidence_refs",
+        "label",
+        "liquidity_buffer_minor",
+        "net_working_position_minor",
+        "payables_aging",
+        "payables_due_30d_minor",
+        "receivables_aging",
+        "settled_inflow_minor",
+        "settled_outflow_minor",
+        "settled_window_days",
+        "snapshot_id",
+        "supplier_concentration"
+      ],
+      "interpretation": "The Money page's new business-health computation is not exposed by the metrics tool. Raw inputs remain accessible."
+    }
+  ]
+}

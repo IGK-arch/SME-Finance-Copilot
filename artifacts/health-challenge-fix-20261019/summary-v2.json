@@ -1,0 +1,617 @@
+{
+  "at": "2026-10-19T10:18:36.114095+00:00",
+  "completed_unique": 20,
+  "strict": {
+    "PASSED": 20
+  },
+  "semantic": {
+    "COMPLETE": 20
+  },
+  "joint_complete": 20,
+  "latency_all": {
+    "count": 20,
+    "p50_seconds": 41.23160729999654,
+    "p95_seconds": 55.47371190000558,
+    "total_seconds": 758.1121921999729
+  },
+  "latency_joint_complete": {
+    "count": 20,
+    "p50_seconds": 41.23160729999654,
+    "p95_seconds": 55.47371190000558,
+    "total_seconds": 758.1121921999729
+  },
+  "model_calls": 89,
+  "languages": {
+    "en": {
+      "strict": {
+        "PASSED": 10
+      },
+      "semantic": {
+        "COMPLETE": 10
+      },
+      "joint_complete": 10,
+      "latency_all": {
+        "count": 10,
+        "p50_seconds": 36.274666149998666,
+        "p95_seconds": 55.47371190000558,
+        "total_seconds": 368.3509156999935
+      },
+      "latency_joint_complete": {
+        "count": 10,
+        "p50_seconds": 36.274666149998666,
+        "p95_seconds": 55.47371190000558,
+        "total_seconds": 368.3509156999935
+      },
+      "model_calls": 43
+    },
+    "zh": {
+      "strict": {
+        "PASSED": 10
+      },
+      "semantic": {
+        "COMPLETE": 10
+      },
+      "joint_complete": 10,
+      "latency_all": {
+        "count": 10,
+        "p50_seconds": 42.357206199994835,
+        "p95_seconds": 69.97672279999824,
+        "total_seconds": 389.76127649997943
+      },
+      "latency_joint_complete": {
+        "count": 10,
+        "p50_seconds": 42.357206199994835,
+        "p95_seconds": 69.97672279999824,
+        "total_seconds": 389.76127649997943
+      },
+      "model_calls": 46
+    }
+  },
+  "baseline": {
+    "strict": {
+      "FAILED": 14,
+      "PASSED": 6
+    },
+    "semantic": {
+      "FAILED": 10,
+      "COMPLETE": 5,
+      "PARTIAL": 5
+    },
+    "joint_complete": 5,
+    "latency_all": {
+      "count": 20,
+      "p50_seconds": 60.707111750001786,
+      "p95_seconds": 84.16351759999816,
+      "total_seconds": 1102.6128746000031
+    },
+    "model_calls": 119
+  },
+  "safety": {
+    "financial_records_unchanged": true,
+    "facts_unchanged": true,
+    "company_controls_unchanged": true,
+    "world_unchanged_during_agent": true,
+    "no_secrets": true,
+    "only_allowlisted_calls": true,
+    "hidden_markers_absent": true
+  },
+  "workflow_phases": {
+    "COMPLETE": 18,
+    "PAUSED": 2
+  },
+  "tool_errors": {},
+  "tool_coverage": [
+    "calculate_business_metrics",
+    "get_financial_snapshot",
+    "get_platform_capabilities",
+    "list_business_records",
+    "optimize_plan",
+    "read_business_record",
+    "search_documents",
+    "what_if_cashflow"
+  ],
+  "dataset_coverage": [
+    "calculations",
+    "documents",
+    "obligations",
+    "sources",
+    "transactions"
+  ],
+  "cases": [
+    {
+      "case_id": "healthx_plain_language_en",
+      "language": "en",
+      "category": "plain_language",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 23.438920600005076,
+      "calls": 3,
+      "previous_strict": "FAILED",
+      "previous_semantic": "FAILED",
+      "previous_seconds": 62.115696500011836,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_plain_language_zh",
+      "language": "zh",
+      "category": "plain_language",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 22.02377530001104,
+      "calls": 3,
+      "previous_strict": "FAILED",
+      "previous_semantic": "FAILED",
+      "previous_seconds": 60.3760489999986,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_aging_detail_en",
+      "language": "en",
+      "category": "aging_detail",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 41.01884119999886,
+      "calls": 5,
+      "previous_strict": "FAILED",
+      "previous_semantic": "FAILED",
+      "previous_seconds": 65.01397030000226,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "list_business_records",
+        "read_business_record"
+      ],
+      "datasets": [
+        "obligations"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "healthx_aging_detail_zh",
+      "language": "zh",
+      "category": "aging_detail",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 44.063741899997694,
+      "calls": 5,
+      "previous_strict": "FAILED",
+      "previous_semantic": "FAILED",
+      "previous_seconds": 85.14543889999914,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "list_business_records",
+        "read_business_record"
+      ],
+      "datasets": [
+        "obligations"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "healthx_concentration_names_en",
+      "language": "en",
+      "category": "concentration_names",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 44.43644730000233,
+      "calls": 5,
+      "previous_strict": "PASSED",
+      "previous_semantic": "COMPLETE",
+      "previous_seconds": 39.01069759999518,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "read_business_record"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_concentration_names_zh",
+      "language": "zh",
+      "category": "concentration_names",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 43.27003899999545,
+      "calls": 5,
+      "previous_strict": "PASSED",
+      "previous_semantic": "COMPLETE",
+      "previous_seconds": 54.45558589999564,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "read_business_record"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_cashflow_transaction_en",
+      "language": "en",
+      "category": "cashflow_transaction",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 25.33802719999221,
+      "calls": 3,
+      "previous_strict": "PASSED",
+      "previous_semantic": "COMPLETE",
+      "previous_seconds": 80.02414100000169,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "list_business_records",
+        "read_business_record"
+      ],
+      "datasets": [
+        "transactions"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "healthx_cashflow_transaction_zh",
+      "language": "zh",
+      "category": "cashflow_transaction",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 41.44437339999422,
+      "calls": 5,
+      "previous_strict": "PASSED",
+      "previous_semantic": "COMPLETE",
+      "previous_seconds": 76.80555819999427,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "list_business_records",
+        "read_business_record"
+      ],
+      "datasets": [
+        "transactions"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "healthx_empty_scope_en",
+      "language": "en",
+      "category": "empty_scope",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 23.387789200001862,
+      "calls": 3,
+      "previous_strict": "PASSED",
+      "previous_semantic": "PARTIAL",
+      "previous_seconds": 25.080563800001983,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_empty_scope_zh",
+      "language": "zh",
+      "category": "empty_scope",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 23.48905959998956,
+      "calls": 3,
+      "previous_strict": "PASSED",
+      "previous_semantic": "COMPLETE",
+      "previous_seconds": 23.326937199992244,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_two_shocks_en",
+      "language": "en",
+      "category": "two_shocks",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 44.797813099998166,
+      "calls": 5,
+      "previous_strict": "FAILED",
+      "previous_semantic": "PARTIAL",
+      "previous_seconds": 35.06245979999949,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "what_if_cashflow"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_two_shocks_zh",
+      "language": "zh",
+      "category": "two_shocks",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 44.235236500011524,
+      "calls": 5,
+      "previous_strict": "FAILED",
+      "previous_semantic": "PARTIAL",
+      "previous_seconds": 34.57000210000842,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "what_if_cashflow"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_revision_lineage_en",
+      "language": "en",
+      "category": "revision_lineage",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 53.845214200002374,
+      "calls": 6,
+      "previous_strict": "FAILED",
+      "previous_semantic": "FAILED",
+      "previous_seconds": 70.34923439999693,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "list_business_records",
+        "read_business_record"
+      ],
+      "datasets": [
+        "calculations",
+        "obligations"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "healthx_revision_lineage_zh",
+      "language": "zh",
+      "category": "revision_lineage",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 69.97672279999824,
+      "calls": 8,
+      "previous_strict": "FAILED",
+      "previous_semantic": "FAILED",
+      "previous_seconds": 79.98687399999471,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "list_business_records",
+        "read_business_record"
+      ],
+      "datasets": [
+        "calculations",
+        "obligations"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "healthx_two_documents_en",
+      "language": "en",
+      "category": "two_documents",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 55.47371190000558,
+      "calls": 6,
+      "previous_strict": "FAILED",
+      "previous_semantic": "FAILED",
+      "previous_seconds": 32.274126400006935,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "list_business_records",
+        "read_business_record",
+        "search_documents"
+      ],
+      "datasets": [
+        "documents",
+        "sources"
+      ],
+      "error": null
+    },
+    {
+      "case_id": "healthx_two_documents_zh",
+      "language": "zh",
+      "category": "two_documents",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 45.487166199993226,
+      "calls": 5,
+      "previous_strict": "FAILED",
+      "previous_semantic": "FAILED",
+      "previous_seconds": 61.03817450000497,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "read_business_record",
+        "search_documents"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_health_then_plan_en",
+      "language": "en",
+      "category": "health_then_plan",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "PAUSED",
+      "seconds": 31.53049109999847,
+      "calls": 4,
+      "previous_strict": "FAILED",
+      "previous_semantic": "FAILED",
+      "previous_seconds": 81.44686539999384,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "optimize_plan"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_health_then_plan_zh",
+      "language": "zh",
+      "category": "health_then_plan",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "PAUSED",
+      "seconds": 31.20945299998857,
+      "calls": 4,
+      "previous_strict": "FAILED",
+      "previous_semantic": "PARTIAL",
+      "previous_seconds": 23.855618700006744,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "optimize_plan"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_role_and_restricted_doc_en",
+      "language": "en",
+      "category": "role_and_restricted_doc",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 25.08365989998856,
+      "calls": 3,
+      "previous_strict": "FAILED",
+      "previous_semantic": "FAILED",
+      "previous_seconds": 84.16351759999816,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "get_platform_capabilities",
+        "search_documents"
+      ],
+      "datasets": [],
+      "error": null
+    },
+    {
+      "case_id": "healthx_role_and_restricted_doc_zh",
+      "language": "zh",
+      "category": "role_and_restricted_doc",
+      "strict": "PASSED",
+      "semantic": "COMPLETE",
+      "failure_tags": [],
+      "phase": "COMPLETE",
+      "seconds": 24.561708799999906,
+      "calls": 3,
+      "previous_strict": "FAILED",
+      "previous_semantic": "PARTIAL",
+      "previous_seconds": 28.511363300000085,
+      "failed_checks": [],
+      "tool_errors": [],
+      "tools": [
+        "calculate_business_metrics",
+        "get_financial_snapshot",
+        "get_platform_capabilities",
+        "search_documents"
+      ],
+      "datasets": [],
+      "error": null
+    }
+  ],
+  "limitations": [
+    "Same development cases, not independent holdout",
+    "One final primary attempt per case; no replacement retries",
+    "Server-rendered typed narrative, not free LLM prose",
+    "Same budgets, grader, identity and resource/safety guards; no execution authority changes",
+    "Manual semantic review covers all delivered answers and relevant traces; coding assistant, not independent accountant.",
+    "Automatic PASS is not correctness of arbitrary prose.",
+    "Recorded service digest is not independent proof of weights/licence.",
+    "Heuristic checklist cannot cover arbitrary user phrasing or document interpretation.",
+    "All-case latency includes failures; joint-complete subset is reported separately."
+  ]
+}
