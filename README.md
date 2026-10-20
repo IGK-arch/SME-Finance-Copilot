@@ -41,17 +41,48 @@ amounts are in CNY.
 
 ## Architecture
 
+```mermaid
+flowchart TB
+  subgraph OWNER["Owner · browser"]
+    UI["Owner cabinet<br/>Home · Plans · Money<br/>Documents · Activity"]
+    CP["Copilot panel<br/>cards from tool results"]
+    AP["Exact approval<br/>payload hash + step-up"]
+  end
+  subgraph API["API server · FastAPI"]
+    IM["1 · Import & mapping"] --> CO["2 · Compute<br/>forecast · financing · health"]
+    CO --> PL["3 · Planner<br/>OR-Tools CP-SAT"]
+    PL --> VA["4 · Independent validator"]
+    VA --> CA["5 · Command + approval check"]
+    CA --> RS["6 · Reserve + outbox + job<br/>one transaction"]
+    RC["9 · Reconciliation<br/>case closes only when cash matches"]
+  end
+  subgraph AGENT["Copilot agent · LangGraph"]
+    TO["Typed tools<br/>read · compute · propose"]
+    GW["Model gateway<br/>MOCK · Ollama · llama.cpp · Strata"]
+    TO --- GW
+  end
+  WK["7 · Worker<br/>re-checks, idempotency key"]
+  BK["8 · Sandbox bank<br/>separate process + DB"]
+  ST[("Storage<br/>SQLite / PostgreSQL RLS<br/>hash-chained audit")]
+  ETH["Ethereum Sepolia<br/>audit anchor"]
+  UI --> IM
+  CP --> TO
+  TO <--> CO
+  AP --> CA
+  RS --> WK --> BK
+  BK -- observe --> RC
+  API --> ST --> ETH
+  classDef plan fill:#eff6ff,stroke:#3b82f6,color:#0f172a
+  classDef exec fill:#fff7ed,stroke:#f97316,color:#0f172a
+  classDef proof fill:#ecfdf5,stroke:#10b981,color:#0f172a
+  classDef agent fill:#f5f3ff,stroke:#8b5cf6,color:#0f172a
+  class IM,CO,PL,VA plan
+  class CA,RS,WK,AP exec
+  class RC,BK,ETH proof
+  class TO,GW,CP agent
 ```
-Browser cabinet (web/) ─► FastAPI (finance/asgi.py) ─► compute · planner (OR-Tools CP-SAT)
-        │                        │                       └► independent validator
-        │                        ├► LangGraph agent ─► typed tools: read / compute / propose only
-        │                        └► exact approval ─► reservation + outbox + job (one transaction)
-        │                                                   │
-        │                              worker (lease, re-check, stable idempotency key)
-        │                                                   ▼
-        └──────── reconciliation ◄──── observe ──── sandbox bank (separate process + DB)
-Storage: SQLite (default) or PostgreSQL with FORCE row-level security · hash-chained audit
-```
+
+Numbers show the path of one plan: 1 import → 2 compute → 3 plan → 4 validate → 5 owner approves the exact payload → 6 reserve and queue → 7 worker sends → 8 sandbox bank settles → 9 reconciliation closes the case.
 
 Details, algorithms and design decisions: [technical documentation](docs/submission/TECHNICAL_DOCUMENTATION.md),
 [architecture notes](docs/architecture/README.md), [ADRs](docs/adr/).
