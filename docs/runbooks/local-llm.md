@@ -150,7 +150,7 @@ The separately documented E: runtime footprint increase only permits storing the
 third model. A request to test with current memory does not disable the guard.
 
 For ten additional categories use `--suite exploratory` with the installed 14B tag.
-See [scenario inventory](../LOCAL_14B_SCENARIOS.md) for all twenty tasks and grading
+See scenario inventory for all twenty tasks and grading
 limits. Run sequentially and preserve each failed attempt. Never turn an automatic
 tool/state pass into a claim that all natural-language assertions are correct.
 

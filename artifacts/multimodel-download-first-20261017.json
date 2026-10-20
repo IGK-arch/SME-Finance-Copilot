@@ -1,8 +1,0 @@
-{
-  "status": "FAILED",
-  "files": [],
-  "started": 1792195364.558048,
-  "current": "models/1/occamy-1.0-Q4_K_M.gguf",
-  "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>",
-  "finished": 1792195364.6986654
-}

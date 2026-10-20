@@ -1,2 +1,0 @@
-kind,external_id,version,event_time,observed_time,amount_minor,currency,due_at,counterparty,beneficiary_version,reference,protected,status
-INVOICE,browser_review_invoice,1,2026-10-01T00:00:00.000000+00:00,2026-10-01T00:00:00.000000+00:00,review-required,CNY,2026-10-11T00:00:00.000000+00:00,customer,,,false,CONFIRMED

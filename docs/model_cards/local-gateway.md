@@ -19,10 +19,10 @@ were attempted (21 attempts; one repeated resource interruption), with 240 secon
 per request and 600 cumulative seconds/task. Strict results:8 PASSED/13 FAILED
 attempts. Assistant narrative review:6 complete,5 partial,7 failed,2 RAM-interrupted
 scenarios. Q8/Q4 cache profiles are distinct and not a controlled comparison.
-[Completed results](../LOCAL_14B_RESULTS.md) preserve all raw reports and limitations.
+Completed results preserve all raw reports and limitations.
 Current evidence and unchanged financial-state checks are in
-[platform results](../AGENT_PLATFORM_RESULTS.md); cases and grading limits are in
-[scenario inventory](../LOCAL_14B_SCENARIOS.md). The UI currently selects this
+platform results; cases and grading limits are in
+scenario inventory. The UI currently selects this
 experimental 14B model; historical 7B/8B scores below do not establish 14B quality.
 
 Default `MODEL_PROVIDER=mock` runs an explicitly labelled deterministic tool-call
@@ -67,7 +67,7 @@ See the companion `-review.json`. Those are real narrative failures despite stru
 passes. These diagnostic results are historical, superseded by the completed
 CPU comparison: Qwen 8/10 strict passes, median 64.063 s; corrected Granite 8/10,
 median 90.693 s. Both still have narrative errors. Qwen is selected only for the
-experimental sandbox UI. See [results](../LIVE_MODEL_RESULTS.md) and raw reports
+experimental sandbox UI. See results and raw reports
 live-comparison-cpu-final-v1.json / live-granite8-native-protocol-v2.json.
 Granite's initial 1/10 was traced to native tool instructions omitted by its
 official template when a custom system message exists. The provider-specific

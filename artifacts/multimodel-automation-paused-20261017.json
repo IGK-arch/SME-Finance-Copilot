@@ -1,8 +1,0 @@
-{
-  "checked_at": "2026-10-17T22:57:41.253441+03:00",
-  "id": "sme-500",
-  "status": "PAUSED",
-  "rrule": "FREQ=MINUTELY;INTERVAL=15",
-  "target_thread_id": "01a12fd3-6f43-75f3-a39f-0dd50bc82bfd",
-  "reason": "500 primary outcomes complete, comparison and documentation completed"
-}
