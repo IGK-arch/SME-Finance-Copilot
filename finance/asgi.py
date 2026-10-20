@@ -9,8 +9,9 @@ import os
 import re
 import secrets
 import time
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Callable, Protocol
 from urllib.parse import urlparse
 
 from fastapi import FastAPI, Request
@@ -217,6 +218,27 @@ def session_context(service: ExecutionService, raw: str) -> AuthContext:
     return AuthContext(row[0], payload["user_id"], member[0])
 
 
+@dataclass(frozen=True)
+class Workspace:
+    """One company workspace the server routes to: its service and demo controls."""
+
+    service: ExecutionService
+    advance: Callable[[], Json] | None = None
+    decision: Callable[[Json], Json] | None = None
+
+
+class DemoDirectory(Protocol):
+    """Personal reviewer demos (scripts.demo_pool), each a separate workspace."""
+
+    per_client: int
+    client_window_seconds: float
+    idle_hours: float
+
+    def create(self) -> tuple[str, str, Workspace]: ...
+    def get(self, demo_id: str) -> Workspace | None: ...
+    def find(self, token: str) -> str | None: ...
+
+
 class PolicyRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
     reserve_minor: int = Field(ge=0, le=10**12)
@@ -229,12 +251,64 @@ def make_app(
     demo_decision: Callable[[Json], Json] | None = None,
     webhook: tuple[AuthContext, str] | None = None,
     login_file: Path | None = None,
+    demos: DemoDirectory | None = None,
 ) -> FastAPI:
     app = FastAPI(title="SME Finance Copilot", version="0.3.0")
     sign_in_failures = FailureLimiter(limit=20, window_seconds=300)
     # API bearer tokens get their own budget so guessing them cannot lock out browser sign-in.
     bearer_failures = FailureLimiter(limit=20, window_seconds=300)
+    demo_starts = (
+        FailureLimiter(limit=demos.per_client, window_seconds=demos.client_window_seconds)
+        if demos is not None
+        else None
+    )
     root = Path(__file__).resolve().parent.parent / "web"
+    main = Workspace(service, demo_advance, demo_decision)
+
+    def resolve(cookie: str) -> tuple[Workspace, str]:
+        """Demo session cookies are '<demo id>.<secret>' and reach only that demo's workspace;
+        any other cookie belongs to the main workspace. Nothing ever falls back across them."""
+        if "." not in cookie:
+            return main, cookie
+        demo_id, raw = cookie.split(".", 1)
+        ws = demos.get(demo_id) if demos is not None else None
+        require(ws is not None, "UNAUTHORIZED", "This demo has ended; start a new one")
+        assert ws is not None
+        return ws, raw
+
+    def open_session(ws: Workspace, ctx: AuthContext, token: str, prefix: str) -> str:
+        raw = secrets.token_urlsafe(32)
+        expires = time.time() + SESSION_SECONDS
+        with ws.service.store.transaction() as db:
+            ws.service.store.authorize(db, ctx)
+            ws.service.store.put_object(
+                db,
+                ctx.tenant_id,
+                "session",
+                _session_key(raw),
+                {
+                    "user_id": ctx.user_id,
+                    "role": ctx.role,
+                    "token_hash": ws.service.store.token_hash(token),
+                    "created_at": time.time(),
+                    "expires_at": expires,
+                },
+            )
+            ws.service.store.audit(db, ctx, "session.created", {"user_id": ctx.user_id})
+        return prefix + raw
+
+    def session_response(result: Json, cookie: str, request: Request) -> JSONResponse:
+        response = JSONResponse({"result": result})
+        response.set_cookie(
+            SESSION_COOKIE,
+            cookie,
+            max_age=SESSION_SECONDS,
+            httponly=True,
+            samesite="strict",
+            secure=request.url.scheme == "https" or public_origin() is not None,
+            path="/",
+        )
+        return response
 
     @app.post("/hooks/sandbox")
     async def sandbox_hook(request: Request):
@@ -249,7 +323,7 @@ def make_app(
                 require(len(body) <= 10000, "INVALID_WEBHOOK", "Webhook size limit")
             return await run_in_threadpool(
                 receive,
-                service,
+                main.service,
                 webhook[0],
                 webhook[1],
                 bytes(body),
@@ -350,51 +424,43 @@ def make_app(
                 "INVALID_ARGUMENTS",
                 "Token required",
             )
+            token = body["token"]
+
+            def sign_in() -> tuple[AuthContext, str]:
+                try:
+                    ctx = main.service.store.authenticate(token)
+                except FinanceError:
+                    # A personal demo key signs back in to its own demo only.
+                    demo_id = demos.find(token) if demos is not None else None
+                    ws = demos.get(demo_id) if demos is not None and demo_id else None
+                    if ws is None or demo_id is None:
+                        raise
+                    ctx = ws.service.store.authenticate(token)
+                    return ctx, open_session(ws, ctx, token, demo_id + ".")
+                return ctx, open_session(main, ctx, token, "")
+
             try:
-                ctx = await run_in_threadpool(service.store.authenticate, body["token"])
-            except FinanceError:
-                sign_in_failures.fail(client)
-                security_event("sign_in_failed", request)
+                ctx, cookie = await run_in_threadpool(sign_in)
+            except FinanceError as exc:
+                if exc.code == "UNAUTHORIZED":
+                    sign_in_failures.fail(client)
+                    security_event("sign_in_failed", request)
                 raise
-            raw = secrets.token_urlsafe(32)
-            expires = time.time() + SESSION_SECONDS
-
-            def save() -> None:
-                with service.store.transaction() as db:
-                    service.store.authorize(db, ctx)
-                    service.store.put_object(
-                        db,
-                        ctx.tenant_id,
-                        "session",
-                        _session_key(raw),
-                        {
-                            "user_id": ctx.user_id,
-                            "role": ctx.role,
-                            "token_hash": service.store.token_hash(body["token"]),
-                            "created_at": time.time(),
-                            "expires_at": expires,
-                        },
-                    )
-                    service.store.audit(db, ctx, "session.created", {"user_id": ctx.user_id})
-
-            await run_in_threadpool(save)
-            response = JSONResponse(
-                {"result": {"role": ctx.role, "user_id": ctx.user_id, "expires_at": expires}}
+            return session_response(
+                {
+                    "role": ctx.role,
+                    "user_id": ctx.user_id,
+                    "expires_at": time.time() + SESSION_SECONDS,
+                },
+                cookie,
+                request,
             )
-            response.set_cookie(
-                SESSION_COOKIE,
-                raw,
-                max_age=SESSION_SECONDS,
-                httponly=True,
-                samesite="strict",
-                secure=request.url.scheme == "https" or public_origin() is not None,
-                path="/",
-            )
-            return response
         except FinanceError as exc:
             return JSONResponse(
                 {"error": exc.envelope()},
-                status_code={"UNAUTHORIZED": 401, "RATE_LIMITED": 429}.get(exc.code, 403),
+                status_code={"UNAUTHORIZED": 401, "RATE_LIMITED": 429, "DEMO_CAPACITY": 503}.get(
+                    exc.code, 403
+                ),
             )
         except (ValueError, KeyError, TypeError):
             return JSONResponse(
@@ -422,19 +488,83 @@ def make_app(
         except (FinanceError, OSError, ValueError):
             return JSONResponse({"error": {"code": "NOT_FOUND"}}, status_code=404)
 
+    @app.get("/session/demo/new")
+    async def personal_demo_info():
+        """Whether visitors may start their own demo company (SME_DEMO_SELF_SERVICE)."""
+        if demos is None:
+            return JSONResponse({"error": {"code": "NOT_FOUND"}}, status_code=404)
+        return {"result": {"idle_hours": demos.idle_hours}}
+
+    @app.post("/session/demo/new")
+    async def personal_demo(request: Request):
+        """Seeds a fresh synthetic company for this visitor and signs them in as its OWNER.
+
+        The OWNER key is returned once so the visitor can come back; it works only for
+        this demo. Rate limited per client and capped globally by the demo pool."""
+        try:
+            require(demos is not None and demo_starts is not None, "NOT_FOUND", "Not enabled")
+            assert demos is not None and demo_starts is not None
+            check_origin(request)
+            client = client_address(request)
+            if demo_starts.blocked(client):
+                security_event("demo_rate_limited", request)
+            require(
+                not demo_starts.blocked(client),
+                "RATE_LIMITED",
+                "Too many new demos from this address; try again later",
+            )
+            demo_starts.fail(client)  # every start counts, successful or not
+
+            def start() -> tuple[AuthContext, str, str]:
+                demo_id, token, ws = demos.create()
+                ctx = ws.service.store.authenticate(token)
+                return ctx, token, open_session(ws, ctx, token, demo_id + ".")
+
+            ctx, token, cookie = await run_in_threadpool(start)
+            return session_response(
+                {
+                    "role": ctx.role,
+                    "token": token,
+                    "idle_hours": demos.idle_hours,
+                    "expires_at": time.time() + SESSION_SECONDS,
+                },
+                cookie,
+                request,
+            )
+        except FinanceError as exc:
+            return JSONResponse(
+                {"error": exc.envelope()},
+                status_code={"NOT_FOUND": 404, "RATE_LIMITED": 429, "DEMO_CAPACITY": 503}.get(
+                    exc.code, 403
+                ),
+            )
+        except Exception:
+            logging.exception("Personal demo start failed")
+            return JSONResponse(
+                {
+                    "error": {
+                        "code": "INTERNAL_ERROR",
+                        "safe_message": "Could not start a demo; try again",
+                        "retryable": True,
+                    }
+                },
+                status_code=500,
+            )
+
     @app.post("/session/logout")
     async def logout(request: Request):
-        raw = request.cookies.get(SESSION_COOKIE, "")
+        cookie = request.cookies.get(SESSION_COOKIE, "")
         try:
             check_origin(request)
-            ctx = await run_in_threadpool(session_context, service, raw)
+            ws, raw = await run_in_threadpool(resolve, cookie)
+            ctx = await run_in_threadpool(session_context, ws.service, raw)
 
             def revoke() -> None:
-                with service.store.transaction() as db:
-                    service.store.put_object(
+                with ws.service.store.transaction() as db:
+                    ws.service.store.put_object(
                         db, ctx.tenant_id, "session_revoked", _session_key(raw), {"at": time.time()}
                     )
-                    service.store.audit(db, ctx, "session.revoked", {"user_id": ctx.user_id})
+                    ws.service.store.audit(db, ctx, "session.revoked", {"user_id": ctx.user_id})
 
             await run_in_threadpool(revoke)
         except FinanceError:
@@ -459,8 +589,9 @@ def make_app(
                     "RATE_LIMITED",
                     "Too many failed token attempts; wait five minutes",
                 )
+                ws = main  # API bearer tokens are for the main workspace only
                 try:
-                    ctx = service.store.authenticate(bearer)
+                    ctx = ws.service.store.authenticate(bearer)
                 except FinanceError:
                     bearer_failures.fail(client)
                     security_event("bearer_auth_failed", request)
@@ -476,7 +607,8 @@ def make_app(
                     "Missing request header",
                 )
                 try:
-                    ctx = await run_in_threadpool(session_context, service, cookie or "")
+                    ws, raw = await run_in_threadpool(resolve, cookie or "")
+                    ctx = await run_in_threadpool(session_context, ws.service, raw)
                 except FinanceError:
                     security_event("session_rejected", request)
                     raise
@@ -504,13 +636,13 @@ def make_app(
                     return {
                         "schema_version": 1,
                         "request_id": request_id,
-                        "result": await run_in_threadpool(start_background, service, ctx, value),
+                        "result": await run_in_threadpool(start_background, ws.service, ctx, value),
                     }
                 from finance.copilot import compose_task
 
                 value = {
                     "task": await run_in_threadpool(
-                        compose_task, service, ctx, value["task"], value.get("context")
+                        compose_task, ws.service, ctx, value["task"], value.get("context")
                     )
                 }
             parts = resource.split("/")
@@ -527,21 +659,21 @@ def make_app(
                     "schema_version": 1,
                     "request_id": request_id,
                     "result": await run_in_threadpool(
-                        resume_background, service, ctx, parts[1], value
+                        resume_background, ws.service, ctx, parts[1], value
                     ),
                 }
             if request.method == "POST" and resource == "settings":
                 value = PolicyRequest.model_validate(value).model_dump()
             result = await run_in_threadpool(
                 dispatch,
-                service,
+                ws.service,
                 ctx,
                 request.method,
                 "/v1/" + resource,
                 value,
-                demo_advance,
+                ws.advance,
                 True,
-                demo_decision,
+                ws.decision,
             )
             return {"schema_version": 1, "request_id": request_id, "result": result}
         except FinanceError as exc:

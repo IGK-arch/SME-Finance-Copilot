@@ -7,7 +7,7 @@ time, executes it against a sandbox bank and proves the outcome through reconcil
 
 International Track · Topic E (SME finance) · version 0.3.0 · MIT license
 
-**Live demo: <https://sme-finance-copilot.com/>** (synthetic data, sandbox bank; the sign-in page shows a demo key for reviewers)
+**Live demo: <https://sme-finance-copilot.com/>** (synthetic data, sandbox bank). Press **Start a personal demo** on the sign-in page: you get your own freshly seeded company and OWNER key and can walk the whole path from the cash gap to reconciliation without affecting other reviewers.
 
 Repository: <https://github.com/IGK-arch/SME-Finance-Copilot>
 

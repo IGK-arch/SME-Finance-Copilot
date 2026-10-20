@@ -73,6 +73,31 @@ key is public: anyone who opens the site can use it. Approving a payment still n
 the exact review and the step-up re-entry of the same token. To turn it off, remove the
 line and restart (`/session/demo` returns 404); reset the demo company to rotate tokens.
 
+### Personal demos for reviewers (optional, recommended for judging)
+
+With a shared key everyone changes the same company, so the second reviewer finds the
+case already resolved. Personal demos give every visitor their own company instead.
+Add to `/etc/sme-copilot/sme-copilot.env` and restart:
+
+```bash
+SME_DEMO_SELF_SERVICE=1
+# optional limits (defaults shown)
+SME_DEMO_MAX_ACTIVE=12
+SME_DEMO_IDLE_HOURS=6
+SME_DEMO_PER_IP_PER_HOUR=3
+```
+
+The sign-in page then shows *Start a personal demo*. Each press seeds the golden
+synthetic company in a new folder under `/var/lib/sme-copilot/workspace-demos/<id>` with
+its own database, sandbox bank process, worker and business clock, signs the visitor in
+as its OWNER and shows the key once (to come back and for the payment step-up). Demo
+sessions and keys reach only their own demo; the main workspace is never touched.
+Each running demo uses about two light Python processes (roughly 100–150 MB), so 12
+fit a 4 GB VPS. Processes of a demo idle for 30 minutes are stopped and restarted on the
+next request; after `SME_DEMO_IDLE_HOURS` without activity its folder is deleted. When
+all slots are busy, visitors see "All demo slots are busy, try again in a few minutes".
+Logs: `sudo journalctl -u sme-copilot | grep -i demo`.
+
 ## 4. Enable the LIVE model (optional)
 
 Prompts with the synthetic company's data then go over SSH to the GPU server; the
